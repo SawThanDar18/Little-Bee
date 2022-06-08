@@ -2,5 +2,25 @@
     <string name="app_name">JiaJie</string>
 
     <string name="skip">Skip</string>
+    <string name="search_keyword_hint">Enter Keyword to Search</string>
+    <string name="exit_app">Press again to exit.</string>
+    <string name="reload_page">Reload Page</string>
+    <string name="available_service">Available Services</string>
+    <string name="home_popular">Popular Services</string>
+    <string name="home_symn">Services You May Need</string>
+
+    <string name="home"><font size="12">Home</font></string>
+    <string name="carts"><font size="12">My Carts</font></string>
+    <string name="orders"><font size="12">Orders</font></string>
+    <string name="receipt"><font size="12">Receipt</font></string>
+    <string name="my"><font size="12">My</font></string>
+
+    <string name="about">About JiaJie</string>
+    <string name="why">Why JiaJie?</string>
+    <string name="user_guide">App User Guide</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="change_language">Change Language</string>
+    <string name="payment_option">Payment Information</string>
+    <string name="logout">Logout</string>
 
 </resources>

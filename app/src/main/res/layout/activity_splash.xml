@@ -8,8 +8,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/red"
-        android:scaleType="fitXY"/>
+        android:src="@drawable/s"
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:id="@+id/skip_layout"

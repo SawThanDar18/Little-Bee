@@ -4,5 +4,25 @@
     <string name="app_name">JiaJie</string>
 
     <string name="skip">ကျော်မည်</string>
+    <string name="search_keyword_hint">Enter Keyword to Search</string>
+    <string name="reload_page">Reload Page</string>
+    <string name="exit_app">နောက်တစ်ကြိမ်ထပ်မံနှိပ်ပါ။</string>
+    <string name="available_service">ရရှိနိုင်သော ဝန်ဆောင်မှုများ</string>
+    <string name="home_popular">အသုံးများသော ဝန်ဆောင်မှုများ</string>
+    <string name="home_symn">သင်လိုအပ်နိုင်သည့် ဝန်ဆောင်မှုများ</string>
+
+    <string name="home">Home</string>
+    <string name="carts">My Carts</string>
+    <string name="orders">Orders</string>
+    <string name="receipt">Receipt</string>
+    <string name="my">My</string>
+
+    <string name="about">JiaJie ဆိုသည်မှာ</string>
+    <string name="why">ဘာ​ကြောင့်သုံးသင့်တာလဲ?</string>
+    <string name="user_guide">App အသုံးပြုပုံ</string>
+    <string name="contact_us">ဆက်သွယ်ရန်</string>
+    <string name="change_language">ဘာသာစကား</string>
+    <string name="payment_option">ငွေပေးချေရန်</string>
+    <string name="logout">ထွက်မည်။</string>
 
 </resources>

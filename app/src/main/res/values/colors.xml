@@ -12,4 +12,12 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="theme_color">#e00020</color>
+    <color name="search_icon_color">#817f7f</color>
+    <color name="pink_accent_color">#ffb4b6</color>
+    <color name="transparent">#00000000</color>
+    <color name="home_service_title_color">#5b5959</color>
+    <color name="home_service_name_color">#9a9898</color>
+
 </resources>

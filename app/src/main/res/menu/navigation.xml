@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeTab"
+        app:showAsAction="always"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/cartTab"
+        android:icon="@drawable/cart_icon"
+        android:title="@string/carts" />
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/orderTab"
+        android:icon="@drawable/orders"
+        android:title="@string/orders" />
+    <item
+        app:showAsAction="always"
+        android:id="@+id/receiptTab"
+        android:icon="@drawable/receipt_icon"
+        android:title="@string/receipt" />
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/moreTab"
+        android:icon="@drawable/my_icon"
+        android:title="@string/my" />
+
+
+</menu>
