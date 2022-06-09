@@ -1,6 +1,8 @@
 package com.busybees.lauk_kaing_expert_services.utility;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -17,11 +19,6 @@ public class Utility {
         if (cm != null && cm.getActiveNetworkInfo() != null)
             hostReachable = cm.getActiveNetworkInfo().isConnectedOrConnecting();
         return hostReachable;
-    }
-    public static String DeviceUDID(Context context){
-        String udid = Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        return udid;
     }
 
     public static void showToast(Context context, String message) {

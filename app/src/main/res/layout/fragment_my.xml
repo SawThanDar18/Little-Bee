@@ -263,7 +263,7 @@
                     android:orientation="vertical" />
 
                 <LinearLayout
-                    android:id="@+id/change_loc"
+                    android:id="@+id/change_language"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
                     android:layout_marginLeft="@dimen/margin20"

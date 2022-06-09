@@ -23,4 +23,9 @@
     <string name="payment_option">Payment Information</string>
     <string name="logout">Logout</string>
 
+    <string name="english_title">English</string>
+    <string name="myanmar_title">Myanmar</string>
+    <string name="chinese_title">Chinese</string>
+    <string name="confirm">Confirm</string>
+
 </resources>

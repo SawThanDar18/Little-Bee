@@ -82,9 +82,9 @@ public class HomeFragment extends Fragment {
 
         List<String> imagelist = new ArrayList<>();
         imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
-        imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
-        imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
-        imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
+        imagelist.add("https://images.squarespace-cdn.com/content/v1/5585b51ce4b0f2164efaa2b1/1558664884095-D2D42IRVFPZH3J0HFCQN/image-asset.jpeg?format=2500w");
+        imagelist.add("https://img.grouponcdn.com/deal/3zq2KMhexQw32bJCKUvyxWaEEEdD/3z-2048x1229/v1/c870x524.jpg");
+        imagelist.add("https://www.pccsindia.com/wp-content/uploads/2020/04/commercial-clenaing-6-1-1024x561-1.jpg");
 
         webBannerAdapter = new WebBannerAdapter(getActivity(), imagelist);
 

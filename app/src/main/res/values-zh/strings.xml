@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JiaJie</string>
+
+    <string name="skip">Skip</string>
+    <string name="search_keyword_hint">输入关键字进行搜索</string>
+    <string name="exit_app">再按一次退出再按一次退出.</string>
+    <string name="reload_page">重新加载页面</string>
+    <string name="available_service">可用服务</string>
+    <string name="home_popular">热门服务</string>
+    <string name="home_symn">您可能需要的服务</string>
+
+    <string name="home"><font size="12">家</font></string>
+    <string name="carts"><font size="12">我的购物车</font></string>
+    <string name="orders"><font size="12">订单</font></string>
+    <string name="receipt"><font size="12">收据</font></string>
+    <string name="my"><font size="12">矿</font></string>
+
+    <string name="about">关于嘉杰</string>
+    <string name="why">为什么是嘉杰?</string>
+    <string name="user_guide">应用用户指南</string>
+    <string name="contact_us">联系我们</string>
+    <string name="change_language">改变语言</string>
+    <string name="payment_option">支付信息</string>
+    <string name="logout">登出</string>
+
+    <string name="english_title">英语</string>
+    <string name="myanmar_title">缅甸</string>
+    <string name="chinese_title">中国人</string>
+    <string name="confirm">确认</string>
+
+</resources>

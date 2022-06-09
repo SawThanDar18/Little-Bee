@@ -15,7 +15,7 @@
             android:layout_centerVertical="true"
             android:layout_width="@dimen/width60"
             android:layout_height="@dimen/height60"
-            android:background="@drawable/image_rounded_corner" />
+            android:background="@drawable/image_rounded_corner_theme_bg" />
 
         <TextView
             android:gravity="center"
