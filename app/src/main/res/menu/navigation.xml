@@ -5,30 +5,30 @@
     <item
         android:id="@+id/homeTab"
         app:showAsAction="always"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/icon_home"
         android:title="@string/home" />
 
     <item
         app:showAsAction="always"
         android:id="@+id/cartTab"
-        android:icon="@drawable/cart_icon"
+        android:icon="@drawable/icon_my_carts"
         android:title="@string/carts" />
 
     <item
         app:showAsAction="always"
         android:id="@+id/orderTab"
-        android:icon="@drawable/orders"
+        android:icon="@drawable/icon_orders"
         android:title="@string/orders" />
     <item
         app:showAsAction="always"
         android:id="@+id/receiptTab"
-        android:icon="@drawable/receipt_icon"
+        android:icon="@drawable/icon_receipt"
         android:title="@string/receipt" />
 
     <item
         app:showAsAction="always"
         android:id="@+id/moreTab"
-        android:icon="@drawable/my_icon"
+        android:icon="@drawable/icon_my"
         android:title="@string/my" />
 
 

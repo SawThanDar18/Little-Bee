@@ -8,6 +8,7 @@
     <dimen name="margin20">20dp</dimen>
     <dimen name="margin24">24dp</dimen>
     <dimen name="margin32">32dp</dimen>
+    <dimen name="margin34">34dp</dimen>
     <dimen name="margin64">64dp</dimen>
 
     <dimen name="padding1">1dp</dimen>
@@ -41,6 +42,7 @@
 
     <dimen name="radius10">10dp</dimen>
 
+    <dimen name="fontSizeXSmall">12dp</dimen>
     <dimen name="fontSizeSmall">14dp</dimen>
     <dimen name="fontSizeMedium">16dp</dimen>
     <dimen name="fontSizeLarge">20dp</dimen>

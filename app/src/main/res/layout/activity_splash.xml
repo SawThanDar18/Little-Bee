@@ -8,15 +8,15 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splash"
-        android:scaleType="centerCrop"/>
+        android:src="@drawable/ads_image"
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:id="@+id/skip_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin24"
-        android:layout_marginEnd="@dimen/margin24"
+        android:layout_marginTop="@dimen/margin16"
+        android:layout_marginEnd="@dimen/margin16"
         android:paddingVertical="@dimen/padding4"
         android:paddingHorizontal="@dimen/padding10"
         android:orientation="horizontal"

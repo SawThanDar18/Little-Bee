@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,17 +14,20 @@
         android:layout_height="@dimen/height200"
         android:background="@color/theme_color">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@color/theme_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_marginLeft="@dimen/margin24"
-                android:layout_centerVertical="true"
                 android:id="@+id/profile_pic"
                 android:layout_width="@dimen/width100"
-                android:layout_height="@dimen/height100">
+                android:layout_height="@dimen/height100"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <include layout="@layout/material_loader_layout" />
 
@@ -38,8 +42,8 @@
                         android:id="@+id/profile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/clean"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/clean" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -51,8 +55,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="@dimen/margin16"
+                android:layout_marginStart="@dimen/margin16"
                 android:layout_toRightOf="@id/profile_pic"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_pic"
+                app:layout_constraintStart_toEndOf="@+id/profile_pic"
+                app:layout_constraintTop_toTopOf="@+id/profile_pic">
 
                 <TextView
                     android:id="@+id/name"
@@ -72,11 +80,24 @@
                     android:text="09255******4"
                     android:textColor="@color/white"
                     android:textSize="@dimen/fontSizeMedium"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-        </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/width50"
+                android:layout_height="@dimen/height35"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin4"
+                android:layout_toEndOf="@id/profileNameView"
+                android:src="@drawable/icon_profile_edit_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/profileNameView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/profileNameView"
+                app:layout_constraintTop_toTopOf="@+id/profileNameView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -99,7 +120,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin16"
+                    android:layout_marginLeft="@dimen/margin32"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -125,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -159,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -167,12 +188,13 @@
                     android:id="@+id/guarantee"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin16"
+                    android:layout_marginLeft="@dimen/margin24"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
+                        android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/why" />
 
@@ -192,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -200,12 +222,13 @@
                     android:id="@+id/userGuide"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin20"
+                    android:layout_marginLeft="@dimen/margin24"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
+                        android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/user_guide_icon" />
 
@@ -225,7 +248,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -233,12 +256,13 @@
                     android:id="@+id/contactUs"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin20"
+                    android:layout_marginLeft="@dimen/margin24"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
+                        android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/contact_icon" />
 
@@ -258,7 +282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -266,11 +290,12 @@
                     android:id="@+id/change_language"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin20"
+                    android:layout_marginLeft="@dimen/margin24"
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
+                        android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/change_language_icon" />
 
@@ -291,7 +316,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -299,12 +324,13 @@
                     android:id="@+id/languageLayout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin20"
+                    android:layout_marginLeft="@dimen/margin24"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
+                        android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/payment_icon" />
 
@@ -324,7 +350,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -332,7 +358,7 @@
                     android:id="@+id/loginView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin24"
+                    android:layout_marginLeft="@dimen/margin34"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -351,7 +377,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/margin6"
                             android:gravity="center_vertical"
                             android:padding="@dimen/padding1"
                             android:text="@string/logout"
@@ -365,7 +391,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"
-                    android:layout_marginHorizontal="@dimen/margin6"
+                    android:layout_marginHorizontal="@dimen/margin24"
                     android:background="@color/black"
                     android:orientation="vertical" />
 
@@ -373,7 +399,7 @@
                     android:id="@+id/version"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
-                    android:layout_marginLeft="@dimen/margin24"
+                    android:layout_marginLeft="@dimen/margin32"
                     android:orientation="horizontal">
 
                     <ImageView

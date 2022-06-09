@@ -28,7 +28,7 @@ android:layout_height="wrap_content">
 
         <RadioButton
             android:textStyle="bold"
-            android:textSize="@dimen/fontSizeMedium"
+            android:textSize="@dimen/fontSizeSmall"
             android:layout_marginLeft="@dimen/margin8"
             android:padding="@dimen/padding8"
             android:buttonTint="@color/theme_color"
@@ -36,15 +36,15 @@ android:layout_height="wrap_content">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/myanmar_title"
-            android:textColor="@color/black" />
+            android:textColor="@color/home_service_title_color" />
 
         <RadioButton
             android:textStyle="bold"
-            android:textSize="@dimen/fontSizeMedium"
+            android:textSize="@dimen/fontSizeSmall"
             android:layout_marginLeft="@dimen/margin8"
             android:padding="@dimen/padding8"
             android:buttonTint="@color/theme_color"
-            android:textColor="@color/black"
+            android:textColor="@color/home_service_title_color"
             android:id="@+id/english_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,11 +52,11 @@ android:layout_height="wrap_content">
 
         <RadioButton
             android:textStyle="bold"
-            android:textSize="@dimen/fontSizeMedium"
+            android:textSize="@dimen/fontSizeSmall"
             android:layout_marginLeft="@dimen/margin8"
             android:padding="@dimen/padding8"
             android:buttonTint="@color/theme_color"
-            android:textColor="@color/black"
+            android:textColor="@color/home_service_title_color"
             android:id="@+id/chinese_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
