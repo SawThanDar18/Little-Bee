@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_toolbar_height"
         android:layout_alignParentTop="true"
-        android:background="@color/theme_color"
+        android:background="@drawable/background"
         android:clickable="true"
         app:contentInsetStart="0dp"
         app:layout_constraintEnd_toEndOf="parent"

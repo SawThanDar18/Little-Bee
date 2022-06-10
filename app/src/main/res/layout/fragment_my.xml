@@ -15,7 +15,7 @@
         android:background="@color/theme_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@color/theme_color"
+            android:background="@drawable/background"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -160,8 +160,7 @@
                     <ImageView
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/cleaning" />
+                        android:layout_gravity="center_vertical" />
 
                     <TextView
                         android:layout_width="wrap_content"
