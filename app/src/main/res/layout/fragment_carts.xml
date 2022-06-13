@@ -1,14 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:text="Carts Fragment" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/tool_bar_layout"
+            layout="@layout/carts_tool_bar_layout"/>
+
+        <RelativeLayout
+            android:id="@+id/cart_timeline"
+            android:layout_below="@id/tool_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin16"
+                android:layout_marginTop="@dimen/margin8"
+                android:layout_marginRight="@dimen/margin16">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/home_page_btn"
+                        android:layout_width="@dimen/width50"
+                        android:layout_height="@dimen/height50"
+                        android:layout_weight="1"
+                        android:src="@drawable/service_choose_full_color" />
+
+                    <View
+                        android:layout_width="@dimen/width40"
+                        android:layout_height="@dimen/height3"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/theme_color" />
+
+                    <ImageView
+                        android:layout_width="@dimen/width50"
+                        android:layout_height="@dimen/height50"
+                        android:layout_weight="1"
+                        android:src="@drawable/shopping_cart" />
+
+                    <View
+                        android:layout_width="@dimen/width40"
+                        android:layout_height="@dimen/height3"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/pink_accent_color" />
+
+                    <ImageView
+                        android:layout_width="@dimen/width50"
+                        android:layout_height="@dimen/height50"
+                        android:layout_weight="1"
+                        android:src="@drawable/location_stoke_color" />
+
+                    <View
+                        android:layout_width="@dimen/width40"
+                        android:layout_height="@dimen/height3"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/pink_accent_color" />
+
+                    <ImageView
+                        android:layout_width="@dimen/width50"
+                        android:layout_height="@dimen/height50"
+                        android:layout_weight="1"
+                        android:src="@drawable/order_check_stroke_color" />
+
+                    <View
+                        android:layout_width="@dimen/width40"
+                        android:layout_height="@dimen/height3"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/pink_accent_color" />
+
+                    <ImageView
+                        android:layout_width="@dimen/width50"
+                        android:layout_height="@dimen/height50"
+                        android:layout_weight="1"
+                        android:src="@drawable/payment_stoke_color" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/loginView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/cart_timeline">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cartRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/continue_layout"
+                android:layout_marginBottom="@dimen/margin24" />
+
+            <LinearLayout
+                android:id="@+id/continue_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/margin16"
+                android:layout_marginRight="@dimen/margin16"
+                android:layout_marginBottom="@dimen/margin16"
+                android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cartCountText"
+                        android:layout_width="@dimen/width32"
+                        android:layout_height="@dimen/height30"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin16"
+                        android:background="@drawable/circle_with_pink_accent_border"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fontSizeSmall"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/amountText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/theme_color"
+                        android:gravity="center|start"
+                        android:padding="@dimen/padding15"
+                        android:text="30000 MMK"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fontSizeSmall"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/continue_click_view"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".4"
+                    android:drawableEnd="@drawable/arrow_forward_icon"
+                    android:gravity="center"
+                    android:padding="@dimen/padding15"
+                    android:text="@string/continues"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fontSizeSmall"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/no_login_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:padding="@dimen/padding10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding2"
+                    android:text="@string/please_login"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium" />
+
+                <Button
+                    android:id="@+id/go_to_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin16"
+                    android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                    android:padding="@dimen/padding8"
+                    android:text="@string/go_to_login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/no_service_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:padding="@dimen/padding10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding2"
+                    android:text="@string/no_service"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium" />
+
+                <Button
+                    android:id="@+id/go_to_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin16"
+                    android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                    android:padding="@dimen/padding8"
+                    android:text="@string/search_for_services"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <include layout="@layout/material_loader_layout" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/reload_page"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:padding="@dimen/padding4"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height300"
+                android:src="@drawable/no_connection"/>
+
+            <Button
+                android:id="@+id/btn_reload_page"
+                android:layout_marginTop="@dimen/margin8"
+                android:padding="@dimen/margin8"
+                android:textAllCaps="false"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textColor="@color/white"
+                android:text="@string/reload_page"
+                android:layout_gravity="center"
+                android:background="@drawable/round_corner_theme_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height35"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+

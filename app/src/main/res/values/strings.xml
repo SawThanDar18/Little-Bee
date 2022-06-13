@@ -28,4 +28,35 @@
     <string name="chinese_title">Chinese</string>
     <string name="confirm">Confirm</string>
 
+    <string name="continues">Continue</string>
+    <string name="please_login">Please Login!</string>
+    <string name="go_to_login">Go To LogIn</string>
+    <string name="no_service">No Services</string>
+    <string name="search_for_services">Search for Services</string>
+
+    <string name="carts_label">My Carts</string>
+    <string name="orders_label">Orders</string>
+    <string name="receipt_label">Receipt</string>
+
+    <string name="delete_cart"><u>Delete</u></string>
+    <string name="selected">Select</string>
+    <string name="unselected">Unselect</string>
+
+    <string name="address_label">Address</string>
+
+    <string-array name="times">
+
+        <item name="time10"><font size="14">09:00 AM - 11:00 AM</font></item>
+        <item name="time11"><font size="14">11:00 AM-  01:00 PM</font></item>
+        <item name="time12"><font size="14">01:00 PM - 03:00 PM</font></item>
+        <item name="time13"><font size="14">03:00 PM - 05:00 PM</font></item>
+
+    </string-array>
+
+    <string name="confirm_address">Please select the date and estimate arrival time you prefer.</string>
+    <string name="date">Date &#160;</string>
+    <string name="time">Time &#160;</string>
+    <string name="address_list_label">Address &#160;</string>
+    <string name="add_new_address">+ Add New Address</string>
+
 </resources>

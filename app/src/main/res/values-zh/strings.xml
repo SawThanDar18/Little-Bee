@@ -29,4 +29,35 @@
     <string name="chinese_title">中国人</string>
     <string name="confirm">确认</string>
 
+    <string name="continues">继续</string>
+    <string name="please_login">请先登录</string>
+    <string name="go_to_login">去登录</string>
+    <string name="no_service">没有信号</string>
+    <string name="search_for_services">搜索服务</string>
+
+    <string name="carts_label">我的购物车</string>
+    <string name="orders_label">订单</string>
+    <string name="receipt_label">收据</string>
+
+    <string name="delete_cart"><u>删除</u></string>
+    <string name="selected">选择</string>
+    <string name="unselected">未选中</string>
+
+    <string name="address_label">地址</string>
+
+    <string-array name="times">
+
+        <item name="time10">09:00 AM - 11:00 AM</item>
+        <item name="time11">11:00 AM-  01:00 PM</item>
+        <item name="time12">01:00 PM - 03:00 PM</item>
+        <item name="time13">03:00 PM - 05:00 PM</item>
+
+    </string-array>
+
+    <string name="confirm_address">请选择您的首选日期和预计抵达时间.</string>
+    <string name="date">日期 &#160;</string>
+    <string name="time">时间 &#160;</string>
+    <string name="address_list_label">地址 &#160;</string>
+    <string name="add_new_address">+ 添加新地址</string>
+
 </resources>

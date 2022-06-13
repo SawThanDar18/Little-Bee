@@ -28,6 +28,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChangeLanguageActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddressActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

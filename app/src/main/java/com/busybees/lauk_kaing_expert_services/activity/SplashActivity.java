@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
                 if (second <= 0) {
                     runOnUiThread(() -> {
 
-                        skipTimer.setText("0");
+                        skipTimer.setText(" ");
 
                         timer.cancel();
                     });

@@ -30,4 +30,35 @@
     <string name="chinese_title">တ႐ုတ္</string>
     <string name="confirm">အတည္ျပဳမည္။</string>
 
+    <string name="continues">ဆက္ရန္</string>
+    <string name="please_login">အေကာင့္ဝင္ရန္လိုအပ္ပါသည္။</string>
+    <string name="go_to_login">အေကာင့္ဝင္မည္။</string>
+    <string name="no_service">ဝင္ေဆာင္မူမ်ား မရွိေသးပါ။</string>
+    <string name="search_for_services">ဝန္ေဆာင္မႈမ်ား ရွာမည္။</string>
+
+    <string name="carts_label">ေရြးခ်ယ္မႈမ်ား</string>
+    <string name="orders_label">ေအာ္ဒါမ်ား</string>
+    <string name="receipt_label">မွတ္တမ္း</string>
+
+    <string name="delete_cart"><u>ပယ္ဖ်က္</u></string>
+    <string name="selected">ယူမည္</string>
+    <string name="unselected">ဖ်က္မည္</string>
+
+    <string name="address_label">လိပ္စာ</string>
+
+    <string-array name="times">
+
+        <item name="time10">09:00 AM - 11:00 AM</item>
+        <item name="time11">11:00 AM-  01:00 PM</item>
+        <item name="time12">01:00 PM - 03:00 PM</item>
+        <item name="time13">03:00 PM - 05:00 PM</item>
+
+    </string-array>
+
+    <string name="confirm_address">ဝန္ေဆာင္မႈ စတင္ေပးေစလိုသည့္ ေန႔ရက္ႏွင့္ ေရာက္မည့္အခ်ိန္ ကို ေ႐ြးပါ။</string>
+    <string name="date">ရက္စြဲ &#160;</string>
+    <string name="time">အခ်ိန္ &#160;</string>
+    <string name="address_list_label">လိပ္စာ &#160;</string>
+    <string name="add_new_address">+ လိပ္စာအသစ္ထည္႔ပါ</string>
+
 </resources>
