@@ -43,6 +43,8 @@
     <string name="unselected">Unselect</string>
 
     <string name="address_label">Address</string>
+    <string name="add_address_label">Add New Address</string>
+    <string name="edit_address_label">Edit Address</string>
 
     <string-array name="times">
 
@@ -53,10 +55,30 @@
 
     </string-array>
 
+    <string-array name="caltimes">
+
+        <item name="t10">09:00 AM </item>
+        <item name="t12">11:00 AM </item>
+        <item name="t14">01:00 PM</item>
+        <item name="t16">03:00 PM </item>
+        <item name="t18">05:00 PM</item>
+
+    </string-array>
+
+    <string-array name="items">
+
+        <item><font size="14">Home</font></item>
+        <item><font size="14">Office</font></item>
+        <item><font size="14">Other</font></item>
+
+    </string-array>
+
     <string name="confirm_address">Please select the date and estimate arrival time you prefer.</string>
     <string name="date">Date &#160;</string>
     <string name="time">Time &#160;</string>
     <string name="address_list_label">Address &#160;</string>
     <string name="add_new_address">+ Add New Address</string>
+    <string name="fill_address">Fill Address</string>
+    <string name="go_map">Go Map</string>
 
 </resources>

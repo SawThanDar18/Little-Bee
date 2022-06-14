@@ -16,13 +16,13 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/address_timeline"
+            android:id="@+id/relative_layout"
             android:layout_below="@id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/address_confirm"
+                android:id="@+id/address_timeline"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/conLayout"
-                android:layout_below="@+id/address_confirm">
+                android:layout_below="@+id/address_timeline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -185,7 +185,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginLeft="@dimen/margin6"
-                                    android:src="@drawable/icon_dropdown">
+                                    android:src="@drawable/ic_baseline_arrow_drop_down_24">
 
                                 </ImageView>
 
@@ -221,7 +221,7 @@
                                     <Spinner
                                         android:background="@drawable/rounded_corner_pink_accent_line_stroke"
                                         android:layout_gravity="center"
-                                        android:id="@+id/timeArr"
+                                        android:id="@+id/timeSpinnerArray"
                                         android:layout_below="@+id/layout_date"
                                         android:layout_toRightOf="@+id/appTextView3"
                                         android:layout_width="match_parent"
@@ -278,10 +278,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/relayout"
                                 android:layout_alignParentBottom="true"
-                                android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                                android:background="@drawable/rounded_corner_transparent_line_stroke"
                                 android:padding="@dimen/padding10"
                                 android:text="@string/add_new_address"
-                                android:textColor="@color/white"
+                                android:textColor="@color/black"
                                 android:textSize="@dimen/fontSizeMedium" />
 
                         </RelativeLayout>
@@ -379,7 +379,7 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:id="@+id/conLayout"
+                android:id="@+id/continue_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

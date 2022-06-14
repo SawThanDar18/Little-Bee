@@ -45,6 +45,8 @@
     <string name="unselected">ဖ်က္မည္</string>
 
     <string name="address_label">လိပ္စာ</string>
+    <string name="add_address_label">လိပ္စာအသစ္ထည့္ရန္</string>
+    <string name="edit_address_label">လိပ္စာျပင္ရန္</string>
 
     <string-array name="times">
 
@@ -55,10 +57,30 @@
 
     </string-array>
 
+    <string-array name="caltimes">
+
+        <item name="t10">09:00 AM </item>
+        <item name="t12">11:00 AM </item>
+        <item name="t14">01:00 PM</item>
+        <item name="t16">03:00 PM </item>
+        <item name="t18">05:00 PM</item>
+
+    </string-array>
+
+    <string-array name="items">
+
+        <item><font size="14">ေနအိမ္</font></item>
+        <item><font size="14">ရုံး</font></item>
+        <item><font size="14">အျခား</font></item>
+
+    </string-array>
+
     <string name="confirm_address">ဝန္ေဆာင္မႈ စတင္ေပးေစလိုသည့္ ေန႔ရက္ႏွင့္ ေရာက္မည့္အခ်ိန္ ကို ေ႐ြးပါ။</string>
     <string name="date">ရက္စြဲ &#160;</string>
     <string name="time">အခ်ိန္ &#160;</string>
     <string name="address_list_label">လိပ္စာ &#160;</string>
     <string name="add_new_address">+ လိပ္စာအသစ္ထည္႔ပါ</string>
+    <string name="fill_address">လိပ္စာျဖည္႔ရန္</string>
+    <string name="go_map">ေျမပံုသို့</string>
 
 </resources>

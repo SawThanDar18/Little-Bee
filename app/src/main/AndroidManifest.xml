@@ -30,6 +30,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.AddressActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddNewAddressActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.EditAddressActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

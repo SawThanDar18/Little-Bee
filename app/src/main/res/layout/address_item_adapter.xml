@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/card_address"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/editDeleteView"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/margin24"
+        android:layout_alignTop="@+id/addressType"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/edit"
+            android:padding="@dimen/padding4"
+            app:srcCompat="@drawable/ic_edit"
+            android:layout_width="@dimen/width40"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_marginStart="@dimen/margin4"
+            android:padding="@dimen/padding4"
+            app:srcCompat="@drawable/ic_delete"
+            android:layout_width="@dimen/width40"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/addressType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/margin24"
+        android:layout_toStartOf="@+id/editDeleteView"
+        android:layout_toEndOf="@+id/checkbox"
+        android:paddingStart="@dimen/padding10"
+        android:paddingTop="@dimen/padding4"
+        android:paddingEnd="@dimen/padding10"
+        android:paddingBottom="@dimen/padding4"
+        android:text="Home"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/checkbox"
+        android:layout_marginTop="@dimen/margin2"
+        android:layout_width="@dimen/margin24"
+        android:layout_height="@dimen/margin24"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:paddingHorizontal="@dimen/padding10"
+        android:paddingTop="@dimen/padding4"
+        android:paddingBottom="@dimen/padding4"
+        android:id="@+id/addressDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addressType"
+        android:text="No.49(B), Moe Sandar Street, Kamaryut Township, Hlaing"
+        android:textColor="@color/home_service_title_color"
+        android:textSize="@dimen/fontSizeMedium"
+        android:layout_below="@+id/addressType"/>
+
+</RelativeLayout>

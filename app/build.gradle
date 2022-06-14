@@ -52,5 +52,4 @@ dependencies {
     // EventBus
     implementation 'org.greenrobot:eventbus:3.3.1'
 
-    //implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
 }
