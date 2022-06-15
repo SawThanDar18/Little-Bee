@@ -82,4 +82,5 @@
     <string name="fill_address">填写地址</string>
     <string name="go_map">去地图</string>
 
+    <string name="no_data">没有数据</string>
 </resources>

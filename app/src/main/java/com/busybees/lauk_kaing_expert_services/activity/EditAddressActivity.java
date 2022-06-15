@@ -16,7 +16,6 @@ public class EditAddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeStatusBarVisible();
         setContentView(R.layout.activity_edit_address);
-
     }
 
     void makeStatusBarVisible() {

@@ -13,7 +13,7 @@
 
         <include
             android:id="@+id/tool_bar_layout"
-            layout="@layout/order_tool_bar_layout"/>
+            layout="@layout/receipt_tool_bar_layout"/>
 
         <RelativeLayout
             android:visibility="visible"
@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <ExpandableListView
-                android:id="@+id/order_expandable_list_view"
+                android:id="@+id/receipt_expandable_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin10"

@@ -16,6 +16,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:visibility="visible"
             android:id="@+id/relative_layout"
             android:layout_below="@id/tool_bar"
             android:layout_width="match_parent"
@@ -233,6 +234,37 @@
             </LinearLayout>
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/reload_page"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:padding="@dimen/padding4"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height300"
+                android:src="@drawable/no_connection"/>
+
+            <Button
+                android:id="@+id/btn_reload_page"
+                android:layout_marginTop="@dimen/margin8"
+                android:padding="@dimen/margin8"
+                android:textAllCaps="false"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textColor="@color/white"
+                android:text="@string/reload_page"
+                android:layout_gravity="center"
+                android:background="@drawable/round_corner_theme_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height35"/>
+
+
+        </LinearLayout>
 
     </FrameLayout>
 

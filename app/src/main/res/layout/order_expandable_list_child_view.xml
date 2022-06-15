@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/orderDetailLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/radius10"
+    app:cardElevation="4dp"
+    android:background="@color/white"
+    card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingLeft="@dimen/padding8"
+                android:paddingTop="@dimen/padding4"
+                android:id="@+id/order_date_time"
+                android:textStyle="bold"
+                android:textSize="@dimen/fontSizeSmall"
+                android:text="3:00 PM - 05:00 PM( 2022-06-15 )"
+                android:textColor="@color/home_service_name_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/specificVendorLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin6"
+                    android:padding="@dimen/padding1"
+                    android:text="Specific Order - "
+                    android:textColor="@color/theme_color"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/special_vendor_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin6"
+                    android:padding="@dimen/padding1"
+                    android:text="BB_001"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding8">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+
+                        android:id="@+id/order_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order No."
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/order_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/serviceName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/order_layout"
+                        android:layout_marginStart="@dimen/margin10"
+                        android:layout_marginTop="@dimen/margin6"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:padding="@dimen/padding2"
+                        android:text="8 Hours Cleaning"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeSmall" />
+
+                    <LinearLayout
+                        android:id="@+id/reschedule_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/serviceName"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <View
+                            android:id="@+id/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height1"
+                            android:layout_below="@+id/serviceName"
+                            android:layout_marginTop="@dimen/margin16"
+                            android:background="@color/theme_color" />
+
+                        <TextView
+                            android:id="@+id/reschedule_date_time_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin8"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Reschedule Date/Time"
+                            android:textColor="@color/theme_color"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/reschedule_date_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/reschedule_date_time_label"
+                            android:layout_marginStart="@dimen/margin10"
+                            android:layout_marginTop="@dimen/margin6"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="01:00 PM - 03:00 PM ( 2022-06-16 )"
+                            android:textColor="@color/theme_color"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/theme_color" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding4">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/theme_color">
+
+                        <TextView
+                            android:id="@+id/serviceStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/margin4"
+                            android:layout_marginRight="@dimen/margin4"
+                            android:text="IDLE"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/serviceAmt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin6"
+                        android:gravity="center"
+                        android:text="30,000"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeSmall"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="MMK"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeSmall"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/payment_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin6"
+                        android:layout_marginBottom="@dimen/margin4"
+                        android:text=" ( UNPAID )"
+                        android:gravity="center"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/fontSizeSmall"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/vendor_cancel_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding8"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding4"
+                            android:text="Sorry !"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/vendor_cancel_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin10"
+                        android:layout_marginTop="@dimen/margin32"
+                        android:ellipsize="end"
+                        android:padding="@dimen/padding2"
+                        android:text="I am so busy......"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/fontSizeSmall" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vendor_cancel_msg"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/margin8"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/vendor_cancel_alert_ok_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin4"
+                            android:layout_marginBottom="@dimen/margin4"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                            android:padding="@dimen/padding8"
+                            android:text="OK"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/fontSizeSmall" />
+
+                        <Button
+                            android:visibility="visible"
+                            android:id="@+id/vendor_cancel_alert_call_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                            android:padding="@dimen/padding8"
+                            android:text="Call Admin"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/fontSizeSmall" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

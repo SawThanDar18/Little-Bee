@@ -22,5 +22,8 @@
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
-
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/home_service_name_color</item>
+        <item name="colorControlActivated">@color/theme_color</item>
+    </style>
 </resources>
