@@ -34,6 +34,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.EditAddressActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FinalOrderActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

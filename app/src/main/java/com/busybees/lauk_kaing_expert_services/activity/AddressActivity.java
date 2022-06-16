@@ -85,7 +85,7 @@ public class AddressActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-
+            startActivity(new Intent(AddressActivity.this, FinalOrderActivity.class));
         });
 
         dateLayout.setOnClickListener(v -> {

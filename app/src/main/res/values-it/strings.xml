@@ -47,6 +47,7 @@
     <string name="address_label">လိပ်စာ</string>
     <string name="add_address_label">လိပ်စာအသစ်ထည့်ရန်</string>
     <string name="edit_address_label">လိပ်စာပြင်ရန်</string>
+    <string name="final_order_label">သင်ရွေးချယ်ထားသော ဝန်ဆောင်မှုများ</string>
 
     <string-array name="times">
 
@@ -84,4 +85,6 @@
     <string name="go_map">မြေပုံသို့</string>
 
     <string name="no_data">ဒေတာ မရှိပါ။</string>
+
+    <string name="add_more_service">ဝန်​ဆောင်မှု ထပ်မံရယူရန်</string>
 </resources>

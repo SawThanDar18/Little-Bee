@@ -46,6 +46,7 @@
     <string name="address_label">地址</string>
     <string name="add_address_label">添加新地址</string>
     <string name="edit_address_label">编辑地址</string>
+    <string name="final_order_label">购物车中的物品</string>
 
     <string-array name="times">
 
@@ -83,4 +84,6 @@
     <string name="go_map">去地图</string>
 
     <string name="no_data">没有数据</string>
+
+    <string name="add_more_service">添加更多服务</string>
 </resources>

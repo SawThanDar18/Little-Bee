@@ -45,6 +45,7 @@
     <string name="address_label">Address</string>
     <string name="add_address_label">Add New Address</string>
     <string name="edit_address_label">Edit Address</string>
+    <string name="final_order_label">Items in your Cart</string>
 
     <string-array name="times">
 
@@ -82,4 +83,6 @@
     <string name="go_map">Go Map</string>
 
     <string name="no_data">No Data</string>
+
+    <string name="add_more_service">Add More Services</string>
 </resources>
