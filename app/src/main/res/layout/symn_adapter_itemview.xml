@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
             android:layout_height="@dimen/height90"
-            android:src="@drawable/clean"/>
+            android:src="@drawable/banner_image"/>
 
         <LinearLayout
             android:layout_width="match_parent"

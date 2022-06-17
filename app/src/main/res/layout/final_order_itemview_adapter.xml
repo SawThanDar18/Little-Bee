@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/margin6"
+    android:layout_marginHorizontal="@dimen/margin10"
+    android:paddingTop="@dimen/padding10"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin10"
+        android:layout_marginTop="@dimen/margin10"
+        android:layout_marginRight="@dimen/margin10"
+        android:layout_marginBottom="@dimen/margin6"
+        android:background="@drawable/rounded_corner_transparent_line_stroke"
+        android:paddingStart="@dimen/padding10"
+        android:paddingTop="@dimen/padding10">
+
+        <LinearLayout
+            android:id="@+id/survey_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/survey_requested_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin24"
+                android:layout_marginBottom="@dimen/margin6"
+                android:text="Survey Requested"
+                android:textAlignment="center"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/fontSizeLarge"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin4"
+            android:layout_marginTop="@dimen/margin32">
+
+            <TextView
+                android:id="@+id/discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin4"
+                android:layout_toEndOf="@+id/origin_price"
+                android:text=""
+                android:textColor="@color/pink_accent_color"
+                android:textSize="@dimen/fontSizeMedium" />
+
+            <TextView
+                android:id="@+id/origin_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000 MMK"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/origin_price"
+                android:layout_alignStart="@+id/origin_price"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="@dimen/margin6"
+                android:layout_marginBottom="@dimen/margin6"
+                android:text="Save 20%"
+                android:textColor="@color/pink_accent_color"
+                android:textSize="@dimen/fontSizeSmall"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/serviceDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/save"
+                android:layout_alignStart="@+id/save"
+                android:layout_marginTop="@dimen/margin10"
+                android:layout_marginRight="@dimen/margin2"
+                android:layout_marginBottom="@dimen/margin8"
+                android:text="8 Hours Cleaning"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/fontSizeSmall"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/service_detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin24"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding2"
+        android:paddingEnd="@dimen/padding4"
+        android:paddingBottom="@dimen/padding4"
+        android:text="8 Hours Cleaning"
+        android:textColor="@color/theme_color"
+        android:textSize="@dimen/fontSizeMedium" />
+
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_marginEnd="@dimen/margin24"
+        android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+        android:layout_alignEnd="@+id/service_detail_name"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:id="@+id/addLayoutMainView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30">
+
+        <ImageView
+            android:id="@+id/decreseBtn"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/margin2"
+            app:srcCompat="@drawable/ic_decrease"
+            android:layout_width="@dimen/width30"
+            android:layout_height="@dimen/height30"/>
+
+        <LinearLayout
+            android:padding="@dimen/padding4"
+            android:layout_marginRight="@dimen/margin4"
+            android:layout_marginLeft="@dimen/margin4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:clickable="true"
+                android:layout_marginStart="@dimen/margin24"
+                android:id="@+id/addBtnLayout"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/selected"
+                android:visibility="visible"
+                android:paddingEnd="@dimen/padding4"
+                android:paddingStart="@dimen/padding4"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSizeMedium"
+                android:layout_margin="0dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:text="Cancel"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/increaseBtn"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/margin2"
+            android:layout_width="@dimen/width30"
+            android:layout_height="@dimen/height30"
+            app:srcCompat="@drawable/ic_increase"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pager"
+        android:layout_width="@dimen/width100"
+        android:layout_height="@dimen/height100"
+        android:layout_below="@+id/addLayoutMainView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin24"
+        android:scaleType="fitCenter"
+        android:src="@color/theme_color"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin8"
+        android:visibility="visible"
+        android:layout_marginBottom="@dimen/margin20"
+        android:layout_marginEnd="@dimen/margin24"
+        android:layout_alignEnd="@+id/service_detail_name"
+        android:layout_below="@+id/pager"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:id="@+id/addLayoutMainView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/delete_cart"
+            android:layout_width="wrap_content"
+            android:text="@string/delete_cart"
+            android:textStyle="bold"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/fontSizeMedium"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

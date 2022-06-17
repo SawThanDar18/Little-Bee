@@ -126,7 +126,7 @@
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/about_icon" />
+                        android:src="@drawable/ic_about_jia_jie" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -191,10 +191,10 @@
 
                     <ImageView
                         android:layout_width="@dimen/width27"
-                        android:layout_height="@dimen/height27"
+                        android:layout_height="@dimen/height30"
                         android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/why" />
+                        android:src="@drawable/ic_why_jia_jie" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -228,7 +228,7 @@
                         android:layout_height="@dimen/height27"
                         android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/user_guide_icon" />
+                        android:src="@drawable/ic_app_user_guide" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -262,7 +262,7 @@
                         android:layout_height="@dimen/height27"
                         android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/contact_icon" />
+                        android:src="@drawable/ic_contact_us" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -295,7 +295,7 @@
                         android:layout_height="@dimen/height27"
                         android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/change_language_icon" />
+                        android:src="@drawable/ic_change_language" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -327,10 +327,10 @@
 
                     <ImageView
                         android:layout_width="@dimen/width27"
-                        android:layout_height="@dimen/height27"
+                        android:layout_height="@dimen/height30"
                         android:layout_marginLeft="@dimen/margin8"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/payment_icon" />
+                        android:src="@drawable/ic_payment_information" />
 
                     <TextView
                         android:layout_width="wrap_content"

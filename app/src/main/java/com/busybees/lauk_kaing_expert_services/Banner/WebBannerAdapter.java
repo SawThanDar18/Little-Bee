@@ -19,10 +19,10 @@ import java.util.List;
 public class WebBannerAdapter extends RecyclerView.Adapter<WebBannerAdapter.MzViewHolder> {
 
     private Context context;
-    private List<String> urlList;
+    private List<Integer> urlList;
     private BannerLayout.OnBannerItemClickListener onBannerItemClickListener;
 
-    public WebBannerAdapter(Context context, List<String> urlList) {
+    public WebBannerAdapter(Context context, List<Integer> urlList) {
         this.context = context;
         this.urlList = urlList;
     }
@@ -41,8 +41,10 @@ public class WebBannerAdapter extends RecyclerView.Adapter<WebBannerAdapter.MzVi
         if (urlList == null || urlList.isEmpty())
             return;
         final int P = position % urlList.size();
-        String url = urlList.get(P);
+        //String url = urlList.get(P);
+        Integer url = urlList.get(P);
         ImageView img = holder.imageView;
+
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.logo_bw);
         requestOptions.error(R.drawable.logo_bw);

@@ -80,13 +80,19 @@ public class HomeFragment extends Fragment {
 
     private void initImageSlider() {
 
-        List<String> imagelist = new ArrayList<>();
+        /*List<String> imagelist = new ArrayList<>();
         imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
         imagelist.add("https://images.squarespace-cdn.com/content/v1/5585b51ce4b0f2164efaa2b1/1558664884095-D2D42IRVFPZH3J0HFCQN/image-asset.jpeg?format=2500w");
         imagelist.add("https://img.grouponcdn.com/deal/3zq2KMhexQw32bJCKUvyxWaEEEdD/3z-2048x1229/v1/c870x524.jpg");
         imagelist.add("https://www.pccsindia.com/wp-content/uploads/2020/04/commercial-clenaing-6-1-1024x561-1.jpg");
+*/
+        ArrayList<Integer> ex1 = new ArrayList<>();
+        ex1.add(R.drawable.banner_image);
+        ex1.add(R.drawable.banner_image);
+        ex1.add(R.drawable.banner_image);
+        ex1.add(R.drawable.banner_image);
 
-        webBannerAdapter = new WebBannerAdapter(getActivity(), imagelist);
+        webBannerAdapter = new WebBannerAdapter(getActivity(), ex1);
 
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
@@ -94,7 +100,35 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpAdapterToRecyclerView() {
-        availableAdapter = new AvailableAdapter(getActivity());
+        ArrayList<Integer> servicesImageList = new ArrayList<>();
+        servicesImageList.add(R.drawable.icon_cleaning__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_general_workers_hiring__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_air_con__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_plumbing__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_electrical__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_laundry__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_cctv__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_painting__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_ceiling__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_upholstery__1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_stone_care__scrubbing___polishing___1200_x_1200_px_);
+        servicesImageList.add(R.drawable.ic_pest_control__1200_x_1200_px_);
+
+        ArrayList<String> serviceName = new ArrayList<>();
+        serviceName.add("Cleaning");
+        serviceName.add("General Worker Hiring");
+        serviceName.add("Air-Con");
+        serviceName.add("Plumbing");
+        serviceName.add("Electrical");
+        serviceName.add("Laundry");
+        serviceName.add("CCTV");
+        serviceName.add("Painting");
+        serviceName.add("Ceiling");
+        serviceName.add("Upholstery");
+        serviceName.add("Stone Care (Scrubbing & Polishing)");
+        serviceName.add("Pest Control");
+
+        availableAdapter = new AvailableAdapter(getActivity(), servicesImageList, serviceName);
         layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
         recyclerViewAvailable.setLayoutManager(layoutManagerRecyclerAvailable);
         recyclerViewAvailable.setAdapter(availableAdapter);

@@ -105,9 +105,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin24"
         android:background="@color/white"
-        android:paddingBottom="@dimen/padding4"
         android:paddingStart="@dimen/padding2"
         android:paddingEnd="@dimen/padding4"
+        android:paddingBottom="@dimen/padding4"
         android:text="8 Hours Cleaning"
         android:textColor="@color/theme_color"
         android:textSize="@dimen/fontSizeMedium" />

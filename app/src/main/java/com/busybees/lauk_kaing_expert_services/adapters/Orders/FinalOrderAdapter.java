@@ -42,7 +42,7 @@ public class FinalOrderAdapter extends RecyclerView.Adapter<FinalOrderAdapter.My
     @Override
     public FinalOrderAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vv = inflater.inflate(R.layout.cart_itemview_adapter, parent, false);
+        View vv = inflater.inflate(R.layout.final_order_itemview_adapter, parent, false);
         return new FinalOrderAdapter.MyViewHolder(vv);
     }
 
