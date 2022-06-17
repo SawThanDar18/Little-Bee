@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.AddressActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
@@ -87,6 +88,10 @@ public class CartsFragment extends Fragment {
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), AddressActivity.class));
+        });
+
+        homePageView.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), MainActivity.class));
         });
     }
 }

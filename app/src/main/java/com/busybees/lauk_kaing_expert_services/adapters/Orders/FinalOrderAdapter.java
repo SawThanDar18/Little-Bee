@@ -9,14 +9,15 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.FinalOrderActivity;
 
 public class FinalOrderAdapter extends RecyclerView.Adapter<FinalOrderAdapter.MyViewHolder> implements View.OnClickListener {
 
     private View.OnClickListener onClickListener;
     Context mContext;
 
-    public FinalOrderAdapter(Context context) {
-        this.mContext=context;
+    public FinalOrderAdapter(FinalOrderActivity activity) {
+        this.mContext=activity;
     }
 
     @Override

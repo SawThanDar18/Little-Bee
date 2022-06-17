@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.HomeFragment;
@@ -22,7 +24,7 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-    private ConstraintLayout searchToolBar;
+    private ConstraintLayout searchToolBar, searchLayout;
     private BottomNavigationView bottomNavigationView;
     private CustomViewPager viewPager;
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         searchToolBar = findViewById(R.id.search_tool_bar);
+        searchLayout = findViewById(R.id.search_layout);
         bottomNavigationView = findViewById(R.id.navigation);
         viewPager = findViewById(R.id.viewpager_container);
 
@@ -56,7 +59,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             tabCondition = 0;
         }
 
+        if (getIntent() != null) {
+            int tabPosition = getIntent().getIntExtra("tabPosition", 0);
+            if (tabPosition == 1) {
+                intiUI();
+                CartsFragment();
+            }
+        }
+
         intiUI();
+        onClick();
     }
 
     private void intiUI() {
@@ -101,6 +113,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         setupViewPager(viewPager);
 
+    }
+
+    private void onClick() {
+        searchLayout.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
+        });
     }
 
     private void HomeFragment() {

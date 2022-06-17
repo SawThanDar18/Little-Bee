@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:background="@color/theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:padding="@dimen/padding2"
+            android:text="@string/add_more_service"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeMedium"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:padding="@dimen/padding2"
+            android:id="@+id/cancel_more_service"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_crop_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:visibility="gone"
+           android:id="@+id/service_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recycle_service"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+
+       </RelativeLayout>
+
+       <RelativeLayout
+           android:id="@+id/select_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <LinearLayout
+               android:background="@color/pink_accent_color"
+               android:id="@+id/more_service_layout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:orientation="horizontal"
+                   android:id="@+id/recycle_add_more_service"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+               </androidx.recyclerview.widget.RecyclerView>
+
+           </LinearLayout>
+
+           <TextView
+               android:textStyle="bold"
+               android:padding="@dimen/padding1"
+               android:layout_marginTop="@dimen/margin6"
+               android:id="@+id/service_title"
+               android:layout_marginLeft="@dimen/margin10"
+               android:textSize="@dimen/fontSizeMedium"
+               android:textColor="@color/black"
+               android:text=""
+               android:layout_below="@+id/more_service_layout"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+
+           <RelativeLayout
+               android:layout_marginTop="@dimen/margin4"
+               android:layout_below="@id/service_title"
+               android:id="@+id/product_detail_layout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ExpandableListView
+                   android:id="@+id/expandableListView"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:groupIndicator="@drawable/expandable_indicator"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintLeft_toLeftOf="parent"
+                   app:layout_constraintRight_toRightOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+           </RelativeLayout>
+
+       </RelativeLayout>
+
+       <ProgressBar
+           android:layout_centerInParent="true"
+           android:visibility="gone"
+           android:layout_marginTop="20dp"
+           android:layout_centerHorizontal="true"
+           android:id="@+id/materialLoader"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:indeterminateDrawable="@drawable/loader_circle_shape"
+           android:indeterminateDuration="800"/>
+   </RelativeLayout>
+
+    <TextView
+        android:id="@+id/s_name"
+        android:visibility="invisible"
+        android:text="hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

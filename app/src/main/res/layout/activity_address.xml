@@ -57,6 +57,7 @@
                         android:background="@color/theme_color" />
 
                     <ImageView
+                        android:id="@+id/cart_page_btn"
                         android:layout_width="@dimen/width50"
                         android:layout_height="@dimen/height50"
                         android:layout_weight="1"

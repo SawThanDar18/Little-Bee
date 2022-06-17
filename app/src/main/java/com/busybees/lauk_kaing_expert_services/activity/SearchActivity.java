@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.busybees.lauk_kaing_expert_services.R;
 
-public class AddNewAddressActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     private ImageView back;
 
@@ -18,7 +18,7 @@ public class AddNewAddressActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeStatusBarVisible();
-        setContentView(R.layout.activity_add_new_address);
+        setContentView(R.layout.activity_search);
 
         back = findViewById(R.id.back_button);
 
@@ -26,7 +26,9 @@ public class AddNewAddressActivity extends AppCompatActivity {
     }
 
     private void onClick() {
-        back.setOnClickListener(v -> finish());
+        back.setOnClickListener(v -> {
+          finish();
+        });
     }
 
     void makeStatusBarVisible() {

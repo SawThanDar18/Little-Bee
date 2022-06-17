@@ -36,6 +36,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.FinalOrderActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SearchActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

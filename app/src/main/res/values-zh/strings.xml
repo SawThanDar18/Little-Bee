@@ -86,4 +86,6 @@
     <string name="no_data">没有数据</string>
 
     <string name="add_more_service">添加更多服务</string>
+
+    <string name="feature_service">搜索服务</string>
 </resources>

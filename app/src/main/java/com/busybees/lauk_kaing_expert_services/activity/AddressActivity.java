@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,8 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Address.AddressListAdapter;
+import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,13 +35,14 @@ import java.util.Locale;
 
 public class AddressActivity extends AppCompatActivity {
 
-    RecyclerView addressListRecyclerView;
-    AddressListAdapter addressListAdapter;
-    RecyclerView.LayoutManager layoutManager;
+    private RecyclerView addressListRecyclerView;
+    private AddressListAdapter addressListAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
-    TextView addNewAddress, selectedDate;
+    private TextView addNewAddress, selectedDate;
+    private ImageView back, homePageView, cartPageView;
 
-    LinearLayout continueLayout, dateLayout, timeLayout;
+    private LinearLayout continueLayout, dateLayout, timeLayout;
 
     Spinner timeSpinnerArray;
 
@@ -66,6 +70,9 @@ public class AddressActivity extends AppCompatActivity {
         timeLayout = findViewById(R.id.layout_time);
         timeSpinnerArray = findViewById(R.id.timeSpinnerArray);
         selectedDate = findViewById(R.id.selectDate);
+        back = findViewById(R.id.back_button);
+        homePageView = findViewById(R.id.home_page_btn);
+        cartPageView = findViewById(R.id.cart_page_btn);
 
         timeArray = getResources().getStringArray(R.array.caltimes);
         showtimeArray = getResources().getStringArray(R.array.times);
@@ -110,6 +117,21 @@ public class AddressActivity extends AppCompatActivity {
         addNewAddress.setOnClickListener(v -> {
             startActivity(new Intent(AddressActivity.this, AddNewAddressActivity.class));
         });
+
+        back.setOnClickListener(v -> finish());
+
+        homePageView.setOnClickListener(v -> {
+            startActivity(new Intent(AddressActivity.this, MainActivity.class));
+            finish();
+        });
+
+        cartPageView.setOnClickListener(v -> {
+            Intent intent = new Intent(AddressActivity.this, MainActivity.class);
+            intent.putExtra("tabPosition", 1);
+            startActivity(intent);
+            finish();
+        });
+
     }
 
     private void getDate(Context context, final TextView text, String dateString) {

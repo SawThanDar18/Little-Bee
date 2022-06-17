@@ -85,4 +85,6 @@
     <string name="no_data">No Data</string>
 
     <string name="add_more_service">Add More Services</string>
+
+    <string name="feature_service">Search for a service</string>
 </resources>

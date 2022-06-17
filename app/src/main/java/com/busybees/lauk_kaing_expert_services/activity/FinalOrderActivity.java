@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.BottomSheetDialog.AddMoreServicesDialog;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
@@ -24,7 +25,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     private FinalOrderAdapter finalOrderAdapter;
 
-    private RelativeLayout logInView;
+    private RelativeLayout logInView, addMoreServiceLayout;
     private LinearLayout reloadPage, continueLayout;
 
     @Override
@@ -36,6 +37,7 @@ public class FinalOrderActivity extends AppCompatActivity {
         logInView = findViewById(R.id.loginView);
         reloadPage = findViewById(R.id.reload_page);
         continueLayout = findViewById(R.id.continue_layout);
+        addMoreServiceLayout = findViewById(R.id.btn_add_more_service);
         finalOrderRecyclerView = findViewById(R.id.final_order_recyclerview);
 
         if (Utility.isOnline(getApplicationContext())) {
@@ -54,7 +56,7 @@ public class FinalOrderActivity extends AppCompatActivity {
         recyclerViewLayoutManager = new LinearLayoutManager(FinalOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         finalOrderRecyclerView.setLayoutManager(recyclerViewLayoutManager);
 
-        finalOrderAdapter = new FinalOrderAdapter(getApplicationContext());
+        finalOrderAdapter = new FinalOrderAdapter(FinalOrderActivity.this);
         finalOrderRecyclerView.setAdapter(finalOrderAdapter);
         finalOrderAdapter.notifyDataSetChanged();
     }
@@ -62,6 +64,11 @@ public class FinalOrderActivity extends AppCompatActivity {
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
             //startActivity(new Intent(getApplicationContext(), AddressActivity.class));
+        });
+
+        addMoreServiceLayout.setOnClickListener(v -> {
+            AddMoreServicesDialog addMoreServicesDialog = new AddMoreServicesDialog();
+            addMoreServicesDialog.show(getSupportFragmentManager(), "");
         });
     }
 
