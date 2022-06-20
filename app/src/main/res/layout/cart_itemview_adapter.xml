@@ -31,13 +31,13 @@
                 android:id="@+id/survey_requested_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin6"
                 android:layout_marginTop="@dimen/margin24"
-                android:visibility="gone"
+                android:layout_marginBottom="@dimen/margin6"
                 android:text="Survey Requested"
                 android:textAlignment="center"
                 android:textColor="@color/theme_color"
-                android:textSize="@dimen/fontSizeLarge" />
+                android:textSize="@dimen/fontSizeLarge"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -63,9 +63,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10000 MMK"
-                android:textStyle="bold"
                 android:textColor="@color/theme_color"
-                android:textSize="@dimen/fontSizeMedium" />
+                android:textSize="@dimen/fontSizeMedium"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/save"
@@ -77,9 +77,9 @@
                 android:layout_marginTop="@dimen/margin6"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Save 20%"
-                android:textStyle="bold"
                 android:textColor="@color/pink_accent_color"
-                android:textSize="@dimen/fontSizeSmall" />
+                android:textSize="@dimen/fontSizeSmall"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/serviceDetail"
@@ -115,7 +115,7 @@
     <LinearLayout
         android:visibility="visible"
         android:layout_marginEnd="@dimen/margin24"
-        android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+        android:background="@drawable/rounded_corner_white_color"
         android:layout_alignEnd="@+id/service_detail_name"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="true"
@@ -146,14 +146,14 @@
                 android:id="@+id/addBtnLayout"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/selected"
+                android:text="1"
                 android:visibility="visible"
                 android:paddingEnd="@dimen/padding4"
                 android:paddingStart="@dimen/padding4"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSizeMedium"
                 android:layout_margin="0dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_margin="0dp"
@@ -208,11 +208,11 @@
         <TextView
             android:id="@+id/delete_cart"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/delete_cart"
-            android:textStyle="bold"
             android:textColor="@color/theme_color"
             android:textSize="@dimen/fontSizeMedium"
-            android:layout_height="wrap_content" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

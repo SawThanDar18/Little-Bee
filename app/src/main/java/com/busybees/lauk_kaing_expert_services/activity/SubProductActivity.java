@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.SubProductAdapter;
+import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 
 public class SubProductActivity extends AppCompatActivity {
 
@@ -31,6 +33,25 @@ public class SubProductActivity extends AppCompatActivity {
         subProductRecyclerView = findViewById(R.id.sub_product_recyclerview);
 
         setUpAdapter();
+        onRecyclerViewClick();
+
+    }
+
+    private void onRecyclerViewClick() {
+        subProductRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, subProductRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+
+                            startActivity(new Intent(SubProductActivity.this, ServiceDetailActivity.class));
+
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                               // startActivity(new Intent(SubProductActivity.this, ImageViewActivity.class));
+
+                    }
+                })
+        );
 
     }
 

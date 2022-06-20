@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical"
     android:layout_marginTop="@dimen/margin6"
-    android:layout_marginHorizontal="@dimen/margin10"
-    android:paddingTop="@dimen/padding10"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:paddingTop="@dimen/margin10"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin10"
+        android:layout_marginLeft="@dimen/margin20"
         android:layout_marginTop="@dimen/margin10"
-        android:layout_marginRight="@dimen/margin10"
+        android:layout_marginRight="@dimen/margin20"
         android:layout_marginBottom="@dimen/margin6"
         android:background="@drawable/rounded_corner_transparent_line_stroke"
         android:paddingStart="@dimen/padding10"
@@ -89,11 +87,37 @@
                 android:layout_alignStart="@+id/save"
                 android:layout_marginTop="@dimen/margin10"
                 android:layout_marginRight="@dimen/margin2"
-                android:layout_marginBottom="@dimen/margin8"
-                android:text="8 Hours Cleaning"
+                android:layout_marginBottom="@dimen/margin32"
+                android:text="Washing Dry Cleaning for 5 Seaters Sofas. Duration 3 Hours The charges do not include for the long lasting unremovable Stains. Recommend to wash every 3- 6 months for the safety healthy environment."
                 android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
-                android:visibility="gone" />
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="-2dp">
+
+            <TextView
+                android:id="@+id/hideShowDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin32"
+                android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_white"
+                android:gravity="center"
+                android:padding="@dimen/padding2"
+                android:paddingStart="@dimen/padding4"
+                android:paddingTop="@dimen/padding1"
+                android:paddingEnd="@dimen/padding4"
+                android:text="Hide"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontSizeSmall" />
 
         </RelativeLayout>
 
@@ -103,7 +127,7 @@
         android:id="@+id/service_detail_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin24"
+        android:layout_marginStart="@dimen/margin32"
         android:background="@color/white"
         android:paddingStart="@dimen/padding2"
         android:paddingEnd="@dimen/padding4"
@@ -114,7 +138,7 @@
 
     <LinearLayout
         android:visibility="visible"
-        android:layout_marginEnd="@dimen/margin24"
+        android:layout_marginEnd="@dimen/margin32"
         android:background="@drawable/rounded_corner_white_color"
         android:layout_alignEnd="@+id/service_detail_name"
         android:layout_centerHorizontal="true"
@@ -123,14 +147,6 @@
         android:id="@+id/addLayoutMainView"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height30">
-
-        <ImageView
-            android:id="@+id/decreseBtn"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="@dimen/margin2"
-            app:srcCompat="@drawable/ic_decrease"
-            android:layout_width="@dimen/width30"
-            android:layout_height="@dimen/height30"/>
 
         <LinearLayout
             android:padding="@dimen/padding4"
@@ -146,7 +162,7 @@
                 android:id="@+id/addBtnLayout"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:text="1"
+                android:text="@string/selected"
                 android:visibility="visible"
                 android:paddingEnd="@dimen/padding4"
                 android:paddingStart="@dimen/padding4"
@@ -170,14 +186,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/increaseBtn"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="@dimen/margin2"
-            android:layout_width="@dimen/width30"
-            android:layout_height="@dimen/height30"
-            app:srcCompat="@drawable/ic_increase"/>
-
     </LinearLayout>
 
     <ImageView
@@ -190,30 +198,5 @@
         android:scaleType="fitCenter"
         android:src="@color/theme_color"
         android:visibility="gone" />
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin8"
-        android:visibility="visible"
-        android:layout_marginBottom="@dimen/margin20"
-        android:layout_marginEnd="@dimen/margin24"
-        android:layout_alignEnd="@+id/service_detail_name"
-        android:layout_below="@+id/pager"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentEnd="true"
-        android:orientation="horizontal"
-        android:id="@+id/addLayoutMainView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/delete_cart"
-            android:layout_width="wrap_content"
-            android:text="@string/delete_cart"
-            android:textStyle="bold"
-            android:textColor="@color/theme_color"
-            android:textSize="@dimen/fontSizeMedium"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 </RelativeLayout>
