@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/sub_card"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin10"
+    android:layout_marginRight="@dimen/margin10"
+    android:layout_marginTop="@dimen/margin6"
+    android:paddingBottom="@dimen/padding4"
+    android:paddingTop="@dimen/padding4"
+    android:paddingRight="@dimen/padding15"
+    android:paddingLeft="@dimen/padding15"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/productImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sub_product_name"
+        android:layout_marginTop="@dimen/margin10"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/round_corner_grey_stroke">
+
+        <ImageView
+            android:id="@+id/sub_product_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/banner_image"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/sub_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/margin10"
+        android:layout_toLeftOf="@id/select_btn"
+        android:padding="@dimen/padding2"
+        android:singleLine="false"
+        android:text="Sofa Cleaning"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textStyle="bold" />
+
+    <Button
+        android:padding="@dimen/padding2"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/margin8"
+        android:layout_below="@id/productImage"
+        android:layout_marginStart="@dimen/margin24"
+        android:id="@+id/select_btn"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="@string/select"
+        android:layout_marginBottom="@dimen/margin4"
+        android:paddingEnd="@dimen/padding16"
+        android:paddingBottom="@dimen/padding2"
+        android:paddingTop="@dimen/padding2"
+        android:paddingStart="@dimen/padding16"
+        android:background="@drawable/rounded_corner_theme_color_stroke_card"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

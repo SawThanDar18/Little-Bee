@@ -33,4 +33,9 @@ public class Utility {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         }
     }
+
+    public static int dp2px(Context context, float dp) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5F);
+    }
 }

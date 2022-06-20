@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (getIntent() != null) {
             int tabPosition = getIntent().getIntExtra("tabPosition", 0);
             if (tabPosition == 1) {
-                intiUI();
                 CartsFragment();
             }
         }

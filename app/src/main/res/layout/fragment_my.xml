@@ -356,7 +356,7 @@
                     android:id="@+id/loginView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin34"
+                    android:layout_marginLeft="@dimen/margin32"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -369,13 +369,13 @@
                             android:layout_width="@dimen/width27"
                             android:layout_height="@dimen/height27"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/logout" />
+                            android:src="@drawable/ic_logout" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/margin6"
+                            android:layout_marginLeft="@dimen/margin8"
                             android:gravity="center_vertical"
                             android:padding="@dimen/padding1"
                             android:text="@string/logout"
@@ -404,7 +404,7 @@
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/version" />
+                        android:src="@drawable/ic_version" />
 
                     <TextView
                         android:layout_width="wrap_content"

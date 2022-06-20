@@ -1,7 +1,9 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,9 +22,11 @@ import android.widget.ProgressBar;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
+import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.util.ArrayList;
@@ -75,7 +80,23 @@ public class HomeFragment extends Fragment {
             //progressBar.setVisibility(View.GONE);
         }
 
+        onRecyclerViewClick();
+
         return  view;
+    }
+
+    private void onRecyclerViewClick() {
+
+        recyclerViewAvailable.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewAvailable, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(getContext(), ProductActivity.class));
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+            }
+        }));
     }
 
     private void initImageSlider() {

@@ -126,9 +126,10 @@ public class AddressActivity extends AppCompatActivity {
         });
 
         cartPageView.setOnClickListener(v -> {
-            Intent intent = new Intent(AddressActivity.this, MainActivity.class);
+            /*Intent intent = new Intent(AddressActivity.this, MainActivity.class);
             intent.putExtra("tabPosition", 1);
             startActivity(intent);
+            finish();*/
             finish();
         });
 

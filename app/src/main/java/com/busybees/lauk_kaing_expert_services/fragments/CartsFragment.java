@@ -94,4 +94,5 @@ public class CartsFragment extends Fragment {
             startActivity(new Intent(getActivity(), MainActivity.class));
         });
     }
+
 }

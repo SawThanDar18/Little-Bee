@@ -88,4 +88,6 @@
     <string name="add_more_service">添加更多服务</string>
 
     <string name="feature_service">搜索服务</string>
+
+    <string name="select">选择</string>
 </resources>
