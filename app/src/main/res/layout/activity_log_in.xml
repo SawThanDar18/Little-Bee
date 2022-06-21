@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/login_layout"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/login_bg_curve"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin16"
+                android:layout_marginTop="@dimen/margin24"
+                android:padding="@dimen/padding8"
+                android:src="@drawable/arrow_back_icon" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/height100"
+            android:layout_centerInParent="true"
+            android:background="@drawable/rounded_corner_white_color"
+            android:src="@drawable/ic_about_jia_jie" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin10"
+                android:orientation="vertical"
+                android:background="@drawable/corner_grey_stroke"
+                android:layout_width="@dimen/width240"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:padding="@dimen/padding10"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:hint="09********"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:id="@+id/phone_number"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/login"
+                android:paddingVertical="@dimen/padding8"
+                android:paddingHorizontal="@dimen/padding40"
+                android:layout_marginTop="@dimen/margin24"
+                android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                android:paddingTop="@dimen/padding10"
+                android:paddingBottom="@dimen/padding4"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@string/register"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/register"
+                android:paddingVertical="@dimen/padding8"
+                android:paddingHorizontal="@dimen/padding32"
+                android:layout_marginTop="@dimen/margin10"
+                android:background="@drawable/rounded_corner_pink_color_stroke_card"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/material_loader_layout" />
+
+
+</LinearLayout>

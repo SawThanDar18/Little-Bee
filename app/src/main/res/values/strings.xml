@@ -89,4 +89,10 @@
     <string name="feature_service">Search for a service</string>
 
     <string name="select">Select</string>
+
+    <string name="login">LogIn</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="hyperlink">Agree to<a href="https://www.busybeesmyanmar.com/agreement"> Terms &amp; Conditions</a></string>
+
 </resources>

@@ -42,7 +42,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/clean" />
+                        android:background="@color/white"
+                        android:src="@drawable/ic_about_jia_jie" />
 
                 </androidx.cardview.widget.CardView>
 

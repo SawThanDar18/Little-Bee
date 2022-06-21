@@ -90,4 +90,10 @@
     <string name="feature_service">搜索服务</string>
 
     <string name="select">选择</string>
+
+    <string name="login">登录</string>
+    <string name="register">登记</string>
+    <string name="name">姓名</string>
+    <string name="hyperlink"><a href="https://www.busybeesmyanmar.com/agreement_vendor">同意 </a>条款和条件</string>
+
 </resources>
