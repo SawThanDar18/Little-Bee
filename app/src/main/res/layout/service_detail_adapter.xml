@@ -115,7 +115,7 @@
                 android:paddingStart="@dimen/padding4"
                 android:paddingTop="@dimen/padding1"
                 android:paddingEnd="@dimen/padding4"
-                android:text="Hide"
+                android:text="@string/hide_detail"
                 android:textColor="@color/white"
                 android:textSize="@dimen/fontSizeSmall" />
 

@@ -89,6 +89,7 @@
     <string name="feature_service">Search for a service</string>
 
     <string name="select">Select</string>
+    <string name="hide_detail">Hide</string>
 
     <string name="login">LogIn</string>
     <string name="register">Register</string>

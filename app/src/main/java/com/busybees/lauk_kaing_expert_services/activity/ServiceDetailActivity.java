@@ -2,12 +2,15 @@ package com.busybees.lauk_kaing_expert_services.activity;
 
 import android.graphics.Color;
 import android.graphics.Outline;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,8 +33,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
     private TextView serviceDetailName;
 
-    private PlayerView videoView;
-    SimpleExoPlayer player;
+    private VideoView videoView;
 
     private LinearLayout continueLayout;
 
@@ -51,7 +53,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
         setUpRecyclerView();
         onClick();
 
-        //PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
+        PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
 
     }
 
@@ -68,7 +70,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
     }
 
     private void PlayVideo(String video_url) {
-        videoView = findViewById(R.id.video_view);
+        /*videoView = findViewById(R.id.video_view);
         Uri video = Uri.parse(video_url);
         //player = ExoPlayerFactory.newSimpleInstance(this);
         videoView.setPlayer(player);
@@ -78,7 +80,18 @@ public class ServiceDetailActivity extends AppCompatActivity {
         LoopingMediaSource loopingSource = new LoopingMediaSource(videoSource);
         player.prepare(loopingSource);
         player.setPlayWhenReady(true);
-        player.setRepeatMode(player.REPEAT_MODE_ALL);
+        player.setRepeatMode(player.REPEAT_MODE_ALL);*/
+
+        /*MediaController mediaController= new MediaController(this);
+        mediaController.setAnchorView(videoView);*/
+        Uri uri = Uri.parse(video_url);
+        videoView.setVideoURI(uri);
+        videoView.requestFocus();
+        videoView.start();
+
+        videoView.setOnCompletionListener(mp -> {
+            videoView.start();
+        });
 
         videoView.setOutlineProvider(new ViewOutlineProvider() {
             @Override

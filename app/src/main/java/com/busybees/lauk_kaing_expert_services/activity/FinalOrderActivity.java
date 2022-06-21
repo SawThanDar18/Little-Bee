@@ -1,6 +1,5 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -15,14 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.busybees.lauk_kaing_expert_services.BottomSheetDialog.AddMoreServicesDialog;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
-import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.FinalOrderAdapter;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 public class FinalOrderActivity extends AppCompatActivity {
 
     private RecyclerView finalOrderRecyclerView;
-    RecyclerView.LayoutManager recyclerViewLayoutManager;
+    private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private FinalOrderAdapter finalOrderAdapter;
 
     private RelativeLayout logInView, addMoreServiceLayout;
@@ -63,7 +61,7 @@ public class FinalOrderActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            //startActivity(new Intent(getApplicationContext(), AddressActivity.class));
+            //startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
         });
 
         addMoreServiceLayout.setOnClickListener(v -> {
