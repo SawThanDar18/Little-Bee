@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
+import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 
 public class MyFragment extends Fragment {
 
@@ -40,7 +41,7 @@ public class MyFragment extends Fragment {
         });
 
         profileLayout.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), LogInActivity.class));
+            startActivity(new Intent(getContext(), ProfileActivity.class));
         });
     }
 }

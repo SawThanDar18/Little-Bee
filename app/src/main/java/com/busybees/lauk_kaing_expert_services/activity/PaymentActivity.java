@@ -36,9 +36,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void onClick() {
-        continueLayout.setOnClickListener(v -> {
-            startActivity(new Intent(PaymentActivity.this, ThanksActivity.class));
-        });
+        continueLayout.setOnClickListener(v -> startActivity(new Intent(PaymentActivity.this, ThanksActivity.class)));
     }
 
     private void setUpAdapter() {
