@@ -96,4 +96,24 @@
     <string name="name">Name</string>
     <string name="hyperlink">Agree to<a href="https://www.busybeesmyanmar.com/agreement"> Terms &amp; Conditions</a></string>
 
+    <string name="payment">Payment</string>
+    <string name="payment_type">Payment Type</string>
+    <string name="cash">Cash</string>
+    <string name="bank">Bank</string>
+    <string name="total_amount_pay">Total Amount</string>
+    <string name="no">No</string>
+    <string name="service">Service</string>
+    <string name="disc">Disc</string>
+    <string name="qty">Qty</string>
+    <string name="price">Price</string>
+    <string name="total">Total</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="discount">Discount</string>
+    <string name="total_amount">Total Amount ( Inclusive Tax )</string>
+
+    <string name="thank_you_txt">Thank You! </string>
+    <string name="thank_you_again">Your Trusted Partner!</string>
+    <string name="order_confirm">Our customer care will call you soon for your order confirmation.</string>
+    <string name="continues_for_more_service">Continue for more Service</string>
+
 </resources>

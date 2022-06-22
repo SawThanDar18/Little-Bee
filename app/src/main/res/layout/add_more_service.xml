@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:padding="10dp"
+        android:padding="@dimen/padding10"
         android:background="@color/theme_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height50">
@@ -55,7 +55,7 @@
            android:layout_height="match_parent">
 
            <LinearLayout
-               android:background="@color/pink_accent_color"
+               android:background="@color/white"
                android:id="@+id/more_service_layout"
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
@@ -69,23 +69,31 @@
 
            </LinearLayout>
 
-           <TextView
+           <!--<TextView
                android:textStyle="bold"
                android:padding="@dimen/padding1"
-               android:layout_marginTop="@dimen/margin6"
                android:id="@+id/service_title"
-               android:layout_marginLeft="@dimen/margin10"
+               android:layout_marginLeft="@dimen/margin16"
                android:textSize="@dimen/fontSizeMedium"
                android:textColor="@color/black"
                android:text=""
                android:layout_below="@+id/more_service_layout"
                android:layout_width="wrap_content"
-               android:layout_height="wrap_content"/>
+               android:layout_height="wrap_content"/>-->
+
+           <LinearLayout
+               android:id="@+id/service_title"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/height1"
+               android:layout_marginTop="@dimen/margin4"
+               android:layout_below="@+id/more_service_layout"
+               android:background="@color/theme_color"
+               android:orientation="vertical" />
 
            <RelativeLayout
-               android:layout_marginTop="@dimen/margin4"
                android:layout_below="@id/service_title"
                android:id="@+id/product_detail_layout"
+               android:layout_marginTop="@dimen/margin16"
                android:layout_width="match_parent"
                android:layout_height="match_parent">
 

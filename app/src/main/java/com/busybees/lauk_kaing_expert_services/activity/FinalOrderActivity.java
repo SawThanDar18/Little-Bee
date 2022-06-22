@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -61,7 +62,7 @@ public class FinalOrderActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            //startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
+            startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
         });
 
         addMoreServiceLayout.setOnClickListener(v -> {

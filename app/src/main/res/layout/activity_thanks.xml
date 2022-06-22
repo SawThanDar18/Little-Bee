@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/width150"
+        android:layout_height="@dimen/height160"
+        android:layout_above="@+id/thankU"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/margin16"
+        android:layout_marginTop="@dimen/margin32"
+        android:layout_marginEnd="@dimen/margin16"
+        android:layout_marginBottom="@dimen/margin34"
+        android:padding="@dimen/padding15"
+        app:srcCompat="@drawable/ic_about_jia_jie" />
+
+    <ImageView
+        android:id="@+id/thankU"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height200"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/thanks" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thankU"
+        android:layout_marginTop="-10dp"
+        android:padding="@dimen/padding1"
+        android:text="@string/thank_you_txt"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeXLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="@dimen/margin16"
+        android:text="@string/thank_you_again"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/continue_layout"
+        android:layout_marginBottom="@dimen/margin8"
+        android:paddingLeft="@dimen/padding15"
+        android:paddingRight="@dimen/padding15"
+        android:text="@string/order_confirm"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeMedium" />
+
+    <LinearLayout
+        android:id="@+id/continue_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:background="@color/theme_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding15"
+            android:gravity="center"
+            android:text="@string/continues_for_more_service"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeMedium"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

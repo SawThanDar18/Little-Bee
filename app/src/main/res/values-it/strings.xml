@@ -98,4 +98,24 @@
     <string name="name">အမည်</string>
     <string name="hyperlink"><a href="https://www.busybeesmyanmar.com/agreement_vendor">သတ်မှတ်စည်းမျဉ်းစည်းကမ်းများကို </a>လက်ခံပါသည်။</string>
 
+    <string name="payment">ငွေပေးချေမှု</string>
+    <string name="payment_type">ငွေပေးချေမည့်ပုံစံ</string>
+    <string name="cash">ငွေသားဖြင့်</string>
+    <string name="bank">ဘဏ်ဖြင့်</string>
+    <string name="total_amount_pay">ကျသင့်ငွေစုစုပေါင်း</string>
+    <string name="no">စဉ်</string>
+    <string name="service">ဝန်ဆောင်မှူ</string>
+    <string name="disc">Disc</string>
+    <string name="qty">အရေတွက်</string>
+    <string name="price">နှုန်း</string>
+    <string name="total">စုစုပေါင်း</string>
+    <string name="sub_total">စုစုပေါင်း</string>
+    <string name="discount">Discount</string>
+    <string name="total_amount">စုစုပေါင်းကျသင့်ငွေ ( ကုန်သွယ်ခွန်ပါဝင်ပြီး )</string>
+
+    <string name="thank_you_txt">ကျေးဇူးတင်ပါသည်။</string>
+    <string name="thank_you_again">Your Trusted Partner!</string>
+    <string name="order_confirm">ကျွန်ုပ်တို့၏ Customer Care မှမကြာမီအချိန်တွင် ဖုန်းခေါ်ဆို၍ ဝန်ဆောင်မှုရယူခြင်းအားအတည်ပြုပေးပါမည်။</string>
+    <string name="continues_for_more_service">ဝန်ဆောင်မှုများထပ်မံရယူရန်</string>
+
 </resources>

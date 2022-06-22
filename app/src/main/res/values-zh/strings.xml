@@ -97,4 +97,24 @@
     <string name="name">姓名</string>
     <string name="hyperlink"><a href="https://www.busybeesmyanmar.com/agreement_vendor">同意 </a>条款和条件</string>
 
+    <string name="payment">支付</string>
+    <string name="payment_type">付款方式</string>
+    <string name="cash">现金</string>
+    <string name="bank">银行</string>
+    <string name="total_amount_pay">支付总额</string>
+    <string name="no">数字</string>
+    <string name="service">服务</string>
+    <string name="disc">折扣</string>
+    <string name="qty">数量</string>
+    <string name="price">价格</string>
+    <string name="total">全部的</string>
+    <string name="sub_total">小计</string>
+    <string name="discount">折扣</string>
+    <string name="total_amount">总金额 (含税)</string>
+
+    <string name="thank_you_txt">谢谢你!</string>
+    <string name="thank_you_again">您值得信赖的合作伙伴!</string>
+    <string name="order_confirm">我们的客服会尽快给您打电话确认您的订单。</string>
+    <string name="continues_for_more_service">继续获取更多服务</string>
+
 </resources>

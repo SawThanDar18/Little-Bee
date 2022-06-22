@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/margin16"
+    android:layout_marginBottom="1dp"
+    android:layout_marginRight="@dimen/margin10"
+    android:id="@+id/cardView">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin10"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin6"
+        android:gravity="center"
+        android:id="@+id/productImage"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/width50"
+            android:id="@+id/serviceIcon"
+            android:background="@drawable/two_color_frame"
+            app:srcCompat="@drawable/icon_cleaning__1200_x_1200_px_"
+            android:padding="@dimen/padding2"
+            android:layout_height="@dimen/height50" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginBottom="@dimen/margin10"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="@dimen/padding1"
+        android:id="@+id/service_name"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:textSize="@dimen/fontSizeSmall"
+        android:layout_gravity="center"
+        android:text="Cleaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
