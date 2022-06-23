@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -27,6 +28,8 @@ public class FinalOrderActivity extends AppCompatActivity {
     private RelativeLayout logInView, addMoreServiceLayout;
     private LinearLayout reloadPage, continueLayout;
 
+    private ImageView back, homePageView, cartPageView, addressPageView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,10 @@ public class FinalOrderActivity extends AppCompatActivity {
         continueLayout = findViewById(R.id.continue_layout);
         addMoreServiceLayout = findViewById(R.id.btn_add_more_service);
         finalOrderRecyclerView = findViewById(R.id.final_order_recyclerview);
+        back = findViewById(R.id.back_button);
+        homePageView = findViewById(R.id.home_page_btn);
+        cartPageView = findViewById(R.id.cart_page_btn);
+        addressPageView = findViewById(R.id.address_page_btn);
 
         if (Utility.isOnline(getApplicationContext())) {
             reloadPage.setVisibility(View.GONE);
@@ -69,6 +76,19 @@ public class FinalOrderActivity extends AppCompatActivity {
             AddMoreServicesDialog addMoreServicesDialog = new AddMoreServicesDialog();
             addMoreServicesDialog.show(getSupportFragmentManager(), "");
         });
+
+        back.setOnClickListener(v -> finish());
+
+        homePageView.setOnClickListener(v -> {
+            startActivity(new Intent(FinalOrderActivity.this, MainActivity.class));
+            finish();
+        });
+
+        cartPageView.setOnClickListener(v -> {
+
+        });
+
+        addressPageView.setOnClickListener(v -> finish());
     }
 
     void makeStatusBarVisible() {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener
 public class SubProductActivity extends AppCompatActivity {
 
     private TextView subProductName;
+    private ImageView back;
+
     private RecyclerView subProductRecyclerView;
 
     private SubProductAdapter productAdapter;
@@ -30,11 +33,17 @@ public class SubProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sub_product);
 
         subProductName = findViewById(R.id.sub_product_name);
+        back = findViewById(R.id.back_button);
         subProductRecyclerView = findViewById(R.id.sub_product_recyclerview);
 
         setUpAdapter();
         onRecyclerViewClick();
+        onClick();
 
+    }
+
+    private void onClick() {
+        back.setOnClickListener(v -> finish());
     }
 
     private void onRecyclerViewClick() {

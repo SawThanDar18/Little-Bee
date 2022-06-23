@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.media.MediaPlayer;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import com.google.android.exoplayer2.util.Util;
 public class ServiceDetailActivity extends AppCompatActivity {
 
     private TextView serviceDetailName;
+    private ImageView back;
 
     private VideoView videoView;
 
@@ -48,7 +51,9 @@ public class ServiceDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_detail);
 
         videoView = findViewById(R.id.video_view);
+        back = findViewById(R.id.back_button);
         serviceDetailRecyclerView = findViewById(R.id.service_detail_recyclerview);
+        continueLayout = findViewById(R.id.continue_layout);
 
         setUpRecyclerView();
         onClick();
@@ -58,7 +63,9 @@ public class ServiceDetailActivity extends AppCompatActivity {
     }
 
     private void onClick() {
+        back.setOnClickListener(v -> finish());
 
+        continueLayout.setOnClickListener(v -> startActivity(new Intent(ServiceDetailActivity.this, AddressActivity.class)));
     }
 
     private void setUpRecyclerView() {

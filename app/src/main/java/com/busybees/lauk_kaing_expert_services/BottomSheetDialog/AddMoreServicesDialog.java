@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     private ExpandableListViewAdapter expandableListViewAdapter;
     private LinearLayoutManager servicesLayoutManager, addMoreServiceLayoutManager;
 
+    private ImageView closeDialog;
+
     @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(@NonNull Dialog dialog, int style) {
@@ -36,6 +39,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         addMoreServiceRecyclerView = contentView.findViewById(R.id.recycle_add_more_service);
         servicesRecyclerView = contentView.findViewById(R.id.recycle_service);
         expandableListView = contentView.findViewById(R.id.expandableListView);
+        closeDialog = contentView.findViewById(R.id.cancel_more_service);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -45,6 +49,11 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         setUpAdapter();
         initListeners();
         ShowProduct();
+        onClick();
+    }
+
+    private void onClick() {
+        closeDialog.setOnClickListener(v -> dismiss());
     }
 
     private void initListeners() {

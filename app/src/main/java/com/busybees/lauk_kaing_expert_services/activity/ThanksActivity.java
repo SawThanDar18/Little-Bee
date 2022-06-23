@@ -41,4 +41,10 @@ public class ThanksActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ThanksActivity.this, MainActivity.class));
+    }
 }

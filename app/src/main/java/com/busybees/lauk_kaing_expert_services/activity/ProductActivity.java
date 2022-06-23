@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,8 @@ import com.busybees.lauk_kaing_expert_services.adapters.Products.ProductAdapter;
 public class ProductActivity extends AppCompatActivity {
 
     private TextView productName;
+    private ImageView back;
+
     private RecyclerView productRecyclerView;
 
     private ProductAdapter productAdapter;
@@ -29,10 +32,16 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
 
         productName = findViewById(R.id.product_name);
+        back = findViewById(R.id.back_button);
         productRecyclerView = findViewById(R.id.product_recyclerview);
 
         setUpAdapter();
+        onClick();
 
+    }
+
+    private void onClick() {
+        back.setOnClickListener(v -> finish());
     }
 
     private void setUpAdapter() {
