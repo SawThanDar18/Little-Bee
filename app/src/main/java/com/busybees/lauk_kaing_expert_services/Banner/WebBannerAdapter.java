@@ -19,10 +19,10 @@ import java.util.List;
 public class WebBannerAdapter extends RecyclerView.Adapter<WebBannerAdapter.MzViewHolder> {
 
     private Context context;
-    private List<Integer> urlList;
+    private List<String> urlList;
     private BannerLayout.OnBannerItemClickListener onBannerItemClickListener;
 
-    public WebBannerAdapter(Context context, List<Integer> urlList) {
+    public WebBannerAdapter(Context context, List<String> urlList) {
         this.context = context;
         this.urlList = urlList;
     }
@@ -41,13 +41,12 @@ public class WebBannerAdapter extends RecyclerView.Adapter<WebBannerAdapter.MzVi
         if (urlList == null || urlList.isEmpty())
             return;
         final int P = position % urlList.size();
-        //String url = urlList.get(P);
-        Integer url = urlList.get(P);
+        String url = urlList.get(P);
         ImageView img = holder.imageView;
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.logo_bw);
-        requestOptions.error(R.drawable.logo_bw);
+        requestOptions.placeholder(R.drawable.banner_image);
+        requestOptions.error(R.drawable.banner_image);
         Glide.with(context)
                 .load(url)
                 .apply(requestOptions)

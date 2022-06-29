@@ -117,4 +117,7 @@
     <string name="order_confirm">我们的客服会尽快给您打电话确认您的订单。</string>
     <string name="continues_for_more_service">继续获取更多服务</string>
 
+    <string name="no_internet_connection">出问题了! \n 检查互联网连接</string>
+    <string name="no_internet">检查互联网连接</string>
+
 </resources>

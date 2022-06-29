@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.busybees.data.models.GetAllHomeModel;
+import com.busybees.data.vos.Home.SliderVO;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -26,13 +32,21 @@ import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeFragment extends Fragment {
+
+    private NetworkServiceProvider serviceProvider;
 
     private WebBannerAdapter webBannerAdapter;
     private BannerLayout banner;
@@ -56,6 +70,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        serviceProvider = new NetworkServiceProvider(getActivity());
+
         banner = view.findViewById(R.id.banner_view);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
@@ -71,18 +87,37 @@ public class HomeFragment extends Fragment {
         progressBar = view.findViewById(R.id.materialLoader);
 
         if (Utility.isOnline(getContext())) {
-            initImageSlider();
             setUpAdapterToRecyclerView();
             reloadPage.setVisibility(View.GONE);
-            //progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+            footerImage.setVisibility(View.VISIBLE);
         } else {
             reloadPage.setVisibility(View.VISIBLE);
-            //progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            footerImage.setVisibility(View.GONE);
         }
 
+        CallGetAllHomeApi();
+
         onRecyclerViewClick();
+        onClick();
 
         return  view;
+    }
+
+    private void onClick() {
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            CallGetAllHomeApi();
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        reloadPage.setOnClickListener(v -> {
+            if (Utility.isOnline(getActivity())) {
+                CallGetAllHomeApi();
+            } else {
+                Utility.showToast(getActivity(), getString(R.string.no_internet));
+            }
+        });
     }
 
     private void onRecyclerViewClick() {
@@ -99,21 +134,15 @@ public class HomeFragment extends Fragment {
         }));
     }
 
-    private void initImageSlider() {
+    private void initImageSlider(List<SliderVO> slider) {
 
-        /*List<String> imagelist = new ArrayList<>();
-        imagelist.add("https://boostcleaningmelbourne.com.au/wp-content/themes/lz-cleaning-services-pro/images/slider-banner.jpg");
-        imagelist.add("https://images.squarespace-cdn.com/content/v1/5585b51ce4b0f2164efaa2b1/1558664884095-D2D42IRVFPZH3J0HFCQN/image-asset.jpeg?format=2500w");
-        imagelist.add("https://img.grouponcdn.com/deal/3zq2KMhexQw32bJCKUvyxWaEEEdD/3z-2048x1229/v1/c870x524.jpg");
-        imagelist.add("https://www.pccsindia.com/wp-content/uploads/2020/04/commercial-clenaing-6-1-1024x561-1.jpg");
-*/
-        ArrayList<Integer> ex1 = new ArrayList<>();
-        ex1.add(R.drawable.banner_image);
-        ex1.add(R.drawable.banner_image);
-        ex1.add(R.drawable.banner_image);
-        ex1.add(R.drawable.banner_image);
+        List<String> sliderImageList = new ArrayList<>();
 
-        webBannerAdapter = new WebBannerAdapter(getActivity(), ex1);
+        for (int i = 0; i < slider.size(); i++) {
+            sliderImageList.add(slider.get(i).getSliderImage());
+        }
+
+        webBannerAdapter = new WebBannerAdapter(getActivity(), sliderImageList);
 
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
@@ -166,5 +195,80 @@ public class HomeFragment extends Fragment {
         recyclerViewServiceYMN.setLayoutManager(layoutManagerRecyclerServiceYMN);
         recyclerViewServiceYMN.setAdapter(symnAdapter);
         symnAdapter.notifyDataSetChanged();
+    }
+
+    private void CallGetAllHomeApi() {
+
+        if (Utility.isOnline(getActivity())) {
+            serviceProvider.GetHomeCall(ApiConstants.BASE_URL + ApiConstants.GET_ALL_HOME).enqueue(new Callback<GetAllHomeModel>() {
+
+                @Override
+                public void onResponse(Call<GetAllHomeModel> call, Response<GetAllHomeModel> response) {
+
+                    initImageSlider(response.body().getData().getSlider());
+
+                    progressBar.setVisibility(View.GONE);
+                    reloadPage.setVisibility(View.GONE);
+                    /*
+
+                    popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopular());
+                    recyclePopular.setAdapter(popularAdapter);
+                    popularAdapter.notifyDataSetChanged();
+                    popularModels.addAll(response.body().getData().getPopular());
+
+                    symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getSymn());
+                    layoutManager_symn = new GridLayoutManager(getActivity(), 2);
+                    recycleSymn.setLayoutManager(layoutManager_symn);
+                    recycleSymn.setAdapter(symnAdapter);
+                    symnAdapter.notifyDataSetChanged();
+                    symnModels.addAll(response.body().getData().getSymn());
+
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.placeholder(R.drawable.drawer_logo);
+                    requestOptions.error(R.drawable.drawer_logo);
+                    requestOptions.transforms(new CenterCrop());
+
+                    Glide.with(getActivity())
+                            .load(response.body().getData().getFooter())
+                            .apply(requestOptions)
+                            .into(imgfooter);
+
+                    availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getAvailable());
+                    layoutManager_available = new GridLayoutManager(getActivity(), 4);
+                    recycleAvailable.setLayoutManager(layoutManager_available);
+                    recycleAvailable.setAdapter(availableAdapter);
+                    availableAdapter.notifyDataSetChanged();
+                    avaliabledata.addAll(response.body().getData().getAvailable());
+
+                    if (response.body().getData().getMore_services() != null) {
+                        for (int i = 0; i < response.body().getData().getMore_services().size(); i++) {
+
+                            productlist.addAll(response.body().getData().getMore_services().get(i).getProducts());
+
+                            if ((response.body().getData().getMore_services().size() - 1) == i) {
+                                for (int j = 0; j < productlist.size(); j++) {
+                                    if (productlist.get(j).getSubProducts() != null) {
+                                        subproductlist.addAll(productlist.get(j).getSubProducts());
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+*/
+
+                }
+
+                @Override
+                public void onFailure(Call<GetAllHomeModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Utility.showToast(getContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            Utility.showToast(getActivity(), getString(R.string.no_internet));
+        }
     }
 }
