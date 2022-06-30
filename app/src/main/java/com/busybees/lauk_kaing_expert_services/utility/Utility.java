@@ -1,14 +1,14 @@
 package com.busybees.lauk_kaing_expert_services.utility;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.provider.Settings;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.myanmartools.TransliterateZ2U;
+import com.google.myanmartools.ZawgyiDetector;
 
 public class Utility {
 
@@ -37,5 +37,28 @@ public class Utility {
     public static int dp2px(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5F);
+    }
+
+    public static void changeFontZg2UniHome(TextView v, String changeFontString){
+
+        TransliterateZ2U z2U = new TransliterateZ2U("Zawgyi to Unicode");
+        String output = z2U.convert(changeFontString);
+        v.setText(output);
+
+    }
+
+    public static void addFontSuHome(TextView v, String changeFontString){
+        String s = changeFontString;
+        String[] parts = s.split(" ");
+        if(parts.length==2){
+            String p1 = parts[0];
+            String p2=parts[1];
+            String hi = p1 +"\n" + p2;
+            v.setText(hi);
+        }else{
+            v.setText(changeFontString);
+        }
+
+
     }
 }

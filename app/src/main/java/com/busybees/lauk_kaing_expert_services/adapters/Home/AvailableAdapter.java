@@ -12,20 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.busybees.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyViewHolder> {
 
     Context context;
-    private List<Integer> urlList;
-    private List<String> serviceName;
+    List<ServiceAvailableVO> serviceAvailableVOList;
 
-    public AvailableAdapter(FragmentActivity activity, List<Integer> urlList, List<String> serviceName) {
+    public AvailableAdapter(FragmentActivity activity, List<ServiceAvailableVO> datas) {
         this.context=activity;
-        this.urlList = urlList;
-        this.serviceName = serviceName;
+        this.serviceAvailableVOList = datas;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -48,22 +51,29 @@ public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyVi
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        if (urlList == null || urlList.isEmpty())
-            return;
-        final int P = position % urlList.size();
-        Integer url = urlList.get(P);
-        ImageView img = holder.imageView;
+
+        ServiceAvailableVO serviceAvailableVO = serviceAvailableVOList.get(position);
+
+        holder.serviceName.setText(serviceAvailableVO.getName());
+
+        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
+            Utility.addFontSuHome(holder.serviceName, serviceAvailableVO.getNameMm());
+        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+            Utility.changeFontZg2UniHome(holder.serviceName, serviceAvailableVO.getNameMm());
+        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
+            holder.serviceName.setText(serviceAvailableVO.getNameCh());
+        } else {
+            holder.serviceName.setText(serviceAvailableVO.getName());
+        }
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.logo_bw);
-        requestOptions.error(R.drawable.logo_bw);
-        Glide.with(context)
-                .load(url)
-                .apply(requestOptions)
-                .into(img);
+        requestOptions.placeholder(R.drawable.loader_circle_shape);
+        requestOptions.error(R.drawable.loader_circle_shape);
 
-        String names = serviceName.get(P);
-        holder.serviceName.setText(names);
+        Glide.with(holder.itemView.getContext())
+                .load(serviceAvailableVO.getServiceImage())
+                .apply(requestOptions)
+                .into(holder.imageView);
     }
 
 
@@ -79,7 +89,15 @@ public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return 12;
+        return serviceAvailableVOList.size();
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
     }
 
 

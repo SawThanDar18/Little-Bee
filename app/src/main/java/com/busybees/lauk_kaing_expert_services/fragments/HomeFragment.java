@@ -178,11 +178,8 @@ public class HomeFragment extends Fragment {
         serviceName.add("Stone Care (Scrubbing & Polishing)");
         serviceName.add("Pest Control");
 
-        availableAdapter = new AvailableAdapter(getActivity(), servicesImageList, serviceName);
         layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
         recyclerViewAvailable.setLayoutManager(layoutManagerRecyclerAvailable);
-        recyclerViewAvailable.setAdapter(availableAdapter);
-        availableAdapter.notifyDataSetChanged();
 
         popularAdapter = new PopularAdapter(getActivity());
         layoutManagerRecyclerPopular = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -209,6 +206,10 @@ public class HomeFragment extends Fragment {
 
                     progressBar.setVisibility(View.GONE);
                     reloadPage.setVisibility(View.GONE);
+
+                    availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
+                    recyclerViewAvailable.setAdapter(availableAdapter);
+                    availableAdapter.notifyDataSetChanged();
                     /*
 
                     popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopular());
