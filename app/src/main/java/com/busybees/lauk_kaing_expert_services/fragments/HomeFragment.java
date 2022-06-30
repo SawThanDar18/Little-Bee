@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpAdapterToRecyclerView() {
-        ArrayList<Integer> servicesImageList = new ArrayList<>();
+        /*ArrayList<Integer> servicesImageList = new ArrayList<>();
         servicesImageList.add(R.drawable.icon_cleaning__1200_x_1200_px_);
         servicesImageList.add(R.drawable.ic_general_workers_hiring__1200_x_1200_px_);
         servicesImageList.add(R.drawable.ic_air_con__1200_x_1200_px_);
@@ -176,22 +176,16 @@ public class HomeFragment extends Fragment {
         serviceName.add("Ceiling");
         serviceName.add("Upholstery");
         serviceName.add("Stone Care (Scrubbing & Polishing)");
-        serviceName.add("Pest Control");
+        serviceName.add("Pest Control");*/
 
         layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
         recyclerViewAvailable.setLayoutManager(layoutManagerRecyclerAvailable);
 
-        popularAdapter = new PopularAdapter(getActivity());
         layoutManagerRecyclerPopular = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopular.setLayoutManager(layoutManagerRecyclerPopular);
-        recyclerViewPopular.setAdapter(popularAdapter);
-        popularAdapter.notifyDataSetChanged();
 
-        symnAdapter = new SymnAdapter(getActivity());
         layoutManagerRecyclerServiceYMN = new GridLayoutManager(getActivity(), 2);
         recyclerViewServiceYMN.setLayoutManager(layoutManagerRecyclerServiceYMN);
-        recyclerViewServiceYMN.setAdapter(symnAdapter);
-        symnAdapter.notifyDataSetChanged();
     }
 
     private void CallGetAllHomeApi() {
@@ -210,6 +204,15 @@ public class HomeFragment extends Fragment {
                     availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
                     recyclerViewAvailable.setAdapter(availableAdapter);
                     availableAdapter.notifyDataSetChanged();
+
+                    popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopularServices());
+                    recyclerViewPopular.setAdapter(popularAdapter);
+                    popularAdapter.notifyDataSetChanged();
+
+                    symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getServiceNeed());
+                    recyclerViewServiceYMN.setAdapter(symnAdapter);
+                    symnAdapter.notifyDataSetChanged();
+
                     /*
 
                     popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopular());
