@@ -1,6 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.adapters.Home;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
 import java.util.List;
 
@@ -72,10 +74,15 @@ public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewH
         requestOptions.placeholder(R.drawable.loader_circle_shape);
         requestOptions.error(R.drawable.loader_circle_shape);
 
-        Glide.with(holder.itemView.getContext())
+        GlideToVectorYou.init()
+                .with(context.getApplicationContext())
+                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.banner_image)
+                .load(Uri.parse(popularServicesVO.getPopularImage()), holder.imageView);
+
+        /*Glide.with(holder.itemView.getContext())
                 .load(popularServicesVO.getPopularImage())
                 .apply(requestOptions)
-                .into(holder.imageView);
+                .into(holder.imageView);*/
     }
 
     @Override
