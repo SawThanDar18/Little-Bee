@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         });
 
-        reloadPage.setOnClickListener(v -> {
+        reloadBtn.setOnClickListener(v -> {
             if (Utility.isOnline(getActivity())) {
                 CallGetAllHomeApi();
             } else {
@@ -200,6 +200,8 @@ public class HomeFragment extends Fragment {
 
                     progressBar.setVisibility(View.GONE);
                     reloadPage.setVisibility(View.GONE);
+
+                    setUpAdapterToRecyclerView();
 
                     availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
                     recyclerViewAvailable.setAdapter(availableAdapter);
