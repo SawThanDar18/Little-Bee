@@ -120,4 +120,6 @@
     <string name="no_internet_connection">出问题了! \n 检查互联网连接</string>
     <string name="no_internet">检查互联网连接</string>
 
+    <string name="currency">元</string>
+    <string name="save">节省</string>
 </resources>

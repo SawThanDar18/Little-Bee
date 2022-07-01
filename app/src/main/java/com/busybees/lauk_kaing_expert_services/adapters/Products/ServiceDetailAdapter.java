@@ -18,6 +18,9 @@ import com.bumptech.glide.Glide;
 import com.busybees.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +81,57 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         ProductPriceVO productPriceVO = productPriceVOList.get(position);
+
+        if (productPriceVO != null) {
+            if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
+                Utility.addFontSuHome(holder.serviceDetailName, productPriceVO.getNameMm());
+            } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+                Utility.changeFontZg2UniHome(holder.serviceDetailName, productPriceVO.getNameMm());
+            } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
+                holder.serviceDetailName.setText(productPriceVO.getNameCh());
+            } else {
+                holder.serviceDetailName.setText(productPriceVO.getName());
+            }
+
+            if(holder.serviceDetailName.getText().length() > 30){
+                holder.serviceDetailName.setEms(11);
+                holder.serviceDetailName.setLines(2);
+            }
+
+            if(Double.parseDouble(String.valueOf(productPriceVO.getOriginalPrice())) == 0){
+                holder.originalPrice.setVisibility(View.GONE);
+                holder.discountPrice.setVisibility(View.GONE);
+                holder.savePricePercent.setVisibility(View.GONE);
+
+            } else {
+                if(Double.parseDouble(String.valueOf(productPriceVO.getDiscount())) == 0){
+                    holder.discountPrice.setVisibility(View.GONE);
+                    holder.savePricePercent.setVisibility(View.GONE);
+                    holder.originalPrice.setVisibility(View.VISIBLE);
+
+                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
+                } else {
+                    holder.discountPrice.setVisibility(View.VISIBLE);
+                    holder.savePricePercent.setVisibility(View.VISIBLE);
+                    holder.originalPrice.setVisibility(View.VISIBLE);
+
+                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.originalPrice.setPaintFlags(holder.originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    holder.discountPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getDiscountPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.savePricePercent.setText(mContext.getString(R.string.save) + " " + getSavePercentage(productPriceVO.getOriginalPrice(), productPriceVO.getDiscountPrice()));
+                }
+            }
+        }
+    }
+
+    private String getSavePercentage(int originalPrice , int discountPrice) {
+        double srpAmt = Double.parseDouble(String.valueOf(discountPrice));
+        double mrpAmt = Double.parseDouble(String.valueOf(originalPrice));
+        double dis = mrpAmt - srpAmt  ;
+        if(dis > 0) {
+            return (new DecimalFormat("##").format((dis * 100) / mrpAmt))+"%";
+        }
+        return "0 %";
     }
 
     @Override
@@ -92,7 +146,15 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
 
     @Override
     public int getItemCount() {
-        return 2;
+        return productPriceVOList.size();
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
     }
 
 }

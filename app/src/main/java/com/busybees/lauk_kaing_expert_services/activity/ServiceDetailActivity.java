@@ -114,7 +114,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         productPriceVOArrayList.clear();
                         productPriceVOArrayList.addAll(response.body().getData());
 
-                        serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this);
+                        serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this, productPriceVOArrayList);
                         serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
                         serviceDetailAdapter.notifyDataSetChanged();
                     }
