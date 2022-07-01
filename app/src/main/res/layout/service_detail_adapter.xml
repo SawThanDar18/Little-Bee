@@ -66,6 +66,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +160,7 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:layout_marginStart="@dimen/margin24"
-                android:id="@+id/addBtnLayout"
+                android:id="@+id/selectText"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/selected"

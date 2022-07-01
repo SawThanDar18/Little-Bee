@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,21 +20,28 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.busybees.data.models.GetAllHomeModel;
+import com.busybees.data.vos.Home.PopularServicesVO;
+import com.busybees.data.vos.Home.ServiceNeedVO;
 import com.busybees.data.vos.Home.SliderVO;
+import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
+import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
@@ -66,6 +74,10 @@ public class HomeFragment extends Fragment {
     private Button reloadBtn;
     private ProgressBar progressBar;
 
+    private TextView productName;
+    private ArrayList<PopularServicesVO> popularServicesVOArrayList = new ArrayList<>();
+    private ArrayList<ServiceNeedVO> serviceNeedVOArrayList = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -85,6 +97,7 @@ public class HomeFragment extends Fragment {
         reloadPage = view.findViewById(R.id.reload_page);
         reloadBtn = view.findViewById(R.id.btn_reload_page);
         progressBar = view.findViewById(R.id.materialLoader);
+        productName = view.findViewById(R.id.s_name);
 
         if (Utility.isOnline(getContext())) {
             setUpAdapterToRecyclerView();
@@ -130,6 +143,68 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onLongItemClick(View view, int position) {
+            }
+        }));
+
+        recyclerViewPopular.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewPopular, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                productsCarryObject.setServiceId(popularServicesVOArrayList.get(position).getServiceId());
+                productsCarryObject.setProductId(popularServicesVOArrayList.get(position).getProductId());
+                productsCarryObject.setSubProductId(popularServicesVOArrayList.get(position).getSubProductId());
+                productsCarryObject.setStep(popularServicesVOArrayList.get(position).getStep());
+
+                if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                    Utility.addFontSuHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                    Utility.changeFontZg2UniHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                    productName.setText(popularServicesVOArrayList.get(position).getNameCh());
+                } else {
+                    productName.setText(popularServicesVOArrayList.get(position).getName());
+                }
+
+                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                intent.putExtra("product_title", productName.getText().toString());
+                intent.putExtra("product_detail_data", productsCarryObject);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
+
+        recyclerViewServiceYMN.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewServiceYMN, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                productsCarryObject.setServiceId(serviceNeedVOArrayList.get(position).getServiceId());
+                productsCarryObject.setProductId(serviceNeedVOArrayList.get(position).getProductId());
+                productsCarryObject.setSubProductId(serviceNeedVOArrayList.get(position).getSubProductId());
+                productsCarryObject.setStep(serviceNeedVOArrayList.get(position).getStep());
+
+                if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                    Utility.addFontSuHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                    Utility.changeFontZg2UniHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                    productName.setText(serviceNeedVOArrayList.get(position).getNameCh());
+                } else {
+                    productName.setText(serviceNeedVOArrayList.get(position).getName());
+                }
+
+                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                intent.putExtra("product_title", productName.getText().toString());
+                intent.putExtra("product_detail_data", productsCarryObject);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
             }
         }));
     }
@@ -210,10 +285,12 @@ public class HomeFragment extends Fragment {
                     popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopularServices());
                     recyclerViewPopular.setAdapter(popularAdapter);
                     popularAdapter.notifyDataSetChanged();
+                    popularServicesVOArrayList.addAll(response.body().getData().getPopularServices());
 
                     symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getServiceNeed());
                     recyclerViewServiceYMN.setAdapter(symnAdapter);
                     symnAdapter.notifyDataSetChanged();
+                    serviceNeedVOArrayList.addAll(response.body().getData().getServiceNeed());
 
                     /*
 
@@ -276,5 +353,13 @@ public class HomeFragment extends Fragment {
         } else {
             Utility.showToast(getActivity(), getString(R.string.no_internet));
         }
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
     }
 }

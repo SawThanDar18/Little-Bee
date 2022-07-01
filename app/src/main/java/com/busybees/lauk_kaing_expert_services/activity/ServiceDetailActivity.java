@@ -11,6 +11,7 @@ import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -19,8 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.data.models.GetProductPriceModel;
+import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.LoopingMediaSource;
@@ -29,9 +36,18 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Log;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ServiceDetailActivity extends AppCompatActivity {
+
+    private NetworkServiceProvider serviceProvider;
 
     private TextView serviceDetailName;
     private ImageView back;
@@ -40,9 +56,17 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
     private LinearLayout continueLayout;
 
+    private ProgressBar progressBar;
+
     private RecyclerView serviceDetailRecyclerView;
     private ServiceDetailAdapter serviceDetailAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    private ArrayList<ProductPriceVO> productPriceVOArrayList = new ArrayList<>();
+
+    // Intent Data
+    private String productName;
+    private ProductsCarryObject productsCarryObject;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,16 +74,62 @@ public class ServiceDetailActivity extends AppCompatActivity {
         makeStatusBarVisible();
         setContentView(R.layout.activity_service_detail);
 
+        serviceProvider = new NetworkServiceProvider(this);
+
         videoView = findViewById(R.id.video_view);
         back = findViewById(R.id.back_button);
         serviceDetailRecyclerView = findViewById(R.id.service_detail_recyclerview);
         continueLayout = findViewById(R.id.continue_layout);
+        serviceDetailName = findViewById(R.id.service_detail_name);
+        progressBar = findViewById(R.id.materialLoader);
 
         setUpRecyclerView();
         onClick();
 
-        PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
+        if (getIntent() != null) {
+            productName = getIntent().getStringExtra("product_title");
+            productsCarryObject = (ProductsCarryObject) getIntent().getSerializableExtra("product_detail_data");
+            serviceDetailName.setText(productName);
+            CallProductPriceApi(productsCarryObject);
+        }
 
+    }
+
+    private void CallProductPriceApi(ProductsCarryObject productsCarryObject) {
+        if (Utility.isOnline(getApplicationContext())) {
+            progressBar.setVisibility(View.GONE);
+
+            serviceProvider.GetProductPriceCall(ApiConstants.BASE_URL + ApiConstants.GET_PRODUCT_PRICE_LISTS, productsCarryObject).enqueue(new Callback<GetProductPriceModel>() {
+                @Override
+                public void onResponse(Call<GetProductPriceModel> call, Response<GetProductPriceModel> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response.body().getError() == true) {
+
+                        Utility.showToast(ServiceDetailActivity.this, response.body().getMessage());
+                        finish();
+
+                    } else if (response.body().getError() == false) {
+                        PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
+
+                        productPriceVOArrayList.clear();
+                        productPriceVOArrayList.addAll(response.body().getData());
+
+                        serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this);
+                        serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
+                        serviceDetailAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetProductPriceModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
     }
 
     private void onClick() {
@@ -69,11 +139,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this);
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         serviceDetailRecyclerView.setLayoutManager(layoutManager);
-        serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
-        serviceDetailAdapter.notifyDataSetChanged();
     }
 
     private void PlayVideo(String video_url) {

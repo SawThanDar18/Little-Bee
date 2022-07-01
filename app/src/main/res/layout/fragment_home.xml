@@ -137,6 +137,13 @@
 
             <include layout="@layout/material_loader_layout" />
 
+            <TextView
+                android:id="@+id/s_name"
+                android:visibility="invisible"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         </RelativeLayout>
 
 
