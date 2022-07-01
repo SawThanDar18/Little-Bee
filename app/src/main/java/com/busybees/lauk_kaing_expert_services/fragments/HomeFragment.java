@@ -4,16 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,14 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.request.RequestOptions;
 import com.busybees.data.models.GetAllHomeModel;
 import com.busybees.data.vos.Home.PopularServicesVO;
+import com.busybees.data.vos.Home.ServiceAvailableVO;
 import com.busybees.data.vos.Home.ServiceNeedVO;
 import com.busybees.data.vos.Home.SliderVO;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.data.vos.ServiceDetail.ProductsVO;
+import com.busybees.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -75,6 +72,11 @@ public class HomeFragment extends Fragment {
     private ProgressBar progressBar;
 
     private TextView productName;
+
+    private ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<>();
+    private ArrayList<ProductsVO> productsVOArrayList = new ArrayList<>();
+    private ArrayList<SubProductsVO> subProductsVOArrayList = new ArrayList<>();
+
     private ArrayList<PopularServicesVO> popularServicesVOArrayList = new ArrayList<>();
     private ArrayList<ServiceNeedVO> serviceNeedVOArrayList = new ArrayList<>();
 
@@ -98,6 +100,8 @@ public class HomeFragment extends Fragment {
         reloadBtn = view.findViewById(R.id.btn_reload_page);
         progressBar = view.findViewById(R.id.materialLoader);
         productName = view.findViewById(R.id.s_name);
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.theme_color);
 
         if (Utility.isOnline(getContext())) {
             setUpAdapterToRecyclerView();
@@ -138,7 +142,54 @@ public class HomeFragment extends Fragment {
         recyclerViewAvailable.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewAvailable, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(new Intent(getContext(), ProductActivity.class));
+                if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
+
+                } else if (serviceAvailableVOArrayList.get(position).getStep() == 2) {
+
+                } else {
+                    ArrayList<ProductsVO> productsVOS = new ArrayList<>();
+                    productsVOS.clear();
+
+                    if (productsVOArrayList.size() != 0) {
+                        for (int i = 0; i < productsVOArrayList.size(); i++) {
+
+                            if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
+
+                                ProductsVO productsVO = new ProductsVO();
+                                productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
+                                productsVO.setProductId(productsVOArrayList.get(i).getProductId());
+                                productsVO.setStep(productsVOArrayList.get(i).getStep());
+                                productsVO.setName(productsVOArrayList.get(i).getName());
+                                productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
+                                productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
+                                productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
+                                productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
+                                productsVOS.add(productsVO);
+                            }
+                        }
+
+                        if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                        } else {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                        }
+
+                        if (productsVOS.size() != 0) {
+                            Intent intent = new Intent(getActivity(), ProductActivity.class);
+                            intent.putExtra("product_title", productName.getText().toString());
+                            intent.putExtra("sub_product", subProductsVOArrayList);
+                            intent.putExtra("product", productsVOArrayList);
+                            startActivity(intent);
+
+                        } else if (productsVOS.size() == 0) {
+                            Utility.showToast(getActivity(), "Coming Soon");
+                        }
+                    }
+                }
             }
 
             @Override
@@ -225,33 +276,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpAdapterToRecyclerView() {
-        /*ArrayList<Integer> servicesImageList = new ArrayList<>();
-        servicesImageList.add(R.drawable.icon_cleaning__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_general_workers_hiring__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_air_con__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_plumbing__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_electrical__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_laundry__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_cctv__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_painting__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_ceiling__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_upholstery__1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_stone_care__scrubbing___polishing___1200_x_1200_px_);
-        servicesImageList.add(R.drawable.ic_pest_control__1200_x_1200_px_);
-
-        ArrayList<String> serviceName = new ArrayList<>();
-        serviceName.add("Cleaning");
-        serviceName.add("General Worker Hiring");
-        serviceName.add("Air-Con");
-        serviceName.add("Plumbing");
-        serviceName.add("Electrical");
-        serviceName.add("Laundry");
-        serviceName.add("CCTV");
-        serviceName.add("Painting");
-        serviceName.add("Ceiling");
-        serviceName.add("Upholstery");
-        serviceName.add("Stone Care (Scrubbing & Polishing)");
-        serviceName.add("Pest Control");*/
 
         layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
         recyclerViewAvailable.setLayoutManager(layoutManagerRecyclerAvailable);
@@ -281,6 +305,23 @@ public class HomeFragment extends Fragment {
                     availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
                     recyclerViewAvailable.setAdapter(availableAdapter);
                     availableAdapter.notifyDataSetChanged();
+                    serviceAvailableVOArrayList.addAll(response.body().getData().getServiceAvailable());
+
+                    if (response.body().getData().getServiceAvailable() != null) {
+                        for (int i = 0; i < response.body().getData().getServiceAvailable().size(); i++) {
+
+                            productsVOArrayList.addAll(response.body().getData().getServiceAvailable().get(i).getProducts());
+
+                            if ((response.body().getData().getServiceAvailable().size() - 1) == i) {
+                                for (int j = 0; j < productsVOArrayList.size(); j++) {
+                                    if (productsVOArrayList.get(j).getSubProducts() != null) {
+                                        subProductsVOArrayList.addAll(productsVOArrayList.get(j).getSubProducts());
+                                    }
+                                }
+                            }
+
+                        }
+                    }
 
                     popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopularServices());
                     recyclerViewPopular.setAdapter(popularAdapter);
@@ -291,55 +332,6 @@ public class HomeFragment extends Fragment {
                     recyclerViewServiceYMN.setAdapter(symnAdapter);
                     symnAdapter.notifyDataSetChanged();
                     serviceNeedVOArrayList.addAll(response.body().getData().getServiceNeed());
-
-                    /*
-
-                    popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopular());
-                    recyclePopular.setAdapter(popularAdapter);
-                    popularAdapter.notifyDataSetChanged();
-                    popularModels.addAll(response.body().getData().getPopular());
-
-                    symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getSymn());
-                    layoutManager_symn = new GridLayoutManager(getActivity(), 2);
-                    recycleSymn.setLayoutManager(layoutManager_symn);
-                    recycleSymn.setAdapter(symnAdapter);
-                    symnAdapter.notifyDataSetChanged();
-                    symnModels.addAll(response.body().getData().getSymn());
-
-                    RequestOptions requestOptions = new RequestOptions();
-                    requestOptions.placeholder(R.drawable.drawer_logo);
-                    requestOptions.error(R.drawable.drawer_logo);
-                    requestOptions.transforms(new CenterCrop());
-
-                    Glide.with(getActivity())
-                            .load(response.body().getData().getFooter())
-                            .apply(requestOptions)
-                            .into(imgfooter);
-
-                    availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getAvailable());
-                    layoutManager_available = new GridLayoutManager(getActivity(), 4);
-                    recycleAvailable.setLayoutManager(layoutManager_available);
-                    recycleAvailable.setAdapter(availableAdapter);
-                    availableAdapter.notifyDataSetChanged();
-                    avaliabledata.addAll(response.body().getData().getAvailable());
-
-                    if (response.body().getData().getMore_services() != null) {
-                        for (int i = 0; i < response.body().getData().getMore_services().size(); i++) {
-
-                            productlist.addAll(response.body().getData().getMore_services().get(i).getProducts());
-
-                            if ((response.body().getData().getMore_services().size() - 1) == i) {
-                                for (int j = 0; j < productlist.size(); j++) {
-                                    if (productlist.get(j).getSubProducts() != null) {
-                                        subproductlist.addAll(productlist.get(j).getSubProducts());
-
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-*/
 
                 }
 

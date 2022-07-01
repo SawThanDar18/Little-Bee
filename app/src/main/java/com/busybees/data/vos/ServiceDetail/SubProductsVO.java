@@ -1,11 +1,11 @@
-package com.busybees.data.vos.Home;
+package com.busybees.data.vos.ServiceDetail;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class ProductsVO {
+public class SubProductsVO implements Serializable {
 
     @SerializedName("service_id")
     @Expose
@@ -14,6 +14,10 @@ public class ProductsVO {
     @SerializedName("product_id")
     @Expose
     private Integer productId;
+
+    @SerializedName("sub_product_id")
+    @Expose
+    private Integer subProductId;
 
     @SerializedName("step")
     @Expose
@@ -31,13 +35,13 @@ public class ProductsVO {
     @Expose
     private String nameCh;
 
-    @SerializedName("product_image")
+    @SerializedName("sub_product_image")
     @Expose
-    private String productImage;
+    private String subProductImage;
 
-    @SerializedName("sub_products")
+    @SerializedName("sub_product_video")
     @Expose
-    private List<SubProductsVO> subProducts;
+    private String subProductVideo;
 
     public Integer getServiceId() {
         return serviceId;
@@ -53,6 +57,14 @@ public class ProductsVO {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Integer getSubProductId() {
+        return subProductId;
+    }
+
+    public void setSubProductId(Integer subProductId) {
+        this.subProductId = subProductId;
     }
 
     public Integer getStep() {
@@ -87,19 +99,19 @@ public class ProductsVO {
         this.nameCh = nameCh;
     }
 
-    public String getProductImage() {
-        return productImage;
+    public String getSubProductImage() {
+        return subProductImage;
     }
 
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public void setSubProductImage(String subProductImage) {
+        this.subProductImage = subProductImage;
     }
 
-    public List<SubProductsVO> getSubProducts() {
-        return subProducts;
+    public String getSubProductVideo() {
+        return subProductVideo;
     }
 
-    public void setSubProducts(List<SubProductsVO> subProducts) {
-        this.subProducts = subProducts;
+    public void setSubProductVideo(String subProductVideo) {
+        this.subProductVideo = subProductVideo;
     }
 }

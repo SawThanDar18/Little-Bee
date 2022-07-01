@@ -30,6 +30,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/s_name"
+        android:visibility="invisible"
+        android:text="hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

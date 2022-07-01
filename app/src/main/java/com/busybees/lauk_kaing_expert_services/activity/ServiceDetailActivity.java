@@ -102,13 +102,20 @@ public class ServiceDetailActivity extends AppCompatActivity {
             serviceProvider.GetProductPriceCall(ApiConstants.BASE_URL + ApiConstants.GET_PRODUCT_PRICE_LISTS, productsCarryObject).enqueue(new Callback<GetProductPriceModel>() {
                 @Override
                 public void onResponse(Call<GetProductPriceModel> call, Response<GetProductPriceModel> response) {
-                    progressBar.setVisibility(View.GONE);
+
+                    progressBar.setVisibility(View.VISIBLE);
+                    
                     if (response.body().getError() == true) {
 
+                        videoView.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.VISIBLE);
                         Utility.showToast(ServiceDetailActivity.this, response.body().getMessage());
                         finish();
 
                     } else if (response.body().getError() == false) {
+
+                        progressBar.setVisibility(View.GONE);
+                        videoView.setVisibility(View.VISIBLE);
                         PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
 
                         productPriceVOArrayList.clear();

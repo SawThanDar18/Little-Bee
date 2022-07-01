@@ -15,12 +15,12 @@
         android:layout_height="match_parent">
 
         <VideoView
-            android:visibility="visible"
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height160"
             android:layout_marginHorizontal="@dimen/margin16"
             android:layout_marginVertical="@dimen/margin10"
+            android:visibility="gone"
             app:auto_show="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintCircleRadius="16dp"
@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:resize_mode="fill"
-            app:use_controller="false"/>
+            app:use_controller="false" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/service_detail_recyclerview"
