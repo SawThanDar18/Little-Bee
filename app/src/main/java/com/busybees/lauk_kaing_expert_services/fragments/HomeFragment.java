@@ -144,24 +144,26 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
-                    ProductsCarryObject productsCarryObject = new ProductsCarryObject();
-                    productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
-                    productsCarryObject.setStep(serviceAvailableVOArrayList.get(position).getStep());
 
-                    if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                        Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                        Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                    } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
-                        productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
-                    } else {
-                        productName.setText(serviceAvailableVOArrayList.get(position).getName());
-                    }
+                        ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                        productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
+                        productsCarryObject.setStep(serviceAvailableVOArrayList.get(position).getStep());
 
-                    Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
-                    intent.putExtra("product_title", productName.getText().toString());
-                    intent.putExtra("product_detail_data", productsCarryObject);
-                    startActivity(intent);
+                        if (checkLng(getActivity()).equalsIgnoreCase("it")) {
+                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                        } else {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                        }
+
+                        Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                        intent.putExtra("product_title", productName.getText().toString());
+                        intent.putExtra("product_detail_data", productsCarryObject);
+                        startActivity(intent);
+
 
                 } else if (serviceAvailableVOArrayList.get(position).getStep() == 2) {
                     ArrayList<ProductsVO> productsVOS = new ArrayList<>();

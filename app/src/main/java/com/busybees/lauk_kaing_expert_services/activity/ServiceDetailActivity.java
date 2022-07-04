@@ -97,7 +97,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
     private void CallProductPriceApi(ProductsCarryObject productsCarryObject) {
         if (Utility.isOnline(getApplicationContext())) {
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
 
             serviceProvider.GetProductPriceCall(ApiConstants.BASE_URL + ApiConstants.GET_PRODUCT_PRICE_LISTS, productsCarryObject).enqueue(new Callback<GetProductPriceModel>() {
                 @Override
@@ -115,17 +115,22 @@ public class ServiceDetailActivity extends AppCompatActivity {
                     } else if (response.body().getError() == false) {
 
                         progressBar.setVisibility(View.GONE);
-                        videoView.setVisibility(View.VISIBLE);
-                        PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
+                        //videoView.setVisibility(View.VISIBLE);
+                        //PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
 
                         productPriceVOArrayList.clear();
                         productPriceVOArrayList.addAll(response.body().getData());
 
-                        serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this, productPriceVOArrayList);
-                        serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
-                        serviceDetailAdapter.notifyDataSetChanged();
+                        if (!productPriceVOArrayList.isEmpty()) {
+                            serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this, productPriceVOArrayList);
+                            serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
+                            serviceDetailAdapter.notifyDataSetChanged();
 
-                        serviceDetailAdapter.setClick(v -> AdapterCLick(v));
+                            serviceDetailAdapter.setClick(v -> AdapterCLick(v));
+                        } else {
+                            finish();
+                            Utility.showToast(getApplicationContext(), "Coming Soon");
+                        }
                     }
                 }
 
