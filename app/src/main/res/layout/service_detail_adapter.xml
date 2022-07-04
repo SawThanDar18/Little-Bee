@@ -92,7 +92,7 @@
                 android:text="Washing Dry Cleaning for 5 Seaters Sofas. Duration 3 Hours The charges do not include for the long lasting unremovable Stains. Recommend to wash every 3- 6 months for the safety healthy environment."
                 android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </RelativeLayout>
 

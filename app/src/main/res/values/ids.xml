@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="snackbarText"/>
+    <item type="id" name="networkErrorView" />
+    <item type="id" name="number" />
+    <item type="id" name="position" />
+    <item type="id" name="type" />
+    <item type="id" name="flat" />
+    <item type="id" name="address" />
+    <item type="id" name="addressID" />
+    <item type="id" name="serviceID" />
+    <item type="id" name="productName" />
+</resources>

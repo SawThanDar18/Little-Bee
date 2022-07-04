@@ -90,6 +90,7 @@
 
     <string name="select">Select</string>
     <string name="hide_detail">Hide</string>
+    <string name="show_detail">Detail</string>
 
     <string name="login">LogIn</string>
     <string name="register">Register</string>

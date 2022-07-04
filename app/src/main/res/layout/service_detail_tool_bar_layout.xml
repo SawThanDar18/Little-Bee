@@ -6,11 +6,9 @@
     android:layout_height="@dimen/height100">
 
     <ImageView
-        android:padding="@dimen/padding10"
         android:layout_centerVertical="true"
         android:id="@+id/back_button"
-        android:paddingLeft="@dimen/margin2"
-        android:layout_marginLeft="@dimen/margin10"
+        android:layout_marginLeft="@dimen/margin16"
         android:layout_gravity="center"
         android:src="@drawable/arrow_back_icon"
         android:layout_width="wrap_content"

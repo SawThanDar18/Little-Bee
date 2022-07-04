@@ -32,6 +32,7 @@ import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
+import com.busybees.lauk_kaing_expert_services.activity.SubProductActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
@@ -143,9 +144,68 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
+                    ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                    productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
+                    productsCarryObject.setStep(serviceAvailableVOArrayList.get(position).getStep());
+
+                    if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                        Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                        Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                        productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                    } else {
+                        productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                    }
+
+                    Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                    intent.putExtra("product_title", productName.getText().toString());
+                    intent.putExtra("product_detail_data", productsCarryObject);
+                    startActivity(intent);
 
                 } else if (serviceAvailableVOArrayList.get(position).getStep() == 2) {
+                    ArrayList<ProductsVO> productsVOS = new ArrayList<>();
+                    productsVOS.clear();
 
+                    if (productsVOArrayList.size() != 0) {
+                        for (int i = 0; i < productsVOArrayList.size(); i++) {
+
+                            if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
+
+                                ProductsVO productsVO = new ProductsVO();
+                                productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
+                                productsVO.setProductId(productsVOArrayList.get(i).getProductId());
+                                productsVO.setStep(productsVOArrayList.get(i).getStep());
+                                productsVO.setName(productsVOArrayList.get(i).getName());
+                                productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
+                                productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
+                                productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
+                                productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
+                                productsVOS.add(productsVO);
+                            }
+                        }
+
+                        if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                        } else {
+                            productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                        }
+
+                        if (productsVOS.size() != 0) {
+                            Intent intent = new Intent(getActivity(), ProductActivity.class);
+                            intent.putExtra("product_title", productName.getText().toString());
+                            intent.putExtra("sub_product", subProductsVOArrayList);
+                            intent.putExtra("product", productsVOS);
+                            startActivity(intent);
+
+                        } else if (productsVOS.size() == 0) {
+                            Utility.showToast(getActivity(), "Coming Soon");
+                        }
+                    }
                 } else {
                     ArrayList<ProductsVO> productsVOS = new ArrayList<>();
                     productsVOS.clear();
@@ -182,7 +242,7 @@ public class HomeFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), ProductActivity.class);
                             intent.putExtra("product_title", productName.getText().toString());
                             intent.putExtra("sub_product", subProductsVOArrayList);
-                            intent.putExtra("product", productsVOArrayList);
+                            intent.putExtra("product", productsVOS);
                             startActivity(intent);
 
                         } else if (productsVOS.size() == 0) {
@@ -318,7 +378,7 @@ public class HomeFragment extends Fragment {
                                         subProductsVOArrayList.addAll(productsVOArrayList.get(j).getSubProducts());
                                     }
                                 }
-                            }
+                           }
 
                         }
                     }

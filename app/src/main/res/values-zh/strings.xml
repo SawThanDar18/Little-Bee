@@ -91,6 +91,7 @@
 
     <string name="select">选择</string>
     <string name="hide_detail">隐藏细节</string>
+    <string name="show_detail">显示详细资料</string>
 
     <string name="login">登录</string>
     <string name="register">登记</string>

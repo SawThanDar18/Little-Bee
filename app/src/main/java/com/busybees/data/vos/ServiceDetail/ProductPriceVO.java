@@ -412,4 +412,14 @@ public class ProductPriceVO {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    private boolean isShowDetail = true;
+
+    public boolean isShowDetail() {
+        return isShowDetail;
+    }
+
+    public void setShowDetail(boolean showDetail) {
+        isShowDetail = showDetail;
+    }
 }

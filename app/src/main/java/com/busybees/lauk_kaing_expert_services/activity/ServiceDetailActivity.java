@@ -124,6 +124,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this, productPriceVOArrayList);
                         serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
                         serviceDetailAdapter.notifyDataSetChanged();
+
+                        serviceDetailAdapter.setClick(v -> AdapterCLick(v));
                     }
                 }
 
@@ -137,6 +139,18 @@ public class ServiceDetailActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
         }
+    }
+
+    private void AdapterCLick(View v) {
+
+        if (v.getId() == R.id.hideShowDetail) {
+            int position = (int) v.getTag(R.id.position);
+            ProductPriceVO productPriceVO = productPriceVOArrayList.get(position);
+            productPriceVO.setShowDetail(!productPriceVO.isShowDetail());
+            serviceDetailAdapter.notifyItemChanged(position);
+
+        }
+
     }
 
     private void onClick() {

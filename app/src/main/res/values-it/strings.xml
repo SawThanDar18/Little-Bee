@@ -92,6 +92,7 @@
 
     <string name="select">ရွေးချယ်မည်။</string>
     <string name="hide_detail">ပိတ်မည်။</string>
+    <string name="show_detail">ကြည့်မည်။</string>
 
     <string name="login">ဝင်ရောက်မည်။</string>
     <string name="register">အကောင့်သစ်ဖွင့်မည်။</string>

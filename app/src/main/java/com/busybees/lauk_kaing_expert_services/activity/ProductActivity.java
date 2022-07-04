@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.data.vos.ServiceDetail.ProductsVO;
 import com.busybees.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -90,26 +91,12 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     public void intentToSubProductActivity (ProductsVO productsVO) {
-        if (subProductsVOArrayList.size() != 0){
-            ArrayList<SubProductsVO> subProductsVOS = new ArrayList<>();
-            subProductsVOS.clear();
 
-            for (int i = 0; i < subProductsVOArrayList.size(); i++) {
-                if (subProductsVOArrayList.get(i).getProductId().equals(productsVO.getProductId())) {
-
-                    SubProductsVO subProductsVO = new SubProductsVO();
-                    subProductsVO.setServiceId(subProductsVOArrayList.get(i).getServiceId());
-                    subProductsVO.setProductId(subProductsVOArrayList.get(i).getProductId());
-                    subProductsVO.setSubProductId(subProductsVOArrayList.get(i).getSubProductId());
-                    subProductsVO.setStep(subProductsVOArrayList.get(i).getStep());
-                    subProductsVO.setName(subProductsVOArrayList.get(i).getName());
-                    subProductsVO.setNameMm(subProductsVOArrayList.get(i).getNameMm());
-                    subProductsVO.setNameCh(subProductsVOArrayList.get(i).getNameCh());
-                    subProductsVO.setSubProductImage(subProductsVOArrayList.get(i).getSubProductImage());
-                    subProductsVO.setSubProductVideo(subProductsVOArrayList.get(i).getSubProductVideo());
-                    subProductsVOS.add(subProductsVO);
-                }
-            }
+        if (productsVO.getStep() == 2) {
+            ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+            productsCarryObject.setServiceId(productsVO.getServiceId());
+            productsCarryObject.setProductId(productsVO.getProductId());
+            productsCarryObject.setStep(productsVO.getStep());
 
             if (checkLng(getApplicationContext()).equalsIgnoreCase("it")){
                 Utility.addFontSuHome(productName, productsVO.getNameMm());
@@ -121,10 +108,47 @@ public class ProductActivity extends AppCompatActivity {
                 productName.setText(productsVO.getName());
             }
 
-            Intent intent = new Intent(this, SubProductActivity.class);
-            intent.putExtra("sub_product_title", productName.getText().toString());
-            intent.putExtra("sub_product", subProductsVOS);
+            Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
+            intent.putExtra("product_title", productName.getText().toString());
+            intent.putExtra("product_detail_data", productsCarryObject);
             startActivity(intent);
+        } else {
+            if (subProductsVOArrayList.size() != 0) {
+                ArrayList<SubProductsVO> subProductsVOS = new ArrayList<>();
+                subProductsVOS.clear();
+
+                for (int i = 0; i < subProductsVOArrayList.size(); i++) {
+                    if (subProductsVOArrayList.get(i).getProductId().equals(productsVO.getProductId())) {
+
+                        SubProductsVO subProductsVO = new SubProductsVO();
+                        subProductsVO.setServiceId(subProductsVOArrayList.get(i).getServiceId());
+                        subProductsVO.setProductId(subProductsVOArrayList.get(i).getProductId());
+                        subProductsVO.setSubProductId(subProductsVOArrayList.get(i).getSubProductId());
+                        subProductsVO.setStep(subProductsVOArrayList.get(i).getStep());
+                        subProductsVO.setName(subProductsVOArrayList.get(i).getName());
+                        subProductsVO.setNameMm(subProductsVOArrayList.get(i).getNameMm());
+                        subProductsVO.setNameCh(subProductsVOArrayList.get(i).getNameCh());
+                        subProductsVO.setSubProductImage(subProductsVOArrayList.get(i).getSubProductImage());
+                        subProductsVO.setSubProductVideo(subProductsVOArrayList.get(i).getSubProductVideo());
+                        subProductsVOS.add(subProductsVO);
+                    }
+                }
+
+                if (checkLng(getApplicationContext()).equalsIgnoreCase("it")) {
+                    Utility.addFontSuHome(productName, productsVO.getNameMm());
+                } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
+                    Utility.changeFontZg2UniHome(productName, productsVO.getNameMm());
+                } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
+                    productName.setText(productsVO.getNameCh());
+                } else {
+                    productName.setText(productsVO.getName());
+                }
+
+                Intent intent = new Intent(this, SubProductActivity.class);
+                intent.putExtra("sub_product_title", productName.getText().toString());
+                intent.putExtra("sub_product", subProductsVOS);
+                startActivity(intent);
+            }
         }
     }
 
