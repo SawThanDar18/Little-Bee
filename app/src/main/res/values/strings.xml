@@ -124,5 +124,6 @@
     <string name="currency">CNY</string>
     <string name="save">Save</string>
 
+    <string name="phone_blank">Please Add Phone Number</string>
 
 </resources>

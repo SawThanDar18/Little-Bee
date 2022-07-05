@@ -50,6 +50,21 @@ public class DialogChangeLanguage extends DialogFragment {
 
         confirmBtn = view.findViewById(R.id.confirm_btn);
 
+        languageIndex = AppStorePreferences.getInt(getActivity(), AppENUM.LANG_Txt);
+
+        if (languageIndex==0){
+
+            englishLanguage.setChecked(true);
+
+        }else if (languageIndex==1){
+
+            myanmarLanguage.setChecked(true);
+
+        } else if (languageIndex == 2) {
+
+            chineseLanguage.setChecked(true);
+        }
+
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (myanmarLanguage.isChecked()){
 
@@ -74,7 +89,7 @@ public class DialogChangeLanguage extends DialogFragment {
     }
 
     private void onClick() {
-        confirmBtn.setOnClickListener((View.OnClickListener) v -> {
+        confirmBtn.setOnClickListener(v -> {
 
             if (AppStorePreferences.getInt(getContext(), AppENUM.LANG_Txt)==0){
 

@@ -56,6 +56,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ProfileActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OTPActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

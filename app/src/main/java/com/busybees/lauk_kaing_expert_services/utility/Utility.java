@@ -1,6 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.utility;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.text.Editable;
 import android.text.Html;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.busybees.data.vos.Users.UserVO;
+import com.google.gson.Gson;
 import com.google.myanmartools.TransliterateZ2U;
 import com.google.myanmartools.ZawgyiDetector;
 
@@ -113,5 +116,14 @@ public class Utility {
                 output.setSpan( new LeadingMarginSpan.Standard( 15 * m_parents.size( ) ), start, output.length( ), 0 );
             }
         }
+    }
+
+    public static UserVO query_UserProfile (Context context) {
+        UserVO userVO = new UserVO();
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = pref.getString("userobj", "");
+        userVO = gson.fromJson(json, UserVO.class);
+        return userVO;
     }
 }

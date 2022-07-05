@@ -123,4 +123,6 @@
 
     <string name="currency">元</string>
     <string name="save">节省</string>
+
+    <string name="phone_blank">请添加电话号码</string>
 </resources>

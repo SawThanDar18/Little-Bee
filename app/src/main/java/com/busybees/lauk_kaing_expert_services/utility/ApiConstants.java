@@ -6,5 +6,6 @@ public class ApiConstants {
 
     public static final String GET_ALL_HOME = "/getallhome";
     public static final String GET_PRODUCT_PRICE_LISTS = "/get_product_price_lists";
+    public static final String GET_LOGIN = "/auth/login";
 
 }

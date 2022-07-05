@@ -27,9 +27,11 @@ import com.busybees.data.vos.Home.SliderVO;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.data.vos.ServiceDetail.ProductsVO;
 import com.busybees.data.vos.ServiceDetail.SubProductsVO;
+import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SubProductActivity;
@@ -81,11 +83,14 @@ public class HomeFragment extends Fragment {
     private ArrayList<PopularServicesVO> popularServicesVOArrayList = new ArrayList<>();
     private ArrayList<ServiceNeedVO> serviceNeedVOArrayList = new ArrayList<>();
 
+    private UserVO userVO = new UserVO();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         serviceProvider = new NetworkServiceProvider(getActivity());
+        userVO = Utility.query_UserProfile(getActivity());
 
         banner = view.findViewById(R.id.banner_view);
 
@@ -143,7 +148,10 @@ public class HomeFragment extends Fragment {
         recyclerViewAvailable.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewAvailable, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
+                if (userVO == null) {
+                    startActivity(new Intent(getContext(), LogInActivity.class));
+                } else {
+                    if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
 
                         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
                         productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
@@ -165,90 +173,91 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
 
 
-                } else if (serviceAvailableVOArrayList.get(position).getStep() == 2) {
-                    ArrayList<ProductsVO> productsVOS = new ArrayList<>();
-                    productsVOS.clear();
+                    } else if (serviceAvailableVOArrayList.get(position).getStep() == 2) {
+                        ArrayList<ProductsVO> productsVOS = new ArrayList<>();
+                        productsVOS.clear();
 
-                    if (productsVOArrayList.size() != 0) {
-                        for (int i = 0; i < productsVOArrayList.size(); i++) {
+                        if (productsVOArrayList.size() != 0) {
+                            for (int i = 0; i < productsVOArrayList.size(); i++) {
 
-                            if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
+                                if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
 
-                                ProductsVO productsVO = new ProductsVO();
-                                productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
-                                productsVO.setProductId(productsVOArrayList.get(i).getProductId());
-                                productsVO.setStep(productsVOArrayList.get(i).getStep());
-                                productsVO.setName(productsVOArrayList.get(i).getName());
-                                productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
-                                productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
-                                productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
-                                productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
-                                productsVOS.add(productsVO);
+                                    ProductsVO productsVO = new ProductsVO();
+                                    productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
+                                    productsVO.setProductId(productsVOArrayList.get(i).getProductId());
+                                    productsVO.setStep(productsVOArrayList.get(i).getStep());
+                                    productsVO.setName(productsVOArrayList.get(i).getName());
+                                    productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
+                                    productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
+                                    productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
+                                    productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
+                                    productsVOS.add(productsVO);
+                                }
+                            }
+
+                            if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                                Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                                Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                                productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                            } else {
+                                productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                            }
+
+                            if (productsVOS.size() != 0) {
+                                Intent intent = new Intent(getActivity(), ProductActivity.class);
+                                intent.putExtra("product_title", productName.getText().toString());
+                                intent.putExtra("sub_product", subProductsVOArrayList);
+                                intent.putExtra("product", productsVOS);
+                                startActivity(intent);
+
+                            } else if (productsVOS.size() == 0) {
+                                Utility.showToast(getActivity(), "Coming Soon");
                             }
                         }
+                    } else {
+                        ArrayList<ProductsVO> productsVOS = new ArrayList<>();
+                        productsVOS.clear();
 
-                        if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
-                            productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
-                        } else {
-                            productName.setText(serviceAvailableVOArrayList.get(position).getName());
-                        }
+                        if (productsVOArrayList.size() != 0) {
+                            for (int i = 0; i < productsVOArrayList.size(); i++) {
 
-                        if (productsVOS.size() != 0) {
-                            Intent intent = new Intent(getActivity(), ProductActivity.class);
-                            intent.putExtra("product_title", productName.getText().toString());
-                            intent.putExtra("sub_product", subProductsVOArrayList);
-                            intent.putExtra("product", productsVOS);
-                            startActivity(intent);
+                                if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
 
-                        } else if (productsVOS.size() == 0) {
-                            Utility.showToast(getActivity(), "Coming Soon");
-                        }
-                    }
-                } else {
-                    ArrayList<ProductsVO> productsVOS = new ArrayList<>();
-                    productsVOS.clear();
-
-                    if (productsVOArrayList.size() != 0) {
-                        for (int i = 0; i < productsVOArrayList.size(); i++) {
-
-                            if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVOArrayList.get(position).getServiceId())) {
-
-                                ProductsVO productsVO = new ProductsVO();
-                                productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
-                                productsVO.setProductId(productsVOArrayList.get(i).getProductId());
-                                productsVO.setStep(productsVOArrayList.get(i).getStep());
-                                productsVO.setName(productsVOArrayList.get(i).getName());
-                                productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
-                                productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
-                                productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
-                                productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
-                                productsVOS.add(productsVO);
+                                    ProductsVO productsVO = new ProductsVO();
+                                    productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
+                                    productsVO.setProductId(productsVOArrayList.get(i).getProductId());
+                                    productsVO.setStep(productsVOArrayList.get(i).getStep());
+                                    productsVO.setName(productsVOArrayList.get(i).getName());
+                                    productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
+                                    productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
+                                    productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
+                                    productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
+                                    productsVOS.add(productsVO);
+                                }
                             }
-                        }
 
-                        if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
-                            productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
-                        } else {
-                            productName.setText(serviceAvailableVOArrayList.get(position).getName());
-                        }
+                            if (checkLng(getActivity()).equalsIgnoreCase("it")){
+                                Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                                Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                                productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
+                            } else {
+                                productName.setText(serviceAvailableVOArrayList.get(position).getName());
+                            }
 
-                        if (productsVOS.size() != 0) {
-                            Intent intent = new Intent(getActivity(), ProductActivity.class);
-                            intent.putExtra("product_title", productName.getText().toString());
-                            intent.putExtra("sub_product", subProductsVOArrayList);
-                            intent.putExtra("product", productsVOS);
-                            startActivity(intent);
+                            if (productsVOS.size() != 0) {
+                                Intent intent = new Intent(getActivity(), ProductActivity.class);
+                                intent.putExtra("product_title", productName.getText().toString());
+                                intent.putExtra("sub_product", subProductsVOArrayList);
+                                intent.putExtra("product", productsVOS);
+                                startActivity(intent);
 
-                        } else if (productsVOS.size() == 0) {
-                            Utility.showToast(getActivity(), "Coming Soon");
+                            } else if (productsVOS.size() == 0) {
+                                Utility.showToast(getActivity(), "Coming Soon");
+                            }
                         }
                     }
                 }
@@ -262,26 +271,30 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewPopular, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ProductsCarryObject productsCarryObject = new ProductsCarryObject();
-                productsCarryObject.setServiceId(popularServicesVOArrayList.get(position).getServiceId());
-                productsCarryObject.setProductId(popularServicesVOArrayList.get(position).getProductId());
-                productsCarryObject.setSubProductId(popularServicesVOArrayList.get(position).getSubProductId());
-                productsCarryObject.setStep(popularServicesVOArrayList.get(position).getStep());
-
-                if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                    Utility.addFontSuHome(productName, popularServicesVOArrayList.get(position).getNameMm());
-                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                    Utility.changeFontZg2UniHome(productName, popularServicesVOArrayList.get(position).getNameMm());
-                } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
-                    productName.setText(popularServicesVOArrayList.get(position).getNameCh());
+                if (userVO == null) {
+                    startActivity(new Intent(getContext(), LogInActivity.class));
                 } else {
-                    productName.setText(popularServicesVOArrayList.get(position).getName());
-                }
+                    ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                    productsCarryObject.setServiceId(popularServicesVOArrayList.get(position).getServiceId());
+                    productsCarryObject.setProductId(popularServicesVOArrayList.get(position).getProductId());
+                    productsCarryObject.setSubProductId(popularServicesVOArrayList.get(position).getSubProductId());
+                    productsCarryObject.setStep(popularServicesVOArrayList.get(position).getStep());
 
-                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
-                intent.putExtra("product_title", productName.getText().toString());
-                intent.putExtra("product_detail_data", productsCarryObject);
-                startActivity(intent);
+                    if (checkLng(getActivity()).equalsIgnoreCase("it")) {
+                        Utility.addFontSuHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                        Utility.changeFontZg2UniHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                        productName.setText(popularServicesVOArrayList.get(position).getNameCh());
+                    } else {
+                        productName.setText(popularServicesVOArrayList.get(position).getName());
+                    }
+
+                    Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                    intent.putExtra("product_title", productName.getText().toString());
+                    intent.putExtra("product_detail_data", productsCarryObject);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -293,26 +306,30 @@ public class HomeFragment extends Fragment {
         recyclerViewServiceYMN.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewServiceYMN, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ProductsCarryObject productsCarryObject = new ProductsCarryObject();
-                productsCarryObject.setServiceId(serviceNeedVOArrayList.get(position).getServiceId());
-                productsCarryObject.setProductId(serviceNeedVOArrayList.get(position).getProductId());
-                productsCarryObject.setSubProductId(serviceNeedVOArrayList.get(position).getSubProductId());
-                productsCarryObject.setStep(serviceNeedVOArrayList.get(position).getStep());
-
-                if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                    Utility.addFontSuHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
-                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                    Utility.changeFontZg2UniHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
-                } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
-                    productName.setText(serviceNeedVOArrayList.get(position).getNameCh());
+                if (userVO == null) {
+                    startActivity(new Intent(getContext(), LogInActivity.class));
                 } else {
-                    productName.setText(serviceNeedVOArrayList.get(position).getName());
-                }
+                    ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                    productsCarryObject.setServiceId(serviceNeedVOArrayList.get(position).getServiceId());
+                    productsCarryObject.setProductId(serviceNeedVOArrayList.get(position).getProductId());
+                    productsCarryObject.setSubProductId(serviceNeedVOArrayList.get(position).getSubProductId());
+                    productsCarryObject.setStep(serviceNeedVOArrayList.get(position).getStep());
 
-                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
-                intent.putExtra("product_title", productName.getText().toString());
-                intent.putExtra("product_detail_data", productsCarryObject);
-                startActivity(intent);
+                    if (checkLng(getActivity()).equalsIgnoreCase("it")) {
+                        Utility.addFontSuHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                        Utility.changeFontZg2UniHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                    } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                        productName.setText(serviceNeedVOArrayList.get(position).getNameCh());
+                    } else {
+                        productName.setText(serviceNeedVOArrayList.get(position).getName());
+                    }
+
+                    Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                    intent.putExtra("product_title", productName.getText().toString());
+                    intent.putExtra("product_detail_data", productsCarryObject);
+                    startActivity(intent);
+                }
             }
 
             @Override

@@ -125,4 +125,6 @@
     <string name="currency">ယွမ်</string>
     <string name="save">သက်သာမှု</string>
 
+    <string name="phone_blank">ဖုန်းနံပါတ် ထည့်ရန် လိုအပ်ပါသည်။</string>
+
 </resources>

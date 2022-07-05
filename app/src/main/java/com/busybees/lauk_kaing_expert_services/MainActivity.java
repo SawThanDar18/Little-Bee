@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
@@ -20,9 +25,15 @@ import com.busybees.lauk_kaing_expert_services.fragments.HomeFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.MyFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.OrdersFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.ReceiptFragments;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.CustomViewPager;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private ConstraintLayout searchToolBar, searchLayout;
@@ -69,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         intiUI();
         onClick();
+
+        LanguageChange();
     }
 
     private void intiUI() {
@@ -229,4 +242,72 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
+    private void LanguageChange() {
+
+        int lang_txt = AppStorePreferences.getInt(this, AppENUM.LANG_Txt);
+
+        Locale myLocale = null;
+
+        if (lang_txt == 1) {
+
+            if (checkLng(getApplicationContext()).equalsIgnoreCase("it")){
+                myLocale = new Locale("it");
+            } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
+                myLocale = new Locale("fr");
+            }
+
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            updateResources(Locale.ITALY.getLanguage());
+
+        } else if (lang_txt == 0){
+            myLocale = new Locale("en");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            updateResources(Locale.ENGLISH.getLanguage());
+
+        } else if (lang_txt == 2){
+            myLocale = new Locale("zh", "CN");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            updateResources(Locale.SIMPLIFIED_CHINESE.getLanguage());
+
+        }
+    }
+
+    public  void updateResources(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+
+        Resources resources = getApplicationContext().getResources();
+
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        EventBusChangeLanguage eventBusChangeLanguage = new EventBusChangeLanguage();
+        eventBusChangeLanguage.setLanguage(1);
+        EventBus.getDefault().post(eventBusChangeLanguage);
+
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
+    }
+
 }

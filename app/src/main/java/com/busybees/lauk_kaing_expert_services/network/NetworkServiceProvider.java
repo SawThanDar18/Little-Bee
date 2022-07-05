@@ -4,8 +4,11 @@ import android.content.Context;
 
 import com.busybees.data.models.GetAllHomeModel;
 import com.busybees.data.models.GetProductPriceModel;
+import com.busybees.data.models.LoginModel;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.data.vos.Users.LoginVO;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
 
 import retrofit2.Call;
@@ -30,5 +33,10 @@ public class NetworkServiceProvider {
     public Call<GetProductPriceModel> GetProductPriceCall (String url, ProductsCarryObject productsCarryObject) {
         GetProductPriceSync sync = retrofit.create(GetProductPriceSync.class);
         return sync.getProductPrice(url, productsCarryObject);
+    }
+
+    public Call<LoginModel> LoginCall (String url, LoginVO loginObj) {
+        GetLoginSync sync=retrofit.create(GetLoginSync.class);
+        return sync.getLogin(url, loginObj);
     }
 }
