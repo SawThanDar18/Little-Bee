@@ -125,5 +125,8 @@
     <string name="save">Save</string>
 
     <string name="phone_blank">Please Add Phone Number</string>
+    <string name="v_code">OTP has been sent to your phone</string>
+    <string name="enter_code">Enter 6-digits code</string>
+    <string name="resend">Resend</string>
 
 </resources>
