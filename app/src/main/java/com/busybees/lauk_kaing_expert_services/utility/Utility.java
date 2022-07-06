@@ -118,6 +118,19 @@ public class Utility {
         }
     }
 
+    public static void Save_UserProfile(Context context, UserVO userObj){
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String jsonobject = gson.toJson(userObj);
+        pref.edit().putString("userobj",jsonobject).apply();
+    }
+
+    public static void delete_UserProfile(Context context){
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        pref.edit().remove("userobj").commit();
+
+    }
+
     public static UserVO query_UserProfile (Context context) {
         UserVO userVO = new UserVO();
         SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);

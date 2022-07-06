@@ -24,6 +24,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogChangeLanguage;
+import com.busybees.lauk_kaing_expert_services.Dialog.DialogLogout;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
@@ -31,7 +32,7 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 public class MyFragment extends Fragment {
 
-    private LinearLayout changeLanguage, loginView, lineLogout;
+    private LinearLayout changeLanguage, loginView, lineLogout, logOut;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
     private TextView userName, userPhone;
@@ -51,6 +52,7 @@ public class MyFragment extends Fragment {
         profileLayout = view.findViewById(R.id.profile_layout);
         loginView = view.findViewById(R.id.loginView);
         lineLogout = view.findViewById(R.id.line_logout);
+        logOut = view.findViewById(R.id.logout);
         profile = view.findViewById(R.id.profile);
         profileEditImageView = view.findViewById(R.id.profileEditImageView);
         userName = view.findViewById(R.id.name);
@@ -75,6 +77,11 @@ public class MyFragment extends Fragment {
                 startActivity(new Intent(getContext(), LogInActivity.class));
             }
         });
+
+        logOut.setOnClickListener(v -> {
+            DialogLogout dialogCall=new DialogLogout();
+            dialogCall.show(getFragmentManager(),"");
+        });
     }
 
     private void userProfileView() {
@@ -83,6 +90,7 @@ public class MyFragment extends Fragment {
 
             loginView.setVisibility(View.VISIBLE);
             lineLogout.setVisibility(View.VISIBLE);
+            profileEditImageView.setVisibility(View.VISIBLE);
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.error(R.drawable.profile_default_image);
@@ -93,8 +101,6 @@ public class MyFragment extends Fragment {
 
             if (profileUrl != null && !profileUrl.isEmpty() && !profileUrl.equals("null")) {
 
-                profileEditImageView.setVisibility(View.GONE);
-
                 Glide.with(this)
                         .load(userVO.getImage())
                         .apply(requestOptions)
@@ -102,13 +108,11 @@ public class MyFragment extends Fragment {
 
                             @Override
                             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                profileEditImageView.setVisibility(View.VISIBLE);
                                 return false;
                             }
 
                             @Override
                             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                profileEditImageView.setVisibility(View.VISIBLE);
                                 return false;
                             }
                         }).into(profile);
@@ -127,6 +131,7 @@ public class MyFragment extends Fragment {
         } else {
             loginView.setVisibility(View.GONE);
             lineLogout.setVisibility(View.GONE);
+            profileEditImageView.setVisibility(View.GONE);
         }
     }
 }

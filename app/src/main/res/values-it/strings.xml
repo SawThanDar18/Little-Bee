@@ -130,4 +130,7 @@
     <string name="enter_code">ဂဏန်း 6 လုံးရိုက်ထည့်ပါ။</string>
     <string name="resend">ပြန်ပို့ပါ။</string>
 
+    <string name="logout_confirm">ထွက်မည်?</string>
+    <string name="do_no_logout">မထွက်ပါ။</string>
+    <string name="do_yes_logout">ထွက်မည်။</string>
 </resources>

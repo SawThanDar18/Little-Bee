@@ -3,7 +3,7 @@ package com.busybees.data.vos.Users;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginVO {
+public class LoginObject {
 
     @SerializedName("phone")
     @Expose

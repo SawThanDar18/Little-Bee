@@ -128,4 +128,8 @@
     <string name="v_code">OTP 已发送到您的电话号码</string>
     <string name="enter_code">输入 6 位代码</string>
     <string name="resend">重发</string>
+
+    <string name="logout_confirm">登出?</string>
+    <string name="do_no_logout">取消</string>
+    <string name="do_yes_logout">是的</string>
 </resources>

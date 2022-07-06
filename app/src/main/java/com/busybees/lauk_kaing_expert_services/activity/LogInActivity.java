@@ -14,13 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.busybees.data.models.LoginModel;
-import com.busybees.data.vos.Users.LoginVO;
-import com.busybees.lauk_kaing_expert_services.MainActivity;
+import com.busybees.data.vos.Users.LoginObject;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
-import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
-import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Constant;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
@@ -70,15 +67,15 @@ public class LogInActivity extends AppCompatActivity {
 
             } else {
 
-                LoginVO loginVO = new LoginVO();
-                loginVO.setPhone(phoneNumber.getText().toString());
-                CallLogin(loginVO);
+                LoginObject loginObject = new LoginObject();
+                loginObject.setPhone(phoneNumber.getText().toString());
+                CallLogin(loginObject);
 
             }
         });
     }
 
-    public void CallLogin(LoginVO loginObj) {
+    public void CallLogin(LoginObject loginObj) {
 
         if (Utility.isOnline(this)) {
             progressBar.setVisibility(View.VISIBLE);

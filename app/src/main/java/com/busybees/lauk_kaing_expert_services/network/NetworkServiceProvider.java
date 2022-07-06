@@ -5,11 +5,17 @@ import android.content.Context;
 import com.busybees.data.models.GetAllHomeModel;
 import com.busybees.data.models.GetProductPriceModel;
 import com.busybees.data.models.LoginModel;
+import com.busybees.data.models.ResendOtpModel;
+import com.busybees.data.models.VerifyModel;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
-import com.busybees.data.vos.Users.LoginVO;
+import com.busybees.data.vos.Users.LoginObject;
+import com.busybees.data.vos.Users.ResendOTPObject;
+import com.busybees.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -35,8 +41,18 @@ public class NetworkServiceProvider {
         return sync.getProductPrice(url, productsCarryObject);
     }
 
-    public Call<LoginModel> LoginCall (String url, LoginVO loginObj) {
+    public Call<LoginModel> LoginCall (String url, LoginObject loginObj) {
         GetLoginSync sync=retrofit.create(GetLoginSync.class);
         return sync.getLogin(url, loginObj);
+    }
+
+    public Call<VerifyModel> VerifyCall (String url, VerifyObject verifyObj) {
+        GetVerifySync sync=retrofit.create(GetVerifySync.class);
+        return sync.getVerify(url, verifyObj);
+    }
+
+    public Call<ResendOtpModel> ResendOtpCall (String url, ResendOTPObject resendOTPObject) {
+        GetResendOtpSync sync=retrofit.create(GetResendOtpSync.class);
+        return sync.getResendOtp(url, resendOTPObject);
     }
 }

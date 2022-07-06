@@ -74,7 +74,7 @@ public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyVi
 
         GlideToVectorYou.init()
                 .with(context.getApplicationContext())
-                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.logo_bw)
+                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.loader_circle_shape)
                 .load(Uri.parse(serviceAvailableVO.getServiceImage()), holder.imageView);
 
         /*Glide.with(holder.itemView.getContext())

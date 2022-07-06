@@ -72,7 +72,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/p_name"
+                    android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -127,7 +127,7 @@
                             android:textSize="@dimen/fontSizeSmall"
                             android:editable="false"
                             android:focusable="false"
-                            android:text="09255699002"
+                            android:text=""
                             android:textColor="#D1CBCB"
                             android:id="@+id/phone"
                             android:layout_width="match_parent"
@@ -143,10 +143,10 @@
                         android:padding="@dimen/padding10"
                         android:textSize="@dimen/fontSizeSmall"
                         android:hint="@string/name"
-                        android:text="Jia Jie"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:id="@+id/firstName"
+                        android:textColorHint="#9a9898"
+                        android:id="@+id/userName"
                         android:background="@null"
                         android:inputType="text"
                         android:layout_width="match_parent"
@@ -164,13 +164,11 @@
                         android:layout_height="@dimen/height1" />
 
                     <EditText
-                        android:visibility="visible"
                         android:padding="@dimen/padding10"
                         android:textSize="@dimen/fontSizeSmall"
-                        android:text="jiajie@gmail.com"
                         android:hint="Email"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        android:textColorHint="#9a9898"
                         android:id="@+id/email_et"
                         android:background="@null"
                         android:inputType="textEmailAddress"
