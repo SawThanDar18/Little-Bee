@@ -134,4 +134,22 @@
     <string name="do_yes_logout">是的</string>
 
     <string name="name_blank">请添加名称</string>
+
+    <string name="gallery">画廊</string>
+    <string name="camera">相机</string>
+
+    <string name="msg_error_unable_select_profile_pic">无法设置个人资料图片。请再试一次!</string>
+    <string name="lbl_set_profile_photo">设置个人资料图片</string>
+    <string name="lbl_take_camera_picture">拍照</string>
+    <string name="lbl_choose_from_gallery">从图库中选择</string>
+    <string name="toast_image_intent_null">缺少图像选择器选项!</string>
+    <string name="dialog_permission_title">授予权限</string>
+    <string name="dialog_permission_message">此应用需要权限才能使用此功能。您可以在应用设置中授予它们。</string>
+    <string name="go_to_settings">前往设置</string>
+
+    <string name="edit_image_dialog_title"><font size="14">选择动作</font></string>
+    <string name="edit_photo"><font size="14">编辑图片</font></string>
+    <string name="viewphoto"><font size="14">查看照片</font></string>
+
+    <string name="agree_to">请同意条款和条件</string>
 </resources>

@@ -47,6 +47,7 @@
                         android:src="@drawable/ic_about_jia_jie" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:id="@+id/edit_icon"
                         android:layout_width="@dimen/width40"
                         android:layout_height="@dimen/height40"

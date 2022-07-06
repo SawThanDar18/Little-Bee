@@ -28,14 +28,12 @@
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- <item name="colorAccent">@color/colorAccent</item>-->
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/theme_color</item>
         <item name="android:windowBackground">@drawable/popup_background</item>
         <item name="android:textStyle">bold</item>
         <item name="android:headerDividersEnabled">true</item>
         <item name="android:typeface">normal</item>
         <item name="android:background">@color/white</item>
-        <item name="buttonBarPositiveButtonStyle">@style/positive</item>
     </style>
 
 </resources>

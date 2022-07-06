@@ -18,9 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.AddressActivity;
+import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
@@ -40,10 +42,14 @@ public class CartsFragment extends Fragment {
     private TextView cartCountText;
     private Button goToLogInBtn, goToServicesBtn, reloadBtn;
 
+    private UserVO userVO;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_carts, container, false);
+
+        userVO = Utility.query_UserProfile(getContext());
 
         progressBar = view.findViewById(R.id.materialLoader);
         swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
@@ -64,6 +70,17 @@ public class CartsFragment extends Fragment {
             reloadPage.setVisibility(View.GONE);
             cartTimeline.setVisibility(View.VISIBLE);
             logInView.setVisibility(View.VISIBLE);
+
+            if (userVO != null) {
+                noLogInView.setVisibility(View.GONE);
+                logInView.setVisibility(View.VISIBLE);
+                cartTimeline.setVisibility(View.VISIBLE);
+            } else {
+                noLogInView.setVisibility(View.VISIBLE);
+                logInView.setVisibility(View.GONE);
+                cartTimeline.setVisibility(View.GONE);
+            }
+
         } else {
             reloadPage.setVisibility(View.VISIBLE);
             cartTimeline.setVisibility(View.GONE);
@@ -92,6 +109,10 @@ public class CartsFragment extends Fragment {
 
         homePageView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), MainActivity.class));
+        });
+
+        goToLogInBtn.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LogInActivity.class));
         });
     }
 

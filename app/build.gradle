@@ -65,4 +65,10 @@ dependencies {
     //mm font
     implementation 'com.google.myanmartools:myanmar-tools:1.2.0'
 
+    //dialog
+    implementation 'com.karumi:dexter:6.2.2'
+
+    //image crop
+    implementation 'com.github.yalantis:ucrop:2.2.2'
+
 }

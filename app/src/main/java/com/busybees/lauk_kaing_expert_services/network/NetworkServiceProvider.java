@@ -7,18 +7,21 @@ import com.busybees.data.models.GetProductPriceModel;
 import com.busybees.data.models.GetUserProfileModel;
 import com.busybees.data.models.LoginModel;
 import com.busybees.data.models.ProfileUpdateModel;
+import com.busybees.data.models.RegisterModel;
 import com.busybees.data.models.ResendOtpModel;
 import com.busybees.data.models.VerifyModel;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.data.vos.Users.GetUserProfileObject;
 import com.busybees.data.vos.Users.LoginObject;
 import com.busybees.data.vos.Users.ProfileUpdateObj;
+import com.busybees.data.vos.Users.RegisterObj;
 import com.busybees.data.vos.Users.ResendOTPObject;
 import com.busybees.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileUpdateSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetRegisterSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
@@ -47,6 +50,11 @@ public class NetworkServiceProvider {
         return sync.getProductPrice(url, productsCarryObject);
     }
 
+    public Call<RegisterModel> RegisterCall (String url, RegisterObj registerObj) {
+        GetRegisterSync sync=retrofit.create(GetRegisterSync.class);
+        return sync.getRegister(url,registerObj);
+    }
+
     public Call<LoginModel> LoginCall (String url, LoginObject loginObj) {
         GetLoginSync sync=retrofit.create(GetLoginSync.class);
         return sync.getLogin(url, loginObj);
@@ -71,4 +79,5 @@ public class NetworkServiceProvider {
         GetUserProfileSync sync=retrofit.create(GetUserProfileSync.class);
         return sync.getUserProfile(url, getUserProfileObject);
     }
+
 }

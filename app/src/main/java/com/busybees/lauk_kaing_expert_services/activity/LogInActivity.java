@@ -89,12 +89,8 @@ public class LogInActivity extends AppCompatActivity {
 
                     if (response.body().getError() == true) {
 
-                        //Utility.showToast(LogInActivity.this, response.body().getMessage());
-
-                        Intent intent = new Intent(LogInActivity.this, OTPActivity.class);
-                        intent.putExtra("phone", phoneNumber.getText().toString());
-                        startActivity(intent);
-                        finish();
+                        Utility.showToast(LogInActivity.this, response.body().getMessage());
+                        startActivity(new Intent(LogInActivity.this, RegisterActivity.class));
 
                     } else if (response.body().getError() == false) {
 

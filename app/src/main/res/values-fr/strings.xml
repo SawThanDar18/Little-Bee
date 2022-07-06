@@ -135,4 +135,22 @@
     <string name="do_yes_logout">ြက္မည္။</string>
 
     <string name="name_blank">နာမည္ ျဖည့္ရန္ လိုအပ္ပါသည္။</string>
+
+    <string name="gallery">Gallery</string>
+    <string name="camera">ကင္မရာ</string>
+
+    <string name="msg_error_unable_select_profile_pic">ပ႐ိုဖိုင္းပုံကိုမသတ္မွတ္ႏိုင္ပါ။ ေက်းဇူးျပဳ၍ ထပ္မံႀကိဳးစားပါ။</string>
+    <string name="lbl_set_profile_photo">ပ႐ိုဖိုင္းပုံရိပ္ကိုသတ္မွတ္ပါ။</string>
+    <string name="lbl_take_camera_picture">ဓာတ္ပုံ႐ိုက္ပါ။</string>
+    <string name="lbl_choose_from_gallery">ျပခန္းမွေ႐ြးခ်ယ္ပါ။</string>
+    <string name="toast_image_intent_null">ဓာတ္ပုံေ႐ြးသူသည္ေပ်ာက္ေနသည္။</string>
+    <string name="dialog_permission_title">ခြင့္ျပဳခ်က္</string>
+    <string name="dialog_permission_message">ဤအပလီေကးရွင္းသည္ဤအဂၤါရပ္ကိုအသုံးျပဳရန္ခြင့္ျပဳခ်က္လိုအပ္သည္။ သူတို႔ကို App setting တြင္ေပးႏိုင္ပါသည္။</string>
+    <string name="go_to_settings">ခ်ိန္ညႇိခ်က္မ်ားသြားပါ။</string>
+
+    <string name="edit_image_dialog_title"><font size="14">ပံုေရြးခ်ယ္ရန္</font></string>
+    <string name="edit_photo"><font size="14">ဓာတ္ပုံ ျပန္ျပင္မည္။</font></string>
+    <string name="viewphoto"><font size="14">ပံုျကည္႔မည္။</font></string>
+
+    <string name="agree_to">သတ္မွတ္ခ်က္စည္းမ်ဥ္းစည္းကမ္းမ်ားကို လက္ခံရန္ လိုအပ္ပါသည္။</string>
 </resources>
