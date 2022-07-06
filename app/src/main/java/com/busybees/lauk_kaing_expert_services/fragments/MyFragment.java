@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,20 +23,31 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.data.models.GetUserProfileModel;
+import com.busybees.data.vos.Users.GetUserProfileObject;
 import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogLogout;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MyFragment extends Fragment {
+
+    private NetworkServiceProvider networkServiceProvider;
 
     private LinearLayout changeLanguage, loginView, lineLogout, logOut;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
     private TextView userName, userPhone;
+    private ProgressBar progressBar;
 
     private UserVO userVO = new UserVO();
     private String profileUrl;
@@ -44,6 +56,7 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
         View view = inflater.inflate(R.layout.fragment_my, container, false);
@@ -57,9 +70,16 @@ public class MyFragment extends Fragment {
         profileEditImageView = view.findViewById(R.id.profileEditImageView);
         userName = view.findViewById(R.id.name);
         userPhone = view.findViewById(R.id.phone);
+        progressBar = view.findViewById(R.id.materialLoader);
 
         onClick();
         userProfileView();
+
+        if (userVO != null) {
+            GetUserProfileObject userProfileObject = new GetUserProfileObject();
+            userProfileObject.setPhone(userVO.getPhone());
+            CallUserProfile(userProfileObject);
+        }
 
         return  view;
     }
@@ -82,6 +102,35 @@ public class MyFragment extends Fragment {
             DialogLogout dialogCall=new DialogLogout();
             dialogCall.show(getFragmentManager(),"");
         });
+    }
+
+    private void CallUserProfile(GetUserProfileObject getUserProfileObject) {
+        if (Utility.isOnline(getContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            networkServiceProvider.UserProfileCall(ApiConstants.BASE_URL + ApiConstants.GET_USER_PROFILE, getUserProfileObject).enqueue(new Callback<GetUserProfileModel>() {
+                @Override
+                public void onResponse(Call<GetUserProfileModel> call, Response<GetUserProfileModel> response) {
+
+                    if (response.body().getError() == true) {
+                        Utility.showToast(getContext(), response.body().getMessage());
+                    } else if (response.body().getError() == false) {
+                        progressBar.setVisibility(View.GONE);
+
+                        userPhone.setText(response.body().getData().getPhone());
+                        userName.setText(response.body().getData().getUsername());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetUserProfileModel> call, Throwable t) {
+                    Utility.showToast(getContext(), t.getMessage());
+
+                }
+            });
+        } else {
+            Utility.showToast(getContext(), getString(R.string.no_internet));
+        }
     }
 
     private void userProfileView() {
@@ -134,4 +183,5 @@ public class MyFragment extends Fragment {
             profileEditImageView.setVisibility(View.GONE);
         }
     }
+
 }

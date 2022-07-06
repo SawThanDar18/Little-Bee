@@ -1,5 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -136,6 +138,32 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void showPictureDialog(){
+
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this,R.style.DialogTheme);
+        pictureDialog.setTitle(this.getResources().getString(R.string.title_profile));
+        String[] pictureDialogItems = {
+                this.getResources().getString(R.string.edit_photo),
+                this.getResources().getString(R.string.viewphoto)};
+
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                EditProfile();
+                                break;
+                            case 1:
+                                seeProfile();
+                                break;
+
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+
     private void CallProfileUpdate(ProfileUpdateObj profileUpdateObj) {
 
         if (Utility.isOnline(this)){
@@ -149,12 +177,13 @@ public class ProfileActivity extends AppCompatActivity {
                     if (response.body().getError()==false){
                         progressBar.setVisibility(View.GONE);
 
-                        //finish();
+                        finish();
                         Utility.delete_UserProfile(ProfileActivity.this);
+                        profileName.setText(response.body().getData().getUsername());
                         userName.setText(response.body().getData().getUsername());
                         userEmail.setText(response.body().getData().getEmail());
-                        Utility.showToast(ProfileActivity.this,response.body().getMessage());
-                        Utility.Save_UserProfile(ProfileActivity.this,response.body().getData());
+                        Utility.showToast(ProfileActivity.this, response.body().getMessage());
+                        Utility.Save_UserProfile(ProfileActivity.this, response.body().getData());
 
                     }else {
 

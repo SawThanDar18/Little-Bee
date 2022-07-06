@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.busybees.data.models.GetAllHomeModel;
 import com.busybees.data.models.GetProductPriceModel;
+import com.busybees.data.models.GetUserProfileModel;
 import com.busybees.data.models.LoginModel;
 import com.busybees.data.models.ProfileUpdateModel;
 import com.busybees.data.models.ResendOtpModel;
 import com.busybees.data.models.VerifyModel;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.data.vos.Users.GetUserProfileObject;
 import com.busybees.data.vos.Users.LoginObject;
 import com.busybees.data.vos.Users.ProfileUpdateObj;
 import com.busybees.data.vos.Users.ResendOTPObject;
@@ -18,6 +20,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileUpdateSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 
 import retrofit2.Call;
@@ -62,5 +65,10 @@ public class NetworkServiceProvider {
     public Call<ProfileUpdateModel> ProfileUpdateCall (String url, ProfileUpdateObj updateObj) {
         GetProfileUpdateSync sync=retrofit.create(GetProfileUpdateSync.class);
         return sync.getProfileUpdate(url, updateObj);
+    }
+
+    public Call<GetUserProfileModel> UserProfileCall (String url, GetUserProfileObject getUserProfileObject) {
+        GetUserProfileSync sync=retrofit.create(GetUserProfileSync.class);
+        return sync.getUserProfile(url, getUserProfileObject);
     }
 }

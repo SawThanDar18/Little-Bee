@@ -9,6 +9,7 @@ public class ApiConstants {
     public static final String GET_LOGIN = "/auth/login";
     public static final String GET_VERIFY_OTP = "/auth/verifyotp";
     public static final String GET_RESEND_OTP = "/auth/resendOTP";
+    public static final String GET_USER_PROFILE = "/auth/get_userprofile";
     public static final String GET_EDIT_PROFILE = "/auth/edit_userprofile";
 
 }
