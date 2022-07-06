@@ -133,4 +133,6 @@
     <string name="logout_confirm"> ထြက္မည္?</string>
     <string name="do_no_logout">မထြက္ပါ။</string>
     <string name="do_yes_logout">ြက္မည္။</string>
+
+    <string name="name_blank">နာမည္ ျဖည့္ရန္ လိုအပ္ပါသည္။</string>
 </resources>

@@ -5,15 +5,18 @@ import android.content.Context;
 import com.busybees.data.models.GetAllHomeModel;
 import com.busybees.data.models.GetProductPriceModel;
 import com.busybees.data.models.LoginModel;
+import com.busybees.data.models.ProfileUpdateModel;
 import com.busybees.data.models.ResendOtpModel;
 import com.busybees.data.models.VerifyModel;
 import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.data.vos.Users.LoginObject;
+import com.busybees.data.vos.Users.ProfileUpdateObj;
 import com.busybees.data.vos.Users.ResendOTPObject;
 import com.busybees.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileUpdateSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 
@@ -54,5 +57,10 @@ public class NetworkServiceProvider {
     public Call<ResendOtpModel> ResendOtpCall (String url, ResendOTPObject resendOTPObject) {
         GetResendOtpSync sync=retrofit.create(GetResendOtpSync.class);
         return sync.getResendOtp(url, resendOTPObject);
+    }
+
+    public Call<ProfileUpdateModel> ProfileUpdateCall (String url, ProfileUpdateObj updateObj) {
+        GetProfileUpdateSync sync=retrofit.create(GetProfileUpdateSync.class);
+        return sync.getProfileUpdate(url, updateObj);
     }
 }

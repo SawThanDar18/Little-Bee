@@ -132,4 +132,6 @@
     <string name="logout_confirm">登出?</string>
     <string name="do_no_logout">取消</string>
     <string name="do_yes_logout">是的</string>
+
+    <string name="name_blank">请添加名称</string>
 </resources>
