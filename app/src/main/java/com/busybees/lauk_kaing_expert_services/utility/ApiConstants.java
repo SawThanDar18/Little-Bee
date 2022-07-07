@@ -6,7 +6,7 @@ public class ApiConstants {
 
     public static final String GET_ALL_HOME = "/getallhome";
     public static final String GET_PRODUCT_PRICE_LISTS = "/get_product_price_lists";
-    public static final String GET_REGISTER = "/auth/register";
+    public static final String GET_REGISTER = "/auth/registerwith";
     public static final String GET_LOGIN = "/auth/login";
     public static final String GET_VERIFY_OTP = "/auth/verifyotp";
     public static final String GET_RESEND_OTP = "/auth/resendOTP";

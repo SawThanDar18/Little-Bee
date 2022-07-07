@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.EventBusModel.EventBusProfile;
 import com.busybees.data.models.GetUserProfileModel;
 import com.busybees.data.vos.Users.GetUserProfileObject;
 import com.busybees.data.vos.Users.UserVO;
@@ -34,6 +36,9 @@ import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,13 +80,41 @@ public class MyFragment extends Fragment {
         onClick();
         userProfileView();
 
-        if (userVO != null) {
+        /*if (userVO != null) {
+            Log.d("name>>>", userVO.getUsername());
             GetUserProfileObject userProfileObject = new GetUserProfileObject();
             userProfileObject.setPhone(userVO.getPhone());
             CallUserProfile(userProfileObject);
-        }
+        }*/
 
         return  view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void EventBusProfile(EventBusProfile eventBusProfile){
+
+        userProfileView();
+    }
+
+    @Subscribe
+    public void getEventBusCart(String home) {
+
+        userVO = Utility.query_UserProfile(getActivity());
+
+        userProfileView();
+
     }
 
     private void onClick() {

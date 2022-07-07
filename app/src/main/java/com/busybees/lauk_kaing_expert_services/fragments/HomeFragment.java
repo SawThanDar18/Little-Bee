@@ -45,6 +45,9 @@ import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -432,5 +435,24 @@ public class HomeFragment extends Fragment {
             lang="en";
         }
         return lang;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getEventBusCart(String home) {
+
+        userVO = Utility.query_UserProfile(getActivity());
+
     }
 }

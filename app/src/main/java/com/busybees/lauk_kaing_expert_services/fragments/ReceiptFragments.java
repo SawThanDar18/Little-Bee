@@ -24,6 +24,9 @@ import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableOrderAd
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableReceiptAdapter;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 public class ReceiptFragments extends Fragment {
 
     private RelativeLayout logInView, noLogInView;
@@ -157,5 +160,24 @@ public class ReceiptFragments extends Fragment {
     private int GetPixelFromDips(float pixels) {
         final float scale = getResources().getDisplayMetrics().density;
         return (int) (pixels * scale + 0.5f);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getEventBusCart(String home) {
+
+        userVO = Utility.query_UserProfile(getActivity());
+
     }
 }

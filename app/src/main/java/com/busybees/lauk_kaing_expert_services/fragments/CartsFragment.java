@@ -26,6 +26,9 @@ import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 public class CartsFragment extends Fragment {
 
     private ProgressBar progressBar;
@@ -116,4 +119,21 @@ public class CartsFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getEventBusCart(String home) {
+
+        userVO = Utility.query_UserProfile(getActivity());
+    }
 }

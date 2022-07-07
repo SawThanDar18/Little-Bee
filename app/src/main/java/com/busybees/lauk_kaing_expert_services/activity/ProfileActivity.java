@@ -32,6 +32,7 @@ import com.busybees.data.models.ProfileUpdateModel;
 import com.busybees.data.vos.Users.ProfileUpdateObj;
 import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogImagePicker;
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
@@ -42,6 +43,7 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.ByteArrayOutputStream;
@@ -286,6 +288,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (response.body().getError()==false){
                         progressBar.setVisibility(View.GONE);
 
+                        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                         finish();
                         Utility.delete_UserProfile(ProfileActivity.this);
                         profileName.setText(response.body().getData().getUsername());
@@ -360,7 +363,7 @@ public class ProfileActivity extends AppCompatActivity {
             editIcon.setVisibility(View.VISIBLE);
             userObj.setImage(uploadImage);
 
-            Utility.Save_UserProfile(ProfileActivity.this, userObj);
+            //Utility.Save_UserProfile(ProfileActivity.this, userObj);
 
             loadProfile(uri.toString());
         }
@@ -404,5 +407,17 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
         intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
         startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

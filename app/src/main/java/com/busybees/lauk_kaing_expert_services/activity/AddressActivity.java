@@ -25,6 +25,8 @@ import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Address.AddressListAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -130,7 +132,6 @@ public class AddressActivity extends AppCompatActivity {
             intent.putExtra("tabPosition", 1);
             startActivity(intent);
             finish();*/
-            finish();
         });
 
     }

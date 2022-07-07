@@ -15,8 +15,9 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.busybees.EventBusModel.EventBusCall;
+import com.busybees.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
@@ -32,6 +33,8 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Locale;
 
@@ -74,7 +77,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (getIntent() != null) {
             int tabPosition = getIntent().getIntExtra("tabPosition", 0);
             if (tabPosition == 1) {
-                CartsFragment();
+                Carts();
+            } else if (tabPosition == 4) {
+                My();
             }
         }
 
@@ -101,15 +106,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     bottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
                 if (position == 0) {
-                    HomeFragment();
+                    Home();
                 } else if (position == 1) {
-                    CartsFragment();
+                    Carts();
                 } else if (position == 2) {
-                    OrdersFragment();
+                    Orders();
                 } else if (position == 3) {
-                    ReceiptFragments();
+                    Receipt();
                 } else if (position == 4) {
-                    MyFragment();
+                    My();
                 }
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
@@ -134,30 +139,35 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });
     }
 
-    private void HomeFragment() {
+    private void Home() {
+        EventBus.getDefault().post("home");
         viewPager.setCurrentItem(0);
         searchToolBar.setVisibility(View.VISIBLE);
     }
 
-    public void CartsFragment() {
+    public void Carts() {
+        EventBus.getDefault().post("home");
         viewPager.setCurrentItem(1);
         searchToolBar.setVisibility(View.GONE);
 
     }
 
-    private void OrdersFragment() {
+    private void Orders() {
+        EventBus.getDefault().post("home");
         viewPager.setCurrentItem(2);
         searchToolBar.setVisibility(View.GONE);
 
     }
 
-    private void ReceiptFragments() {
+    private void Receipt() {
+        EventBus.getDefault().post("home");
         viewPager.setCurrentItem(3);
         searchToolBar.setVisibility(View.GONE);
 
     }
 
-    private void MyFragment() {
+    private void My() {
+        EventBus.getDefault().post("home");
         viewPager.setCurrentItem(4);
         searchToolBar.setVisibility(View.GONE);
 
@@ -217,27 +227,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (item.getItemId()) {
             case R.id.homeTab:
 
-                HomeFragment();
+                Home();
                 break;
 
             case R.id.cartTab:
 
-                CartsFragment();
+                Carts();
                 break;
 
             case R.id.orderTab:
 
-                OrdersFragment();
+                Orders();
                 break;
 
             case R.id.receiptTab:
 
-                ReceiptFragments();
+                Receipt();
                 break;
 
             case R.id.moreTab:
 
-                MyFragment();
+                My();
                 break;
         }
         return false;
@@ -310,4 +320,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return lang;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getEventBusService(EventBusCall service) {
+
+        bottomNavigationView.setSelectedItemId(R.id.homeTab);
+    }
+
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getGoToGetCart(GoToCart goToCart) {
+
+        bottomNavigationView.setSelectedItemId(R.id.cartTab);
+        EventBus.getDefault().removeStickyEvent(goToCart);
+
+    }
 }
