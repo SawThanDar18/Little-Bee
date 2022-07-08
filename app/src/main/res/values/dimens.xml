@@ -33,6 +33,7 @@
     <dimen name="width60">60dp</dimen>
     <dimen name="width70">70dp</dimen>
     <dimen name="width100">100dp</dimen>
+    <dimen name="width160">160dp</dimen>
     <dimen name="width150">150dp</dimen>
     <dimen name="width180">180dp</dimen>
     <dimen name="width240">240dp</dimen>

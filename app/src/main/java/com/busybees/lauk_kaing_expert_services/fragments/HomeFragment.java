@@ -352,6 +352,37 @@ public class HomeFragment extends Fragment {
 
         webBannerAdapter = new WebBannerAdapter(getActivity(), sliderImageList);
 
+        webBannerAdapter.setOnBannerItemClickListener(position -> {
+
+            if (userVO == null) {
+                startActivity(new Intent(getActivity().getApplicationContext(), LogInActivity.class));
+
+            } else {
+
+                ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                productsCarryObject.setServiceId(slider.get(position).getServiceId());
+                productsCarryObject.setProductId(slider.get(position).getProductId());
+                productsCarryObject.setSubProductId(slider.get(position).getSubProductId());
+                productsCarryObject.setStep(slider.get(position).getStep());
+
+                if (checkLng(getActivity()).equalsIgnoreCase("it")) {
+                    Utility.addFontSuHome(productName, slider.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
+                    Utility.changeFontZg2UniHome(productName, slider.get(position).getNameMm());
+                } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
+                    productName.setText(slider.get(position).getNameCh());
+                } else {
+                    productName.setText(slider.get(position).getName());
+                }
+
+                Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+                intent.putExtra("product_title", productName.getText().toString());
+                intent.putExtra("product_detail_data", productsCarryObject);
+                startActivity(intent);
+
+            }
+        });
+
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
 

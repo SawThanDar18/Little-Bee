@@ -28,6 +28,7 @@
             android:src="@drawable/footer_image"/>
 
         <LinearLayout
+            android:background="@color/theme_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -40,14 +41,14 @@
                 android:maxLines="2"
                 android:paddingLeft="@dimen/padding4"
                 android:text="Painting"
-                android:textColor="@color/home_service_name_color"
+                android:textColor="@color/white"
                 android:textSize="@dimen/fontSizeXSmall"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_gravity="right"
                 android:id="@+id/productPrice"
-                android:textColor="@color/home_service_title_color"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/padding4"

@@ -73,15 +73,10 @@ public class SymnAdapter extends RecyclerView.Adapter<SymnAdapter.MyViewHolder> 
         requestOptions.placeholder(R.drawable.loader_circle_shape);
         requestOptions.error(R.drawable.loader_circle_shape);
 
-        GlideToVectorYou.init()
-                .with(context.getApplicationContext())
-                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.banner_image)
-                .load(Uri.parse(serviceNeedVO.getServiceNeedsImage()), holder.imageView);
-
-        /*Glide.with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
                 .load(serviceNeedVO.getServiceNeedsImage())
                 .apply(requestOptions)
-                .into(holder.imageView);*/
+                .into(holder.imageView);
     }
 
     @Override

@@ -74,15 +74,10 @@ public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewH
         requestOptions.placeholder(R.drawable.loader_circle_shape);
         requestOptions.error(R.drawable.loader_circle_shape);
 
-        GlideToVectorYou.init()
-                .with(context.getApplicationContext())
-                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.banner_image)
-                .load(Uri.parse(popularServicesVO.getPopularImage()), holder.imageView);
-
-        /*Glide.with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
                 .load(popularServicesVO.getPopularImage())
                 .apply(requestOptions)
-                .into(holder.imageView);*/
+                .into(holder.imageView);
     }
 
     @Override
