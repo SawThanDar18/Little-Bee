@@ -240,14 +240,21 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void showPictureViewDialog(){
+    private void showPictureViewDialog() {
 
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this,R.style.DialogTheme);
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this, R.style.DialogTheme);
         pictureDialog.setTitle(this.getResources().getString(R.string.edit_image_dialog_title));
 
-        String[] pictureDialogItems = {
-                this.getResources().getString(R.string.edit_photo),
-                this.getResources().getString(R.string.viewphoto)};
+        String[] pictureDialogItems;
+
+        if (userObj.getImage() != null) {
+            pictureDialogItems = new String[] {
+                    this.getResources().getString(R.string.edit_photo),
+                    this.getResources().getString(R.string.viewphoto)};
+        } else {
+            pictureDialogItems = new String[] {
+                    this.getResources().getString(R.string.edit_photo)};
+        }
 
         pictureDialog.setItems(pictureDialogItems,
                 (dialog, which) -> {
@@ -297,7 +304,7 @@ public class ProfileActivity extends AppCompatActivity {
             intent.putExtra("image_url", url);
             startActivity(intent);
         } else {
-            
+
         }
 
     }
