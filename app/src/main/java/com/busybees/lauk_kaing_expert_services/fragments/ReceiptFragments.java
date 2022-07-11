@@ -17,10 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.busybees.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
-import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableOrderAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableReceiptAdapter;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 

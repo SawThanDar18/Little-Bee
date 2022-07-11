@@ -11,15 +11,13 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.busybees.data.vos.Home.ServiceAvailableVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

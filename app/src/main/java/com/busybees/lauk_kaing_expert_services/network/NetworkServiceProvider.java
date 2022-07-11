@@ -2,24 +2,27 @@ package com.busybees.lauk_kaing_expert_services.network;
 
 import android.content.Context;
 
-import com.busybees.data.models.GetAllHomeModel;
-import com.busybees.data.models.GetProductPriceModel;
-import com.busybees.data.models.GetUserProfileModel;
-import com.busybees.data.models.LoginModel;
-import com.busybees.data.models.ProfileUpdateModel;
-import com.busybees.data.models.RegisterModel;
-import com.busybees.data.models.ResendOtpModel;
-import com.busybees.data.models.VerifyModel;
-import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
-import com.busybees.data.vos.Users.GetUserProfileObject;
-import com.busybees.data.vos.Users.LoginObject;
-import com.busybees.data.vos.Users.ProfileUpdateObj;
-import com.busybees.data.vos.Users.RegisterObj;
-import com.busybees.data.vos.Users.ResendOTPObject;
-import com.busybees.data.vos.Users.VerifyObject;
+import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
+import com.busybees.lauk_kaing_expert_services.data.models.LoginModel;
+import com.busybees.lauk_kaing_expert_services.data.models.ProfileUpdateModel;
+import com.busybees.lauk_kaing_expert_services.data.models.RegisterModel;
+import com.busybees.lauk_kaing_expert_services.data.models.ResendOtpModel;
+import com.busybees.lauk_kaing_expert_services.data.models.VerifyModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.LoginObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileUpdateObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RegisterObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ResendOTPObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileImageSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileUpdateSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetRegisterSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
@@ -78,6 +81,11 @@ public class NetworkServiceProvider {
     public Call<GetUserProfileModel> UserProfileCall (String url, GetUserProfileObject getUserProfileObject) {
         GetUserProfileSync sync=retrofit.create(GetUserProfileSync.class);
         return sync.getUserProfile(url, getUserProfileObject);
+    }
+
+    public Call<ProfileImageModel> ProfileImageCall (String url, ProfileImageObj profileImageObj) {
+        GetProfileImageSync sync=retrofit.create(GetProfileImageSync.class);
+        return sync.getProfileImage(url, profileImageObj);
     }
 
 }

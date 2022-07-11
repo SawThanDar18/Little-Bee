@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.busybees.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.google.gson.Gson;
 import com.google.myanmartools.TransliterateZ2U;
-import com.google.myanmartools.ZawgyiDetector;
 
 import org.xml.sax.XMLReader;
 

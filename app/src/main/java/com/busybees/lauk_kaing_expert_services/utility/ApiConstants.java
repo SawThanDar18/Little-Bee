@@ -12,5 +12,6 @@ public class ApiConstants {
     public static final String GET_RESEND_OTP = "/auth/resendOTP";
     public static final String GET_USER_PROFILE = "/auth/get_userprofile";
     public static final String GET_EDIT_PROFILE = "/auth/edit_userprofile";
+    public static final String GET_SAVE_USER_IMAGE = "/auth/save_userImage";
 
 }

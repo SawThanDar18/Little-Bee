@@ -71,4 +71,7 @@ dependencies {
     //image crop
     implementation 'com.github.yalantis:ucrop:2.2.2'
 
+    //zoom image
+    implementation 'com.jsibbold:zoomage:1.3.1'
+
 }

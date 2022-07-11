@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.busybees.data.vos.ServiceDetail.ProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;

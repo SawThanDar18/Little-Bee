@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.busybees.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.AddressActivity;
