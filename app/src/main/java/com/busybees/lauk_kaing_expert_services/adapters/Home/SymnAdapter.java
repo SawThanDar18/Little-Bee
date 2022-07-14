@@ -21,7 +21,9 @@ import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class SymnAdapter extends RecyclerView.Adapter<SymnAdapter.MyViewHolder> {
 
@@ -67,6 +69,15 @@ public class SymnAdapter extends RecyclerView.Adapter<SymnAdapter.MyViewHolder> 
             holder.serviceName.setText(serviceNeedVO.getNameCh());
         } else {
             holder.serviceName.setText(serviceNeedVO.getName());
+        }
+
+        if(Double.parseDouble(String.valueOf(serviceNeedVO.getOriginalPrice())) == 0){
+            holder.price.setVisibility(View.INVISIBLE);
+
+        } else {
+            holder.price.setVisibility(View.VISIBLE);
+            holder.price.setText(NumberFormat.getNumberInstance(Locale.US).format(serviceNeedVO.getOriginalPrice()) + " " + context.getString(R.string.currency));
+
         }
 
         RequestOptions requestOptions = new RequestOptions();

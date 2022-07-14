@@ -1,6 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.adapters.Home;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,9 @@ import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewHolder> {
 
@@ -68,6 +71,15 @@ public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewH
             holder.serviceName.setText(popularServicesVO.getNameCh());
         } else {
             holder.serviceName.setText(popularServicesVO.getName());
+        }
+
+        if(Double.parseDouble(String.valueOf(popularServicesVO.getOriginalPrice())) == 0){
+            holder.price.setVisibility(View.INVISIBLE);
+
+        } else {
+            holder.price.setVisibility(View.VISIBLE);
+            holder.price.setText(NumberFormat.getNumberInstance(Locale.US).format(popularServicesVO.getOriginalPrice()) + " " + context.getString(R.string.currency));
+
         }
 
         RequestOptions requestOptions = new RequestOptions();

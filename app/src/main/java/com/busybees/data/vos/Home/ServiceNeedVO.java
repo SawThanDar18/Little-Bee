@@ -41,6 +41,14 @@ public class ServiceNeedVO {
     @Expose
     private String serviceNeedsImage;
 
+    @SerializedName("original_price")
+    @Expose
+    private Integer originalPrice;
+
+    @SerializedName("discount_price")
+    @Expose
+    private Integer discountPrice;
+
     public Integer getServiceId() {
         return serviceId;
     }
@@ -111,5 +119,21 @@ public class ServiceNeedVO {
 
     public void setServiceNeedsImage(String serviceNeedsImage) {
         this.serviceNeedsImage = serviceNeedsImage;
+    }
+
+    public Integer getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Integer originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Integer getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Integer discountPrice) {
+        this.discountPrice = discountPrice;
     }
 }

@@ -41,6 +41,14 @@ public class PopularServicesVO {
     @Expose
     private String popularImage;
 
+    @SerializedName("original_price")
+    @Expose
+    private Integer originalPrice;
+
+    @SerializedName("discount_price")
+    @Expose
+    private Integer discountPrice;
+
     public Integer getServiceId() {
         return serviceId;
     }
@@ -111,5 +119,21 @@ public class PopularServicesVO {
 
     public void setPopularImage(String popularImage) {
         this.popularImage = popularImage;
+    }
+
+    public Integer getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Integer originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Integer getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Integer discountPrice) {
+        this.discountPrice = discountPrice;
     }
 }
