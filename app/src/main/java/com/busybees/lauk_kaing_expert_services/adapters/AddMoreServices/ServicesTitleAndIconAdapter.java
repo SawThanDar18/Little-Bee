@@ -3,6 +3,7 @@ package com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,24 +15,30 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.busybees.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.BottomSheetDialog.AddMoreServicesDialog;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTitleAndIconAdapter.MyViewHolder> {
 
     Context context;
-    private List<Integer> urlList;
-    private List<String> serviceName;
+    ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<ServiceAvailableVO>();
     public AddMoreServicesDialog click;
     int row_index;
 
-    public ServicesTitleAndIconAdapter(FragmentActivity activity, List<Integer> urlList, List<String> serviceName) {
-        this.context=activity;
-        this.urlList = urlList;
-        this.serviceName = serviceName;
+    public ServicesTitleAndIconAdapter(FragmentActivity activity, ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList) {
+        this.context = activity;
+        this.serviceAvailableVOArrayList = serviceAvailableVOArrayList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -56,28 +63,33 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        if (urlList == null || urlList.isEmpty())
-            return;
-        final int P = position % urlList.size();
-        Integer url = urlList.get(P);
-        ImageView img = holder.imageView;
+
+        ServiceAvailableVO serviceAvailableVO = serviceAvailableVOArrayList.get(position);
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.ic_about_jia_jie);
-        requestOptions.error(R.drawable.ic_about_jia_jie);
-        Glide.with(context)
-                .load(url)
-                .apply(requestOptions)
-                .into(img);
+        requestOptions.placeholder(R.drawable.loader_circle_shape);
+        requestOptions.error(R.drawable.loader_circle_shape);
 
-        String names = serviceName.get(P);
-        holder.serviceName.setText(names);
+        GlideToVectorYou.init()
+                .with(context.getApplicationContext())
+                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.loader_circle_shape)
+                .load(Uri.parse(serviceAvailableVO.getServiceImage()), holder.imageView);
+
+        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
+            Utility.addFontSuHome(holder.serviceName, serviceAvailableVO.getNameMm());
+        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+            Utility.changeFontZg2UniHome(holder.serviceName, serviceAvailableVO.getNameMm());
+        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
+            holder.serviceName.setText(serviceAvailableVO.getNameCh());
+        } else {
+            holder.serviceName.setText(serviceAvailableVO.getName());
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 row_index=position;
-                click.ShowProduct();
+                click.ShowProduct(serviceAvailableVO);
                 notifyDataSetChanged();
             }
         });
@@ -92,7 +104,7 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
     }
 
     public void setClick(AddMoreServicesDialog addMoreServicesDialog) {
-        this.click=addMoreServicesDialog;
+        this.click = addMoreServicesDialog;
     }
 
     @Override
@@ -107,7 +119,15 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
 
     @Override
     public int getItemCount() {
-        return 12;
+        return serviceAvailableVOArrayList.size();
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
     }
 }
 
