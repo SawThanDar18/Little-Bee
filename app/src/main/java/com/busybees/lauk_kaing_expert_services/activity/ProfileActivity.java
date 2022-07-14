@@ -401,12 +401,14 @@ public class ProfileActivity extends AppCompatActivity {
         if (Utility.isOnline(this)){
 
             editIcon.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
 
             networkServiceProvider.ProfileImageCall(ApiConstants.BASE_URL + ApiConstants.GET_SAVE_USER_IMAGE, profileImageObj).enqueue(new Callback<ProfileImageModel>() {
                 @Override
                 public void onResponse(Call<ProfileImageModel> call, Response<ProfileImageModel> response) {
 
                     if (response.body().getError()==false){
+                        progressBar.setVisibility(View.GONE);
                         editIcon.setVisibility(View.VISIBLE);
 
                         Utility.Save_UserProfile(ProfileActivity.this,response.body().getData());
@@ -415,12 +417,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                         loadProfile(uri.toString());
                     }else {
+                        progressBar.setVisibility(View.GONE);
                         Utility.showToast(ProfileActivity.this,response.body().getMessage());
                     }
 
                 }
                 @Override
                 public void onFailure(Call<ProfileImageModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
                     editIcon.setVisibility(View.VISIBLE);
                     Utility.showToast(getApplicationContext(), t.getMessage());
                 }
