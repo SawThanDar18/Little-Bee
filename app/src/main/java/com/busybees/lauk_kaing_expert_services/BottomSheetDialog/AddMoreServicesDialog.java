@@ -2,6 +2,7 @@ package com.busybees.lauk_kaing_expert_services.BottomSheetDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.busybees.data.vos.ServiceDetail.ProductsVO;
 import com.busybees.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
+import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.MoreServiceDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.ServicesTitleAndIconAdapter;
@@ -30,6 +33,7 @@ import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.Expandab
 import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -44,14 +48,14 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     private NetworkServiceProvider networkServiceProvider;
     private UserVO userVO;
 
-    private RelativeLayout serviceDetailLayout, selectServiceLayout;
+    private RelativeLayout serviceDetailLayout, selectServiceLayout, comingSoonLayout, servicesLayout;
     private RecyclerView addMoreServiceRecyclerView, servicesDetailRecyclerView;
     private ExpandableListView expandableListView;
     private ServicesTitleAndIconAdapter servicesTitleAndIconAdapter;
     private ExpandableListViewAdapter expandableListViewAdapter;
     private LinearLayoutManager servicesLayoutManager, addMoreServiceLayoutManager;
 
-    private ImageView closeDialog;
+    private ImageView closeDialog, back;
     private ProgressBar progressBar;
 
     private ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<>();
@@ -64,7 +68,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     private MoreServiceDetailAdapter serviceDetailAdapter;
     private ArrayList<ProductPriceVO> productPriceVOArrayList = new ArrayList<>();
 
-    private ProductsCarryObject productsCarryObject;
+    private ProductsCarryObject productsCarryObject = new ProductsCarryObject();
 
     public AddMoreServicesDialog(ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList, ArrayList<ProductsVO> productsVOArrayList, ArrayList<SubProductsVO> subProductsVOArrayList) {
         this.serviceAvailableVOArrayList = serviceAvailableVOArrayList;
@@ -82,12 +86,15 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
+        comingSoonLayout = contentView.findViewById(R.id.coming_soon_layout);
+        servicesLayout = contentView.findViewById(R.id.services_layout);
         serviceDetailLayout = contentView.findViewById(R.id.service_detail_layout);
         selectServiceLayout = contentView.findViewById(R.id.select_layout);
         addMoreServiceRecyclerView = contentView.findViewById(R.id.recycle_add_more_service);
         servicesDetailRecyclerView = contentView.findViewById(R.id.recycle_service_detail);
         expandableListView = contentView.findViewById(R.id.expandableListView);
         closeDialog = contentView.findViewById(R.id.cancel_more_service);
+        back = contentView.findViewById(R.id.back_button);
         progressBar = contentView.findViewById(R.id.materialLoader);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -95,17 +102,21 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         int width = metrics.widthPixels;
         expandableListView.setIndicatorBounds(width - GetPixelFromDips(70), width - GetPixelFromDips(10));
 
-        /*if (getArguments() != null) {
+        if (getArguments() != null) {
             productsCarryObject = (ProductsCarryObject) getArguments().getSerializable("product_data");
 
             if (productsCarryObject != null) {
                 progressBar.setVisibility(View.VISIBLE);
-                *//*ProductsCarryObject pStepObj = new ProductsCarryObject();
-                pStepObj.setSubProductId(productsCarryObject.getProductId());
-                pStepObj.setProductPriceId(productsCarryObject.getProductPriceId());*//*
-                CallProductPriceApi(productsCarryObject);
+                ProductsCarryObject pStepObj = new ProductsCarryObject();
+                pStepObj.setServiceId(productsCarryObject.getServiceId());
+                pStepObj.setProductId(productsCarryObject.getProductId());
+                pStepObj.setSubProductId(productsCarryObject.getSubProductId());
+                pStepObj.setProductPriceId(productsCarryObject.getProductPriceId());
+                pStepObj.setStep(productsCarryObject.getStep());
+                CallProductPriceApi(pStepObj);
+
             }
-        }*/
+        }
 
         setUpAdapter();
         initListeners();
@@ -115,6 +126,13 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
     private void onClick() {
         closeDialog.setOnClickListener(v -> dismiss());
+
+        back.setOnClickListener(v -> {
+            serviceDetailLayout.setVisibility(View.GONE);
+            selectServiceLayout.setVisibility(View.VISIBLE);
+            back.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+        });
 
         expandableListView.setOnTouchListener((v, event) -> {
             v.getParent().requestDisallowInterceptTouchEvent(true);
@@ -140,7 +158,15 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         });
 
         expandableListView.setOnGroupExpandListener(groupPosition -> {
-
+            productsCarryObject.setServiceId(productsVOS.get(groupPosition).getServiceId());
+            productsCarryObject.setProductId(productsVOS.get(groupPosition).getProductId());
+            productsCarryObject.setStep(productsVOS.get(groupPosition).getStep());
+            if (productsCarryObject != null) {
+                if (productsCarryObject.getStep() == 2) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    CallProductPriceApi(productsCarryObject);
+                }
+            }
         });
 
         expandableListView.setOnGroupCollapseListener(groupPosition -> {
@@ -151,9 +177,9 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
     private void setUpAdapter() {
 
-        servicesTitleAndIconAdapter = new ServicesTitleAndIconAdapter(getActivity(), serviceAvailableVOArrayList);
         addMoreServiceLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         addMoreServiceRecyclerView.setLayoutManager(addMoreServiceLayoutManager);
+        servicesTitleAndIconAdapter = new ServicesTitleAndIconAdapter(getActivity(), serviceAvailableVOArrayList);
         addMoreServiceRecyclerView.setAdapter(servicesTitleAndIconAdapter);
         servicesTitleAndIconAdapter.notifyDataSetChanged();
         servicesTitleAndIconAdapter.setClick(this);
@@ -166,6 +192,14 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
         productsVOS.clear();
         subProductsVOS.clear();
+
+        if (serviceAvailableVO.getStep() == 1) {
+            ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+            productsCarryObject.setServiceId(serviceAvailableVO.getServiceId());
+            productsCarryObject.setStep(serviceAvailableVO.getStep());
+
+            CallProductPriceApi(productsCarryObject);
+        }
 
         for (int i = 0; i < productsVOArrayList.size(); i++) {
             if (productsVOArrayList.get(i).getServiceId().equals(serviceAvailableVO.getServiceId())) {
@@ -210,6 +244,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                     } else if (response.body().getError() == false) {
 
                         progressBar.setVisibility(View.GONE);
+                        back.setVisibility(View.VISIBLE);
                         //videoView.setVisibility(View.VISIBLE);
                         //PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");
 
@@ -226,7 +261,10 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
                             serviceDetailAdapter.setClick(v -> AdapterCLick(v));
                         } else {
-                            Utility.showToast(getContext(), "Coming Soon");
+                            servicesLayout.setVisibility(View.GONE);
+                            comingSoonLayout.setVisibility(View.VISIBLE);
+                            back.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 }

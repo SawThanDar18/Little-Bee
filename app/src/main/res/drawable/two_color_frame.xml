@@ -14,7 +14,9 @@
         <shape android:shape="rectangle" >
             <corners  android:bottomLeftRadius="10dp"
                 android:topLeftRadius="10dp" />
+
             <stroke android:width="3dp" android:color="@color/theme_color"/>
+
         </shape>
     </item>
 </layer-list>

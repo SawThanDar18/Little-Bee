@@ -30,9 +30,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <ImageView
+            android:padding="@dimen/padding2"
+            android:visibility="gone"
+            android:id="@+id/back_button"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/arrow_back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:background="@color/white"
+        android:id="@+id/coming_soon_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Coming Soon"
+            android:textSize="@dimen/fontSizeMedium"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
     </RelativeLayout>
 
    <RelativeLayout
+       android:id="@+id/services_layout"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 

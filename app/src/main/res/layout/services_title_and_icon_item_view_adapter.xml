@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/margin10"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin6"
+        android:background="@drawable/two_color_frame"
         android:gravity="center"
         android:id="@+id/productImage"
         android:orientation="horizontal"
@@ -20,12 +21,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:scaleType="fitXY"
             android:layout_gravity="center"
             android:layout_width="@dimen/width50"
             android:id="@+id/serviceIcon"
-            android:background="@drawable/two_color_frame"
-            app:srcCompat="@drawable/icon_cleaning__1200_x_1200_px_"
+            android:backgroundTint="@color/black"
             android:padding="@dimen/padding2"
             android:layout_height="@dimen/height50" />
 

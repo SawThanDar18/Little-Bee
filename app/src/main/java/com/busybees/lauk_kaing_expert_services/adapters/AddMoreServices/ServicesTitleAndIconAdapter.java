@@ -69,6 +69,7 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.loader_circle_shape);
         requestOptions.error(R.drawable.loader_circle_shape);
+        requestOptions.transforms(new CenterCrop(), new RoundedCorners(Utility.dp2px(context.getApplicationContext(), 8)));
 
         GlideToVectorYou.init()
                 .with(context.getApplicationContext())
