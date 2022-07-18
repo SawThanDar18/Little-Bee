@@ -152,4 +152,13 @@
     <string name="viewphoto"><font size="14">查看照片</font></string>
 
     <string name="agree_to">请同意条款和条件</string>
+
+    <string name="map">前往地图</string>
+    <string name="gps_alert">您的 GPS 似乎已禁用，您要启用它吗？</string>
+    <string name="gps_enable_yes">使能够</string>
+    <string name="gps_enable_no">取消</string>
+    <string name="location_alert">订单需要位置。您可以通过单击“转到地图”来选择您的订单位置。</string>
+
+    <string name="fill_all_detail">请填写所有详细信息。</string>
+
 </resources>

@@ -153,4 +153,13 @@
     <string name="viewphoto"><font size="14">ပံုျကည္႔မည္။</font></string>
 
     <string name="agree_to">သတ္မွတ္ခ်က္စည္းမ်ဥ္းစည္းကမ္းမ်ားကို လက္ခံရန္ လိုအပ္ပါသည္။</string>
+
+    <string name="map">ေျမပံုသို့</string>
+    <string name="gps_alert">ေျမပုံအသုံးျပဳရန္အတြက္ GPS ဖြင့္ရန္ လိုအပ္ပါသည္။</string>
+    <string name="gps_enable_yes">ဖြင့္မည္</string>
+    <string name="gps_enable_no">မဖြင့္ပါ</string>
+    <string name="location_alert">Order အတြက္ Location ရရန္လိုအပ္ပါသည္။ Order ရယူလိုေသာေနရာအား "ေျမပံုသို့" ကိုနွိပ္၍ေရြးခ်ယ္နိုင္ပါသည္။</string>
+
+    <string name="fill_all_detail">အေသးစိတ္ျဖည္႔ပါ။</string>
+
 </resources>

@@ -136,6 +136,9 @@
 
     <string name="name_blank">နာမည် ဖြည့်ရန် လိုအပ်ပါသည်။</string>
 
+    <string name="gallery">Gallery</string>
+    <string name="camera">ကင်မရာ</string>
+
     <string name="msg_error_unable_select_profile_pic">ပရိုဖိုင်းပုံကိုမသတ်မှတ်နိုင်ပါ။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ။</string>
     <string name="lbl_set_profile_photo">ပရိုဖိုင်းပုံရိပ်ကိုသတ်မှတ်ပါ။</string>
     <string name="lbl_take_camera_picture">ဓာတ်ပုံရိုက်ပါ။</string>
@@ -150,4 +153,13 @@
     <string name="viewphoto"><font size="14">ပုံကြည့်မည်။</font></string>
 
     <string name="agree_to">သတ်မှတ်ချက်စည်းမျဉ်းစည်းကမ်းများကို လက်ခံရန် လိုအပ်ပါသည်။</string>
+
+    <string name="map">မြေပုံသို့</string>
+    <string name="gps_alert">မြေပုံအသုံးပြုရန်အတွက် GPS ဖွင့်ရန် လိုအပ်ပါသည်။</string>
+    <string name="gps_enable_yes">ဖွင့်မည်</string>
+    <string name="gps_enable_no">မဖွင့်ပါ</string>
+    <string name="location_alert">Order အတွက် Location ရရန်လိုအပ်ပါသည်။ Order ရယူလိုသောနေရာအား "မြေပုံသို့" ကိုနှိပ်၍ရွေးချယ်နိုင်ပါသည်။</string>
+
+    <string name="fill_all_detail">အသေးစိတ်ဖြည့်ပါ။</string>
+
 </resources>

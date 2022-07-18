@@ -152,4 +152,14 @@
     <string name="viewphoto"><font size="14">View Photo</font></string>
 
     <string name="agree_to">Please Agree to Terms &amp; Conditions</string>
+
+    <string name="map">Go Map</string>
+    <string name="gps_alert">Your GPS seems to be disabled, do you want to enable it?</string>
+    <string name="gps_enable_yes">Enable</string>
+    <string name="gps_enable_no">Cancel</string>
+    <string name="location_alert">Location is required for Order.You can select your order location by clicking "Go Map".</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+
+    <string name="fill_all_detail">Please fill all detail.</string>
+
 </resources>

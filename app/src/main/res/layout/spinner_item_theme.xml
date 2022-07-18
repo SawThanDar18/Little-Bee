@@ -9,5 +9,5 @@
     android:padding="@dimen/padding10"
     android:textColor="@color/white"
     android:textSize="@dimen/fontSizeMedium"
-    android:drawableEnd="@drawable/spinner"
+    android:drawableEnd="@drawable/ic_arrow_drop_down_white"
     android:ellipsize="marquee"/>

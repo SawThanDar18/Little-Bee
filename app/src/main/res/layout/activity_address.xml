@@ -16,7 +16,6 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:visibility="visible"
             android:id="@+id/relative_layout"
             android:layout_below="@id/tool_bar"
             android:layout_width="match_parent"
@@ -123,10 +122,10 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/conLayout"
                         android:layout_below="@+id/tool_bar"
-                        android:layout_marginRight="@dimen/margin16"
                         android:layout_marginLeft="@dimen/margin16"
                         android:layout_marginTop="@dimen/margin16"
-                        android:layout_marginBottom="@dimen/margin4"
+                        android:layout_marginRight="@dimen/margin16"
+                        android:layout_marginBottom="@dimen/margin64"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="10dp">
 
@@ -215,21 +214,21 @@
 
                                 <LinearLayout
                                     android:id="@+id/time_layout"
-                                    android:padding="@dimen/padding2"
-                                    android:layout_marginLeft="@dimen/margin6"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/margin6"
+                                    android:padding="@dimen/padding2">
 
                                     <Spinner
-                                        android:background="@drawable/rounded_corner_pink_accent_line_stroke"
-                                        android:layout_gravity="center"
                                         android:id="@+id/timeSpinnerArray"
-                                        android:layout_below="@+id/layout_date"
-                                        android:layout_toRightOf="@+id/appTextView3"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:padding="@dimen/padding10"
-                                        android:entries="@array/times" />
+                                        android:layout_below="@+id/layout_date"
+                                        android:layout_gravity="center"
+                                        android:layout_toRightOf="@+id/appTextView3"
+                                        android:background="@null"
+                                        android:entries="@array/times"
+                                        android:padding="@dimen/padding10" />
 
                                 </LinearLayout>
 
@@ -255,20 +254,19 @@
                                 android:layout_height="@dimen/height1"
                                 android:layout_below="@id/layout_time"
                                 android:layout_marginTop="@dimen/margin10"
-                                android:background="@color/theme_color"/>
+                                android:background="@color/theme_color" />
 
                             <LinearLayout
                                 android:id="@+id/relayout"
-                                android:layout_below="@+id/appTextView4"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/appTextView4">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:layout_marginBottom="@dimen/margin10"
+                                <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:id="@+id/address_list_recyclerview"
-                                    xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin10">
 
                                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -290,57 +288,58 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:visibility="gone"
-                        android:layout_marginBottom="@dimen/margin10"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height200"
+                        android:layout_marginLeft="@dimen/margin16"
                         android:layout_marginTop="@dimen/margin8"
                         android:layout_marginRight="@dimen/margin16"
-                        android:layout_marginLeft="@dimen/margin16"
-                        app:cardCornerRadius="@dimen/margin10"
+                        android:layout_marginBottom="@dimen/margin10"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/height200">
+                        app:cardCornerRadius="@dimen/margin10">
+
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_below="@id/appTextView4"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/appTextView4"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:padding="@dimen/padding8"
-                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/padding8">
 
                                 <TextView
-                                    android:layout_weight="1"
                                     android:id="@+id/type"
-                                    android:text="Order Location"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentStart="true"
-                                    android:paddingBottom="@dimen/padding4"
-                                    android:paddingEnd="@dimen/padding10"
+                                    android:layout_weight="1"
                                     android:paddingStart="@dimen/padding10"
                                     android:paddingTop="@dimen/padding4"
-                                    android:textStyle="bold"
+                                    android:paddingEnd="@dimen/padding10"
+                                    android:paddingBottom="@dimen/padding4"
+                                    android:text="Order Location"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/fontSizeMedium" />
+                                    android:textSize="@dimen/fontSizeMedium"
+                                    android:textStyle="bold" />
 
                                 <RelativeLayout
-                                    android:layout_gravity="center"
                                     android:id="@+id/map_click"
-                                    android:padding="@dimen/padding4"
-                                    android:background="@drawable/rounded_corner_pink_accent_line_stroke"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                                    android:padding="@dimen/padding4">
 
                                     <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:padding="2dp"
                                         android:text="Go Map"
-                                        android:textSize="@dimen/fontSizeMedium"
                                         android:textColor="@color/black"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
+                                        android:textSize="@dimen/fontSizeMedium">
 
                                     </TextView>
 
@@ -350,9 +349,9 @@
 
 
                             <RelativeLayout
-                                android:visibility="gone"
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp">
+                                android:layout_height="200dp"
+                                android:visibility="gone">
 
                                 <!--<fragment
                                     android:id="@+id/map"
@@ -360,14 +359,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent" />-->
                                 <ProgressBar
-                                    android:visibility="gone"
                                     android:id="@+id/map_loader"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
                                     android:layout_gravity="center"
                                     android:indeterminateDrawable="@drawable/loader_circle_shape"
-                                    android:indeterminateDuration="800" />
+                                    android:indeterminateDuration="800"
+                                    android:visibility="gone" />
 
                             </RelativeLayout>
                         </LinearLayout>

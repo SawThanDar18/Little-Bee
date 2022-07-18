@@ -1,14 +1,18 @@
 package com.busybees.lauk_kaing_expert_services.utility;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.text.Editable;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.text.style.BulletSpan;
 import android.text.style.LeadingMarginSpan;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +23,13 @@ import com.google.myanmartools.ZawgyiDetector;
 
 import org.xml.sax.XMLReader;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Utility {
 
@@ -138,5 +147,152 @@ public class Utility {
         String json = pref.getString("userobj", "");
         userVO = gson.fromJson(json, UserVO.class);
         return userVO;
+    }
+
+    private static String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private static SimpleDateFormat newdate = new SimpleDateFormat("EEE, d MMM yyyy",  Locale.ENGLISH);
+    private static SimpleDateFormat newdate1 = new SimpleDateFormat("yyyy-MM-dd",  Locale.ENGLISH);
+
+    public static void setDate1(TextView dd , String dateString) {
+        try {
+
+            Date date=null;
+            try {
+                //DateFormat df6 = new SimpleDateFormat("E, MMM dd yyyy");
+                SimpleDateFormat df6 = new SimpleDateFormat("E, MMM dd yyyy", Locale.ENGLISH);
+                Date d6 = df6.parse(dateString);
+                System.out.println("Date: " + d6);
+                System.out.println("Date in E, E, MMM dd yyyy HH:mm:ss format is: "+df6.format(d6));
+                dd.setTag(newdate1.format(d6.getTime()));
+                dd.setText(newdate.format(d6.getTime()));
+                //     dd.setText(df6.format(d6.getTime()));
+
+            } catch (Exception e){ e.printStackTrace(); }
+
+
+            System.out.println("check..." + date);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String setDate2(TextView dd , String dateString) {
+        String rdata="";
+        try {
+
+            Date date=null;
+            try {
+                SimpleDateFormat df6 = new SimpleDateFormat("E, MMM dd yyyy",Locale.ENGLISH);
+                Date d6 = df6.parse(dateString);
+                d6 = DateUtil.addDays(d6, 1);
+
+
+
+                System.out.println("Date: " + d6);
+                System.out.println("Date in E, E, MMM dd yyyy HH:mm:ss format is: "+df6.format(d6));
+
+                dd.setTag(newdate1.format(d6.getTime()));
+                dd.setText(newdate.format(d6.getTime()));
+                rdata=df6.format(d6);
+                return rdata;
+            } catch (Exception e){ e.printStackTrace(); }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rdata;
+    }
+
+    public static void setDate(TextView date) {
+        date.setTag(newdate1.format(getNextDate().getTime()));
+        date.setText(newdate.format(getNextDate().getTime()));
+    }
+
+    private static Date getNextDate() {
+        Calendar calendar = Calendar.getInstance();
+        //calendar.add(Calendar.DAY_OF_YEAR, 1);
+        calendar.add(Calendar.DAY_OF_YEAR, 0);
+        //    Log.d("date....",String.valueOf(calendar.getTime()));
+        return calendar.getTime();
+    }
+
+    public static void getDate (Context con, final TextView text,String dateString) {
+        // List<String> locale = Locale.ENGLISH;
+        String[] dateYear = text.getText().toString().split(",")[1].trim().trim().split(" ");
+
+        int toyear = Integer.parseInt(dateYear[2].trim());
+        int tomonth = getMonthByCode(dateYear[1].trim());
+        int today = Integer.parseInt(dateYear[0].trim());
+        Calendar newDate = Calendar.getInstance();
+
+        Locale locale = Locale.ENGLISH;
+        Locale.setDefault(locale);
+        Configuration configuration = con.getResources().getConfiguration();
+        configuration.setLocale(locale);
+        configuration.setLayoutDirection(locale);
+        con.createConfigurationContext(configuration);
+
+        final DatePickerDialog fromDatePickerDialog = new DatePickerDialog(con, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String dateOfBirth1 = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+
+                newDate.set(year, monthOfYear, dayOfMonth);
+
+                text.setTag(newdate1.format(newDate.getTime()));
+                text.setText(newdate.format(newDate.getTime()));
+
+            }
+        },toyear, tomonth, today);
+
+        fromDatePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", fromDatePickerDialog);
+        fromDatePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", fromDatePickerDialog);
+        SimpleDateFormat df6 = new SimpleDateFormat("E, MMM dd yyyy",Locale.ENGLISH);
+
+        Date d6 = null;
+        try {
+            d6 = df6.parse(dateString);
+            fromDatePickerDialog.getDatePicker().setMinDate(d6.getTime());
+            fromDatePickerDialog.show();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static int getMonthByCode(String month) {
+        if (month.equalsIgnoreCase(months[0])) {
+            return 0;
+        } else if (month.equalsIgnoreCase(months[1])) {
+            return 1;
+        } else if (month.equalsIgnoreCase(months[2])) {
+            return 2;
+        } else if (month.equalsIgnoreCase(months[3])) {
+            return 3;
+        } else if (month.equalsIgnoreCase(months[4])) {
+            return 4;
+        } else if (month.equalsIgnoreCase(months[5])) {
+            return 5;
+        } else if (month.equalsIgnoreCase(months[6])) {
+            return 6;
+        } else if (month.equalsIgnoreCase(months[7])) {
+            return 7;
+        } else if (month.equalsIgnoreCase(months[8])) {
+            return 8;
+        } else if (month.equalsIgnoreCase(months[9])) {
+            return 9;
+        } else if (month.equalsIgnoreCase(months[10])) {
+            return 10;
+        } else if (month.equalsIgnoreCase(months[11])) {
+            return 11;
+        } else {
+            return -1;
+        }
     }
 }

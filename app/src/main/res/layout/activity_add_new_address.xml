@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -92,6 +93,7 @@
                             android:textSize="@dimen/fontSizeMedium" />
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin16"
@@ -171,7 +173,7 @@
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="@dimen/margin16"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
@@ -179,7 +181,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/goMap_btn"
                             app:layout_constraintVertical_bias="0.0">
 
-                            <!--<com.mapbox.mapboxsdk.maps.MapView
+                            <com.mapbox.mapboxsdk.maps.MapView
                             android:id="@+id/map_view_add"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -189,7 +191,7 @@
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0" />-->
+                            app:layout_constraintVertical_bias="0.0" />
 
                             <ProgressBar
                                 android:visibility="gone"
