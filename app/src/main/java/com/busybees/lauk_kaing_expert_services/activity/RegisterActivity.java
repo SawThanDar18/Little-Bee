@@ -3,7 +3,6 @@ package com.busybees.lauk_kaing_expert_services.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,8 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.busybees.data.models.RegisterModel;
-import com.busybees.data.vos.Users.RegisterObj;
+import com.busybees.lauk_kaing_expert_services.data.models.RegisterModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RegisterObj;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;

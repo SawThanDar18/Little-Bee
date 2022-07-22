@@ -3,7 +3,6 @@ package com.busybees.lauk_kaing_expert_services.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -13,9 +12,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Base64;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,12 +28,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.busybees.data.models.PickerModel;
-import com.busybees.data.models.ProfileUpdateModel;
-import com.busybees.data.vos.Users.ProfileUpdateObj;
-import com.busybees.data.vos.Users.UserVO;
-import com.busybees.lauk_kaing_expert_services.Dialog.DialogImagePicker;
+import com.busybees.lauk_kaing_expert_services.data.models.PickerModel;
+import com.busybees.lauk_kaing_expert_services.data.models.ProfileUpdateModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileUpdateObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
@@ -108,8 +112,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (url != null && !url.isEmpty() && !url.equals("null")) {
 
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.placeholder(R.drawable.loader_circle_shape);
+            requestOptions.error(R.drawable.loader_circle_shape);
+
             Glide.with(this)
                     .load(url)
+                    .apply(requestOptions)
                     .listener(new RequestListener<Drawable>() {
 
                         @Override
@@ -138,55 +147,48 @@ public class ProfileActivity extends AppCompatActivity {
     private void onClick() {
         back.setOnClickListener(v -> finish());
 
-        profile.setOnClickListener(v -> {
-            showPictureViewDialog();
-        });
+        profile.setOnClickListener(v -> showPictureViewDialog());
 
-        editIcon.setOnClickListener( v -> {
-            Dexter.withActivity(ProfileActivity.this)
-                    .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .withListener(new MultiplePermissionsListener() {
-                        @Override
-                        public void onPermissionsChecked(MultiplePermissionsReport report) {
-                            if (report.areAllPermissionsGranted()) {
-                                showImagePickerOptions();
-                            }
-
-                            if (report.isAnyPermissionPermanentlyDenied()) {
-                                showSettingsDialog();
-                            }
+        editIcon.setOnClickListener( v -> Dexter.withActivity(ProfileActivity.this)
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            showImagePickerOptions();
                         }
 
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                            token.continuePermissionRequest();
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            showSettingsDialog();
                         }
-                    }).check();
-        });
+                    }
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check());
 
-                String phone = phoneNumber.getText().toString().trim();
-                String name = userName.getText().toString().trim();
+        update.setOnClickListener(v -> {
 
-                if(phone.isEmpty()) {
-                    Utility.showToast(getApplicationContext(), getString(R.string.phone_blank));
+            String phone = phoneNumber.getText().toString().trim();
+            String name = userName.getText().toString().trim();
 
-                } else if(name.isEmpty()) {
-                    Utility.showToast(getApplicationContext(), getString(R.string.name_blank));
+            if(phone.isEmpty()) {
+                Utility.showToast(getApplicationContext(), getString(R.string.phone_blank));
 
-                } else {
+            } else if(name.isEmpty()) {
+                Utility.showToast(getApplicationContext(), getString(R.string.name_blank));
 
-                    ProfileUpdateObj updateObj=new ProfileUpdateObj();
-                    updateObj.setPhone(phone);
-                    updateObj.setUsername(name);
-                    updateObj.setEmail(userEmail.getText().toString());
+            } else {
 
-                    CallProfileUpdate(updateObj);
+                ProfileUpdateObj updateObj=new ProfileUpdateObj();
+                updateObj.setPhone(phone);
+                updateObj.setUsername(name);
+                updateObj.setEmail(userEmail.getText().toString());
 
-                }
+                CallProfileUpdate(updateObj);
+
             }
         });
     }
@@ -212,18 +214,47 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showImagePickerOptions() {
-        DialogImagePicker imagePicker=new DialogImagePicker();
-        imagePicker.show(getSupportFragmentManager(),"");
+
+        LayoutInflater factory = LayoutInflater.from(getApplicationContext());
+        final View imagePickerDialogView = factory.inflate(R.layout.dialog_edit_profile_image, null);
+        final androidx.appcompat.app.AlertDialog imagePicker = new androidx.appcompat.app.AlertDialog.Builder(ProfileActivity.this).create();
+        imagePicker.setView(imagePickerDialogView);
+
+        imagePicker.setCancelable(true);
+        imagePicker.setCanceledOnTouchOutside(false);
+
+        LinearLayout camera = imagePickerDialogView.findViewById(R.id.camera);
+        LinearLayout gallery = imagePickerDialogView.findViewById(R.id.gallery);
+
+        camera.setOnClickListener(v -> {
+            launchCameraIntent();
+            imagePicker.dismiss();
+        });
+
+        gallery.setOnClickListener(v -> {
+            launchGalleryIntent();
+            imagePicker.dismiss();
+        });
+
+        imagePicker.show();
+
     }
 
-    private void showPictureViewDialog(){
+    private void showPictureViewDialog() {
 
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this,R.style.DialogTheme);
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this, R.style.DialogTheme);
         pictureDialog.setTitle(this.getResources().getString(R.string.edit_image_dialog_title));
 
-        String[] pictureDialogItems = {
-                this.getResources().getString(R.string.edit_photo),
-                this.getResources().getString(R.string.viewphoto)};
+        String[] pictureDialogItems;
+
+        if (userObj.getImage() != null) {
+            pictureDialogItems = new String[] {
+                    this.getResources().getString(R.string.edit_photo),
+                    this.getResources().getString(R.string.viewphoto)};
+        } else {
+            pictureDialogItems = new String[] {
+                    this.getResources().getString(R.string.edit_photo)};
+        }
 
         pictureDialog.setItems(pictureDialogItems,
                 (dialog, which) -> {
@@ -264,13 +295,16 @@ public class ProfileActivity extends AppCompatActivity {
                     }).check();
         }
     }
+
     private  void seeProfile(){
 
-        if (userObj!=null){
+        if (userObj.getImage() != null){
             String url = userObj.getImage();
-            /*Intent intent=new Intent(ProfileActivity.this, ImageViewActivity.class);
-            intent.putExtra("image_url",url);
-            startActivity(intent);*/
+            Intent intent=new Intent(ProfileActivity.this, ImageViewActivity.class);
+            intent.putExtra("image_url", url);
+            startActivity(intent);
+        } else {
+
         }
 
     }
@@ -356,18 +390,48 @@ public class ProfileActivity extends AppCompatActivity {
         byte[] byteArray = byteArrayOutputStream.toByteArray();
 
         String convertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        ProfileImageObj profileImageObj=new ProfileImageObj();
+        profileImageObj.setImage(convertImage);
+        profileImageObj.setPhone(userObj.getPhone());
+        CallSaveImage(profileImageObj);
 
-        uploadImage = convertImage;
+    }
 
-        if (uploadImage != null) {
-            editIcon.setVisibility(View.VISIBLE);
-            userObj.setImage(uploadImage);
+    public void CallSaveImage(ProfileImageObj profileImageObj) {
+        if (Utility.isOnline(this)){
 
-            //Utility.Save_UserProfile(ProfileActivity.this, userObj);
+            editIcon.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
 
-            loadProfile(uri.toString());
+            networkServiceProvider.ProfileImageCall(ApiConstants.BASE_URL + ApiConstants.GET_SAVE_USER_IMAGE, profileImageObj).enqueue(new Callback<ProfileImageModel>() {
+                @Override
+                public void onResponse(Call<ProfileImageModel> call, Response<ProfileImageModel> response) {
+
+                    if (response.body().getError()==false){
+                        progressBar.setVisibility(View.GONE);
+                        editIcon.setVisibility(View.VISIBLE);
+
+                        Utility.Save_UserProfile(ProfileActivity.this,response.body().getData());
+
+                        Utility.showToast(ProfileActivity.this,response.body().getMessage());
+
+                        loadProfile(uri.toString());
+                    }else {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(ProfileActivity.this,response.body().getMessage());
+                    }
+
+                }
+                @Override
+                public void onFailure(Call<ProfileImageModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    editIcon.setVisibility(View.VISIBLE);
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+        }else {
+            Utility.showToast(ProfileActivity.this, getString(R.string.no_internet));
         }
-
     }
 
     @Subscribe

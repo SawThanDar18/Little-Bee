@@ -1,30 +1,23 @@
 package com.busybees.lauk_kaing_expert_services.adapters.Products;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.busybees.data.vos.ServiceDetail.ProductPriceVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.URLImageParser;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

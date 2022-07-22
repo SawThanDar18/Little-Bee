@@ -1,6 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.network.sync;
 
-import com.busybees.data.models.GetAllHomeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

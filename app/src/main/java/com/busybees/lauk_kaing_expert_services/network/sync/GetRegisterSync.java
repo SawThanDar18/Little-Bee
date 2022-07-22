@@ -1,7 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.network.sync;
 
-import com.busybees.data.models.RegisterModel;
-import com.busybees.data.vos.Users.RegisterObj;
+import com.busybees.lauk_kaing_expert_services.data.models.RegisterModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RegisterObj;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

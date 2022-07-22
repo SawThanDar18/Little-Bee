@@ -81,6 +81,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_fullscreen.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_fullscreen2.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_image_picker.xml" value="0.1" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_imageview.xml" value="0.14550509731232622" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_log_in.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_map_box.xml" value="0.142792384406165" />
@@ -144,10 +145,12 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/subproduct_item_view_adapter.xml" value="0.1414324569356301" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/symn_adapter_itemview.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/tool_bar_layout.xml" value="0.1414324569356301" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/view_image_tool_bar_layout.xml" value="0.142792384406165" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/menu/navigation.xml" value="0.14749893116716545" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/menu/popup_camera_gallery.xml" value="0.14749893116716545" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.133" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.133" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/xml/provider_paths.xml" value="0.1" />
       </map>
     </option>
   </component>

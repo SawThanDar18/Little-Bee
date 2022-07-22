@@ -1,14 +1,24 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
+import static com.busybees.lauk_kaing_expert_services.activity.ProfileActivity.REQUEST_IMAGE;
+
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +29,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.busybees.EventBusModel.EventBusProfile;
-import com.busybees.data.models.GetUserProfileModel;
-import com.busybees.data.vos.Users.GetUserProfileObject;
-import com.busybees.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogLogout;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -36,9 +46,16 @@ import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusProfile;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +73,7 @@ public class MyFragment extends Fragment {
 
     private UserVO userVO = new UserVO();
     private String profileUrl;
+    Uri uri = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +99,6 @@ public class MyFragment extends Fragment {
         userProfileView();
 
         /*if (userVO != null) {
-            Log.d("name>>>", userVO.getUsername());
             GetUserProfileObject userProfileObject = new GetUserProfileObject();
             userProfileObject.setPhone(userVO.getPhone());
             CallUserProfile(userProfileObject);
@@ -113,7 +130,10 @@ public class MyFragment extends Fragment {
 
         userVO = Utility.query_UserProfile(getActivity());
 
-        userProfileView();
+        if (profileUrl != null) {
+            userProfileView();
+        }
+
 
     }
 
@@ -152,6 +172,38 @@ public class MyFragment extends Fragment {
 
                         userPhone.setText(response.body().getData().getPhone());
                         userName.setText(response.body().getData().getUsername());
+
+                        RequestOptions requestOptions = new RequestOptions();
+                        requestOptions.placeholder(R.drawable.loader_circle_shape);
+                        requestOptions.error(R.drawable.loader_circle_shape);
+
+                        profileUrl = response.body().getData().getImage();
+
+                        if (profileUrl != null && !profileUrl.isEmpty() && !profileUrl.equals("null")) {
+
+                            Glide.with(getContext())
+                                    .load(profileUrl)
+                                    .apply(requestOptions)
+                                    .listener(new RequestListener<Drawable>() {
+
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            return false;
+                                        }
+                                    }).into(profile);
+                        }else{
+
+                            Glide.with(getContext())
+                                    .load(R.drawable.profile_default_image)
+                                    .apply(requestOptions)
+                                    .into(profile);
+
+                        }
                     }
                 }
 
@@ -175,9 +227,8 @@ public class MyFragment extends Fragment {
             profileEditImageView.setVisibility(View.VISIBLE);
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.error(R.drawable.profile_default_image);
-            requestOptions.optionalCircleCrop();
-            requestOptions .diskCacheStrategy(DiskCacheStrategy.ALL);
+            requestOptions.placeholder(R.drawable.loader_circle_shape);
+            requestOptions.error(R.drawable.loader_circle_shape);
 
             profileUrl = userVO.getImage();
 

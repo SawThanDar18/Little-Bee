@@ -1,8 +1,11 @@
 package com.busybees.lauk_kaing_expert_services.adapters.Home;
 
 import android.content.Context;
+<<<<<<< HEAD
 import android.graphics.Paint;
 import android.net.Uri;
+=======
+>>>>>>> api/edit_user_profile_image
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.busybees.data.vos.Home.PopularServicesVO;
-import com.busybees.data.vos.Home.ServiceAvailableVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
 import java.text.NumberFormat;
 import java.util.List;
