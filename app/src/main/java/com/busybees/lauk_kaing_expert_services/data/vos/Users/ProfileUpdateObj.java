@@ -17,13 +17,6 @@ public class ProfileUpdateObj {
     @Expose
     private String email;
 
-<<<<<<< HEAD
-=======
-    /*@SerializedName("image")
-    @Expose
-    private String image;*/
-
->>>>>>> api/edit_user_profile_image
     public String getPhone() {
         return phone;
     }

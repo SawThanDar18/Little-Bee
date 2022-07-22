@@ -1,11 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.adapters.Home;
 
 import android.content.Context;
-<<<<<<< HEAD
-import android.graphics.Paint;
-import android.net.Uri;
-=======
->>>>>>> api/edit_user_profile_image
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

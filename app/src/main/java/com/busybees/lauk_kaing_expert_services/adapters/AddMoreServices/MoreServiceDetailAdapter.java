@@ -12,9 +12,9 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.busybees.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.URLImageParser;

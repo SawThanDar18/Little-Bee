@@ -2,35 +2,19 @@ package com.busybees.lauk_kaing_expert_services.network;
 
 import android.content.Context;
 
-<<<<<<< HEAD
-import com.busybees.data.models.AddAddressModel;
-import com.busybees.data.models.AddressModel;
-import com.busybees.data.models.GetAddressModel;
-import com.busybees.data.models.GetAllHomeModel;
-import com.busybees.data.models.GetDateTimeModel;
-import com.busybees.data.models.GetProductPriceModel;
-import com.busybees.data.models.GetUserProfileModel;
-import com.busybees.data.models.LoginModel;
-import com.busybees.data.models.ProfileUpdateModel;
-import com.busybees.data.models.RegisterModel;
-import com.busybees.data.models.ResendOtpModel;
-import com.busybees.data.models.VerifyModel;
-import com.busybees.data.vos.Address.AddAddresssObject;
-import com.busybees.data.vos.Address.DeleteAddressObject;
-import com.busybees.data.vos.Address.EditAddressObject;
-import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
-import com.busybees.data.vos.Users.GetUserProfileObject;
-import com.busybees.data.vos.Users.LoginObject;
-import com.busybees.data.vos.Users.ProfileUpdateObj;
-import com.busybees.data.vos.Users.RegisterObj;
-import com.busybees.data.vos.Users.RequestPhoneObject;
-import com.busybees.data.vos.Users.ResendOTPObject;
-import com.busybees.data.vos.Users.VerifyObject;
+import com.busybees.lauk_kaing_expert_services.data.models.AddAddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetAddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddAddressSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.DeleteAddressSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.EditAddressSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAddressSync;
-=======
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
@@ -42,13 +26,11 @@ import com.busybees.lauk_kaing_expert_services.data.models.VerifyModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.LoginObject;
-import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageModel;
-import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
+import com.busybees.lauk_kaing_expert_services.data.models.ProfileImageModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileUpdateObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RegisterObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ResendOTPObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.VerifyObject;
->>>>>>> api/edit_user_profile_image
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetDateTimeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
@@ -70,64 +52,68 @@ public class NetworkServiceProvider {
 
     public NetworkServiceProvider(Context context) {
         this.context = context;
-        RetrofitFactory factory=new RetrofitFactory();
+        RetrofitFactory factory = new RetrofitFactory();
         retrofit = factory.connector();
     }
 
-    public Call<GetAllHomeModel> GetHomeCall (String url) {
+    public Call<GetAllHomeModel> GetHomeCall(String url) {
         GetAllHomeSync sync = retrofit.create(GetAllHomeSync.class);
         return sync.getAllHome(url);
     }
 
-    public Call<GetProductPriceModel> GetProductPriceCall (String url, ProductsCarryObject productsCarryObject) {
+    public Call<GetProductPriceModel> GetProductPriceCall(String url, ProductsCarryObject productsCarryObject) {
         GetProductPriceSync sync = retrofit.create(GetProductPriceSync.class);
         return sync.getProductPrice(url, productsCarryObject);
     }
 
-    public Call<RegisterModel> RegisterCall (String url, RegisterObj registerObj) {
-        GetRegisterSync sync=retrofit.create(GetRegisterSync.class);
-        return sync.getRegister(url,registerObj);
+    public Call<RegisterModel> RegisterCall(String url, RegisterObj registerObj) {
+        GetRegisterSync sync = retrofit.create(GetRegisterSync.class);
+        return sync.getRegister(url, registerObj);
     }
 
-    public Call<LoginModel> LoginCall (String url, LoginObject loginObj) {
-        GetLoginSync sync=retrofit.create(GetLoginSync.class);
+    public Call<LoginModel> LoginCall(String url, LoginObject loginObj) {
+        GetLoginSync sync = retrofit.create(GetLoginSync.class);
         return sync.getLogin(url, loginObj);
     }
 
-    public Call<VerifyModel> VerifyCall (String url, VerifyObject verifyObj) {
-        GetVerifySync sync=retrofit.create(GetVerifySync.class);
+    public Call<VerifyModel> VerifyCall(String url, VerifyObject verifyObj) {
+        GetVerifySync sync = retrofit.create(GetVerifySync.class);
         return sync.getVerify(url, verifyObj);
     }
 
-    public Call<ResendOtpModel> ResendOtpCall (String url, ResendOTPObject resendOTPObject) {
-        GetResendOtpSync sync=retrofit.create(GetResendOtpSync.class);
+    public Call<ResendOtpModel> ResendOtpCall(String url, ResendOTPObject resendOTPObject) {
+        GetResendOtpSync sync = retrofit.create(GetResendOtpSync.class);
         return sync.getResendOtp(url, resendOTPObject);
     }
 
-    public Call<ProfileUpdateModel> ProfileUpdateCall (String url, ProfileUpdateObj updateObj) {
-        GetProfileUpdateSync sync=retrofit.create(GetProfileUpdateSync.class);
+    public Call<ProfileUpdateModel> ProfileUpdateCall(String url, ProfileUpdateObj updateObj) {
+        GetProfileUpdateSync sync = retrofit.create(GetProfileUpdateSync.class);
         return sync.getProfileUpdate(url, updateObj);
     }
 
-    public Call<GetUserProfileModel> UserProfileCall (String url, GetUserProfileObject getUserProfileObject) {
-        GetUserProfileSync sync=retrofit.create(GetUserProfileSync.class);
+    public Call<GetUserProfileModel> UserProfileCall(String url, GetUserProfileObject getUserProfileObject) {
+        GetUserProfileSync sync = retrofit.create(GetUserProfileSync.class);
         return sync.getUserProfile(url, getUserProfileObject);
     }
 
-<<<<<<< HEAD
+    public Call<ProfileImageModel> ProfileImageCall(String url, ProfileImageObj profileImageObj) {
+        GetProfileImageSync sync = retrofit.create(GetProfileImageSync.class);
+        return sync.getProfileImage(url, profileImageObj);
+    }
+
     public Call<GetDateTimeModel> DateTimeCall(String url) {
-        GetDateTimeSync sync=retrofit.create(GetDateTimeSync.class);
+        GetDateTimeSync sync = retrofit.create(GetDateTimeSync.class);
         return sync.getGetTime(url);
     }
 
-    public Call<GetAddressModel> GetAddressCall (String url, RequestPhoneObject phoneObj) {
+    public Call<GetAddressModel> GetAddressCall(String url, RequestPhoneObject phoneObj) {
         GetAddressSync sync = retrofit.create(GetAddressSync.class);
         return sync.getAddress(url, phoneObj);
     }
 
     public Call<AddAddressModel> AddAddressCall(String url, AddAddresssObject addressObj) {
-        AddAddressSync sync=retrofit.create(AddAddressSync.class);
-        return sync.getAddAddress(url,addressObj);
+        AddAddressSync sync = retrofit.create(AddAddressSync.class);
+        return sync.getAddAddress(url, addressObj);
     }
 
     public Call<AddressModel> DeleteAddressCall(String url, DeleteAddressObject deleteAddressObject) {
@@ -135,14 +121,9 @@ public class NetworkServiceProvider {
         return sync.getDeleteAddress(url, deleteAddressObject);
     }
 
-    public Call<AddressModel> EditAddressCall (String url, EditAddressObject editAddressObject) {
-        EditAddressSync sync=retrofit.create(EditAddressSync.class);
+    public Call<AddressModel> EditAddressCall(String url, EditAddressObject editAddressObject) {
+        EditAddressSync sync = retrofit.create(EditAddressSync.class);
         return sync.getEditAddress(url, editAddressObject);
-=======
-    public Call<ProfileImageModel> ProfileImageCall (String url, ProfileImageObj profileImageObj) {
-        GetProfileImageSync sync=retrofit.create(GetProfileImageSync.class);
-        return sync.getProfileImage(url, profileImageObj);
->>>>>>> api/edit_user_profile_image
     }
 
 }

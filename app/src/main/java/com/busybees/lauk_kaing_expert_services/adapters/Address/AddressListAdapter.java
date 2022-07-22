@@ -11,12 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.busybees.data.models.GetAddressModel;
-import com.busybees.data.vos.Address.AddressVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.AddressActivity;
+import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddressVO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.MyViewHolder> {

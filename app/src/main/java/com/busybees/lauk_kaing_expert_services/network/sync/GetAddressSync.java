@@ -1,7 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.network.sync;
 
-import com.busybees.data.models.GetAddressModel;
-import com.busybees.data.vos.Users.RequestPhoneObject;
+import com.busybees.lauk_kaing_expert_services.data.models.GetAddressModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

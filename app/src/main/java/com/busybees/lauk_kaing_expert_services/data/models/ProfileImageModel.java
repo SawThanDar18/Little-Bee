@@ -1,12 +1,10 @@
-package com.busybees.data.models;
+package com.busybees.lauk_kaing_expert_services.data.models;
 
-import com.busybees.data.vos.Address.AddressVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class AddAddressModel {
+public class ProfileImageModel {
 
     @SerializedName("error")
     @Expose
@@ -18,7 +16,7 @@ public class AddAddressModel {
 
     @SerializedName("data")
     @Expose
-    private List<Object> data;
+    private UserVO data;
 
     public Boolean getError() {
         return error;
@@ -36,11 +34,11 @@ public class AddAddressModel {
         this.message = message;
     }
 
-    public List<Object> getResult() {
+    public UserVO getData() {
         return data;
     }
 
-    public void setResult(List<Object> result) {
-        this.data = result;
+    public void setData(UserVO data) {
+        this.data = data;
     }
 }

@@ -16,13 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.busybees.data.models.GetProductPriceModel;
-import com.busybees.data.vos.Home.ServiceAvailableVO;
-import com.busybees.data.vos.Home.request_object.ProductsCarryObject;
-import com.busybees.data.vos.ServiceDetail.ProductPriceVO;
-import com.busybees.data.vos.ServiceDetail.ProductsVO;
-import com.busybees.data.vos.ServiceDetail.SubProductsVO;
-import com.busybees.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
@@ -31,6 +24,13 @@ import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.MoreServ
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.ServicesTitleAndIconAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.ExpandableListViewAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductPriceVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
