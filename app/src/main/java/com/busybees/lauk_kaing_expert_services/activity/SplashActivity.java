@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,17 +69,31 @@ public class SplashActivity extends AppCompatActivity {
         }, 0, 1000);
 
         handler.postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            if (AppStorePreferences.getInt(SplashActivity.this, AppENUM.LNG_CON) == 1) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent=new Intent(SplashActivity.this, ChooseLanguageActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }, 5000);
     }
 
     private void onClick() {
         skipLayout.setOnClickListener(view -> {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            handler.removeCallbacksAndMessages(null);
-            finish();
+            if (AppStorePreferences.getInt(SplashActivity.this, AppENUM.LNG_CON) == 1) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                handler.removeCallbacksAndMessages(null);
+                finish();
+            } else {
+                Intent intent=new Intent(SplashActivity.this, ChooseLanguageActivity.class);
+                startActivity(intent);
+                handler.removeCallbacksAndMessages(null);
+                finish();
+            }
         });
     }
 

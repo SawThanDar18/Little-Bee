@@ -21,6 +21,8 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 
 import java.util.List;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyViewHolder> {
 
     Context context;
@@ -56,10 +58,15 @@ public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyVi
 
         holder.serviceName.setText(serviceAvailableVO.getName());
 
-        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-            Utility.addFontSuHome(holder.serviceName, serviceAvailableVO.getNameMm());
-        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-            Utility.changeFontZg2UniHome(holder.serviceName, serviceAvailableVO.getNameMm());
+        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+            if (MDetect.INSTANCE.isUnicode()) {
+
+                Utility.addFontSuHome(holder.serviceName, serviceAvailableVO.getNameMm());
+
+            } else {
+
+                Utility.changeFontUni2ZgHome(holder.serviceName, serviceAvailableVO.getNameMm());
+            }
         } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
             holder.serviceName.setText(serviceAvailableVO.getNameCh());
         } else {

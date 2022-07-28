@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -16,9 +15,9 @@ import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
-import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
@@ -37,6 +36,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Locale;
+
+import me.myatminsoe.mdetect.MDetect;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private ConstraintLayout searchToolBar, searchLayout;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         makeStatusBarVisible();
         setContentView(R.layout.activity_main);
 
+        MDetect.INSTANCE.init(this);
+        LanguageChange();
+
         searchToolBar = findViewById(R.id.search_tool_bar);
         searchLayout = findViewById(R.id.search_layout);
         bottomNavigationView = findViewById(R.id.navigation);
@@ -85,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         intiUI();
         onClick();
-
-        LanguageChange();
     }
 
     private void intiUI() {
@@ -257,22 +259,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         int lang_txt = AppStorePreferences.getInt(this, AppENUM.LANG_Txt);
 
-        Locale myLocale = null;
+        Locale myLocale;
 
         if (lang_txt == 1) {
 
-            if (checkLng(getApplicationContext()).equalsIgnoreCase("it")){
+            if (MDetect.INSTANCE.isUnicode()) {
                 myLocale = new Locale("it");
-            } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
+            } else {
                 myLocale = new Locale("fr");
             }
-
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
             Configuration conf = res.getConfiguration();
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
-            updateResources(Locale.ITALY.getLanguage());
 
         } else if (lang_txt == 0){
             myLocale = new Locale("en");
@@ -281,7 +281,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             Configuration conf = res.getConfiguration();
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
-            updateResources(Locale.ENGLISH.getLanguage());
 
         } else if (lang_txt == 2){
             myLocale = new Locale("zh", "CN");
@@ -290,40 +289,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             Configuration conf = res.getConfiguration();
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
-            updateResources(Locale.SIMPLIFIED_CHINESE.getLanguage());
 
         }
-    }
-
-    public  void updateResources(String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-
-        Resources resources = getApplicationContext().getResources();
-
-        Configuration configuration = resources.getConfiguration();
-        configuration.locale = locale;
-
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
-        EventBusChangeLanguage eventBusChangeLanguage = new EventBusChangeLanguage();
-        eventBusChangeLanguage.setLanguage(1);
-        EventBus.getDefault().post(eventBusChangeLanguage);
-
-    }
-
-    public static String checkLng(Context activity){
-        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
-        if(lang == null){
-            lang="en";
-        }
-        return lang;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
         EventBus.getDefault().register(this);
     }
 

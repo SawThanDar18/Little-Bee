@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDetailAdapter.MyViewHolder> implements View.OnClickListener {
 
     private View.OnClickListener onClickListener;
@@ -78,10 +80,15 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
         ProductPriceVO productPriceVO = productPriceVOList.get(position);
 
         if (productPriceVO != null) {
-            if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-                Utility.addFontSuHome(holder.serviceDetailName, productPriceVO.getNameMm());
-            } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-                Utility.changeFontZg2UniHome(holder.serviceDetailName, productPriceVO.getNameMm());
+            if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+                if (MDetect.INSTANCE.isUnicode()) {
+
+                    Utility.addFontSuHome(holder.serviceDetailName, productPriceVO.getNameMm());
+
+                } else {
+
+                    Utility.changeFontUni2ZgHome(holder.serviceDetailName, productPriceVO.getNameMm());
+                }
             } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
                 holder.serviceDetailName.setText(productPriceVO.getNameCh());
             } else {
@@ -121,16 +128,20 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
 
                 holder.serviceDetailDescription.setVisibility(View.VISIBLE);
 
-                if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-                    Utility.addFontSuHome(holder.serviceDetailDescription, productPriceVO.getDescriptionMm());
+                if (checkLng(mContext).equalsIgnoreCase("it") || checkLng(mContext).equalsIgnoreCase("fr")) {
+                    String nameMM = productPriceVO.getDescriptionMm();
+                    if ( MDetect.INSTANCE.isUnicode()){
+                        nameMM = productPriceVO.getDescriptionMm();
+
+                    }
+                    else  {
+                        nameMM=Utility.changeFontUni2ZgString(nameMM);
+                    }
+
                     URLImageParser p = new URLImageParser( holder.serviceDetailDescription, mContext);
-                    Spanned htmlSpan = Html.fromHtml(productPriceVO.getDescriptionMm(), p, new Utility.UlTagHandler());
+                    Spanned htmlSpan = Html.fromHtml(nameMM, p, new Utility.UlTagHandler());
                     holder.serviceDetailDescription.setText (htmlSpan);
-                } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-                    Utility.changeFontZg2UniHome(holder.serviceDetailDescription, productPriceVO.getDescriptionMm());
-                    URLImageParser p = new URLImageParser( holder.serviceDetailDescription, mContext);
-                    Spanned htmlSpan = Html.fromHtml(productPriceVO.getDescriptionMm(), p, new Utility.UlTagHandler());
-                    holder.serviceDetailDescription.setText (htmlSpan);
+
                 } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
                     holder.serviceDetailDescription.setText(productPriceVO.getDescriptionCh());
                     URLImageParser p = new URLImageParser( holder.serviceDetailDescription, mContext);

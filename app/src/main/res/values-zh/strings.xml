@@ -158,7 +158,9 @@
     <string name="gps_enable_yes">使能够</string>
     <string name="gps_enable_no">取消</string>
     <string name="location_alert">订单需要位置。您可以通过单击“转到地图”来选择您的订单位置。</string>
+    <string name="user_location_permission_not_granted">您没有授予位置权限。</string>
 
     <string name="fill_all_detail">请填写所有详细信息。</string>
 
+    <string name="choose_lng">选择语言</string>
 </resources>

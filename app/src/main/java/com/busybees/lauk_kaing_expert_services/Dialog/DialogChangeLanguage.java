@@ -1,5 +1,8 @@
 package com.busybees.lauk_kaing_expert_services.Dialog;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -25,6 +28,8 @@ import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.Locale;
+
+import me.myatminsoe.mdetect.MDetect;
 
 public class DialogChangeLanguage extends DialogFragment {
 
@@ -99,13 +104,15 @@ public class DialogChangeLanguage extends DialogFragment {
                 dismiss();
 
             }else  if (AppStorePreferences.getInt(getContext(), AppENUM.LANG_Txt)==1){
-                /*if (MDetect.INSTANCE.isUnicode()){
+
+                if ( MDetect.INSTANCE.isUnicode()){
                     AppStorePreferences.putString(getActivity(), AppENUM.LANG, Locale.ITALY.getLanguage());
                     updateResources(Locale.ITALY.getLanguage());
                 } else  {
                     AppStorePreferences.putString(getActivity(), AppENUM.LANG, Locale.FRANCE.getLanguage());
                     updateResources(Locale.FRANCE.getLanguage());
-                }*/
+                }
+
                 AppStorePreferences.putString(getActivity(), AppENUM.LANG, Locale.ITALY.getLanguage());
                 updateResources(Locale.ITALY.getLanguage());
                 AppStorePreferences.putInt(getContext(), AppENUM.LNG_CON,1);
@@ -122,6 +129,14 @@ public class DialogChangeLanguage extends DialogFragment {
             }
 
         });
+    }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
     }
 
     public  void updateResources(String language) {

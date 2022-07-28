@@ -24,6 +24,8 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.util.ArrayList;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class ProductActivity extends AppCompatActivity {
 
     private TextView productName;
@@ -98,10 +100,15 @@ public class ProductActivity extends AppCompatActivity {
             productsCarryObject.setProductId(productsVO.getProductId());
             productsCarryObject.setStep(productsVO.getStep());
 
-            if (checkLng(getApplicationContext()).equalsIgnoreCase("it")){
-                Utility.addFontSuHome(productName, productsVO.getNameMm());
-            } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
-                Utility.changeFontZg2UniHome(productName, productsVO.getNameMm());
+            if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
+                if ( MDetect.INSTANCE.isUnicode()){
+
+                    Utility.addFontSuHome(productName, productsVO.getNameMm());
+
+                } else  {
+
+                    Utility.changeFontUni2ZgHome(productName, productsVO.getNameMm());
+                }
             } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
                 productName.setText(productsVO.getNameCh());
             } else {
@@ -134,10 +141,15 @@ public class ProductActivity extends AppCompatActivity {
                     }
                 }
 
-                if (checkLng(getApplicationContext()).equalsIgnoreCase("it")) {
-                    Utility.addFontSuHome(productName, productsVO.getNameMm());
-                } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
-                    Utility.changeFontZg2UniHome(productName, productsVO.getNameMm());
+                if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
+                    if ( MDetect.INSTANCE.isUnicode()){
+
+                        Utility.addFontSuHome(productName, productsVO.getNameMm());
+
+                    } else  {
+
+                        Utility.changeFontUni2ZgHome(productName, productsVO.getNameMm());
+                    }
                 } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
                     productName.setText(productsVO.getNameCh());
                 } else {

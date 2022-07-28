@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:padding="@dimen/padding16"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/logo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin32"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/width100"
+            android:layout_height="@dimen/height100"
+            android:background="@drawable/round_corner_theme_color"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_about_jia_jie" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin10"
+            android:text="JiaJie"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/fontSizeLarge"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lng_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:text="@string/choose_lng"
+            android:textColor="@color/home_service_name_color"
+            android:textSize="@dimen/fontSizeLarge"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/corner_gray_light"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <RadioGroup
+                android:id="@+id/radGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/en_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin6"
+                    android:buttonTint="@color/theme_color"
+                    android:padding="@dimen/padding10"
+                    android:text="@string/english_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/mm_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin6"
+                    android:buttonTint="@color/theme_color"
+                    android:padding="@dimen/padding10"
+                    android:text="@string/myanmar_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/china_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin6"
+                    android:buttonTint="@color/theme_color"
+                    android:padding="@dimen/padding10"
+                    android:text="@string/chinese_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin10"
+        android:background="@drawable/round_corner_theme_color"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textStyle="bold">
+
+    </Button>
+
+</RelativeLayout>
+

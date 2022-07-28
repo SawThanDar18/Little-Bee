@@ -24,6 +24,8 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     private Context context;
@@ -60,10 +62,15 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         ImageView subProductImage = convertView.findViewById(R.id.productIcon);
         TextView subProductName = convertView.findViewById(R.id.productName);
 
-        if (checkLng(context).equalsIgnoreCase("it")){
-            Utility.addFontSuHome(subProductName, listChild.getNameMm());
-        } else if (checkLng(context).equalsIgnoreCase("fr")) {
-            Utility.changeFontZg2UniHome(subProductName, listChild.getNameMm());
+        if (checkLng(context).equalsIgnoreCase("it") || checkLng(context).equalsIgnoreCase("fr")) {
+            if (MDetect.INSTANCE.isUnicode()) {
+
+                Utility.addFontSuHome(subProductName, listChild.getNameMm());
+
+            } else {
+
+                Utility.changeFontUni2ZgHome(subProductName, listChild.getNameMm());
+            }
         } else if (checkLng(context).equalsIgnoreCase("zh")) {
             subProductName.setText(listChild.getNameCh());
         } else {
@@ -115,10 +122,15 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         ImageView productImage = convertView.findViewById(R.id.productIcon);
         TextView productName = convertView.findViewById(R.id.productName);
 
-        if (checkLng(context).equalsIgnoreCase("it")){
-            Utility.addFontSuHome(productName, groupList.getNameMm());
-        } else if (checkLng(context).equalsIgnoreCase("fr")) {
-            Utility.changeFontZg2UniHome(productName, groupList.getNameMm());
+        if (checkLng(context).equalsIgnoreCase("it") || checkLng(context).equalsIgnoreCase("fr")) {
+            if (MDetect.INSTANCE.isUnicode()) {
+
+                Utility.addFontSuHome(productName, groupList.getNameMm());
+
+            } else {
+
+                Utility.changeFontUni2ZgHome(productName, groupList.getNameMm());
+            }
         } else if (checkLng(context).equalsIgnoreCase("zh")) {
             productName.setText(groupList.getNameCh());
         } else {

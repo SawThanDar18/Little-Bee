@@ -22,6 +22,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class SymnAdapter extends RecyclerView.Adapter<SymnAdapter.MyViewHolder> {
 
     Context context;
@@ -58,10 +60,15 @@ public class SymnAdapter extends RecyclerView.Adapter<SymnAdapter.MyViewHolder> 
 
         holder.serviceName.setText(serviceNeedVO.getName());
 
-        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-            Utility.addFontSuHome(holder.serviceName, serviceNeedVO.getNameMm());
-        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-            Utility.changeFontZg2UniHome(holder.serviceName, serviceNeedVO.getNameMm());
+        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+            if (MDetect.INSTANCE.isUnicode()) {
+
+                Utility.addFontSuHome(holder.serviceName, serviceNeedVO.getNameMm());
+
+            } else {
+
+                Utility.changeFontUni2ZgHome(holder.serviceName, serviceNeedVO.getNameMm());
+            }
         } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
             holder.serviceName.setText(serviceNeedVO.getNameCh());
         } else {

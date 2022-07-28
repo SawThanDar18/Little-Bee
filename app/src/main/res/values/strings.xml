@@ -162,4 +162,6 @@
 
     <string name="fill_all_detail">Please fill all detail.</string>
 
+    <string name="choose_lng">Select Language</string>
+
 </resources>

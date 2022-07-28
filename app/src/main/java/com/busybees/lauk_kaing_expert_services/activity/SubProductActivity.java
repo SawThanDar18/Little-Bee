@@ -24,6 +24,8 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.util.ArrayList;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class SubProductActivity extends AppCompatActivity {
 
     private TextView subProductName, subProduct_Name;
@@ -88,10 +90,15 @@ public class SubProductActivity extends AppCompatActivity {
                         productsCarryObject.setSubProductId(subProductsVOArrayList.get(position).getSubProductId());
                         productsCarryObject.setStep(subProductsVOArrayList.get(position).getStep());
 
-                        if (checkLng(getApplicationContext()).equalsIgnoreCase("it")){
-                            Utility.addFontSuHome(subProduct_Name, subProductsVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
-                            Utility.changeFontZg2UniHome(subProduct_Name, subProductsVOArrayList.get(position).getNameMm());
+                        if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
+                            if ( MDetect.INSTANCE.isUnicode()){
+
+                                Utility.addFontSuHome(subProduct_Name, subProductsVOArrayList.get(position).getNameMm());
+
+                            } else  {
+
+                                Utility.changeFontUni2ZgHome(subProduct_Name, subProductsVOArrayList.get(position).getNameMm());
+                            }
                         } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
                             subProduct_Name.setText(subProductsVOArrayList.get(position).getNameCh());
                         } else {

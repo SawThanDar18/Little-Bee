@@ -12,6 +12,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/change_language.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/check_box_selector.xml" value="0.1" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/circle_with_pink_accent_border.xml" value="0.1025" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/corner_gray_light.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/corner_grey_stroke.xml" value="0.1" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/dialog_corner.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/expandable_indicator.xml" value="0.1025" />
@@ -76,6 +77,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_add_new_address.xml" value="0.1414324569356301" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_address.xml" value="0.22" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_change_language.xml" value="0.1414324569356301" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_choose_language.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_edit_address.xml" value="0.1414324569356301" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_final_order.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_fullscreen.xml" value="0.14130434782608695" />

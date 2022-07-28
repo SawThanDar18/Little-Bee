@@ -53,7 +53,7 @@
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ChangeLanguageActivity"
+        <activity android:name=".activity.ChooseLanguageActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.AddressActivity"
             android:screenOrientation="portrait"/>

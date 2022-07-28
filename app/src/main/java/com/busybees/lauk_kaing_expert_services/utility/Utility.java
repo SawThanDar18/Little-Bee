@@ -30,6 +30,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import me.myatminsoe.mdetect.Rabbit;
+
 public class Utility {
 
     public static boolean isOnline(Context ctx) {
@@ -59,13 +61,34 @@ public class Utility {
         return (int) (dp * scale + 0.5F);
     }
 
-    public static void changeFontZg2UniHome(TextView v, String changeFontString){
+    public static void changeFontUni2Zg(TextView v, String chagneFontString){
+        v.setText(Rabbit.uni2zg(chagneFontString));
+
+    }
+
+    public static void addFontSu(TextView v, String chagneFontString){
+        v.setText(chagneFontString);
+
+    }
+
+    public static void changeFontUni2ZgHome(TextView v, String changeFontString){
+
+        v.setText(Rabbit.uni2zg(changeFontString));
+
+    }
+
+    public static String changeFontUni2ZgString(String chagneFontString) {
+        return Rabbit.uni2zg(chagneFontString);
+
+    }
+
+    /*public static void changeFontZg2UniHome(TextView v, String changeFontString){
 
         TransliterateZ2U z2U = new TransliterateZ2U("Zawgyi to Unicode");
         String output = z2U.convert(changeFontString);
         v.setText(output);
 
-    }
+    }*/
 
     public static void addFontSuHome(TextView v, String changeFontString){
         String s = changeFontString;

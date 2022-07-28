@@ -50,6 +50,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.myatminsoe.mdetect.MDetect;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -159,10 +160,15 @@ public class HomeFragment extends Fragment {
                         productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
                         productsCarryObject.setStep(serviceAvailableVOArrayList.get(position).getStep());
 
-                        if (checkLng(getActivity()).equalsIgnoreCase("it")) {
-                            Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                        } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                            Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                        if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                            if ( MDetect.INSTANCE.isUnicode()){
+
+                                Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+
+                            } else  {
+
+                                Utility.changeFontUni2ZgHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            }
                         } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                             productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
                         } else {
@@ -197,10 +203,15 @@ public class HomeFragment extends Fragment {
                                 }
                             }
 
-                            if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                                Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                            } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                                Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                                if ( MDetect.INSTANCE.isUnicode()){
+
+                                    Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+
+                                } else  {
+
+                                    Utility.changeFontUni2ZgHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                                }
                             } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                                 productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
                             } else {
@@ -240,10 +251,15 @@ public class HomeFragment extends Fragment {
                                 }
                             }
 
-                            if (checkLng(getActivity()).equalsIgnoreCase("it")){
-                                Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
-                            } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                                Utility.changeFontZg2UniHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                            if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                                if ( MDetect.INSTANCE.isUnicode()){
+
+                                    Utility.addFontSuHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+
+                                } else  {
+
+                                    Utility.changeFontUni2ZgHome(productName, serviceAvailableVOArrayList.get(position).getNameMm());
+                                }
                             } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                                 productName.setText(serviceAvailableVOArrayList.get(position).getNameCh());
                             } else {
@@ -282,10 +298,15 @@ public class HomeFragment extends Fragment {
                     productsCarryObject.setSubProductId(popularServicesVOArrayList.get(position).getSubProductId());
                     productsCarryObject.setStep(popularServicesVOArrayList.get(position).getStep());
 
-                    if (checkLng(getActivity()).equalsIgnoreCase("it")) {
-                        Utility.addFontSuHome(productName, popularServicesVOArrayList.get(position).getNameMm());
-                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                        Utility.changeFontZg2UniHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                    if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                        if ( MDetect.INSTANCE.isUnicode()){
+
+                            Utility.addFontSuHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+
+                        } else  {
+
+                            Utility.changeFontUni2ZgHome(productName, popularServicesVOArrayList.get(position).getNameMm());
+                        }
                     } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                         productName.setText(popularServicesVOArrayList.get(position).getNameCh());
                     } else {
@@ -317,10 +338,15 @@ public class HomeFragment extends Fragment {
                     productsCarryObject.setSubProductId(serviceNeedVOArrayList.get(position).getSubProductId());
                     productsCarryObject.setStep(serviceNeedVOArrayList.get(position).getStep());
 
-                    if (checkLng(getActivity()).equalsIgnoreCase("it")) {
-                        Utility.addFontSuHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
-                    } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                        Utility.changeFontZg2UniHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                    if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                        if ( MDetect.INSTANCE.isUnicode()){
+
+                            Utility.addFontSuHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+
+                        } else  {
+
+                            Utility.changeFontUni2ZgHome(productName, serviceNeedVOArrayList.get(position).getNameMm());
+                        }
                     } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                         productName.setText(serviceNeedVOArrayList.get(position).getNameCh());
                     } else {
@@ -364,10 +390,15 @@ public class HomeFragment extends Fragment {
                 productsCarryObject.setSubProductId(slider.get(position).getSubProductId());
                 productsCarryObject.setStep(slider.get(position).getStep());
 
-                if (checkLng(getActivity()).equalsIgnoreCase("it")) {
-                    Utility.addFontSuHome(productName, slider.get(position).getNameMm());
-                } else if (checkLng(getActivity()).equalsIgnoreCase("fr")) {
-                    Utility.changeFontZg2UniHome(productName, slider.get(position).getNameMm());
+                if (checkLng(getActivity()).equalsIgnoreCase("it") || checkLng(getActivity()).equalsIgnoreCase("fr")){
+                    if ( MDetect.INSTANCE.isUnicode()){
+
+                        Utility.addFontSuHome(productName, slider.get(position).getNameMm());
+
+                    } else  {
+
+                        Utility.changeFontUni2ZgHome(productName, slider.get(position).getNameMm());
+                    }
                 } else if (checkLng(getActivity()).equalsIgnoreCase("zh")) {
                     productName.setText(slider.get(position).getNameCh());
                 } else {

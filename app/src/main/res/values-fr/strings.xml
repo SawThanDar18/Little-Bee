@@ -159,7 +159,9 @@
     <string name="gps_enable_yes">ဖြင့္မည္</string>
     <string name="gps_enable_no">မဖြင့္ပါ</string>
     <string name="location_alert">Order အတြက္ Location ရရန္လိုအပ္ပါသည္။ Order ရယူလိုေသာေနရာအား "ေျမပံုသို့" ကိုနွိပ္၍ေရြးခ်ယ္နိုင္ပါသည္။</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
 
     <string name="fill_all_detail">အေသးစိတ္ျဖည္႔ပါ။</string>
 
+    <string name="choose_lng">ဘာသာစကားေ႐ြးပါ</string>
 </resources>

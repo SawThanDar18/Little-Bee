@@ -27,6 +27,8 @@ import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class SubProductAdapter extends RecyclerView.Adapter<SubProductAdapter.MyViewHolder> {
 
     Context context;
@@ -78,10 +80,15 @@ public class SubProductAdapter extends RecyclerView.Adapter<SubProductAdapter.My
 
         if (subProductsVO != null) {
 
-            if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-                Utility.addFontSuHome(holder.subProductName, subProductsVO.getNameMm());
-            } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-                Utility.changeFontZg2UniHome(holder.subProductName, subProductsVO.getNameMm());
+            if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+                if (MDetect.INSTANCE.isUnicode()) {
+
+                    Utility.addFontSuHome(holder.subProductName, subProductsVO.getNameMm());
+
+                } else {
+
+                    Utility.changeFontUni2ZgHome(holder.subProductName, subProductsVO.getNameMm());
+                }
             } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
                 holder.subProductName.setText(subProductsVO.getNameCh());
             } else {

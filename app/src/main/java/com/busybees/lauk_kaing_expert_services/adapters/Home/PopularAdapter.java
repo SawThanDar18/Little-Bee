@@ -22,6 +22,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import me.myatminsoe.mdetect.MDetect;
+
 public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewHolder> {
 
     Context context;
@@ -59,10 +61,15 @@ public class PopularAdapter  extends RecyclerView.Adapter<PopularAdapter.MyViewH
 
         holder.serviceName.setText(popularServicesVO.getName());
 
-        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it")){
-            Utility.addFontSuHome(holder.serviceName, popularServicesVO.getNameMm());
-        } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
-            Utility.changeFontZg2UniHome(holder.serviceName, popularServicesVO.getNameMm());
+        if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
+            if (MDetect.INSTANCE.isUnicode()) {
+
+                Utility.addFontSuHome(holder.serviceName, popularServicesVO.getNameMm());
+
+            } else {
+
+                Utility.changeFontUni2ZgHome(holder.serviceName, popularServicesVO.getNameMm());
+            }
         } else if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("zh")) {
             holder.serviceName.setText(popularServicesVO.getNameCh());
         } else {
