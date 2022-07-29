@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
@@ -59,6 +61,8 @@ public class HomeFragment extends Fragment {
 
     private NetworkServiceProvider serviceProvider;
 
+    private ConstraintLayout searchLayout;
+
     private WebBannerAdapter webBannerAdapter;
     private BannerLayout banner;
 
@@ -94,6 +98,8 @@ public class HomeFragment extends Fragment {
 
         serviceProvider = new NetworkServiceProvider(getActivity());
         userVO = Utility.query_UserProfile(getActivity());
+
+        searchLayout = view.findViewById(R.id.search_layout);
 
         banner = view.findViewById(R.id.banner_view);
 
@@ -132,6 +138,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void onClick() {
+
+        searchLayout.setOnClickListener(v -> startActivity(new Intent(getContext(), SearchActivity.class)));
+
         swipeRefreshLayout.setOnRefreshListener(() -> {
             CallGetAllHomeApi();
             swipeRefreshLayout.setRefreshing(false);

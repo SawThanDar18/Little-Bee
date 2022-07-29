@@ -16,6 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
@@ -36,6 +39,9 @@ import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -296,5 +302,26 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     public int GetPixelFromDips(float pixels) {
         final float scale = getResources().getDisplayMetrics().density;
         return (int) (pixels * scale + 0.5f);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getAlert(AlertModel alertModel) {
+
+        GoToCart goToCart = new GoToCart();
+        goToCart.setText("go");
+        EventBus.getDefault().postSticky(goToCart);
+        startActivity(new Intent(getContext(), MainActivity.class));
     }
 }

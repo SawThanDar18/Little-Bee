@@ -18,6 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductPriceVO;
@@ -26,6 +29,9 @@ import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAd
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -197,5 +203,27 @@ public class ServiceDetailActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getAlert(AlertModel alertModel) {
+
+        GoToCart goToCart = new GoToCart();
+        goToCart.setText("go");
+        EventBus.getDefault().postSticky(goToCart);
+        startActivity(new Intent(ServiceDetailActivity.this, MainActivity.class));
+        finish();
     }
 }

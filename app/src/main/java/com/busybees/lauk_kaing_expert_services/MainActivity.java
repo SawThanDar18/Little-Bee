@@ -12,11 +12,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
@@ -40,7 +42,6 @@ import java.util.Locale;
 import me.myatminsoe.mdetect.MDetect;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-    private ConstraintLayout searchToolBar, searchLayout;
     private BottomNavigationView bottomNavigationView;
     private CustomViewPager viewPager;
 
@@ -66,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         MDetect.INSTANCE.init(this);
         LanguageChange();
 
-        searchToolBar = findViewById(R.id.search_tool_bar);
-        searchLayout = findViewById(R.id.search_layout);
         bottomNavigationView = findViewById(R.id.navigation);
         viewPager = findViewById(R.id.viewpager_container);
 
@@ -80,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         if (getIntent() != null) {
             int tabPosition = getIntent().getIntExtra("tabPosition", 0);
+            Log.e("tab>>>", String.valueOf(tabPosition));
             if (tabPosition == 1) {
                 Carts();
             } else if (tabPosition == 4) {
@@ -136,42 +136,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void onClick() {
-        searchLayout.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
-        });
+
     }
 
     private void Home() {
         EventBus.getDefault().post("home");
         viewPager.setCurrentItem(0);
-        searchToolBar.setVisibility(View.VISIBLE);
     }
 
     public void Carts() {
+        Log.e("current>>>>", "carts");
         EventBus.getDefault().post("home");
         viewPager.setCurrentItem(1);
-        searchToolBar.setVisibility(View.GONE);
 
     }
 
     private void Orders() {
         EventBus.getDefault().post("home");
         viewPager.setCurrentItem(2);
-        searchToolBar.setVisibility(View.GONE);
 
     }
 
     private void Receipt() {
         EventBus.getDefault().post("home");
         viewPager.setCurrentItem(3);
-        searchToolBar.setVisibility(View.GONE);
 
     }
 
     private void My() {
         EventBus.getDefault().post("home");
         viewPager.setCurrentItem(4);
-        searchToolBar.setVisibility(View.GONE);
 
     }
 
@@ -312,6 +306,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setSelectedItemId(R.id.homeTab);
     }
 
+    @Subscribe
+    public void getEventBusChlng(EventBusChangeLanguage chLng) {
+        tabCondition = chLng.getLanguage();
+    }
+
+    @Subscribe
+    public void getCart(EventBusCartObj obj) {
+
+    }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void getGoToGetCart(GoToCart goToCart) {

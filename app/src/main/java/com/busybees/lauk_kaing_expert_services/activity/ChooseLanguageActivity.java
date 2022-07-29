@@ -56,6 +56,7 @@ public class ChooseLanguageActivity extends AppCompatActivity implements RadioGr
 
             if (englishLanguage.isChecked()!=false){
                 AppStorePreferences.putInt(this, AppENUM.LANG_Txt, 0);
+                AppStorePreferences.putString(this, AppENUM.LANG, Locale.ENGLISH.getLanguage());
                 AppStorePreferences.putInt(getApplicationContext(), AppENUM.LNG_CON,1);
                 finish();
                 startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
@@ -76,6 +77,7 @@ public class ChooseLanguageActivity extends AppCompatActivity implements RadioGr
             } else if (chineseLanguage.isChecked()!=false) {
 
                 AppStorePreferences.putInt(this, AppENUM.LANG_Txt, 2);
+                AppStorePreferences.putString(this, AppENUM.LANG, Locale.SIMPLIFIED_CHINESE.getLanguage());
                 AppStorePreferences.putInt(getApplicationContext(), AppENUM.LNG_CON,1);
                 finish();
                 startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
@@ -144,7 +146,11 @@ public class ChooseLanguageActivity extends AppCompatActivity implements RadioGr
         if (myanmarLanguage.isChecked()){
 
             AppStorePreferences.putInt(this, AppENUM.LANG_Txt,1);
-            AppStorePreferences.putString(this, AppENUM.LANG, Locale.ITALY.getLanguage());
+            if ( MDetect.INSTANCE.isUnicode()){
+                AppStorePreferences.putString(this, AppENUM.LANG, Locale.ITALY.getLanguage());
+            } else  {
+                AppStorePreferences.putString(this, AppENUM.LANG, Locale.FRANCE.getLanguage());
+            }
 
         }else if (englishLanguage.isChecked()){
 
