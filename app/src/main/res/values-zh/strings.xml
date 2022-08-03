@@ -168,4 +168,35 @@
     <string name="cancel">取消</string>
     <string name="survey_request">要求进行调查</string>
     <string name="survey">调查请求</string>
+    <string name="add_service_first">请先选择服务。</string>
+    <string name="qty_zero">数量必须至少有一个。如果你不想要你可以点击删除按钮。</string>
+    <string name="no_item_cart">购物车中没有商品</string>
+    <string name="cant_update_more_ten">不能增加超过10个。</string>
+
+    <string name="delete_cart_confirm">删除？</string>
+    <string name="delete_cart_confirm_text">您确定要删除此订单服务吗？</string>
+    <string name="do_ok">好的</string>
+    <string name="do_cancel">取消</string>
+
+    <string name="lead_form_title_label">标题</string>
+    <string name="lead_form_budget_label">预算</string>
+    <string name="lead_form_sqfeet_label">平方英尺</string>
+    <string name="lead_form_photo_label">相片</string>
+    <string name="lead_form_detail_label">细节</string>
+
+    <string name="lead_form_title">请描述详细信息。</string>
+    <string name="lead_form_budget">0.0 元</string>
+    <string name="length_txt">长度</string>
+    <string name="width_txt">宽度</string>
+    <string name="lead_form_photo_upload_txt">上传照片</string>
+    <string name="lead_form_detail_txt">更多细节...</string>
+
+    <string name="title_et_error">标题</string>
+    <string name="budget_et_error">预算</string>
+    <string name="first_square_et_error">长度</string>
+    <string name="second_square_feet_et_error">宽度</string>
+    <string name="home_photos_error">请选择照片</string>
+    <string name="details_et_error">更多细节</string>
+    <string name="photo_limit_txt">只接受5张照片！</string>
+
 </resources>

@@ -84,7 +84,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         ProductPriceVO productPriceVO = productPriceVOList.get(position);
 
-        if (productPriceVO != null) {
+        if (holder != null && productPriceVO != null) {
             if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
                 if (MDetect.INSTANCE.isUnicode()) {
 
@@ -129,13 +129,11 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 }
             }
 
-            String quantity = productPriceVO.getQuantity() != null ? String.valueOf(productPriceVO.getQuantity()) : "0";
+            String quantity = String.valueOf(productPriceVO.getQuantity());
             holder.selectServiceText.setVisibility(View.VISIBLE);
             holder.cancelServiceText.setVisibility(View.GONE);
             holder.surveyRequestText.setVisibility(View.GONE);
-            if(productPriceVO.getQuantity() == 0) {
-
-                Utility.showToast(mContext, String.valueOf(productPriceVO.getQuantity()));
+            if(Integer.parseInt(quantity) == 0) {
 
                 holder.selectServiceText.setVisibility(View.VISIBLE);
                 holder.surveyRequestText.setVisibility(View.GONE);

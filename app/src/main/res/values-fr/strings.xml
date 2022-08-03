@@ -169,4 +169,35 @@
     <string name="cancel"> မလုပ္ပါ</string>
     <string name="survey_request">လာစစ္ရန္အတြက္ ဆက္လက္လုပ္ေဆာင္ပါ</string>
     <string name="survey">လာစစ္ရန္</string>
+    <string name="add_service_first">ဝန္ေဆာင္မႈအရင္ေရြးပါ။</string>
+    <string name="qty_zero">ေ႐ြးခ်ယ္ထားေသာ ေအာ္ဒါ ပယ္ဖ်က္လိုပါက ပယ္ဖ်က္ ကို ႏွိပ္ေပးပါ။</string>
+    <string name="no_item_cart">ဝန္ေဆာင္မႈ ေရြးခ်ယ္ထားျခင္းမရွိေသးပါ။</string>
+    <string name="cant_update_more_ten">Can not increase more than 10.</string>
+
+    <string name="delete_cart_confirm">ေ႐ြးခ်ယ္ထားေသာ ဝန္ေဆာင္မႈမ်ားအား ပယ္ဖ်က္ျခင္း</string>
+    <string name="delete_cart_confirm_text">ေ႐ြးခ်ယ္ထားေသာ ဝန္ေဆာင္မႈအား ပယ္ဖ်က္မည္ဆိုသည္မွာ ေသခ်ာပါသလား?</string>
+    <string name="do_ok">လုပ္​ေဆာင္မည္</string>
+    <string name="do_cancel">ပိတ္မည္</string>
+
+    <string name="lead_form_title_label">အေၾကာင္းအရာ</string>
+    <string name="lead_form_budget_label">သုံးခ်င္သည့္ ေငြပမာဏ</string>
+    <string name="lead_form_sqfeet_label">အက်ယ္အဝန္း(ေပ)</string>
+    <string name="lead_form_photo_label">ဓာတ္ပုံမ်ား</string>
+    <string name="lead_form_detail_label">အေသးစိတ္</string>
+
+    <string name="lead_form_title">အေၾကာင္းအရာအား အေသးစိတ္ ေဖာ္ျပပါ။</string>
+    <string name="lead_form_budget">၀ ယြမ္</string>
+    <string name="length_txt">အလ်ား</string>
+    <string name="width_txt">အနံ</string>
+    <string name="lead_form_photo_upload_txt">ဓာတ္ပုံတင္ရန္</string>
+    <string name="lead_form_detail_txt">ထပ္မံျဖည့္စြက္ခ်က္</string>
+
+    <string name="title_et_error">အေၾကာင္းအရာ</string>
+    <string name="budget_et_error">သုံးခ်င္သည့္ ေငြပမာဏ</string>
+    <string name="first_square_et_error">အလ်ား(ေပ)</string>
+    <string name="second_square_feet_et_error">အနံ(ေပ)</string>
+    <string name="home_photos_error">ဓာတ္ပုံေ႐ြးေပးပါ။</string>
+    <string name="details_et_error">အေသးစိတ္</string>
+    <string name="photo_limit_txt">အမ်ားဆုံး ေ႐ြးခ်ယ္ႏိုင္ေသာပုံ အေရအတြက္ထက္ေက်ာ္လြန္ပါၿပီ။</string>
+
 </resources>

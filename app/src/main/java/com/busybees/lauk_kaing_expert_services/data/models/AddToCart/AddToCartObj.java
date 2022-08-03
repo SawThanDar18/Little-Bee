@@ -15,7 +15,7 @@ public class AddToCartObj {
 
     @SerializedName("product_price_id")
     @Expose
-    private String productPriceId;
+    private int productPriceId;
 
     @SerializedName("form_status")
     @Expose
@@ -37,11 +37,11 @@ public class AddToCartObj {
         this.quantity = quantity;
     }
 
-    public String getProductPriceId() {
+    public int getProductPriceId() {
         return productPriceId;
     }
 
-    public void setProductPriceId(String productPriceId) {
+    public void setProductPriceId(int productPriceId) {
         this.productPriceId = productPriceId;
     }
 

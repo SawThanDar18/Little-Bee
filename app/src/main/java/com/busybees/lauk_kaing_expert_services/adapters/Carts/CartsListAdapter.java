@@ -120,7 +120,7 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.MyVi
                     holder.save.setVisibility(View.GONE);
                     holder.originalPrice.setVisibility(View.VISIBLE);
                     holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
-                    holder.originalPrice.setTextColor(Color.parseColor("#000000"));
+                    //holder.originalPrice.setTextColor(Color.parseColor("#000000"));
 
                 }else{
                     holder.discountPrice.setVisibility(View.VISIBLE);

@@ -18,10 +18,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.Dialog.DialogServiceDelete;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartDataModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -131,6 +136,13 @@ public class CartsFragment extends Fragment {
                         cartsRecyclerView.setAdapter(cartsListAdapter);
                         cartsListAdapter.notifyDataSetChanged();
 
+                        cartsListAdapter.setCLick(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AdapterClick(v);
+                            }
+                        });
+
                         if (!cartDatas.isEmpty() && cartDatas != null) {
                             continueLayout.setVisibility(View.VISIBLE);
                             cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
@@ -160,12 +172,126 @@ public class CartsFragment extends Fragment {
         }
     }
 
+    private void AdapterClick(View v) {
+
+        if (v.getId() == R.id.decreseBtn) {
+            int position = (int) v.getTag(R.id.position);
+            GetCartDataModel dataModel = cartDatas.get(position);
+            int quantity = Integer.parseInt(String.valueOf(dataModel.getQuantity()));
+
+            if (quantity == 1) {
+                Utility.showToast(getActivity(), getString(R.string.qty_zero));
+            } else {
+
+                if (quantity > 0) {
+                    quantity--;
+                    if (quantity == 0) {
+                        if (cartDatas != null) {
+                            if (cartDatas.isEmpty()) {
+                                Utility.showToast(getActivity(), getString(R.string.no_item_cart));
+                            }
+                        }
+                        dataModel.setQuantity(Integer.valueOf(quantity + ""));
+
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(dataModel.getQuantity());
+                        addToCartObj.setProductPriceId(dataModel.getProductPriceId());
+                        addToCartObj.setFormStatus(dataModel.getFormStatus());
+
+                        CallAddToCart(addToCartObj);
+                    } else {
+                        dataModel.setQuantity(Integer.valueOf(quantity + ""));
+
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(dataModel.getQuantity());
+                        addToCartObj.setProductPriceId(dataModel.getProductPriceId());
+                        addToCartObj.setFormStatus(dataModel.getFormStatus());
+
+                        CallAddToCart(addToCartObj);
+                    }
+                }
+
+            }
+
+        } else if (v.getId() == R.id.increaseBtn) {
+            int position = (int) v.getTag(R.id.position);
+            GetCartDataModel dataModel = cartDatas.get(position);
+            int quantity = Integer.parseInt(String.valueOf(dataModel.getQuantity()));
+            if (quantity < 10) {
+                dataModel.setQuantity(Integer.valueOf((quantity + 1) + ""));
+
+                AddToCartObj addToCartObj = new AddToCartObj();
+                addToCartObj.setPhone(userVO.getPhone());
+                addToCartObj.setQuantity(dataModel.getQuantity());
+                addToCartObj.setProductPriceId(dataModel.getProductPriceId());
+                addToCartObj.setFormStatus(dataModel.getFormStatus());
+
+                CallAddToCart(addToCartObj);
+
+            } else {
+                Utility.showToast(getActivity(), getString(R.string.cant_update_more_ten));
+            }
+        } else if (v.getId() == R.id.delete_cart) {
+            int position = (int) v.getTag(R.id.position);
+            GetCartDataModel dataModel = cartDatas.get(position);
+            dataModel.setQuantity(0);
+            DialogServiceDelete dialogServiceDelete = new DialogServiceDelete(dataModel);
+            dialogServiceDelete.show(getFragmentManager(), "");
+
+        }
+    }
+
+    public void CallAddToCart(AddToCartObj obj) {
+
+        if (Utility.isOnline(getContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            networkServiceProvider.AddToCartCall(ApiConstants.BASE_URL + ApiConstants.GET_ADD_TO_CART, obj).enqueue(new Callback<AddToCartModel>() {
+                @Override
+                public void onResponse(Call<AddToCartModel> call, Response<AddToCartModel> response) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                    if (response.body().getError() == true) {
+
+                        Utility.showToast(getContext(), response.body().getMessage());
+
+                    } else if (response.body().getError() == false) {
+
+                        CallGetCart();
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<AddToCartModel> call, Throwable t) {
+                    Utility.showToast(getContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            Utility.showToast(getContext(), getString(R.string.no_internet));
+        }
+    }
+
     private void setUpAdapter() {
         recyclerViewLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         cartsRecyclerView.setLayoutManager(recyclerViewLayoutManager);
     }
 
     private void onClick() {
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                CallGetCart();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         continueLayout.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), AddressActivity.class));
         });
@@ -189,6 +315,18 @@ public class CartsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void getServiceDeleteID(EventBusCartObj obj) {
+        AddToCartObj addToCartObj = new AddToCartObj();
+        addToCartObj.setQuantity(obj.getQuantity());
+        addToCartObj.setPhone(obj.getPhone());
+        addToCartObj.setProductPriceId(obj.getId());
+        addToCartObj.setFormStatus(obj.getFormStatus());
+
+        CallAddToCart(addToCartObj);
+
     }
 
     @Subscribe

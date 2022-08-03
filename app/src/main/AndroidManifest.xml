@@ -94,6 +94,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.OTPActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LeadFormActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FullImageActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

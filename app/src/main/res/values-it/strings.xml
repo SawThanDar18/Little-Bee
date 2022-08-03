@@ -169,4 +169,36 @@
     <string name="cancel"> မလုပ်ပါ</string>
     <string name="survey_request">လာစစ်ရန်အတွက် ဆက်လက်လုပ်ဆောင်ပါ</string>
     <string name="survey">လာစစ်ရန်</string>
+    <string name="add_service_first">ဝန်ဆောင်မှုအရင်ရွေးပါ။</string>
+
+    <string name="qty_zero">ရွေးချယ်ထားသော အော်ဒါ ပယ်ဖျက်လိုပါက ပယ်ဖျက် ကို နှိပ်ပေးပါ။</string>
+    <string name="no_item_cart">ဝန်ဆောင်မှု ရွေးချယ်ထားခြင်းမရှိသေးပါ။</string>
+    <string name="cant_update_more_ten">Can not increase more than 10.</string>
+
+    <string name="delete_cart_confirm">ရွေးချယ်ထားသော ဝန်ဆောင်မှုများအား ပယ်ဖျက်ခြင်း</string>
+    <string name="delete_cart_confirm_text">ရွေးချယ်ထားသော ဝန်ဆောင်မှုအား ပယ်ဖျက်မည်ဆိုသည်မှာ သေချာပါသလား?</string>
+    <string name="do_ok">လုပ်​ဆောင်မည်</string>
+    <string name="do_cancel">ပိတ်မည်</string>
+
+    <string name="lead_form_title_label">အကြောင်းအရာ</string>
+    <string name="lead_form_budget_label">သုံးချင်သည့် ငွေပမာဏ</string>
+    <string name="lead_form_sqfeet_label">အကျယ်အဝန်း(ပေ)</string>
+    <string name="lead_form_photo_label">ဓာတ်ပုံများ</string>
+    <string name="lead_form_detail_label">အသေးစိတ်</string>
+
+    <string name="lead_form_title">အကြောင်းအရာအား အသေးစိတ် ဖော်ပြပါ။</string>
+    <string name="lead_form_budget">၀ ယွမ်</string>
+    <string name="length_txt">အလျား</string>
+    <string name="width_txt">အနံ</string>
+    <string name="lead_form_photo_upload_txt">ဓာတ်ပုံတင်ရန်</string>
+    <string name="lead_form_detail_txt">ထပ်မံဖြည့်စွက်ချက်</string>
+
+    <string name="title_et_error">အကြောင်းအရာ</string>
+    <string name="budget_et_error">သုံးချင်သည့် ငွေပမာဏ</string>
+    <string name="first_square_et_error">အလျား(ပေ)</string>
+    <string name="second_square_feet_et_error">အနံ(ပေ)</string>
+    <string name="home_photos_error">ဓာတ်ပုံရွေးပေးပါ။</string>
+    <string name="details_et_error">အသေးစိတ်</string>
+    <string name="photo_limit_txt">အများဆုံး ရွေးချယ်နိုင်သောပုံ အရေအတွက်ထက်ကျော်လွန်ပါပြီ။</string>
+
 </resources>

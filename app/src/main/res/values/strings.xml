@@ -168,5 +168,35 @@
     <string name="cancel">Cancel</string>
     <string name="survey_request">Survey Requested</string>
     <string name="survey">Survey Request</string>
+    <string name="add_service_first">Please select service first.</string>
+    <string name="qty_zero">Quantity must have at least one. If you don\'t want you can click delete button.</string>
+    <string name="no_item_cart">No item in cart</string>
+    <string name="cant_update_more_ten">Can not increase more than 10.</string>
+
+    <string name="delete_cart_confirm">Delete?</string>
+    <string name="delete_cart_confirm_text">Are you sure want to Delete this Order Services?</string>
+    <string name="do_ok">OK</string>
+    <string name="do_cancel">Cancel</string>
+
+    <string name="lead_form_title_label">Title</string>
+    <string name="lead_form_budget_label">Budget</string>
+    <string name="lead_form_sqfeet_label">Square Feet</string>
+    <string name="lead_form_photo_label">Photos</string>
+    <string name="lead_form_detail_label">Details</string>
+
+    <string name="lead_form_title">Please Describe Details.</string>
+    <string name="lead_form_budget">0.0 CNY</string>
+    <string name="length_txt">length</string>
+    <string name="width_txt">width</string>
+    <string name="lead_form_photo_upload_txt">Upload Photos</string>
+    <string name="lead_form_detail_txt">More Details...</string>
+
+    <string name="title_et_error">Title</string>
+    <string name="budget_et_error">Budget</string>
+    <string name="first_square_et_error">Length</string>
+    <string name="second_square_feet_et_error">Width</string>
+    <string name="home_photos_error">Please select Photos</string>
+    <string name="details_et_error">More Details</string>
+    <string name="photo_limit_txt">Only accept 5 photos!</string>
 
 </resources>

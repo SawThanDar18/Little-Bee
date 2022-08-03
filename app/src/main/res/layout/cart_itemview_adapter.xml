@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin10"
-        android:layout_marginTop="@dimen/margin10"
+        android:layout_marginTop="@dimen/margin16"
         android:layout_marginRight="@dimen/margin10"
         android:layout_marginBottom="@dimen/margin6"
         android:background="@drawable/rounded_corner_transparent_line_stroke"
@@ -62,6 +62,7 @@
                 android:id="@+id/origin_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin10"
                 android:text="10000 MMK"
                 android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeMedium"
@@ -162,11 +163,11 @@
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:gravity="center"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSizeMedium"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

@@ -96,4 +96,8 @@ dependencies {
     //mm font
     implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
 
+    //image picker
+    implementation 'gun0912.ted:tedbottompicker:2.0.1'
+    implementation 'gun0912.ted:tedpermission:2.2.3'
+
 }
