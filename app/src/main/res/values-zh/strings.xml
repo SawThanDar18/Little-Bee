@@ -163,4 +163,9 @@
     <string name="fill_all_detail">请填写所有详细信息。</string>
 
     <string name="choose_lng">选择语言</string>
+
+    <string name="add">添加</string>
+    <string name="cancel">取消</string>
+    <string name="survey_request">要求进行调查</string>
+    <string name="survey">调查请求</string>
 </resources>

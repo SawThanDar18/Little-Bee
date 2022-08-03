@@ -18,16 +18,28 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartDataModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.AddressActivity;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartsFragment extends Fragment {
 
@@ -42,16 +54,20 @@ public class CartsFragment extends Fragment {
     private CartsListAdapter cartsListAdapter;
 
     private ImageView homePageView;
-    private TextView cartCountText;
+    private TextView cartCountText, amountText;
     private Button goToLogInBtn, goToServicesBtn, reloadBtn;
 
+    private NetworkServiceProvider networkServiceProvider;
     private UserVO userVO;
+
+    ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_carts, container, false);
 
+        networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
         progressBar = view.findViewById(R.id.materialLoader);
@@ -65,6 +81,7 @@ public class CartsFragment extends Fragment {
         homePageView = view.findViewById(R.id.home_page_btn);
         cartsRecyclerView = view.findViewById(R.id.cartRecyclerView);
         cartCountText = view.findViewById(R.id.cartCountText);
+        amountText = view.findViewById(R.id.amountText);
         goToLogInBtn = view.findViewById(R.id.go_to_login);
         goToServicesBtn = view.findViewById(R.id.go_to_service);
         reloadBtn = view.findViewById(R.id.btn_reload_page);
@@ -92,17 +109,60 @@ public class CartsFragment extends Fragment {
 
         setUpAdapter();
         onClick();
+        CallGetCart();
 
         return view;
+    }
+
+    private void CallGetCart() {
+        if (userVO != null) {
+            GetCartObj cartObj = new GetCartObj();
+            cartObj.setPhone(userVO.getPhone());
+
+            if (Utility.isOnline(getContext())) {
+
+                networkServiceProvider.GetCartCall(ApiConstants.BASE_URL + ApiConstants.GET_CART, cartObj).enqueue(new Callback<GetCartModel>() {
+                    @Override
+                    public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
+
+                        cartDatas.clear();
+                        cartDatas.addAll(response.body().getData());
+                        cartsListAdapter = new CartsListAdapter(getActivity(), cartDatas);
+                        cartsRecyclerView.setAdapter(cartsListAdapter);
+                        cartsListAdapter.notifyDataSetChanged();
+
+                        if (!cartDatas.isEmpty() && cartDatas != null) {
+                            continueLayout.setVisibility(View.VISIBLE);
+                            cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
+                            if (response.body().getTotal() != 0) {
+                                amountText.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                            } else {
+                                amountText.setText("Survey");
+                            }
+
+                        } else {
+                            continueLayout.setVisibility(View.GONE);
+                            cartCountText.setText("0");
+                            amountText.setText(" ");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetCartModel> call, Throwable t) {
+                        Utility.showToast(getContext(), t.getMessage());
+                    }
+                });
+
+            } else {
+                Utility.showToast(getContext(), getString(R.string.no_internet));
+
+            }
+        }
     }
 
     private void setUpAdapter() {
         recyclerViewLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         cartsRecyclerView.setLayoutManager(recyclerViewLayoutManager);
-
-        cartsListAdapter = new CartsListAdapter(getActivity());
-        cartsRecyclerView.setAdapter(cartsListAdapter);
-        cartsListAdapter.notifyDataSetChanged();
     }
 
     private void onClick() {

@@ -164,4 +164,9 @@
     <string name="fill_all_detail">အေသးစိတ္ျဖည္႔ပါ။</string>
 
     <string name="choose_lng">ဘာသာစကားေ႐ြးပါ</string>
+
+    <string name="add">ယူမည္။</string>
+    <string name="cancel"> မလုပ္ပါ</string>
+    <string name="survey_request">လာစစ္ရန္အတြက္ ဆက္လက္လုပ္ေဆာင္ပါ</string>
+    <string name="survey">လာစစ္ရန္</string>
 </resources>

@@ -3,8 +3,12 @@ package com.busybees.lauk_kaing_expert_services.network;
 import android.content.Context;
 
 import com.busybees.lauk_kaing_expert_services.data.models.AddAddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.AddressModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
@@ -12,6 +16,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObjec
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddAddressSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.AddToCartSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.DeleteAddressSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.EditAddressSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAddressSync;
@@ -32,6 +37,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.RegisterObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ResendOTPObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetCartSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetDateTimeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
@@ -124,6 +130,16 @@ public class NetworkServiceProvider {
     public Call<AddressModel> EditAddressCall(String url, EditAddressObject editAddressObject) {
         EditAddressSync sync = retrofit.create(EditAddressSync.class);
         return sync.getEditAddress(url, editAddressObject);
+    }
+
+    public Call<GetCartModel> GetCartCall (String url, GetCartObj getCartObj) {
+        GetCartSync sync=retrofit.create(GetCartSync.class);
+        return sync.getGetCart(url,getCartObj);
+    }
+
+    public Call<AddToCartModel> AddToCartCall (String url, AddToCartObj addToCartObj) {
+        AddToCartSync sync=retrofit.create(AddToCartSync.class);
+        return sync.getAddToCart(url,addToCartObj);
     }
 
 }

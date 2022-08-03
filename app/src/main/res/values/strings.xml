@@ -164,4 +164,9 @@
 
     <string name="choose_lng">Select Language</string>
 
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="survey_request">Survey Requested</string>
+    <string name="survey">Survey Request</string>
+
 </resources>

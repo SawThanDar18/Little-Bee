@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Outline;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -20,18 +21,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.LCModel;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.google.android.exoplayer2.util.Util;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -42,6 +51,7 @@ import retrofit2.Response;
 public class ServiceDetailActivity extends AppCompatActivity {
 
     private NetworkServiceProvider serviceProvider;
+    private UserVO userVO;
 
     private TextView serviceDetailName;
     private ImageView back;
@@ -61,6 +71,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
     // Intent Data
     private String productName;
     private ProductsCarryObject productsCarryObject;
+    int posi = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +80,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_detail);
 
         serviceProvider = new NetworkServiceProvider(this);
+        userVO = Utility.query_UserProfile(this);
 
         videoView = findViewById(R.id.video_view);
         back = findViewById(R.id.back_button);
@@ -119,6 +131,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                             serviceDetailAdapter = new ServiceDetailAdapter(ServiceDetailActivity.this, productPriceVOArrayList);
                             serviceDetailRecyclerView.setAdapter(serviceDetailAdapter);
                             serviceDetailAdapter.notifyDataSetChanged();
+                            serviceDetailRecyclerView.smoothScrollToPosition(posi);
 
                             serviceDetailAdapter.setClick(v -> AdapterCLick(v));
                         } else {
@@ -147,9 +160,109 @@ public class ServiceDetailActivity extends AppCompatActivity {
             ProductPriceVO productPriceVO = productPriceVOArrayList.get(position);
             productPriceVO.setShowDetail(!productPriceVO.isShowDetail());
             serviceDetailAdapter.notifyItemChanged(position);
+        } else if (v.getId() == R.id.selectText) {
+            int position = (int) v.getTag(R.id.position);
+            int numberCount = productPriceVOArrayList.get(position).getQuantity();
+
+            if (userVO != null) {
+
+                if (productPriceVOArrayList.get(position).getFormStatus() == 2) {
+                    Utility.showToast(getApplicationContext(), "form 2");
+
+                    /*finish();
+                    Intent intent = new Intent(this, LeadFormActivity.class);
+                    intent.putExtra("phone", userObj.getPhone());
+                    intent.putExtra("product_price_id", String.valueOf(datalist.get(position).getProductPriceId()));
+                    intent.putExtra("position", position);
+                    intent.putExtra("product_data", pStepCarryObj);
+                    startActivity(intent);*/
+
+                } else if (productPriceVOArrayList.get(position).getFormStatus() == 0){
+
+                    Utility.showToast(getApplicationContext(), "form 0");
+                    AddToCartObj addToCartObj = new AddToCartObj();
+                    addToCartObj.setPhone(userVO.getPhone());
+                    addToCartObj.setQuantity(productPriceVOArrayList.get(position).getQuantity());
+                    addToCartObj.setProductPriceId(String.valueOf(productPriceVOArrayList.get(position).getId()));
+                    addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+
+                    if (numberCount == 0) {
+                        addToCartObj.setQuantity(1);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(1);
+
+                    } else {
+                        addToCartObj.setQuantity(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(0);
+                    }
+                    posi = position;
+                } else {
+                    Utility.showToast(getApplicationContext(), "form 1");
+
+                }
+            } else {
+
+
+                AppStorePreferences.putInt(this, AppENUM.POSITION, position);
+                AppStorePreferences.putInt(this, AppENUM.NUMBER, numberCount);
+
+                Intent intent = new Intent(ServiceDetailActivity.this, LogInActivity.class);
+                startActivity(intent);
+
+            }
 
         }
 
+    }
+
+    public void CallAddToCart(AddToCartObj obj) {
+
+        if (Utility.isOnline(this)) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            serviceProvider.AddToCartCall(ApiConstants.BASE_URL + ApiConstants.GET_ADD_TO_CART, obj).enqueue(new Callback<AddToCartModel>() {
+                @Override
+                public void onResponse(Call<AddToCartModel> call, Response<AddToCartModel> response) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                    if (response.body().getError() == true) {
+
+                        Utility.showToast(ServiceDetailActivity.this, response.body().getMessage());
+
+                    } else if (response.body().getError() == false) {
+
+                        if (userVO != null) {
+
+                            ProductsCarryObject pStepObj = new ProductsCarryObject();
+                            pStepObj.setServiceId(productsCarryObject.getServiceId());
+                            pStepObj.setProductId(productsCarryObject.getProductId());
+                            pStepObj.setSubProductId(productsCarryObject.getSubProductId());
+                            pStepObj.setProductPriceId(productsCarryObject.getProductPriceId());
+                            pStepObj.setStep(productsCarryObject.getStep());
+                            CallProductPriceApi(pStepObj);
+
+                            //GetCart();
+
+                        } else {
+                            startActivity(new Intent(ServiceDetailActivity.this, LogInActivity.class));
+
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<AddToCartModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            Utility.showToast(ServiceDetailActivity.this, getString(R.string.no_internet));
+        }
     }
 
     private void onClick() {
@@ -215,6 +328,35 @@ public class ServiceDetailActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getEventLcModel(LCModel lcModel) {
+
+        int position = lcModel.getPosition();
+        int numberCount = lcModel.getNumber_count();
+        userVO = Utility.query_UserProfile(this);
+
+        if (numberCount == 0) {
+
+            AddToCartObj addToCartObj = new AddToCartObj();
+            addToCartObj.setPhone(userVO.getPhone());
+            addToCartObj.setProductPriceId(String.valueOf(productPriceVOArrayList.get(position).getId()));
+            addToCartObj.setQuantity(1);
+            addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+            CallAddToCart(addToCartObj);
+            posi = position;
+
+        } else {
+
+            AddToCartObj addToCartObj = new AddToCartObj();
+            addToCartObj.setPhone(userVO.getPhone());
+            addToCartObj.setProductPriceId(String.valueOf(productPriceVOArrayList.get(position).getId()));
+            addToCartObj.setQuantity(0);
+            CallAddToCart(addToCartObj);
+            posi = position;
+        }
+
     }
 
     @Subscribe
