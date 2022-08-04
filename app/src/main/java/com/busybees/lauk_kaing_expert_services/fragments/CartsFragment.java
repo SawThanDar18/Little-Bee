@@ -240,6 +240,44 @@ public class CartsFragment extends Fragment {
             DialogServiceDelete dialogServiceDelete = new DialogServiceDelete(dataModel);
             dialogServiceDelete.show(getFragmentManager(), "");
 
+        } else if (v.getId() == R.id.cancel) {
+            int position = (int) v.getTag(R.id.position);
+            GetCartDataModel sdpModel = cartDatas.get(position);
+            int quantity = Integer.parseInt(String.valueOf(sdpModel.getQuantity()));
+            if(Double.parseDouble(String.valueOf(cartDatas.get(position).getFormStatus())) == 2) {
+                AddToCartObj addToCartObj = new AddToCartObj();
+                addToCartObj.setPhone(userVO.getPhone());
+                addToCartObj.setProductPriceId(cartDatas.get(position).getProductPriceId());
+                addToCartObj.setQuantity(0);
+                addToCartObj.setFormStatus(2);
+                CallAddToCart(addToCartObj);
+
+            }else {
+                if (quantity > 0) {
+                    quantity--;
+                    if (quantity == 0) {
+                        if (cartDatas != null) {
+                            if (cartDatas.isEmpty()) {
+                                Utility.showToast(getActivity(), getString(R.string.no_item_cart));
+                            }
+                        }
+                        sdpModel.setQuantity(0);
+                        DialogServiceDelete serviceDelete = new DialogServiceDelete(sdpModel);
+                        serviceDelete.show(getFragmentManager(), "");
+                    } else {
+                        sdpModel.setQuantity(0);
+                        DialogServiceDelete serviceDelete = new DialogServiceDelete(sdpModel);
+                        serviceDelete.show(getFragmentManager(), "");
+
+                    }
+                } else {
+                    sdpModel.setQuantity(0);
+                    DialogServiceDelete serviceDelete = new DialogServiceDelete(sdpModel);
+                    serviceDelete.show(getFragmentManager(), "");
+                }
+            }
+
+
         }
     }
 
