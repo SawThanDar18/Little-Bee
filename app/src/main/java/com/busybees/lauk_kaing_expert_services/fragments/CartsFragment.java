@@ -177,7 +177,7 @@ public class CartsFragment extends Fragment {
         if (v.getId() == R.id.decreseBtn) {
             int position = (int) v.getTag(R.id.position);
             GetCartDataModel dataModel = cartDatas.get(position);
-            int quantity = Integer.parseInt(String.valueOf(dataModel.getQuantity()));
+            int quantity = dataModel.getQuantity();
 
             if (quantity == 1) {
                 Utility.showToast(getActivity(), getString(R.string.qty_zero));
@@ -218,7 +218,7 @@ public class CartsFragment extends Fragment {
         } else if (v.getId() == R.id.increaseBtn) {
             int position = (int) v.getTag(R.id.position);
             GetCartDataModel dataModel = cartDatas.get(position);
-            int quantity = Integer.parseInt(String.valueOf(dataModel.getQuantity()));
+            int quantity = dataModel.getQuantity();
             if (quantity < 10) {
                 dataModel.setQuantity(Integer.valueOf((quantity + 1) + ""));
 

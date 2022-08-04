@@ -219,43 +219,59 @@ public class ServiceDetailActivity extends AppCompatActivity {
         } else if (v.getId() == R.id.selectText) {
 
             int position = (int) v.getTag(R.id.position);
-
-            ProductPriceVO productPriceVO = productPriceVOArrayList.get(position);
-
-            int numberCount = productPriceVO.getQuantity();
+            int numberCount = productPriceVOArrayList.get(position).getQuantity();
 
             if (userVO != null) {
 
-                if (productPriceVO.getFormStatus() == 2) {
+                if (productPriceVOArrayList.get(position).getFormStatus() == 2) {
 
                     finish();
                     Intent intent = new Intent(this, LeadFormActivity.class);
                     intent.putExtra("phone", userVO.getPhone());
-                    intent.putExtra("product_price_id", productPriceVO.getId());
+                    intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
                     intent.putExtra("position", position);
                     intent.putExtra("product_data", productsCarryObject);
                     startActivity(intent);
 
-                } else if (productPriceVO.getFormStatus() == 0) {
+                } else if (productPriceVOArrayList.get(position).getFormStatus() == 0) {
 
                     AddToCartObj addToCartObj = new AddToCartObj();
                     addToCartObj.setPhone(userVO.getPhone());
-                    addToCartObj.setProductPriceId(productPriceVO.getId());
-                    addToCartObj.setFormStatus(productPriceVO.getFormStatus());
+                    addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                    addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
 
-                    if (productPriceVO.getQuantity() == 0) {
+                    if (numberCount == 0) {
                         addToCartObj.setQuantity(1);
                         CallAddToCart(addToCartObj);
-                        productPriceVO.setQuantity(1);
+                        productPriceVOArrayList.get(position).setQuantity(1);
 
                     } else {
                         addToCartObj.setQuantity(0);
                         CallAddToCart(addToCartObj);
-                        productPriceVO.setQuantity(0);
+                        productPriceVOArrayList.get(position).setQuantity(0);
                     }
                     posi = position;
                 } else {
+                    if (productPriceVOArrayList.get(position).getOriginalPrice() != 0) {
 
+                    } else {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+
+                        if (productPriceVOArrayList.get(position).getQuantity() == 0) {
+                            addToCartObj.setQuantity(1);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(1);
+
+                        } else {
+                            addToCartObj.setQuantity(0);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(0);
+                        }
+                        posi = position;
+                    }
                 }
             } else {
 
@@ -397,6 +413,12 @@ public class ServiceDetailActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        CallGetCart();
+        super.onResume();
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

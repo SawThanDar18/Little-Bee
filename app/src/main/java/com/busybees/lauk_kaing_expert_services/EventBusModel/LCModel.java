@@ -1,6 +1,7 @@
 package com.busybees.lauk_kaing_expert_services.EventBusModel;
 
 public class LCModel {
+
     int position;
     int number_count;
 

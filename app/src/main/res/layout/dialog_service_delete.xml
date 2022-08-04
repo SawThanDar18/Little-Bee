@@ -60,7 +60,7 @@
                 android:layout_marginLeft="@dimen/margin6"
                 android:layout_marginTop="@dimen/margin6"
                 android:id="@+id/delete_yes_btn"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:background="@drawable/round_corner_theme_color"
                 android:layout_weight="1"
                 android:textAllCaps="false"

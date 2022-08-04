@@ -34,8 +34,6 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
     Context mContext;
     List<ProductPriceVO> productPriceVOList;
 
-    public ServiceDetailActivity click;
-
     public ServiceDetailAdapter(ServiceDetailActivity serviceDetailActivity, ArrayList<ProductPriceVO> datas) {
         this.mContext = serviceDetailActivity;
         this.productPriceVOList = datas;
@@ -129,11 +127,11 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 }
             }
 
-            String quantity = String.valueOf(productPriceVO.getQuantity());
+            int quantity = productPriceVO.getQuantity();
             holder.selectServiceText.setVisibility(View.VISIBLE);
             holder.cancelServiceText.setVisibility(View.GONE);
             holder.surveyRequestText.setVisibility(View.GONE);
-            if(Integer.parseInt(quantity) == 0) {
+            if(quantity == 0) {
 
                 holder.selectServiceText.setVisibility(View.VISIBLE);
                 holder.surveyRequestText.setVisibility(View.GONE);
@@ -147,6 +145,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                         }
 
                     }
+
                     holder.selectServiceText.setText(mContext.getString(R.string.survey));
                     holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
                     holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
@@ -155,21 +154,21 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
 
                     holder.selectServiceText.setText(mContext.getString(R.string.selected));
                 } else {
-
+                    holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
+                    holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
                 }
 
-                holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                /*holder.selectServiceText.setText(mContext.getString(R.string.selected));
                 holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
-                holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+                holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));*/
+
 
                 holder.selectServiceText.setTag(R.id.number,quantity);
                 holder.selectServiceText.setTag(R.id.position,position);
                 holder.selectServiceText.setOnClickListener(this);
 
-
             } else  {
-
-                Utility.showToast(mContext, String.valueOf(productPriceVO.getQuantity()));
 
                 if(productPriceVO.getFormStatus() == 2) {
                     holder.surveyRequestText.setVisibility(View.VISIBLE);
@@ -202,12 +201,14 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
 
                 }
 
+
                 holder.selectServiceText.setTag(R.id.number,quantity);
                 holder.selectServiceText.setTag(R.id.position,position);
                 holder.selectServiceText.setOnClickListener(this);
+
             }
 
-            //holder.serviceDetailName.setVisibility(View.GONE);
+
             holder.hideShowDetailText.setVisibility(View.VISIBLE);
 
             if(productPriceVO.isShowDetail() == true && productPriceVO.getDescription() != null) {

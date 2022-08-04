@@ -132,11 +132,11 @@ public class LeadFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (title_et.getText().toString().equalsIgnoreCase("") || title_et.getText().toString().startsWith("0") ) {
+                if (title_et.getText().toString().equalsIgnoreCase("") || title_et.getText().toString().startsWith("0")) {
                     title_et.setError(getString(R.string.title_et_error));
                 } else if (budget_et.getText().toString().equalsIgnoreCase("") || budget_et.getText().toString().startsWith("0")) {
                     budget_et.setError(getString(R.string.budget_et_error));
-                }  else if (first_square_feet_et.getText().toString().equalsIgnoreCase("") || first_square_feet_et.getText().toString().startsWith("0")) {
+                } else if (first_square_feet_et.getText().toString().equalsIgnoreCase("") || first_square_feet_et.getText().toString().startsWith("0")) {
                     first_square_feet_et.setError(getString(R.string.first_square_et_error));
                 } else if (second_square_feet_et.getText().toString().equalsIgnoreCase("") || second_square_feet_et.getText().toString().startsWith("0")) {
                     second_square_feet_et.setError(getString(R.string.second_square_feet_et_error));
@@ -189,9 +189,9 @@ public class LeadFormActivity extends AppCompatActivity {
                     if (response.body().getError() == false) {
                         finish();
 
-                            Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
-                            intent.putExtra("product_data", pStepCarryObj);
-                            startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
+                        intent.putExtra("product_data", pStepCarryObj);
+                        startActivity(intent);
 
 
                     } else if (response.body().getError() == true) {
