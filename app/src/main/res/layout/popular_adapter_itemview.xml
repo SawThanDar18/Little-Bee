@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
+    android:layout_width="@dimen/width150"
+    android:layout_height="@dimen/height160"
     android:id="@+id/cardView"
     android:layout_marginLeft="@dimen/margin8"
-    android:layout_marginRight="@dimen/margin4"
+    android:layout_marginRight="@dimen/margin16"
     android:layout_marginBottom="@dimen/margin8"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="4dp"
     app:cardBackgroundColor="@color/white">
 
@@ -16,7 +16,7 @@
     <LinearLayout
         android:id="@+id/l1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
 
@@ -24,7 +24,7 @@
             android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
-            android:layout_height="@dimen/height90"
+            android:layout_height="match_parent"
             android:src="@drawable/footer_image"/>
 
         <LinearLayout

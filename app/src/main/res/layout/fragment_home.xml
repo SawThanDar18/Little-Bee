@@ -18,7 +18,8 @@
                 android:id="@+id/search_tool_bar"
                 layout="@layout/search_tool_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin16" />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -41,7 +42,7 @@
                         app:autoPlaying="true"
                         app:centerScale="1"
                         app:moveSpeed="1.8"
-                        app:showIndicator="true" />
+                        app:showIndicator="false" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
                         android:singleLine="true"
                         android:text="@string/available_service"
                         android:textAllCaps="false"
-                        android:textColor="@color/home_service_title_color"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/fontSizeMedium"
                         android:textStyle="bold" />
 
@@ -60,7 +61,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin24"
-                        android:layout_marginRight="@dimen/margin8"/>
+                        android:layout_marginRight="@dimen/margin8" />
+
+                    <com.busybees.lauk_kaing_expert_services.Banner.BannerLayout
+                        android:id="@+id/banner_view_advertisement"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height150"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin16"
+                        android:layout_marginHorizontal="@dimen/margin16"
+                        app:autoPlaying="true"
+                        app:centerScale="1"
+                        app:moveSpeed="1.8"
+                        app:showIndicator="false" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -70,7 +83,7 @@
                         android:singleLine="true"
                         android:text="@string/home_popular"
                         android:textAllCaps="false"
-                        android:textColor="@color/home_service_title_color"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/fontSizeMedium"
                         android:textStyle="bold" />
 
@@ -78,7 +91,8 @@
                         android:id="@+id/recycle_popular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/margin24" />
+                        android:layout_marginLeft="@dimen/margin24"
+                        android:layout_marginBottom="@dimen/margin16"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -90,21 +104,24 @@
                         android:textAllCaps="false"
                         android:textColor="@color/home_service_title_color"
                         android:textSize="@dimen/fontSizeMedium"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycle_symn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin24"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp"
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/footer"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height130"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/footer_image_2"/>
+                        android:src="@drawable/footer_image_2"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

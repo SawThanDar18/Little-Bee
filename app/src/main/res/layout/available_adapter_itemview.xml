@@ -2,7 +2,7 @@
 <LinearLayout
     android:id="@+id/l1"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/width70"
     android:layout_height="wrap_content"
     android:layout_marginRight="@dimen/margin16"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -20,7 +20,7 @@
             android:gravity="center"
             android:padding="1dp"
             android:layout_gravity="center_horizontal"
-            android:text="Cleaning"
+            android:text="General Worker Hiring"
             android:textColor="@color/home_service_name_color"
             android:id="@+id/service_name"
             android:textSize="@dimen/fontSizeXSmall"

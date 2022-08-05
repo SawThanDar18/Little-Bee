@@ -63,7 +63,7 @@
                         android:layout_height="@dimen/height3"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:background="@color/pink_accent_color" />
+                        android:background="@color/black_transparent" />
 
                     <ImageView
                         android:layout_width="@dimen/width50"
@@ -76,7 +76,7 @@
                         android:layout_height="@dimen/height3"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:background="@color/pink_accent_color" />
+                        android:background="@color/black_transparent" />
 
                     <ImageView
                         android:layout_width="@dimen/width50"
@@ -89,7 +89,7 @@
                         android:layout_height="@dimen/height3"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:background="@color/pink_accent_color" />
+                        android:background="@color/black_transparent" />
 
                     <ImageView
                         android:layout_width="@dimen/width50"

@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
     private ConstraintLayout searchLayout;
 
     private WebBannerAdapter webBannerAdapter;
-    private BannerLayout banner;
+    private BannerLayout banner, bannerAdvertisement;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -102,6 +102,7 @@ public class HomeFragment extends Fragment {
         searchLayout = view.findViewById(R.id.search_layout);
 
         banner = view.findViewById(R.id.banner_view);
+        bannerAdvertisement = view.findViewById(R.id.banner_view_advertisement);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
 
@@ -122,11 +123,9 @@ public class HomeFragment extends Fragment {
             setUpAdapterToRecyclerView();
             reloadPage.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
-            footerImage.setVisibility(View.VISIBLE);
         } else {
             reloadPage.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            footerImage.setVisibility(View.GONE);
         }
 
         CallGetAllHomeApi();
@@ -425,11 +424,15 @@ public class HomeFragment extends Fragment {
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
 
+        bannerAdvertisement.setAdapter(webBannerAdapter);
+        bannerAdvertisement.setAutoPlaying(true);
+
     }
 
     private void setUpAdapterToRecyclerView() {
 
-        layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
+        //layoutManagerRecyclerAvailable = new GridLayoutManager(getActivity(), 4);
+        layoutManagerRecyclerAvailable = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewAvailable.setLayoutManager(layoutManagerRecyclerAvailable);
 
         layoutManagerRecyclerPopular = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);

@@ -24,8 +24,8 @@
             <ImageView
                 android:layout_width="@dimen/width70"
                 android:layout_height="@dimen/height80"
-                android:layout_marginLeft="@dimen/margin16"
-                android:src="@drawable/sad"/>
+                android:layout_marginLeft="@dimen/margin2"
+                android:src="@drawable/logo_bw"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                     android:text="@string/search_keyword_hint"
                     android:textAlignment="center"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/fontSizeMedium"
+                    android:textSize="@dimen/fontSizeSmall"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -89,8 +89,8 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="@dimen/width50"
-                    android:layout_height="@dimen/height50"
+                    android:layout_width="@dimen/width40"
+                    android:layout_height="@dimen/height40"
                     android:layout_marginLeft="@dimen/margin4"
                     android:src="@drawable/ic_search_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
