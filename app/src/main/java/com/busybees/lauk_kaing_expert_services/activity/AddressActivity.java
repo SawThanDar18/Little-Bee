@@ -25,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Address.AddressListAdapter;
@@ -38,6 +40,8 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -375,10 +379,10 @@ public class AddressActivity extends AppCompatActivity {
         });
 
         cartPageView.setOnClickListener(v -> {
-            Intent intent = new Intent(AddressActivity.this, MainActivity.class);
-            intent.putExtra("tabPosition", 1);
-            startActivity(intent);
-            finish();
+            GoToCart goToCart = new GoToCart();
+            goToCart.setText("go");
+            EventBus.getDefault().postSticky(goToCart);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
 
     }

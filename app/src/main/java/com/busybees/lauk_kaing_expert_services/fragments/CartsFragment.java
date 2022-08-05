@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogServiceDelete;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
@@ -66,6 +67,8 @@ public class CartsFragment extends Fragment {
     private UserVO userVO;
 
     ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
+
+    private boolean isCartItemAvailable;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,6 +133,7 @@ public class CartsFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
 
+                        reloadPage.setVisibility(View.GONE);
                         cartDatas.clear();
                         cartDatas.addAll(response.body().getData());
                         cartsListAdapter = new CartsListAdapter(getActivity(), cartDatas);
@@ -145,6 +149,10 @@ public class CartsFragment extends Fragment {
 
                         if (!cartDatas.isEmpty() && cartDatas != null) {
                             continueLayout.setVisibility(View.VISIBLE);
+                            isCartItemAvailable = true;
+                            cartTimeline.setVisibility(View.VISIBLE);
+                            noServicesView.setVisibility(View.GONE);
+
                             cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
                             if (response.body().getTotal() != 0) {
                                 amountText.setText(response.body().getTotal() + " " + getString(R.string.currency));
@@ -154,6 +162,10 @@ public class CartsFragment extends Fragment {
 
                         } else {
                             continueLayout.setVisibility(View.GONE);
+                            isCartItemAvailable = false;
+                            cartTimeline.setVisibility(View.GONE);
+                            noServicesView.setVisibility(View.VISIBLE);
+
                             cartCountText.setText("0");
                             amountText.setText(" ");
                         }
@@ -340,6 +352,20 @@ public class CartsFragment extends Fragment {
 
         goToLogInBtn.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LogInActivity.class));
+        });
+
+        goToServicesBtn.setOnClickListener(v -> {
+            EventBusCall service = new EventBusCall();
+            service.setService("1");
+            EventBus.getDefault().post(service);
+        });
+
+        reloadBtn.setOnClickListener(v -> {
+            if (Utility.isOnline(getActivity())) {
+                CallGetCart();
+            } else {
+                Utility.showToast(getActivity(), getString(R.string.no_internet));
+            }
         });
     }
 

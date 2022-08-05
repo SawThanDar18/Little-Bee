@@ -15,6 +15,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
@@ -41,7 +43,7 @@ import java.util.Locale;
 
 import me.myatminsoe.mdetect.MDetect;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView bottomNavigationView;
     private CustomViewPager viewPager;
 
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        makeStatusBarVisible();
+        makeFullScreen();
         setContentView(R.layout.activity_main);
 
         MDetect.INSTANCE.init(this);
@@ -145,26 +147,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void Carts() {
-        Log.e("current>>>>", "carts");
-        EventBus.getDefault().post("home");
+        EventBus.getDefault().post("carts");
         viewPager.setCurrentItem(1);
 
     }
 
     private void Orders() {
-        EventBus.getDefault().post("home");
+        EventBus.getDefault().post("orders");
         viewPager.setCurrentItem(2);
 
     }
 
     private void Receipt() {
-        EventBus.getDefault().post("home");
+        EventBus.getDefault().post("receipt");
         viewPager.setCurrentItem(3);
 
     }
 
     private void My() {
-        EventBus.getDefault().post("home");
+        EventBus.getDefault().post("my");
         viewPager.setCurrentItem(4);
 
     }
@@ -210,12 +211,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    void makeStatusBarVisible() {
-
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-
+    void makeFullScreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
@@ -268,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
 
-        } else if (lang_txt == 0){
+        } else if (lang_txt == 0) {
             myLocale = new Locale("en");
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
@@ -276,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
 
-        } else if (lang_txt == 2){
+        } else if (lang_txt == 2) {
             myLocale = new Locale("zh", "CN");
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
@@ -303,7 +302,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Subscribe
     public void getEventBusService(EventBusCall service) {
 
+
         bottomNavigationView.setSelectedItemId(R.id.homeTab);
+
     }
 
     @Subscribe

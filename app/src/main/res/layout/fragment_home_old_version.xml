@@ -18,7 +18,7 @@
                 android:id="@+id/search_tool_bar"
                 layout="@layout/search_tool_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="@dimen/search_toolbar_height" />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"

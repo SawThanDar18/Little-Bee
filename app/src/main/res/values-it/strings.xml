@@ -33,7 +33,7 @@
     <string name="continues">ဆက်ရန်</string>
     <string name="please_login">အကောင့်ဝင်ရန်လိုအပ်ပါသည်။</string>
     <string name="go_to_login">အကောင့်ဝင်မည်။</string>
-    <string name="no_service">ဝင်ဆောင်မူများ မရှိသေးပါ။</string>
+    <string name="no_service">ဝန်ဆောင်မူများ မရှိသေးပါ။</string>
     <string name="search_for_services">ဝန်ဆောင်မှုများ ရှာမည်။</string>
 
     <string name="carts_label">ရွေးချယ်မှုများ</string>

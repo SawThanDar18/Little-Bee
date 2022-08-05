@@ -105,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin24"
+        android:layout_marginTop="@dimen/margin2"
         android:background="@color/white"
         android:paddingStart="@dimen/padding2"
         android:paddingEnd="@dimen/padding4"

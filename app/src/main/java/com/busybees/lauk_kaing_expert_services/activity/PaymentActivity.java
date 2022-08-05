@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Payment.PaymentAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -55,7 +58,10 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
         cartPageView.setOnClickListener(v -> {
-
+            GoToCart goToCart = new GoToCart();
+            goToCart.setText("go");
+            EventBus.getDefault().postSticky(goToCart);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
 
         addressPageView.setOnClickListener(v -> {

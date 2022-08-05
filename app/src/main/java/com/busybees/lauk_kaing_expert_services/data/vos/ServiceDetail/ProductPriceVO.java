@@ -422,4 +422,14 @@ public class ProductPriceVO {
     public void setShowDetail(boolean showDetail) {
         isShowDetail = showDetail;
     }
+
+    private int quantityUpdate = 0;
+
+    public int getQuantityUpdate() {
+        return quantityUpdate;
+    }
+
+    public void setQuantityUpdate(int quantityUpdate) {
+        this.quantityUpdate = quantityUpdate;
+    }
 }
