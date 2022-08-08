@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeFullScreen();
 
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash_new);
 
         skipLayout = findViewById(R.id.skip_layout);
         skipTimer = findViewById(R.id.skip_timer);

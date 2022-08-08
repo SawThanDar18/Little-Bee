@@ -28,7 +28,7 @@ public class ServiceAvailableVO {
     @Expose
     private String nameCh;
 
-    @SerializedName("onex_image")
+    @SerializedName("twox_image")
     @Expose
     private String serviceImage;
 

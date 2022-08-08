@@ -25,7 +25,7 @@
                 android:layout_width="@dimen/width70"
                 android:layout_height="@dimen/height80"
                 android:layout_marginLeft="@dimen/margin2"
-                android:src="@drawable/logo_bw"/>
+                android:src="@drawable/ic_little_bee_logo"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,10 +36,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/width30"
-                    android:layout_height="@dimen/height30"
+                    android:layout_width="@dimen/width40"
+                    android:layout_height="@dimen/height40"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_baseline_notifications_24"/>
+                    android:src="@drawable/ic_noti_bell"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile"
@@ -92,7 +92,7 @@
                     android:layout_width="@dimen/width40"
                     android:layout_height="@dimen/height40"
                     android:layout_marginLeft="@dimen/margin4"
-                    android:src="@drawable/ic_search_icon"
+                    android:src="@drawable/ic_lens"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

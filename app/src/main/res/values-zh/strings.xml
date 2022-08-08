@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JiaJie</string>
+    <string name="app_name">Little Bee</string>
 
     <string name="skip">Skip</string>
     <string name="search_keyword_hint">输入关键字进行搜索</string>

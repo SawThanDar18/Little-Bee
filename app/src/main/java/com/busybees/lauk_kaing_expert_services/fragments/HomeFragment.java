@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.Banner.AdvertisementBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
@@ -64,6 +65,7 @@ public class HomeFragment extends Fragment {
     private ConstraintLayout searchLayout;
 
     private WebBannerAdapter webBannerAdapter;
+    private AdvertisementBannerAdapter advertisementBannerAdapter;
     private BannerLayout banner, bannerAdvertisement;
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -383,6 +385,10 @@ public class HomeFragment extends Fragment {
             sliderImageList.add(slider.get(i).getSliderImage());
         }
 
+        List<Integer> adsImageList = new ArrayList<>();
+        adsImageList.add(R.drawable.ads);
+        advertisementBannerAdapter = new AdvertisementBannerAdapter(getActivity(), adsImageList);
+
         webBannerAdapter = new WebBannerAdapter(getActivity(), sliderImageList);
 
         webBannerAdapter.setOnBannerItemClickListener(position -> {
@@ -424,7 +430,7 @@ public class HomeFragment extends Fragment {
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
 
-        bannerAdvertisement.setAdapter(webBannerAdapter);
+        bannerAdvertisement.setAdapter(advertisementBannerAdapter);
         bannerAdvertisement.setAutoPlaying(true);
 
     }

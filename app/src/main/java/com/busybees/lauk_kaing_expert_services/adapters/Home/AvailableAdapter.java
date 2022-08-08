@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -77,15 +78,15 @@ public class AvailableAdapter extends RecyclerView.Adapter<AvailableAdapter.MyVi
         requestOptions.placeholder(R.drawable.loader_circle_shape);
         requestOptions.error(R.drawable.loader_circle_shape);
 
-        GlideToVectorYou.init()
+        /*GlideToVectorYou.init()
                 .with(context.getApplicationContext())
                 .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.loader_circle_shape)
-                .load(Uri.parse(serviceAvailableVO.getServiceImage()), holder.imageView);
+                .load(Uri.parse(serviceAvailableVO.getServiceImage()), holder.imageView);*/
 
-        /*Glide.with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
                 .load(serviceAvailableVO.getServiceImage())
                 .apply(requestOptions)
-                .into(holder.imageView);*/
+                .into(holder.imageView);
     }
 
 
