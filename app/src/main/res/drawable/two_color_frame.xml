@@ -5,7 +5,7 @@
                 android:topRightRadius="10dp"/>
 
             <size android:height="20dp"/>
-            <stroke android:width="3dp" android:color="@color/pink_accent_color"/>
+            <stroke android:width="3dp" android:color="@color/black"/>
 
         </shape>
     </item>

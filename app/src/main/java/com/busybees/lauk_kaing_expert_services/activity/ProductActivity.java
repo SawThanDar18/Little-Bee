@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +30,7 @@ import me.myatminsoe.mdetect.MDetect;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private TextView productName;
+    private TextView productName, name;
     private ImageView back;
 
     private RecyclerView productRecyclerView;
@@ -44,10 +46,12 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        makeStatusBarVisible();
+        //makeStatusBarVisible();
+        makeFullScreen();
         setContentView(R.layout.activity_product);
 
         productName = findViewById(R.id.product_name);
+        name = findViewById(R.id.name);
         back = findViewById(R.id.back_button);
         productRecyclerView = findViewById(R.id.product_recyclerview);
 
@@ -92,6 +96,12 @@ public class ProductActivity extends AppCompatActivity {
 
     }
 
+    void makeFullScreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
     public void intentToSubProductActivity (ProductsVO productsVO) {
 
         if (productsVO.getStep() == 2) {
@@ -103,20 +113,20 @@ public class ProductActivity extends AppCompatActivity {
             if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
                 if ( MDetect.INSTANCE.isUnicode()){
 
-                    Utility.addFontSuHome(productName, productsVO.getNameMm());
+                    Utility.addFontSuHome(name, productsVO.getNameMm());
 
                 } else  {
 
-                    Utility.changeFontUni2ZgHome(productName, productsVO.getNameMm());
+                    Utility.changeFontUni2ZgHome(name, productsVO.getNameMm());
                 }
             } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
-                productName.setText(productsVO.getNameCh());
+                name.setText(productsVO.getNameCh());
             } else {
-                productName.setText(productsVO.getName());
+                name.setText(productsVO.getName());
             }
 
             Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
-            intent.putExtra("product_title", productName.getText().toString());
+            intent.putExtra("product_title", name.getText().toString());
             intent.putExtra("product_detail_data", productsCarryObject);
             startActivity(intent);
         } else {
@@ -144,20 +154,20 @@ public class ProductActivity extends AppCompatActivity {
                 if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
                     if ( MDetect.INSTANCE.isUnicode()){
 
-                        Utility.addFontSuHome(productName, productsVO.getNameMm());
+                        Utility.addFontSuHome(name, productsVO.getNameMm());
 
                     } else  {
 
-                        Utility.changeFontUni2ZgHome(productName, productsVO.getNameMm());
+                        Utility.changeFontUni2ZgHome(name, productsVO.getNameMm());
                     }
                 } else if (checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
-                    productName.setText(productsVO.getNameCh());
+                    name.setText(productsVO.getNameCh());
                 } else {
-                    productName.setText(productsVO.getName());
+                    name.setText(productsVO.getName());
                 }
 
                 Intent intent = new Intent(this, SubProductActivity.class);
-                intent.putExtra("sub_product_title", productName.getText().toString());
+                intent.putExtra("sub_product_title", name.getText().toString());
                 intent.putExtra("sub_product", subProductsVOS);
                 startActivity(intent);
             }

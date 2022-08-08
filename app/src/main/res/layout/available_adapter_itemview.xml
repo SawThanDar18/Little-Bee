@@ -5,6 +5,7 @@
     android:layout_width="@dimen/width70"
     android:layout_height="wrap_content"
     android:layout_marginRight="@dimen/margin16"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <ImageView
@@ -20,7 +21,8 @@
 
         <TextView
             android:gravity="center"
-            android:padding="1dp"
+            android:padding="@dimen/padding2"
+            android:layout_marginTop="@dimen/margin4"
             android:layout_gravity="center_horizontal"
             android:text="General Worker Hiring"
             android:textColor="@color/home_service_name_color"
