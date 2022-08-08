@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
     private View.OnClickListener onClickListener;
     Context mContext;
     List<ProductPriceVO> productPriceVOList;
+    ServiceDetailActivity serviceDetailActivity = new ServiceDetailActivity();
 
     public ServiceDetailAdapter(ServiceDetailActivity serviceDetailActivity, ArrayList<ProductPriceVO> datas) {
         this.mContext = serviceDetailActivity;
@@ -127,7 +129,9 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 }
             }
 
-            int quantity = productPriceVO.getQuantity();
+
+            int quantity = serviceDetailActivity.quantityStatus;
+
             holder.selectServiceText.setVisibility(View.VISIBLE);
             holder.cancelServiceText.setVisibility(View.GONE);
             holder.surveyRequestText.setVisibility(View.GONE);
@@ -154,19 +158,29 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
 
                     holder.selectServiceText.setText(mContext.getString(R.string.selected));
                 } else {
-                    holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                    if (productPriceVO.getOriginalPrice() == 0) {
+                        if (checkLng(mContext).equalsIgnoreCase("it")) {
+
+                            if(holder.serviceDetailName.getText().length()>35){
+                                holder.serviceDetailName.setEms(11);
+                                holder.serviceDetailName.setLines(2);
+                            }
+
+                        }
+
+                        holder.selectServiceText.setText(mContext.getString(R.string.survey));
+                    } else {
+                        holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                    }
                     holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
                     holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+
                 }
 
                 /*holder.selectServiceText.setText(mContext.getString(R.string.selected));
                 holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
                 holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));*/
 
-
-                holder.selectServiceText.setTag(R.id.number,quantity);
-                holder.selectServiceText.setTag(R.id.position,position);
-                holder.selectServiceText.setOnClickListener(this);
 
             } else  {
 
@@ -202,11 +216,10 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 }
 
 
-                holder.selectServiceText.setTag(R.id.number,quantity);
-                holder.selectServiceText.setTag(R.id.position,position);
-                holder.selectServiceText.setOnClickListener(this);
-
             }
+            holder.selectServiceText.setTag(R.id.number,quantity);
+            holder.selectServiceText.setTag(R.id.position,position);
+            holder.selectServiceText.setOnClickListener(this);
 
 
             holder.hideShowDetailText.setVisibility(View.VISIBLE);

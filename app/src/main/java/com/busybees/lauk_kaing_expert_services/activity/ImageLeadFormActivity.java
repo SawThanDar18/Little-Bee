@@ -32,12 +32,10 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.network.RetrofitFactory;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddToCartSync;
-import com.busybees.lauk_kaing_expert_services.network.sync.GetCartSync;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -57,9 +55,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LeadFormActivity extends AppCompatActivity {
+public class ImageLeadFormActivity extends AppCompatActivity {
 
-    private EditText title_et, budget_et, first_square_feet_et, second_square_feet_et, detail_et;
     private RecyclerView photo_recyclerView;
     private Button continue_btn;
     private ImageButton upload_photo_btn;
@@ -84,13 +81,8 @@ public class LeadFormActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeStatusBarVisible();
-        setContentView(R.layout.lead_form_activity);
+        setContentView(R.layout.activity_image_lead_form);
 
-        title_et = findViewById(R.id.title_et);
-        budget_et = findViewById(R.id.budget_et);
-        first_square_feet_et = findViewById(R.id.first_square_feet_et);
-        second_square_feet_et = findViewById(R.id.second_square_feet_et);
-        detail_et = findViewById(R.id.detail_et);
         photo_recyclerView = findViewById(R.id.upload_photo_recyclerView);
         upload_photo_btn = findViewById(R.id.upload_photo_btn);
         continue_btn = findViewById(R.id.continue_btn);
@@ -132,19 +124,9 @@ public class LeadFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (title_et.getText().toString().equalsIgnoreCase("") || title_et.getText().toString().startsWith("0")) {
-                    title_et.setError(getString(R.string.title_et_error));
-                } else if (budget_et.getText().toString().equalsIgnoreCase("") || budget_et.getText().toString().startsWith("0")) {
-                    budget_et.setError(getString(R.string.budget_et_error));
-                } else if (first_square_feet_et.getText().toString().equalsIgnoreCase("") || first_square_feet_et.getText().toString().startsWith("0")) {
-                    first_square_feet_et.setError(getString(R.string.first_square_et_error));
-                } else if (second_square_feet_et.getText().toString().equalsIgnoreCase("") || second_square_feet_et.getText().toString().startsWith("0")) {
-                    second_square_feet_et.setError(getString(R.string.second_square_feet_et_error));
-                } else if (home_photos.size() == 0) {
+                if (home_photos.size() == 0) {
                     Utility.showToast(getApplicationContext(), getString(R.string.home_photos_error));
-                } else if (detail_et.getText().toString().equalsIgnoreCase("") || detail_et.getText().toString().startsWith("0")) {
-                    detail_et.setError(getString(R.string.details_et_error));
-                }else {
+                } else {
                     CallAddToCart();
                 }
             }
@@ -166,13 +148,9 @@ public class LeadFormActivity extends AppCompatActivity {
             builder.setType(MultipartBody.FORM);
 
             builder.addFormDataPart("phone", phone);
-            builder.addFormDataPart("title", title_et.getText().toString());
-            builder.addFormDataPart("budget", budget_et.getText().toString());
-            builder.addFormDataPart("square_feet", first_square_feet_et.getText().toString() + "x" + second_square_feet_et.getText().toString());
-            builder.addFormDataPart("detail_text", detail_et.getText().toString());
             builder.addFormDataPart("quantity", "1");
             builder.addFormDataPart("product_price_id", String.valueOf(product_price_id));
-            builder.addFormDataPart("form_status", String.valueOf(2));
+            builder.addFormDataPart("form_status", String.valueOf(1));
 
             for (int i = 0; i < home_photos.size(); i++) {
                 builder.addFormDataPart("photos[]", home_photos.get(i).getName(), RequestBody.create(MediaType.parse("multipart/form-data"), home_photos.get(i)));

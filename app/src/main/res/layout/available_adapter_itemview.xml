@@ -21,10 +21,9 @@
 
         <TextView
             android:gravity="center"
-            android:padding="@dimen/padding2"
-            android:layout_marginTop="@dimen/margin4"
+            android:padding="@dimen/padding1"
             android:layout_gravity="center_horizontal"
-            android:text="General Worker Hiring"
+            android:text="အိမ်အကူ၀န်ဆောင်မူ"
             android:textColor="@color/home_service_name_color"
             android:id="@+id/service_name"
             android:textSize="@dimen/fontSizeXSmall"

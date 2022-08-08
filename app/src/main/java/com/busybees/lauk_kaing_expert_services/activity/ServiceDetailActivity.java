@@ -57,6 +57,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
     private NetworkServiceProvider serviceProvider;
     private UserVO userVO;
 
+    public int quantityStatus;
+
     private TextView serviceDetailName, cartCountText, amountText;
     private ImageView back;
 
@@ -72,7 +74,6 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
     private ArrayList<ProductPriceVO> productPriceVOArrayList = new ArrayList<>();
     ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
-    ;
 
     // Intent Data
     private String productName;
@@ -252,8 +253,14 @@ public class ServiceDetailActivity extends AppCompatActivity {
                     }
                     posi = position;
                 } else {
-                    if (productPriceVOArrayList.get(position).getOriginalPrice() != 0) {
-
+                    if (productPriceVOArrayList.get(position).getOriginalPrice() == 0) {
+                        finish();
+                        Intent intent = new Intent(this, ImageLeadFormActivity.class);
+                        intent.putExtra("phone", userVO.getPhone());
+                        intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
+                        intent.putExtra("position", position);
+                        intent.putExtra("product_data", productsCarryObject);
+                        startActivity(intent);
                     } else {
                         AddToCartObj addToCartObj = new AddToCartObj();
                         addToCartObj.setPhone(userVO.getPhone());
