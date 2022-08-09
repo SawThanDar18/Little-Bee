@@ -336,7 +336,7 @@ public class FinalOrderActivity extends AppCompatActivity {
                     } else if (response.body().getError() == false) {
 
                         CallGetCart();
-                        EventBus.getDefault().post("refreshdata");
+                        //EventBus.getDefault().post("refreshdata");
 
                     }
 
@@ -459,6 +459,13 @@ public class FinalOrderActivity extends AppCompatActivity {
         addToCartObj.setFormStatus(obj.getFormStatus());
 
         CallAddToCart(addToCartObj);
+
+    }
+
+    @Subscribe
+    public void getEventBusFinalRefresh(String refreshdata) {
+
+        CallGetCart();
 
     }
 

@@ -280,6 +280,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                             serviceDetailAdapter.notifyDataSetChanged();
 
                             serviceDetailAdapter.setClick(v -> AdapterCLick(v));
+                            EventBus.getDefault().post("refreshdata");
                         } else {
                             servicesLayout.setVisibility(View.GONE);
                             comingSoonLayout.setVisibility(View.VISIBLE);
@@ -417,6 +418,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                             CallProductPriceApi(pStepObj);
 
                             CallGetCart();
+                            EventBus.getDefault().post("refreshdata");
 
                         } else {
                             startActivity(new Intent(getContext(), LogInActivity.class));
