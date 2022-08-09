@@ -82,6 +82,8 @@
     <string name="add_new_address">+ 添加新地址</string>
     <string name="fill_address">填写地址</string>
     <string name="go_map">去地图</string>
+    <string name="add_new_address_">请添加新地址</string>
+    <string name="select_address_first">请选择地址。</string>
 
     <string name="no_data">没有数据</string>
 

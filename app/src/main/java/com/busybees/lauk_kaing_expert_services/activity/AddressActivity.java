@@ -39,9 +39,11 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -341,7 +343,8 @@ public class AddressActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            startActivity(new Intent(AddressActivity.this, FinalOrderActivity.class));
+            OrderData();
+            //startActivity(new Intent(AddressActivity.this, FinalOrderActivity.class));
         });
 
         dateLayout.setOnClickListener(v -> {
@@ -385,6 +388,48 @@ public class AddressActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
 
+    }
+
+    private void OrderData(){
+
+        if (isSelected==true) {
+            try {
+                JSONObject jsonObject = new JSONObject();
+
+                if (addressVOArrayList.isEmpty()) {
+                    Utility.showToast(getApplicationContext(), getString(R.string.add_new_address_));
+                } else {
+                    jsonObject.put("full_address",addressVOArrayList.get(position).getAddress());
+                }
+
+                jsonObject.put(AppENUM.KeyName.PHONE_USERID, userVO.getPhone());
+                jsonObject.put(AppENUM.KeyName.DATE, selectedDate.getTag().toString());
+                jsonObject.put(AppENUM.KeyName.TIME, timeSpinnerArray.getSelectedItem().toString());
+
+                AddressVO addressVO = new AddressVO();
+                addressVO.setId(addressVOArrayList.get(position).getId());
+                addressVO.setUserId(userVO.getId());
+                addressVO.setAddress(addressVOArrayList.get(position).getAddress());
+                addressVO.setPhone(userVO.getPhone());
+                addressVO.setType(addressVOArrayList.get(position).getType());
+                addressVO.setLatitude(addressVOArrayList.get(position).getLatitude());
+                addressVO.setLongitude(addressVOArrayList.get(position).getLongitude());
+                addressVO.setLocationName(addressVOArrayList.get(position).getLocationName());
+
+                Bundle bundle = new Bundle();
+                bundle.putString(AppENUM.KeyName.PRODUCT_DETAIL, jsonObject.toString());
+
+                Intent intent=new Intent(AddressActivity.this, FinalOrderActivity.class);
+                intent.putExtras(bundle);
+                intent.putExtra("address", addressVO);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            Utility.showToast(this, getString(R.string.select_address_first));
+        }
     }
 
     public void buildAlertMessageNoGps() {

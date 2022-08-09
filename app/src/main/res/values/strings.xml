@@ -81,6 +81,8 @@
     <string name="add_new_address">+ Add New Address</string>
     <string name="fill_address">Fill Address</string>
     <string name="go_map">Go Map</string>
+    <string name="add_new_address_">Please Add New Address</string>
+    <string name="select_address_first">Please select address.</string>
 
     <string name="no_data">No Data</string>
 

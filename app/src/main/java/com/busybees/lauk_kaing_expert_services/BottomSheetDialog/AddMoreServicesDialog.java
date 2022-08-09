@@ -18,8 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.LCModel;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.ImageLeadFormActivity;
+import com.busybees.lauk_kaing_expert_services.activity.LeadFormActivity;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProductActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ServiceDetailActivity;
@@ -27,6 +30,11 @@ import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.MoreServ
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.ServicesTitleAndIconAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.AddMoreServices.ExpandableListViewAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.ServiceDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartObj;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartDataModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetProductPriceModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
@@ -36,12 +44,15 @@ import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProduct
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -75,6 +86,9 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     private ArrayList<ProductPriceVO> productPriceVOArrayList = new ArrayList<>();
 
     private ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+    ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
+
+    int posi = 0;
 
     public AddMoreServicesDialog(ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList, ArrayList<ProductsVO> productsVOArrayList, ArrayList<SubProductsVO> subProductsVOArrayList) {
         this.serviceAvailableVOArrayList = serviceAvailableVOArrayList;
@@ -295,8 +309,169 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
             productPriceVO.setShowDetail(!productPriceVO.isShowDetail());
             serviceDetailAdapter.notifyItemChanged(position);
 
+        } else if (v.getId() == R.id.selectText) {
+
+            int position = (int) v.getTag(R.id.position);
+            int numberCount = productPriceVOArrayList.get(position).getQuantity();
+
+            if (userVO != null) {
+
+                if (productPriceVOArrayList.get(position).getFormStatus() == 2) {
+
+                    dismiss();
+                    Intent intent = new Intent(getContext(), LeadFormActivity.class);
+                    intent.putExtra("key", 1);
+                    intent.putExtra("phone", userVO.getPhone());
+                    intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
+                    intent.putExtra("position", position);
+                    intent.putExtra("product_data", productsCarryObject);
+                    startActivity(intent);
+
+                } else if (productPriceVOArrayList.get(position).getFormStatus() == 0) {
+
+                    AddToCartObj addToCartObj = new AddToCartObj();
+                    addToCartObj.setPhone(userVO.getPhone());
+                    addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                    addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+
+                    if (numberCount == 0) {
+                        addToCartObj.setQuantity(1);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(1);
+
+                    } else {
+                        addToCartObj.setQuantity(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(0);
+                    }
+                    posi = position;
+                } else {
+                    if (productPriceVOArrayList.get(position).getOriginalPrice() == 0) {
+                        dismiss();
+                        Intent intent = new Intent(getContext(), ImageLeadFormActivity.class);
+                        intent.putExtra("key", 1);
+                        intent.putExtra("phone", userVO.getPhone());
+                        intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
+                        intent.putExtra("position", position);
+                        intent.putExtra("product_data", productsCarryObject);
+                        startActivity(intent);
+                    } else {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+
+                        if (productPriceVOArrayList.get(position).getQuantity() == 0) {
+                            addToCartObj.setQuantity(1);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(1);
+
+                        } else {
+                            addToCartObj.setQuantity(0);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(0);
+                        }
+                        posi = position;
+                    }
+                }
+            } else {
+
+
+                AppStorePreferences.putInt(getContext(), AppENUM.POSITION, position);
+                AppStorePreferences.putInt(getContext(), AppENUM.NUMBER, numberCount);
+
+                Intent intent = new Intent(getContext(), LogInActivity.class);
+                startActivity(intent);
+
+            }
+
         }
 
+    }
+
+    public void CallAddToCart(AddToCartObj obj) {
+
+        if (Utility.isOnline(getContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            networkServiceProvider.AddToCartCall(ApiConstants.BASE_URL + ApiConstants.GET_ADD_TO_CART, obj).enqueue(new Callback<AddToCartModel>() {
+                @Override
+                public void onResponse(Call<AddToCartModel> call, Response<AddToCartModel> response) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                    if (response.body().getError() == true) {
+
+                        Utility.showToast(getContext(), response.body().getMessage());
+
+                    } else if (response.body().getError() == false) {
+
+                        if (userVO != null) {
+
+                            ProductsCarryObject pStepObj = new ProductsCarryObject();
+                            pStepObj.setServiceId(productsCarryObject.getServiceId());
+                            pStepObj.setProductId(productsCarryObject.getProductId());
+                            pStepObj.setSubProductId(productsCarryObject.getSubProductId());
+                            pStepObj.setProductPriceId(productsCarryObject.getProductPriceId());
+                            pStepObj.setStep(productsCarryObject.getStep());
+                            CallProductPriceApi(pStepObj);
+
+                            CallGetCart();
+
+                        } else {
+                            startActivity(new Intent(getContext(), LogInActivity.class));
+
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<AddToCartModel> call, Throwable t) {
+                    Utility.showToast(getContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            Utility.showToast(getContext(), getString(R.string.no_internet));
+        }
+    }
+
+    private void CallGetCart() {
+        if (userVO != null) {
+            GetCartObj cartObj = new GetCartObj();
+            cartObj.setPhone(userVO.getPhone());
+
+            if (Utility.isOnline(getContext())) {
+
+                networkServiceProvider.GetCartCall(ApiConstants.BASE_URL + ApiConstants.GET_CART, cartObj).enqueue(new Callback<GetCartModel>() {
+                    @Override
+                    public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
+
+                        progressBar.setVisibility(View.GONE);
+
+                        //if (response.body().getError() == true) {
+
+                            //Utility.showToast(getContext(), response.body().getMessage());
+
+                        //} else if (response.body().getError() == false) {
+                            cartDatas.clear();
+                            cartDatas.addAll(response.body().getData());
+                        //}
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetCartModel> call, Throwable t) {
+                        Utility.showToast(getContext(), t.getMessage());
+                    }
+                });
+
+            } else {
+                Utility.showToast(getContext(), getString(R.string.no_internet));
+
+            }
+        }
     }
 
     public int GetPixelFromDips(float pixels) {
@@ -316,6 +491,41 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onResume() {
+        CallGetCart();
+        super.onResume();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getEventLcModel(LCModel lcModel) {
+
+        int position = lcModel.getPosition();
+        int numberCount = lcModel.getNumber_count();
+        userVO = Utility.query_UserProfile(getContext());
+
+        if (numberCount == 0) {
+
+            AddToCartObj addToCartObj = new AddToCartObj();
+            addToCartObj.setPhone(userVO.getPhone());
+            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+            addToCartObj.setQuantity(1);
+            addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
+            CallAddToCart(addToCartObj);
+            posi = position;
+
+        } else {
+
+            AddToCartObj addToCartObj = new AddToCartObj();
+            addToCartObj.setPhone(userVO.getPhone());
+            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+            addToCartObj.setQuantity(0);
+            CallAddToCart(addToCartObj);
+            posi = position;
+        }
+
+    }
+
     @Subscribe
     public void getAlert(AlertModel alertModel) {
 
@@ -323,5 +533,6 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         goToCart.setText("go");
         EventBus.getDefault().postSticky(goToCart);
         startActivity(new Intent(getContext(), MainActivity.class));
+        dismiss();
     }
 }

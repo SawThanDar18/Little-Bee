@@ -130,7 +130,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
             }
 
 
-            int quantity = serviceDetailActivity.quantityStatus;
+            int quantity = productPriceVO.getQuantity();
 
             holder.selectServiceText.setVisibility(View.VISIBLE);
             holder.cancelServiceText.setVisibility(View.GONE);

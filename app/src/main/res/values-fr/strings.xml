@@ -83,6 +83,8 @@
     <string name="add_new_address">+ လိပ္စာအသစ္ထည္႔ပါ</string>
     <string name="fill_address">လိပ္စာျဖည္႔ရန္</string>
     <string name="go_map">ေျမပံုသို့</string>
+    <string name="add_new_address_">လိပ္စာအသစ္ ထည့္ရန္လိုအပ္ပါသည္။</string>
+    <string name="select_address_first">လိပ္စာေရြးပါ.</string>
 
     <string name="no_data">ေဒတာ မရွိပါ။</string>
 

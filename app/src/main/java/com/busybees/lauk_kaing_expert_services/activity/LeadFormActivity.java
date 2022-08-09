@@ -23,11 +23,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.BottomSheetDialog.AddMoreServicesDialog;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogLimitPhoto;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.PhotoItemViewAdapter;
 import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.network.RetrofitFactory;
@@ -78,6 +82,11 @@ public class LeadFormActivity extends AppCompatActivity {
     UserVO userVO = new UserVO();
     ProductsCarryObject pStepCarryObj = new ProductsCarryObject();
 
+
+    private ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<>();
+    private ArrayList<ProductsVO> productsVOArrayList = new ArrayList<>();
+    private ArrayList<SubProductsVO> subProductsVOArrayList = new ArrayList<>();
+
     int position;
 
     @Override
@@ -110,6 +119,10 @@ public class LeadFormActivity extends AppCompatActivity {
             phone = getIntent().getStringExtra("phone");
             product_price_id = getIntent().getIntExtra("product_price_id", 0);
             pStepCarryObj = (ProductsCarryObject) getIntent().getSerializableExtra("product_data");
+
+            serviceAvailableVOArrayList = (ArrayList<ServiceAvailableVO>) getIntent().getSerializableExtra("getmorelist");
+            productsVOArrayList = (ArrayList<ProductsVO>) getIntent().getSerializableExtra("productlist");
+            subProductsVOArrayList = (ArrayList<SubProductsVO>) getIntent().getSerializableExtra("subproductlist");
 
         }
 
@@ -191,9 +204,19 @@ public class LeadFormActivity extends AppCompatActivity {
                     if (response.body().getError() == false) {
                         finish();
 
-                        Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
-                        intent.putExtra("product_detail_data", pStepCarryObj);
-                        startActivity(intent);
+                        if (key == 1) {
+                            if (serviceAvailableVOArrayList != null && productsVOArrayList != null && subProductsVOArrayList != null) {
+                                AddMoreServicesDialog dialogAddMoreService = new AddMoreServicesDialog(serviceAvailableVOArrayList, productsVOArrayList, subProductsVOArrayList);
+                                Bundle toDialog = new Bundle();
+                                toDialog.putSerializable("product_data", pStepCarryObj);
+                                dialogAddMoreService.setArguments(toDialog);
+                                dialogAddMoreService.show(getSupportFragmentManager(), "");
+                            }
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), ServiceDetailActivity.class);
+                            intent.putExtra("product_detail_data", pStepCarryObj);
+                            startActivity(intent);
+                        }
 
 
                     } else if (response.body().getError() == true) {
