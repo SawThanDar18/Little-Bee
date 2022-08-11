@@ -34,7 +34,6 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
     private View.OnClickListener onClickListener;
     Context mContext;
     List<ProductPriceVO> productPriceVOList;
-    ServiceDetailActivity serviceDetailActivity = new ServiceDetailActivity();
 
     public ServiceDetailAdapter(ServiceDetailActivity serviceDetailActivity, ArrayList<ProductPriceVO> datas) {
         this.mContext = serviceDetailActivity;
@@ -129,8 +128,74 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 }
             }
 
+            /*String quantity = productPriceVO.getQuantity() != null ? String.valueOf(productPriceVO.getQuantity()) : "0";
+            holder.selectServiceText.setVisibility(View.VISIBLE);
+            holder.cancelServiceText.setVisibility(View.GONE);
+            holder.surveyRequestText.setVisibility(View.GONE);
+            if(Integer.parseInt(quantity) == 0) {
+
+                holder.selectServiceText.setVisibility(View.VISIBLE);
+                holder.surveyRequestText.setVisibility(View.GONE);
+
+                if(Double.parseDouble(String.valueOf(productPriceVO.getFormStatus()))==2) {
+                    if (checkLng(mContext).equalsIgnoreCase("it")) {
+
+                        if(holder.serviceDetailName.getText().length()>35){
+                            holder.serviceDetailName.setEms(11);
+                            holder.serviceDetailName.setLines(2);
+
+                        }
+
+                    }
+                    holder.selectServiceText.setText(mContext.getString(R.string.survey));
+                }else{
+
+                    holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                }
+
+                holder.selectServiceText.setText(mContext.getString(R.string.selected));
+                holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
+                holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+
+
+                holder.selectServiceText.setTag(R.id.number,quantity);
+                holder.selectServiceText.setTag(R.id.position,position);
+                holder.selectServiceText.setOnClickListener(this);
+
+
+            } else  {
+                if(Double.parseDouble(String.valueOf(productPriceVO.getFormStatus()))==2) {
+                    holder.surveyRequestText.setVisibility(View.VISIBLE);
+                    holder.surveyRequestText.setText(mContext.getResources().getString(R.string.survey_request));
+                    holder.surveyRequestText.setPadding(mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                            mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                            mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                            mContext.getResources().getDimensionPixelOffset(R.dimen.margin10));
+
+                    holder.selectServiceText.setVisibility(View.GONE);
+                    holder.cancelServiceText.setVisibility(View.VISIBLE);
+
+                    holder.cancelServiceText.setTag(R.id.number,quantity);
+                    holder.cancelServiceText.setTag(R.id.position,position);
+                    holder.cancelServiceText.setOnClickListener(this);
+                }else{
+                    holder.surveyRequestText.setVisibility(View.GONE);
+                    holder.selectServiceText.setVisibility(View.VISIBLE);
+
+                    holder.selectServiceText.setText(mContext.getString(R.string.unselected));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.round_corner_theme_bg));
+                    holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+
+                }
+
+                holder.selectServiceText.setTag(R.id.number,quantity);
+                holder.selectServiceText.setTag(R.id.position,position);
+                holder.selectServiceText.setOnClickListener(this);
+            }*/
+
 
             int quantity = productPriceVO.getQuantity();
+            Log.e("qty 0>>", String.valueOf(quantity));
 
             holder.selectServiceText.setVisibility(View.VISIBLE);
             holder.cancelServiceText.setVisibility(View.GONE);
@@ -180,6 +245,9 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 /*holder.selectServiceText.setText(mContext.getString(R.string.selected));
                 holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
                 holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));*/
+                holder.selectServiceText.setTag(R.id.number,quantity);
+                holder.selectServiceText.setTag(R.id.position,position);
+                holder.selectServiceText.setOnClickListener(this);
 
 
             } else  {
@@ -212,14 +280,41 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                     holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.white));
 
                 } else {
+                    if (productPriceVO.getOriginalPrice() == 0) {
+                        holder.surveyRequestText.setVisibility(View.VISIBLE);
 
+                        holder.surveyRequestText.setText(mContext.getResources().getString(R.string.survey_request));
+
+                        holder.surveyRequestText.setPadding(mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10));
+
+                        holder.selectServiceText.setVisibility(View.GONE);
+                        holder.cancelServiceText.setVisibility(View.VISIBLE);
+                        holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.round_corner_theme_bg));
+                        holder.cancelServiceText.setTextColor(mContext.getResources().getColor(R.color.white));
+
+                        holder.cancelServiceText.setTag(R.id.number,quantity);
+                        holder.cancelServiceText.setTag(R.id.position,position);
+                        holder.cancelServiceText.setOnClickListener(this);
+                    } else {
+                        holder.surveyRequestText.setVisibility(View.GONE);
+                        holder.selectServiceText.setVisibility(View.VISIBLE);
+
+                        holder.selectServiceText.setText(mContext.getString(R.string.unselected));
+                        holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.round_corner_theme_bg));
+                        holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.white));
+
+                    }
                 }
 
 
+                holder.selectServiceText.setTag(R.id.number,quantity);
+                holder.selectServiceText.setTag(R.id.position,position);
+                holder.selectServiceText.setOnClickListener(this);
+
             }
-            holder.selectServiceText.setTag(R.id.number,quantity);
-            holder.selectServiceText.setTag(R.id.position,position);
-            holder.selectServiceText.setOnClickListener(this);
 
 
             holder.hideShowDetailText.setVisibility(View.VISIBLE);
@@ -227,6 +322,10 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
             if(productPriceVO.isShowDetail() == true && productPriceVO.getDescription() != null) {
 
                 holder.serviceDetailDescription.setVisibility(View.VISIBLE);
+
+                if (productPriceVO.getFormStatus() == 2) {
+                    holder.serviceDetailDescription.setVisibility(View.GONE);
+                }
 
                 if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
                     if (MDetect.INSTANCE.isUnicode()) {

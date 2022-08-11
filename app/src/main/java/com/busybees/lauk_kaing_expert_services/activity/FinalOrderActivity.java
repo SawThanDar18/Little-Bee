@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.BottomSheetDialog.AddMoreServicesDialog;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogServiceDelete;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
@@ -68,6 +70,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     private RelativeLayout logInView, addMoreServiceLayout, noServiceView;
     private ConstraintLayout finalOrderTimeLine;
     private LinearLayout reloadPage, continueLayout;
+    private Button goToServicesBtn;
 
     private TextView addressText, dateText, timeText, cartCountText, amountText;
     private ImageView back, homePageView, cartPageView, addressPageView;
@@ -112,6 +115,7 @@ public class FinalOrderActivity extends AppCompatActivity {
         timeText = findViewById(R.id.timeText);
         cartCountText = findViewById(R.id.cartCountText);
         amountText = findViewById(R.id.amountText);
+        goToServicesBtn = findViewById(R.id.go_to_service);
 
         if (Utility.isOnline(getApplicationContext())) {
             reloadPage.setVisibility(View.GONE);
@@ -189,7 +193,7 @@ public class FinalOrderActivity extends AppCompatActivity {
                             continueLayout.setVisibility(View.GONE);
                             isCartItemAvailable = false;
                             finalOrderTimeLine.setVisibility(View.GONE);
-                            noServiceView.setVisibility(View.VISIBLE);
+                            noServiceView.setVisibility(View.GONE);
 
                             cartCountText.setText("0");
                             amountText.setText(" ");
@@ -428,6 +432,12 @@ public class FinalOrderActivity extends AppCompatActivity {
         });
 
         addressPageView.setOnClickListener(v -> finish());
+
+        goToServicesBtn.setOnClickListener(v -> {
+            EventBusCall service = new EventBusCall();
+            service.setService("1");
+            EventBus.getDefault().post(service);
+        });
     }
 
     void makeStatusBarVisible() {

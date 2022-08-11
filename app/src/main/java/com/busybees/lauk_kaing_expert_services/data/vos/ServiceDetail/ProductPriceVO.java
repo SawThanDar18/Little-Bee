@@ -3,7 +3,9 @@ package com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProductPriceVO {
+import java.io.Serializable;
+
+public class ProductPriceVO implements Serializable {
 
     @SerializedName("service_id")
     @Expose
@@ -423,13 +425,13 @@ public class ProductPriceVO {
         isShowDetail = showDetail;
     }
 
-    private boolean quantityUpdate = true;
+    private boolean isQuantityUpdate = true;
 
-    public boolean getQuantityUpdate() {
-        return quantityUpdate;
+    public boolean isQuantityUpdate() {
+        return isQuantityUpdate;
     }
 
     public void setQuantityUpdate(boolean quantityUpdate) {
-        this.quantityUpdate = quantityUpdate;
+        isQuantityUpdate = quantityUpdate;
     }
 }

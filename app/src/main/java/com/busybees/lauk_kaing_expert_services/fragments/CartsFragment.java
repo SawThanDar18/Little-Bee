@@ -127,48 +127,57 @@ public class CartsFragment extends Fragment {
             GetCartObj cartObj = new GetCartObj();
             cartObj.setPhone(userVO.getPhone());
 
+            progressBar.setVisibility(View.VISIBLE);
+
             if (Utility.isOnline(getContext())) {
 
                 networkServiceProvider.GetCartCall(ApiConstants.BASE_URL + ApiConstants.GET_CART, cartObj).enqueue(new Callback<GetCartModel>() {
                     @Override
                     public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
 
-                        reloadPage.setVisibility(View.GONE);
-                        cartDatas.clear();
-                        cartDatas.addAll(response.body().getData());
-                        cartsListAdapter = new CartsListAdapter(getActivity(), cartDatas);
-                        cartsRecyclerView.setAdapter(cartsListAdapter);
-                        cartsListAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
 
-                        cartsListAdapter.setCLick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AdapterClick(v);
-                            }
-                        });
+                        if (response.body().getError() == false) {
+                            reloadPage.setVisibility(View.GONE);
+                            cartDatas.clear();
+                            cartDatas.addAll(response.body().getData());
+                            cartsListAdapter = new CartsListAdapter(getActivity(), cartDatas);
+                            cartsRecyclerView.setAdapter(cartsListAdapter);
+                            cartsListAdapter.notifyDataSetChanged();
 
-                        if (!cartDatas.isEmpty() && cartDatas != null) {
-                            continueLayout.setVisibility(View.VISIBLE);
-                            isCartItemAvailable = true;
-                            cartTimeline.setVisibility(View.VISIBLE);
-                            noServicesView.setVisibility(View.GONE);
+                            cartsListAdapter.setCLick(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    AdapterClick(v);
+                                }
+                            });
 
-                            cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
-                            if (response.body().getTotal() != 0) {
-                                amountText.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                            if (!cartDatas.isEmpty() && cartDatas != null) {
+                                continueLayout.setVisibility(View.VISIBLE);
+                                isCartItemAvailable = true;
+                                cartTimeline.setVisibility(View.VISIBLE);
+                                noServicesView.setVisibility(View.GONE);
+
+                                cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
+                                if (response.body().getTotal() != 0) {
+                                    amountText.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                                } else {
+                                    amountText.setText("Survey");
+                                }
+
                             } else {
-                                amountText.setText("Survey");
+                                continueLayout.setVisibility(View.GONE);
+                                isCartItemAvailable = false;
+                                cartTimeline.setVisibility(View.GONE);
+                                noServicesView.setVisibility(View.VISIBLE);
+
+                                cartCountText.setText("0");
+                                amountText.setText(" ");
                             }
-
                         } else {
-                            continueLayout.setVisibility(View.GONE);
-                            isCartItemAvailable = false;
-                            cartTimeline.setVisibility(View.GONE);
-                            noServicesView.setVisibility(View.VISIBLE);
-
-                            cartCountText.setText("0");
-                            amountText.setText(" ");
+                            Utility.showToast(getContext(), response.body().getMessage());
                         }
+
                     }
 
                     @Override

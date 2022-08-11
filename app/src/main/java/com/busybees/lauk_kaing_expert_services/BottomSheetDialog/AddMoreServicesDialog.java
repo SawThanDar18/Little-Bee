@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.LCModel;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
@@ -159,6 +161,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
             v.onTouchEvent(event);
             return true;
         });
+
     }
 
     private void initListeners() {
@@ -326,6 +329,9 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                     intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
                     intent.putExtra("position", position);
                     intent.putExtra("product_data", productsCarryObject);
+                    intent.putExtra("getmorelist", serviceAvailableVOArrayList);
+                    intent.putExtra("productlist", productsVOArrayList);
+                    intent.putExtra("subproductlist", subProductsVOArrayList);
                     startActivity(intent);
 
                 } else if (productPriceVOArrayList.get(position).getFormStatus() == 0) {
@@ -355,6 +361,9 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                         intent.putExtra("product_price_id", productPriceVOArrayList.get(position).getId());
                         intent.putExtra("position", position);
                         intent.putExtra("product_data", productsCarryObject);
+                        intent.putExtra("getmorelist", serviceAvailableVOArrayList);
+                        intent.putExtra("productlist", productsVOArrayList);
+                        intent.putExtra("subproductlist", subProductsVOArrayList);
                         startActivity(intent);
                     } else {
                         AddToCartObj addToCartObj = new AddToCartObj();

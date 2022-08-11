@@ -4,9 +4,10 @@ import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ServiceAvailableVO {
+public class ServiceAvailableVO implements Serializable {
 
     @SerializedName("service_id")
     @Expose
