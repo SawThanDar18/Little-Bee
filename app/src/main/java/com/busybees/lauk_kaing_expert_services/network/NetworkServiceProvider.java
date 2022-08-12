@@ -10,9 +10,11 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetAddressModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.MatchPromoCodeObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddAddressSync;
@@ -47,6 +49,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetRegisterSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
+import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -140,6 +143,11 @@ public class NetworkServiceProvider {
     public Call<AddToCartModel> AddToCartCall (String url, AddToCartObj addToCartObj) {
         AddToCartSync sync=retrofit.create(AddToCartSync.class);
         return sync.getAddToCart(url,addToCartObj);
+    }
+
+    public Call<MatchPromoCodeModel> MatchPromoCode (String url, MatchPromoCodeObject obj) {
+        MatchPromoCodeSync sync=retrofit.create(MatchPromoCodeSync.class);
+        return sync.matchPromoCode(url, obj);
     }
 
 }

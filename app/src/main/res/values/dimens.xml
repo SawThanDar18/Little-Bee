@@ -37,6 +37,7 @@
     <dimen name="width150">150dp</dimen>
     <dimen name="width180">180dp</dimen>
     <dimen name="width240">240dp</dimen>
+    <dimen name="width300">300dp</dimen>
 
     <dimen name="height1">1dp</dimen>
     <dimen name="height3">3dp</dimen>

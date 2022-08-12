@@ -201,4 +201,5 @@
     <string name="details_et_error">More Details</string>
     <string name="photo_limit_txt">Only accept 5 photos!</string>
 
+    <string name="select_service">Select Service</string>
 </resources>

@@ -83,6 +83,8 @@ public class FinalOrderAdapter extends RecyclerView.Adapter<FinalOrderAdapter.My
         GetCartDataModel obj = list.get(position);
         String lang = AppStorePreferences.getString(mContext, AppENUM.LANG);
 
+        MDetect.INSTANCE.init(mContext);
+
         if(holder != null && obj != null) {
             if(lang != null ){
                 if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")){

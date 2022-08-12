@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.data.models.GetCart;
 
+import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.PromoCodeVO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -39,6 +40,10 @@ public class GetCartModel {
     @SerializedName("error")
     @Expose
     private Boolean error;
+
+    @SerializedName("promolist")
+    @Expose
+    private List<PromoCodeVO> promoCodeList;
 
     public int getTotal() {
         return total;
@@ -102,6 +107,14 @@ public class GetCartModel {
 
     public void setError(Boolean error) {
         this.error = error;
+    }
+
+    public List<PromoCodeVO> getPromoCodeList() {
+        return promoCodeList;
+    }
+
+    public void setPromoCodeList(List<PromoCodeVO> promoCodeList) {
+        this.promoCodeList = promoCodeList;
     }
 }
 

@@ -201,4 +201,5 @@
     <string name="details_et_error">更多细节</string>
     <string name="photo_limit_txt">只接受5张照片！</string>
 
+    <string name="select_service">选择服务</string>
 </resources>
