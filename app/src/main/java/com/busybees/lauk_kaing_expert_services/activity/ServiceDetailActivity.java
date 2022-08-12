@@ -236,11 +236,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
         } else if (v.getId() == R.id.selectText) {
 
             int position = (int) v.getTag(R.id.position);
-            //int numberCount = productPriceVOArrayList.get(position).getQuantity();
-
-
-            ProductPriceVO sdpModel = productPriceVOArrayList.get(position);
-            int numberCount = sdpModel.getQuantity();
+            int numberCount = productPriceVOArrayList.get(position).getQuantity();
 
             if (userVO != null) {
 
@@ -290,7 +286,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
                         addToCartObj.setFormStatus(productPriceVOArrayList.get(position).getFormStatus());
 
-                        if (productPriceVOArrayList.get(position).getQuantity() == 0) {
+                        if (numberCount == 0) {
                             addToCartObj.setQuantity(1);
                             CallAddToCart(addToCartObj);
                             productPriceVOArrayList.get(position).setQuantity(1);
@@ -451,7 +447,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    /*@Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void getEventLcModel(LCModel lcModel) {
 
         int position = lcModel.getPosition();
@@ -478,7 +474,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
             posi = position;
         }
 
-    }
+    }*/
 
     @Subscribe
     public void getAlert(AlertModel alertModel) {

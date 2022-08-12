@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,16 +18,25 @@ import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Payment.PaymentAdapter;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 
 public class PaymentActivity extends AppCompatActivity {
+
+    private NetworkServiceProvider serviceProvider;
+    private UserVO userObj = new UserVO();
 
     private RecyclerView paymentRecyclerView;
     private PaymentAdapter adapter;
     private LinearLayoutManager paymentLayoutManager;
 
     private LinearLayout continueLayout;
+
+    private ProgressBar progressBar;
+    private TextView subtotal, discountTotal, total;
 
     private ImageView back, homePageView, cartPageView, addressPageView, finalOrderPageView;
 
@@ -35,6 +46,9 @@ public class PaymentActivity extends AppCompatActivity {
         makeStatusBarVisible();
         setContentView(R.layout.activity_payment);
 
+        serviceProvider = new NetworkServiceProvider(this);
+        userObj = Utility.query_UserProfile(this);
+
         paymentRecyclerView = findViewById(R.id.recycle_payment);
         continueLayout = findViewById(R.id.continue_layout);
         back = findViewById(R.id.back_button);
@@ -42,6 +56,9 @@ public class PaymentActivity extends AppCompatActivity {
         cartPageView = findViewById(R.id.cart_page_btn);
         addressPageView = findViewById(R.id.address_page_btn);
         finalOrderPageView = findViewById(R.id.final_order_page_btn);
+        progressBar = findViewById(R.id.materialLoader);
+        subtotal = findViewById(R.id.sub_total_amount);
+        discountTotal = findViewById(R.id.discount_price);
 
         setUpAdapter();
         onClick();

@@ -13,7 +13,7 @@
             android:id="@+id/service_img"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/image_rounded_corner_theme_bg"
+            android:background="@drawable/ic_gold_circle"
             android:layout_width="@dimen/width60"
             android:layout_height="@dimen/height60"
             android:padding="@dimen/padding10"

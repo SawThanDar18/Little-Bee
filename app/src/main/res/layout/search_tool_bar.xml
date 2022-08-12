@@ -18,15 +18,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_height="@dimen/height60"
+            android:background="@drawable/gold_bg"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/width70"
-                android:layout_height="@dimen/height80"
-                android:layout_marginLeft="@dimen/margin2"
-                android:src="@drawable/ic_little_bee_logo"/>
+                android:layout_width="@dimen/width100"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="@dimen/margin8"
+                android:src="@drawable/ic_little_bee_logo_vertical"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin16"
-            android:layout_marginBottom="@dimen/margin16"
+            android:layout_marginBottom="@dimen/margin8"
             android:layout_marginTop="@dimen/margin8"
             android:orientation="horizontal">
 
