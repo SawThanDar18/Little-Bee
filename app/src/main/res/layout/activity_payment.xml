@@ -402,6 +402,48 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/promo_discount_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tot_footer1"
+                        android:background="@drawable/corner_grey_stroke"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="@dimen/margin6"
+                            android:layout_weight="3.8"
+                            android:gravity="right"
+                            android:padding="@dimen/padding4"
+                            android:text="Promo Code Discount"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#D1CBCB" />
+
+                        <TextView
+                            android:id="@+id/promo_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin10"
+                            android:layout_marginBottom="@dimen/margin10"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/total_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
