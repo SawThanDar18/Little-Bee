@@ -45,8 +45,7 @@ public class SubProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //makeStatusBarVisible();
-        makeFullScreen();
+        makeStatusBarVisible();
         setContentView(R.layout.activity_sub_product);
 
         subProductName = findViewById(R.id.sub_product_name);

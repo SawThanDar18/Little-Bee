@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:background="@color/theme_color"
+    android:background="@drawable/gold_bg"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height80">
 
@@ -17,7 +17,7 @@
     <TextView
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:textSize="@dimen/fontSizeLarge"
+        android:textSize="@dimen/fontSizeMedium"
         android:text="Sub Products"
         android:textStyle="bold"
         android:id="@+id/sub_product_name"

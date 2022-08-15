@@ -78,12 +78,11 @@ public class PaymentActivity extends AppCompatActivity {
 
     ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
     ArrayList<PromoCodeVO> promoCodeVOArrayList = new ArrayList<>();
-    List<ProductPriceListVO> p;
-    private String serviceName;
 
     private ArrayList<ProductPriceListVO> productPriceListVOArrayList = new ArrayList<>();
-    private ProductPriceListVO productPriceListVO = new ProductPriceListVO();
     private MatchPromoCodeObject matchPromoCodeObject = new MatchPromoCodeObject();
+
+    private int discount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,20 +147,20 @@ public class PaymentActivity extends AppCompatActivity {
 
                 TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
 
-                /*if (lang != null) {
+                if (lang != null) {
                     if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
                         if (MDetect.INSTANCE.isUnicode()) {
                             for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceName());
+                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
                             }
                         } else {
                             for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceName());
+                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
                             }
                         }
                     } else if (lang.equalsIgnoreCase("zh")) {
                         for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceName());
+                            list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
                         }
                     } else {
                         for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
@@ -172,7 +171,7 @@ public class PaymentActivity extends AppCompatActivity {
                     for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
                         list.add(promoCodeVOArrayList.get(i).getServiceName());
                     }
-                }*/
+                }
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PaymentActivity.this, android.R.layout.simple_spinner_item, list);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -182,7 +181,6 @@ public class PaymentActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        serviceName = promoCodeVOArrayList.get(position).getServiceName();
                         promoCodeName.setText(promoCodeVOArrayList.get(position).getPromoCode());
                     }
 
@@ -246,7 +244,9 @@ public class PaymentActivity extends AppCompatActivity {
                     if (response.body().isError() == false) {
                         viewPromoCode.setVisibility(View.VISIBLE);
                         promo_discount.setText("( " + response.body().getData().getDiscount() + " ) " + getString(R.string.currency));
-                        total.setText(response.body().getData().getTotal() + " " + getString(R.string.currency));
+                        int totalFromPromo = response.body().getData().getTotal();
+                        int totalAmount = totalFromPromo - discount;
+                        total.setText(totalAmount + " " + getString(R.string.currency));
                     } else if (response.body().isError() == true) {
                         Utility.showToast(PaymentActivity.this, response.body().getMessage());
                     }
@@ -278,17 +278,7 @@ public class PaymentActivity extends AppCompatActivity {
                         if (response.body().getError() == false) {
                             cartDatas.clear();
                             cartDatas.addAll(response.body().getData());
-
-                            for (int i = 0; i < cartDatas.size(); i++) {
-
-                                productPriceListVO.setPriceId(cartDatas.get(i).getProductPriceId());
-                                productPriceListVO.setItemTotal(cartDatas.get(i).getAmount());
-                                productPriceListVOArrayList.add(productPriceListVO);
-
-                            }
-
-                            matchPromoCodeObject.setProductPriceList(productPriceListVOArrayList);
-                            matchPromoCodeObject.setPhone(userObj.getPhone());
+                            SetMatchPromo(cartDatas);
 
                             promoCodeVOArrayList.addAll(response.body().getPromoCodeList());
 
@@ -300,6 +290,7 @@ public class PaymentActivity extends AppCompatActivity {
                             if (response.body().getDiscountTotalAll() == 0) {
                                 discountTotal.setText("-");
                             } else if (response.body().getDiscountTotalAll() > 0) {
+                                discount = response.body().getDiscountTotalAll();
                                 discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getDiscountTotalAll()) + " ) " + getString(R.string.currency));
                             }
 
@@ -321,6 +312,22 @@ public class PaymentActivity extends AppCompatActivity {
                 Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
 
             }
+        }
+    }
+
+    private void SetMatchPromo(ArrayList<GetCartDataModel> cartData) {
+        if (!cartData.isEmpty()) {
+            for (int i = 0; i < cartData.size(); i++) {
+
+                ProductPriceListVO products = new ProductPriceListVO();
+                products.setPriceId(cartData.get(i).getProductPriceId());
+                products.setItemTotal(cartData.get(i).getAmount());
+                productPriceListVOArrayList.add(products);
+
+            }
+
+            matchPromoCodeObject.setProductPriceList(productPriceListVOArrayList);
+            matchPromoCodeObject.setPhone(userObj.getPhone());
         }
     }
 

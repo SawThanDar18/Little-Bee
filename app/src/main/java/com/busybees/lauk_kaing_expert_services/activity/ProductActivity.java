@@ -46,8 +46,7 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //makeStatusBarVisible();
-        makeFullScreen();
+        makeStatusBarVisible();
         setContentView(R.layout.activity_product);
 
         productName = findViewById(R.id.product_name);
@@ -94,12 +93,6 @@ public class ProductActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
-    }
-
-    void makeFullScreen() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     public void intentToSubProductActivity (ProductsVO productsVO) {

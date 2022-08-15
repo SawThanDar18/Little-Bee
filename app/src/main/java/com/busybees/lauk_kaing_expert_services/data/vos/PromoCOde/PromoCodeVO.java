@@ -11,6 +11,14 @@ public class PromoCodeVO implements Serializable {
     @Expose
     private String serviceName;
 
+    @SerializedName("service_name_mm")
+    @Expose
+    private String serviceNameMm;
+
+    @SerializedName("service_name_ch")
+    @Expose
+    private String serviceNameCh;
+
     @SerializedName("prmo_code")
     @Expose
     private String promoCode;
@@ -33,6 +41,22 @@ public class PromoCodeVO implements Serializable {
 
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
+    }
+
+    public String getServiceNameMm() {
+        return serviceNameMm;
+    }
+
+    public void setServiceNameMm(String serviceNameMm) {
+        this.serviceNameMm = serviceNameMm;
+    }
+
+    public String getServiceNameCh() {
+        return serviceNameCh;
+    }
+
+    public void setServiceNameCh(String serviceNameCh) {
+        this.serviceNameCh = serviceNameCh;
     }
 
     public String getPromoCode() {
