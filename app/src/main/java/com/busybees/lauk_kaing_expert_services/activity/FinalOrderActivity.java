@@ -152,6 +152,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     }
 
     private void CallGetCart() {
+        progressBar.setVisibility(View.VISIBLE);
         if (userVO != null) {
             GetCartObj cartObj = new GetCartObj();
             cartObj.setPhone(userVO.getPhone());
@@ -163,6 +164,7 @@ public class FinalOrderActivity extends AppCompatActivity {
                     public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
 
                         reloadPage.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
                         cartDatas.clear();
                         cartDatas.addAll(response.body().getData());
                         finalOrderAdapter = new FinalOrderAdapter(FinalOrderActivity.this, cartDatas);
@@ -202,11 +204,13 @@ public class FinalOrderActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<GetCartModel> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
                         Utility.showToast(getApplicationContext(), t.getMessage());
                     }
                 });
 
             } else {
+                progressBar.setVisibility(View.GONE);
                 Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
 
             }

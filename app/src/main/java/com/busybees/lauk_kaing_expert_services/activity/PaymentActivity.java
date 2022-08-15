@@ -138,40 +138,48 @@ public class PaymentActivity extends AppCompatActivity {
                 String lang = AppStorePreferences.getString(getApplicationContext(), AppENUM.LANG);
                 ArrayList<String> list = new ArrayList<String>();
 
-                for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                    if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                        list.add(promoCodeVOArrayList.get(i).getServiceName());
-                    } else {
-                    }
-                }
-
-                TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
-
                 if (lang != null) {
                     if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
                         if (MDetect.INSTANCE.isUnicode()) {
                             for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                } else {
+                                }
                             }
                         } else {
                             for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                } else {
+                                }
                             }
                         }
                     } else if (lang.equalsIgnoreCase("zh")) {
                         for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
+                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
+                            } else {
+                            }
                         }
                     } else {
                         for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceName());
+                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                list.add(promoCodeVOArrayList.get(i).getServiceName());
+                            } else {
+                            }
                         }
                     }
                 } else {
                     for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                        list.add(promoCodeVOArrayList.get(i).getServiceName());
+                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                            list.add(promoCodeVOArrayList.get(i).getServiceName());
+                        } else {
+                        }
                     }
                 }
+
+                TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PaymentActivity.this, android.R.layout.simple_spinner_item, list);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -237,23 +245,28 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void CallMatchPromoCode(MatchPromoCodeObject matchPromoCodeObject) {
+        progressBar.setVisibility(View.VISIBLE);
+
         if (Utility.isOnline(getApplicationContext())) {
             serviceProvider.MatchPromoCode(ApiConstants.BASE_URL + ApiConstants.GET_MATCH_PROMO_CODE, matchPromoCodeObject).enqueue(new Callback<MatchPromoCodeModel>() {
                 @Override
                 public void onResponse(Call<MatchPromoCodeModel> call, Response<MatchPromoCodeModel> response) {
                     if (response.body().isError() == false) {
+                        progressBar.setVisibility(View.GONE);
                         viewPromoCode.setVisibility(View.VISIBLE);
                         promo_discount.setText("( " + response.body().getData().getDiscount() + " ) " + getString(R.string.currency));
                         int totalFromPromo = response.body().getData().getTotal();
                         int totalAmount = totalFromPromo - discount;
                         total.setText(totalAmount + " " + getString(R.string.currency));
                     } else if (response.body().isError() == true) {
+                        progressBar.setVisibility(View.GONE);
                         Utility.showToast(PaymentActivity.this, response.body().getMessage());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<MatchPromoCodeModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
                     Utility.showToast(getApplicationContext(), t.getLocalizedMessage());
                 }
             });

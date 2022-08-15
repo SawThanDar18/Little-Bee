@@ -12,10 +12,8 @@
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="@dimen/radius10"
-    app:cardElevation="4dp"
+    card_view:cardCornerRadius="@dimen/radius10"
+    card_view:cardElevation="4dp"
     android:background="@color/white"
     card_view:cardUseCompatPadding="true">
 
@@ -32,7 +30,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/fontSizeSmall"
                 android:text="3:00 PM - 05:00 PM( 2022-06-15 )"
-                android:textColor="@color/home_service_name_color"
+                android:textColor="@color/theme_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -114,7 +112,7 @@
                         android:maxLines="3"
                         android:padding="@dimen/padding2"
                         android:text="8 Hours Cleaning"
-                        android:textColor="@color/black"
+                        android:textColor="@color/theme_color"
                         android:textSize="@dimen/fontSizeSmall" />
 
                     <LinearLayout
@@ -181,12 +179,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@color/theme_color">
+                        android:background="#D10707">
 
                         <TextView
                             android:id="@+id/serviceStatus"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/margin4"
                             android:layout_marginRight="@dimen/margin4"
@@ -215,7 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="MMK"
+                        android:text="CYN"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSizeSmall"
                         android:textStyle="bold" />
@@ -228,7 +226,7 @@
                         android:layout_marginBottom="@dimen/margin4"
                         android:text=" ( UNPAID )"
                         android:gravity="center"
-                        android:textColor="@color/theme_color"
+                        android:textColor="#D10707"
                         android:textSize="@dimen/fontSizeSmall"
                         android:textStyle="bold" />
 
