@@ -280,6 +280,7 @@ public class PaymentActivity extends AppCompatActivity {
                             cartDatas.addAll(response.body().getData());
                             SetMatchPromo(cartDatas);
 
+                            promoCodeVOArrayList.clear();
                             promoCodeVOArrayList.addAll(response.body().getPromoCodeList());
 
                             adapter = new PaymentAdapter(PaymentActivity.this, cartDatas);

@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/spinnerItemText"
     android:singleLine="true"
-    android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+    android:background="@drawable/two_color_shape"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center|start"

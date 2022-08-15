@@ -84,7 +84,7 @@ public class MyFragment extends Fragment {
             GetUserProfileObject userProfileObject = new GetUserProfileObject();
             userProfileObject.setPhone(userVO.getPhone());
             CallUserProfile(userProfileObject);
-        }*/
+        } */
 
         return  view;
     }
@@ -209,7 +209,7 @@ public class MyFragment extends Fragment {
             profileEditImageView.setVisibility(View.VISIBLE);
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.drawable.loader_circle_shape);
+            requestOptions.placeholder(R.drawable.profile_default_image);
             requestOptions.error(R.drawable.loader_circle_shape);
 
             profileUrl = userVO.getImage();

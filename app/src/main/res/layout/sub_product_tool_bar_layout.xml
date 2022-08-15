@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:background="@drawable/gold_bg"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height80">
+    android:layout_height="@dimen/height100">
 
     <ImageView
-        android:layout_centerVertical="true"
         android:id="@+id/back_button"
-        android:layout_marginLeft="@dimen/margin24"
-        android:layout_gravity="center"
-        android:src="@drawable/arrow_back_icon_black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin16"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/arrow_back_icon_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textSize="@dimen/fontSizeMedium"
-        android:text="Sub Products"
-        android:textStyle="bold"
         android:id="@+id/sub_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sub Products"
         android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="@dimen/fontSizeLarge"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/back_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="@+id/back_button" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

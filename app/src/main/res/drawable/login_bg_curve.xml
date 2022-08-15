@@ -11,8 +11,8 @@
         <shape android:shape="oval">
 
             <gradient
-                android:startColor="@color/theme_color"
-                android:endColor="@color/pink_accent_color"
+                android:startColor="@color/theme_start_color"
+                android:endColor="@color/theme_end_color"
                 >
             </gradient>
         </shape>

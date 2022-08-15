@@ -167,7 +167,7 @@
                                 android:layout_below="@id/addressHeader"
                                 android:layout_marginLeft="@dimen/margin10"
                                 android:layout_toRightOf="@+id/appTextView2"
-                                android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                                android:background="@drawable/two_color_shape"
                                 android:orientation="horizontal"
                                 android:padding="@dimen/padding10">
 
@@ -278,7 +278,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/relayout"
                                 android:layout_alignParentBottom="true"
-                                android:background="@drawable/rounded_corner_transparent_line_stroke"
+                                android:background="@drawable/rounded_corner_black_color"
                                 android:padding="@dimen/padding10"
                                 android:text="@string/add_new_address"
                                 android:textColor="@color/black"
@@ -382,21 +382,21 @@
                 android:orientation="vertical"
                 android:id="@+id/continue_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height60"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true">
 
-
                 <TextView
-                    android:background="@color/theme_color"
+                    android:background="@drawable/gold_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/padding15"
                     android:gravity="center"
                     android:text="@string/continues"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
         </RelativeLayout>

@@ -73,10 +73,10 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
         requestOptions.error(R.drawable.loader_circle_shape);
         requestOptions.transforms(new CenterCrop(), new RoundedCorners(Utility.dp2px(context.getApplicationContext(), 8)));
 
-        GlideToVectorYou.init()
-                .with(context.getApplicationContext())
-                .setPlaceHolder(R.drawable.loader_circle_shape, R.drawable.loader_circle_shape)
-                .load(Uri.parse(serviceAvailableVO.getServiceImage()), holder.imageView);
+        Glide.with(holder.itemView.getContext())
+                .load(serviceAvailableVO.getServiceImage())
+                .apply(requestOptions)
+                .into(holder.imageView);
 
         if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")) {
             if (MDetect.INSTANCE.isUnicode()) {
@@ -103,10 +103,10 @@ public class ServicesTitleAndIconAdapter extends RecyclerView.Adapter<ServicesTi
         });
 
         if(row_index==position) {
-            holder.serviceName.setTextColor(Color.parseColor("#ffb4b6"));
+            holder.serviceName.setTextColor(Color.parseColor("#000000"));
 
         }else {
-            holder.serviceName.setTextColor(Color.parseColor("#000000"));
+            holder.serviceName.setTextColor(Color.parseColor("#C6C2C2"));
 
         }
     }

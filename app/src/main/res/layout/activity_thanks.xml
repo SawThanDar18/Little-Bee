@@ -17,7 +17,7 @@
         android:layout_marginEnd="@dimen/margin16"
         android:layout_marginBottom="@dimen/margin34"
         android:padding="@dimen/padding15"
-        app:srcCompat="@drawable/ic_about_jia_jie" />
+        app:srcCompat="@drawable/little_bee_logo" />
 
     <ImageView
         android:id="@+id/thankU"
@@ -72,13 +72,13 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:background="@color/theme_color"
+            android:background="@drawable/gold_bg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/height60"
             android:padding="@dimen/padding15"
             android:gravity="center"
             android:text="@string/continues_for_more_service"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/fontSizeMedium"
             android:textStyle="bold" />
     </LinearLayout>

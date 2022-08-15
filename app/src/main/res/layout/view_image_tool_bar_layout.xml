@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:background="@drawable/background"
+    android:background="@drawable/gold_bg"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height80">
+    android:layout_height="@dimen/height100">
 
     <ImageView
         android:layout_centerVertical="true"

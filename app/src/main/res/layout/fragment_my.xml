@@ -11,10 +11,10 @@
         android:id="@+id/profile_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height200"
-        android:background="@color/theme_color">
+        android:background="@drawable/gold_bg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/background"
+            android:background="@drawable/gold_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeLarge"
                     android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/margin4"
                     android:text="09*********"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
                         android:layout_width="@dimen/width27"
                         android:layout_height="@dimen/height27"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_about_jia_jie" />
+                        android:src="@drawable/ic_little_bee_logo" />
 
                     <TextView
                         android:layout_width="wrap_content"

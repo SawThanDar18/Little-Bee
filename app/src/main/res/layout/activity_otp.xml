@@ -24,13 +24,12 @@
 
 
             <ImageView
-                android:layout_width="@dimen/width100"
-                android:layout_height="@dimen/height100"
+                android:layout_width="@dimen/width180"
+                android:layout_height="@dimen/height160"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin10"
                 android:layout_marginBottom="@dimen/margin10"
-                android:background="@drawable/rounded_corner_theme_color_stroke_card"
-                android:src="@drawable/ic_about_jia_jie" />
+                android:src="@drawable/little_bee_logo" />
 
 
             <LinearLayout
@@ -121,7 +120,7 @@
                     android:layout_marginRight="@dimen/margin10"
                     android:layout_marginBottom="@dimen/margin6"
                     android:layout_weight="1"
-                    android:background="@drawable/round_corner_grey_stroke_color"
+                    android:background="@drawable/rounded_corner_white_color"
                     android:text="@string/resend"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -138,10 +137,10 @@
                     android:layout_marginRight="@dimen/margin20"
                     android:layout_marginBottom="@dimen/margin6"
                     android:layout_weight="1"
-                    android:background="@drawable/round_corner_theme_color"
+                    android:background="@drawable/two_color_shape"
                     android:text="@string/continues"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeSmall"
                     android:textStyle="bold" />
 

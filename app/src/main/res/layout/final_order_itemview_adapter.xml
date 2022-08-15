@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin10"
-        android:layout_marginTop="@dimen/margin10"
+        android:layout_marginTop="@dimen/margin16"
         android:layout_marginRight="@dimen/margin10"
         android:layout_marginBottom="@dimen/margin6"
-        android:background="@drawable/rounded_corner_transparent_line_stroke"
+        android:background="@drawable/rounded_corner_black_color"
         android:paddingStart="@dimen/padding10"
         android:paddingTop="@dimen/padding10">
 
@@ -55,7 +55,7 @@
                 android:layout_marginStart="@dimen/margin4"
                 android:layout_toEndOf="@+id/origin_price"
                 android:text=""
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/light_grey"
                 android:textSize="@dimen/fontSizeMedium" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10000 MMK"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
                 android:layout_marginTop="@dimen/margin6"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Save 20%"
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
                 android:textStyle="bold" />
 
@@ -115,7 +115,7 @@
     <LinearLayout
         android:visibility="visible"
         android:layout_marginEnd="@dimen/margin24"
-        android:background="@drawable/rounded_corner_white_color"
+        android:background="@drawable/rounded_corner_black_color"
         android:layout_alignEnd="@+id/service_detail_name"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="true"

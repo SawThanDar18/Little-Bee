@@ -13,7 +13,6 @@
         android:layout_marginTop="@dimen/margin10"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin6"
-        android:background="@drawable/two_color_frame"
         android:gravity="center"
         android:id="@+id/productImage"
         android:orientation="horizontal"
@@ -22,11 +21,15 @@
 
         <ImageView
             android:layout_gravity="center"
-            android:layout_width="@dimen/width50"
             android:id="@+id/serviceIcon"
-            android:backgroundTint="@color/black"
-            android:padding="@dimen/padding2"
-            android:layout_height="@dimen/height50" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_gold_circle"
+            android:layout_width="@dimen/width60"
+            android:layout_height="@dimen/height60"
+            android:padding="@dimen/padding10"
+            android:src="@drawable/icon_cleaning__1200_x_1200_px_" />
+
 
     </LinearLayout>
 
@@ -40,6 +43,7 @@
         android:textAllCaps="false"
         android:textSize="@dimen/fontSizeSmall"
         android:layout_gravity="center"
+        android:singleLine="false"
         android:text="Cleaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

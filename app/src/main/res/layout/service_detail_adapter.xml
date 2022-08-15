@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/margin16"
         android:layout_marginRight="@dimen/margin20"
         android:layout_marginBottom="@dimen/margin6"
-        android:background="@drawable/rounded_corner_transparent_line_stroke"
+        android:background="@drawable/rounded_corner_black_color"
         android:paddingStart="@dimen/padding10"
         android:paddingTop="@dimen/padding10">
 
@@ -29,11 +29,10 @@
                 android:id="@+id/survey_requested_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin24"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Survey Requested"
                 android:textAlignment="center"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:visibility="gone" />
 
@@ -53,7 +52,7 @@
                 android:layout_marginStart="@dimen/margin4"
                 android:layout_toEndOf="@+id/origin_price"
                 android:text=""
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/light_grey"
                 android:textSize="@dimen/fontSizeMedium" />
 
             <TextView
@@ -61,12 +60,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10000 MMK"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,9 +74,10 @@
                 android:layout_marginTop="@dimen/margin6"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Save 20%"
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/serviceDetail"
@@ -90,7 +89,7 @@
                 android:layout_marginRight="@dimen/margin2"
                 android:layout_marginBottom="@dimen/margin32"
                 android:text="Washing Dry Cleaning for 5 Seaters Sofas. Duration 3 Hours The charges do not include for the long lasting unremovable Stains. Recommend to wash every 3- 6 months for the safety healthy environment."
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeSmall"
                 android:visibility="gone" />
 
@@ -109,15 +108,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin32"
-                android:background="@drawable/rounded_corner_theme_color_stroke_card"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_white"
+                android:background="@drawable/two_color_shape"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black"
                 android:gravity="center"
                 android:padding="@dimen/padding2"
                 android:paddingStart="@dimen/padding4"
                 android:paddingTop="@dimen/padding1"
                 android:paddingEnd="@dimen/padding4"
                 android:text="@string/hide_detail"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeSmall" />
 
         </RelativeLayout>
@@ -141,7 +140,7 @@
     <LinearLayout
         android:visibility="visible"
         android:layout_marginEnd="@dimen/margin32"
-        android:background="@drawable/rounded_corner_white_color"
+        android:background="@drawable/rounded_corner_black_color"
         android:layout_alignEnd="@+id/service_detail_name"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="true"

@@ -61,10 +61,11 @@
         android:layout_marginStart="@dimen/margin24"
         android:layout_marginTop="@dimen/margin8"
         android:layout_marginBottom="@dimen/margin4"
-        android:background="@drawable/rounded_corner_theme_color_stroke_card"
+        android:background="@drawable/two_color_shape"
         android:gravity="center"
-        android:padding="@dimen/padding8"
+        android:padding="@dimen/padding4"
         android:text="@string/select"
+        android:textStyle="bold"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/fontSizeSmall" />

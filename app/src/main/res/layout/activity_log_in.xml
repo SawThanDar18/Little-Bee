@@ -31,11 +31,10 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="@dimen/width100"
-            android:layout_height="@dimen/height100"
+            android:layout_width="@dimen/width180"
+            android:layout_height="@dimen/height160"
             android:layout_centerInParent="true"
-            android:background="@drawable/rounded_corner_white_color"
-            android:src="@drawable/ic_about_jia_jie" />
+            android:src="@drawable/little_bee_logo" />
 
     </RelativeLayout>
 
@@ -86,14 +85,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin24"
-                android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                android:background="@drawable/two_color_shape"
                 android:paddingHorizontal="@dimen/padding40"
                 android:paddingVertical="@dimen/padding8"
                 android:paddingTop="@dimen/padding10"
                 android:paddingBottom="@dimen/padding4"
                 android:text="@string/login"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
 
@@ -103,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin10"
-                android:background="@drawable/rounded_corner_pink_color_stroke_card"
+                android:background="@drawable/rounded_corner_white_color"
                 android:paddingHorizontal="@dimen/padding32"
                 android:paddingVertical="@dimen/padding8"
                 android:text="@string/register"

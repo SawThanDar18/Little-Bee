@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/margin16"
         android:layout_marginRight="@dimen/margin10"
         android:layout_marginBottom="@dimen/margin6"
-        android:background="@drawable/rounded_corner_transparent_line_stroke"
+        android:background="@drawable/rounded_corner_black_color"
         android:paddingStart="@dimen/padding10"
         android:paddingTop="@dimen/padding10">
 
@@ -55,7 +55,7 @@
                 android:layout_marginStart="@dimen/margin4"
                 android:layout_toEndOf="@+id/origin_price"
                 android:text=""
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/light_grey"
                 android:textSize="@dimen/fontSizeMedium" />
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin10"
                 android:text="10000 MMK"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                 android:layout_marginTop="@dimen/margin6"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Save 20%"
-                android:textColor="@color/pink_accent_color"
+                android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
                 android:textStyle="bold" />
 
@@ -115,70 +115,70 @@
         android:textSize="@dimen/fontSizeMedium" />
 
     <LinearLayout
-        android:visibility="visible"
-        android:layout_marginEnd="@dimen/margin24"
-        android:background="@drawable/rounded_corner_white_color"
-        android:layout_alignEnd="@+id/service_detail_name"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentEnd="true"
-        android:orientation="horizontal"
         android:id="@+id/addLayoutMainView"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/height30">
+        android:layout_height="@dimen/height30"
+        android:layout_alignEnd="@+id/service_detail_name"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/margin24"
+        android:background="@drawable/rounded_corner_black_color"
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/decreseBtn"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="@dimen/margin2"
-            app:srcCompat="@drawable/ic_decrease"
             android:layout_width="@dimen/width30"
-            android:layout_height="@dimen/height30"/>
+            android:layout_height="@dimen/height30"
+            android:layout_marginStart="@dimen/margin2"
+            android:layout_marginTop="0dp"
+            app:srcCompat="@drawable/ic_decrease" />
 
         <LinearLayout
-            android:padding="@dimen/padding4"
-            android:layout_marginRight="@dimen/margin4"
-            android:layout_marginLeft="@dimen/margin4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin4"
+            android:layout_marginRight="@dimen/margin4"
+            android:padding="@dimen/padding4">
 
             <TextView
-                android:gravity="center"
-                android:clickable="true"
-                android:layout_marginStart="@dimen/margin24"
                 android:id="@+id/addBtnLayout"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="1"
-                android:visibility="visible"
-                android:paddingEnd="@dimen/padding4"
-                android:paddingStart="@dimen/padding4"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/fontSizeMedium"
+                android:layout_gravity="center"
                 android:layout_margin="0dp"
-                android:textColor="@color/black" />
+                android:layout_marginStart="@dimen/margin24"
+                android:clickable="true"
+                android:gravity="center"
+                android:paddingStart="@dimen/padding4"
+                android:paddingEnd="@dimen/padding4"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeMedium"
+                android:visibility="visible" />
 
             <TextView
-                android:layout_margin="0dp"
-                android:clickable="true"
-                android:layout_gravity="center"
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:clickable="true"
                 android:gravity="center"
                 android:text="@string/cancel"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
-                android:textColor="@color/black" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/increaseBtn"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="@dimen/margin2"
             android:layout_width="@dimen/width30"
             android:layout_height="@dimen/height30"
-            app:srcCompat="@drawable/ic_increase"/>
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/margin2"
+            app:srcCompat="@drawable/ic_increase" />
 
     </LinearLayout>
 

@@ -9,6 +9,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/add_photo.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/arrow_back_icon.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/arrow_back_icon_black.xml" value="0.1065" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/arrow_forward_icon.xml" value="0.16" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/bg_bottomsheet.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/cart_icon.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/change_language.xml" value="0.1025" />
@@ -20,11 +21,14 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/expandable_indicator.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/home_icon.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_about_jia_jie.xml" value="0.1" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_arrow_drop_down_black.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_arrow_drop_down_white.xml" value="0.1" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_arrow_drop_up_black.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_arrow_drop_up_white.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_chrome_reader_mode_24.xml" value="0.1025" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_crop_24.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/ic_call.xml" value="0.1025" />
@@ -66,11 +70,13 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/round_corner_grey_stroke_color.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/round_corner_theme_bg.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/round_corner_theme_color.xml" value="0.1015" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_black_color.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_pink_accent_line_stroke.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_pink_color_stroke_card.xml" value="0.1" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_theme_color_stroke_card.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_transparent_line_stroke.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_white_color.xml" value="0.1" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/rounded_corner_white_color_ok.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/search_bar_corner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/search_bar_corner_white.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/search_icon.xml" value="0.1025" />
@@ -80,6 +86,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/spinner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/theme_marker.xml" value="0.1015" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/two_color_frame.xml" value="0.1" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/two_color_shape.xml" value="0.1065" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/a_splash.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_add_address_map_view.xml" value="0.25" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_add_new_address.xml" value="0.1414324569356301" />
@@ -134,6 +141,7 @@
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/fragment_home_old_version.xml" value="0.1441523118766999" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/fragment_my.xml" value="0.24444444444444444" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/fragment_orders.xml" value="0.1414324569356301" />
+        <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/fragment_receipt.xml" value="0.1" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/fragment_receipt_fragments.xml" value="0.1" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/history_list_child_view.xml" value="0.1414324569356301" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/image_lead_form_activity.xml" value="0.1441523118766999" />

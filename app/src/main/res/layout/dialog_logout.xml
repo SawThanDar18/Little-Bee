@@ -37,7 +37,7 @@ android:layout_height="wrap_content">
         <Button
             android:textSize="@dimen/fontSizeSmall"
             android:layout_marginBottom="@dimen/margin6"
-            android:background="@drawable/round_corner_grey_stroke_color"
+            android:background="@drawable/rounded_corner_white_color"
             android:layout_marginRight="@dimen/margin6"
             android:layout_weight="1"
             android:id="@+id/logout_no_btn"
@@ -53,7 +53,7 @@ android:layout_height="wrap_content">
             android:layout_marginLeft="@dimen/margin6"
             android:id="@+id/logout_yes_btn"
             android:textColor="@color/black"
-            android:background="@drawable/round_corner_theme_color"
+            android:background="@drawable/two_color_shape"
             android:layout_weight="1"
             android:textAllCaps="false"
             android:text="@string/do_yes_logout"
@@ -71,6 +71,6 @@ android:layout_height="wrap_content">
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:background="@drawable/image_circle_shape_white_bg"
-        android:src="@drawable/ic_about_jia_jie" />
+        android:src="@drawable/ic_little_bee_logo" />
 
 </RelativeLayout>

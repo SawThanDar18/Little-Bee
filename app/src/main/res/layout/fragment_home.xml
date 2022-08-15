@@ -69,14 +69,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height150"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/margin16"
                         android:layout_marginHorizontal="@dimen/margin16"
+                        android:layout_marginTop="@dimen/margin16"
                         app:autoPlaying="true"
                         app:centerScale="1"
                         app:moveSpeed="1.8"
                         app:showIndicator="false" />
 
                     <TextView
+                        android:id="@+id/popular_txt"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin16"
@@ -93,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin24"
-                        android:layout_marginBottom="@dimen/margin16"/>
+                        android:layout_marginBottom="@dimen/margin16" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -130,7 +132,7 @@
             </androidx.core.widget.NestedScrollView>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/reload_page"
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
@@ -147,15 +149,15 @@
                 <Button
                     android:id="@+id/btn_reload_page"
                     android:layout_marginTop="@dimen/margin8"
-                    android:padding="@dimen/margin8"
+                    android:padding="@dimen/margin10"
                     android:textAllCaps="false"
                     android:textSize="@dimen/fontSizeMedium"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="@string/reload_page"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_corner_theme_bg"
+                    android:background="@drawable/two_color_shape"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/height35"/>
+                    android:layout_height="wrap_content"/>
 
 
             </LinearLayout>

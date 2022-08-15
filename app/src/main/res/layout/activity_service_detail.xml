@@ -42,11 +42,11 @@
             android:visibility="gone"
             android:id="@+id/continue_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height60"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/margin10"
-            android:background="@color/theme_color"
+            android:background="@drawable/gold_bg"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -64,20 +64,19 @@
                     android:background="@drawable/circle_with_pink_accent_border"
                     android:gravity="center"
                     android:text="1"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/fontSizeSmall"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/amountText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/theme_color"
                     android:gravity="center|start"
                     android:padding="@dimen/padding15"
                     android:text="10000 MMK"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/fontSizeSmall"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -91,8 +90,8 @@
                 android:gravity="center"
                 android:padding="@dimen/padding15"
                 android:text="@string/continues"
-                android:textColor="@color/white"
-                android:textSize="@dimen/fontSizeSmall"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
 
         </LinearLayout>

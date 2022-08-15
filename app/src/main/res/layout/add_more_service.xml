@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:padding="@dimen/padding10"
-        android:background="@color/theme_color"
+        android:background="@drawable/gold_bg"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height50">
 
@@ -18,17 +18,17 @@
             android:gravity="center"
             android:padding="@dimen/padding2"
             android:text="@string/add_more_service"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/fontSizeMedium"
             android:textStyle="bold" />
 
         <ImageView
-            android:padding="@dimen/padding2"
             android:id="@+id/cancel_more_service"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_baseline_crop_24"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/padding2"
+            android:src="@drawable/ic_baseline_crop_24" />
 
         <ImageView
             android:padding="@dimen/padding2"

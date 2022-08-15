@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:textColor="@color/white"
-            android:src="@drawable/ic_search_white" />
+            android:src="@drawable/ic_lens" />
 
     </LinearLayout>
 

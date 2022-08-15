@@ -53,7 +53,7 @@
 
                         <LinearLayout
                             android:layout_marginTop="@dimen/margin16"
-                            android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                            android:background="@drawable/two_color_shape"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
@@ -224,13 +224,13 @@
 
 
                 <TextView
-                    android:background="@color/theme_color"
+                    android:background="@drawable/gold_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/height60"
                     android:padding="@dimen/padding15"
                     android:gravity="center"
                     android:text="@string/continues"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -104,7 +104,6 @@ public class LeadFormActivity extends AppCompatActivity {
         upload_photo_btn = findViewById(R.id.upload_photo_btn);
         continue_btn = findViewById(R.id.continue_btn);
         progressBar = findViewById(R.id.progressBar);
-        toolbar = findViewById(R.id.toolbar_common);
         back = findViewById(R.id.back_button);
 
         photoItemViewAdapter = new PhotoItemViewAdapter(this);

@@ -112,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (url != null && !url.isEmpty() && !url.equals("null")) {
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.drawable.loader_circle_shape);
+            requestOptions.placeholder(R.drawable.profile_default_image);
             requestOptions.error(R.drawable.loader_circle_shape);
 
             Glide.with(this)

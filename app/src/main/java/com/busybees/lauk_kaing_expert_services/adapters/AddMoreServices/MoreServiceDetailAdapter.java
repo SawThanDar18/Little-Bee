@@ -149,7 +149,7 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
                     }
 
                     holder.selectServiceText.setText(mContext.getString(R.string.survey));
-                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_black_color));
                     holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
 
                 }else if (productPriceVO.getFormStatus() == 0){
@@ -170,7 +170,7 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
                     } else {
                         holder.selectServiceText.setText(mContext.getString(R.string.selected));
                     }
-                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_white_color));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_corner_black_color));
                     holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
 
                 }
@@ -189,8 +189,8 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
 
                     holder.selectServiceText.setVisibility(View.GONE);
                     holder.cancelServiceText.setVisibility(View.VISIBLE);
-                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.round_corner_theme_bg));
-                    holder.cancelServiceText.setTextColor(mContext.getResources().getColor(R.color.white));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.two_color_shape));
+                    holder.cancelServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
 
                     holder.cancelServiceText.setTag(R.id.number,quantity);
                     holder.cancelServiceText.setTag(R.id.position,position);
@@ -201,11 +201,37 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
                     holder.selectServiceText.setVisibility(View.VISIBLE);
 
                     holder.selectServiceText.setText(mContext.getString(R.string.unselected));
-                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.round_corner_theme_bg));
-                    holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.white));
+                    holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.two_color_shape));
+                    holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
 
                 } else {
+                    if (productPriceVO.getOriginalPrice() == 0) {
+                        holder.surveyRequestText.setVisibility(View.VISIBLE);
 
+                        holder.surveyRequestText.setText(mContext.getResources().getString(R.string.survey_request));
+
+                        holder.surveyRequestText.setPadding(mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10));
+
+                        holder.selectServiceText.setVisibility(View.GONE);
+                        holder.cancelServiceText.setVisibility(View.VISIBLE);
+                        holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.two_color_shape));
+                        holder.cancelServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+
+                        holder.cancelServiceText.setTag(R.id.number,quantity);
+                        holder.cancelServiceText.setTag(R.id.position,position);
+                        holder.cancelServiceText.setOnClickListener(this);
+                    } else {
+                        holder.surveyRequestText.setVisibility(View.GONE);
+                        holder.selectServiceText.setVisibility(View.VISIBLE);
+
+                        holder.selectServiceText.setText(mContext.getString(R.string.unselected));
+                        holder.addLayoutMainView.setBackground(mContext.getResources().getDrawable(R.drawable.two_color_shape));
+                        holder.selectServiceText.setTextColor(mContext.getResources().getColor(R.color.black));
+
+                    }
                 }
 
 
@@ -220,6 +246,10 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
             if(productPriceVO.isShowDetail() == true && productPriceVO.getDescription() != null) {
 
                 holder.serviceDetailDescription.setVisibility(View.VISIBLE);
+
+                if (productPriceVO.getFormStatus() == 2) {
+                    holder.serviceDetailDescription.setVisibility(View.GONE);
+                }
 
                 if (checkLng(mContext).equalsIgnoreCase("it") || checkLng(mContext).equalsIgnoreCase("fr")) {
                     String nameMM = productPriceVO.getDescriptionMm();
@@ -249,7 +279,7 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
 
                 holder.hideShowDetailText.setVisibility(View.VISIBLE);
                 holder.hideShowDetailText.setText(mContext.getString(R.string.hide_detail));
-                holder.hideShowDetailText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_drop_up_white,0);
+                holder.hideShowDetailText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_drop_up_black,0);
 
             }else if (productPriceVO.getDescription() == null){
                 holder.hideShowDetailText.setVisibility(View.GONE);
@@ -257,7 +287,7 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
             }else{
                 holder.hideShowDetailText.setVisibility(View.VISIBLE);
                 holder.hideShowDetailText.setText(mContext.getString(R.string.show_detail));
-                holder.hideShowDetailText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_drop_down_white,0);
+                holder.hideShowDetailText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_arrow_drop_down_black,0);
             }
 
             holder.hideShowDetailText.setTag(R.id.position,position);

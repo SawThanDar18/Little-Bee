@@ -14,7 +14,7 @@
             android:id="@+id/profileView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height300"
-            android:background="@drawable/background"
+            android:background="@drawable/gold_bg"
             android:clickable="true"
             android:padding="@dimen/padding10">
 
@@ -44,7 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="1dp"
-                        android:src="@drawable/ic_about_jia_jie" />
+                        android:src="@drawable/ic_little_bee_logo" />
 
                     <ImageView
                         android:visibility="gone"
@@ -79,7 +79,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:padding="@dimen/padding2"
-                    android:text="Jia Jie"
+                    android:text="Little Bee"
                     android:textColor="@color/white"
                     android:textSize="@dimen/fontSizeLarge"
                     android:textStyle="bold" />
@@ -205,12 +205,12 @@
 
                 <TextView
                     android:text="Update"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:id="@+id/update_btn"
                     android:padding="@dimen/padding8"
-                    android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                    android:background="@drawable/two_color_shape"
                     android:paddingTop="@dimen/padding10"
                     android:paddingBottom="@dimen/padding4"
                     android:textSize="@dimen/fontSizeSmall"

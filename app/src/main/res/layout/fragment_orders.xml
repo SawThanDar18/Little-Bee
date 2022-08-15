@@ -13,7 +13,7 @@
 
         <include
             android:id="@+id/tool_bar_layout"
-            layout="@layout/order_tool_bar_layout"/>
+            layout="@layout/order_tool_bar_layout" />
 
         <RelativeLayout
             android:visibility="visible"
@@ -62,12 +62,12 @@
                 android:padding="@dimen/margin8"
                 android:textAllCaps="false"
                 android:textSize="@dimen/fontSizeMedium"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="@string/reload_page"
                 android:layout_gravity="center"
-                android:background="@drawable/round_corner_theme_bg"
+                android:background="@drawable/two_color_shape"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/height35"/>
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

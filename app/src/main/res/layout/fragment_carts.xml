@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin16"
-                android:layout_marginTop="@dimen/margin8"
+                android:layout_marginTop="@dimen/margin10"
                 android:layout_marginRight="@dimen/margin16">
 
                 <LinearLayout
@@ -120,13 +120,13 @@
             <LinearLayout
                 android:id="@+id/continue_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/height60"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/margin16"
                 android:layout_marginRight="@dimen/margin16"
                 android:layout_marginBottom="@dimen/margin16"
-                android:background="@drawable/rounded_corner_theme_color_stroke_card"
+                android:background="@drawable/two_color_shape"
                 android:orientation="horizontal"
                 android:visibility="visible"
                 android:weightSum="1">
@@ -146,20 +146,19 @@
                         android:background="@drawable/circle_with_pink_accent_border"
                         android:gravity="center"
                         android:text="3"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fontSizeSmall"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeMedium"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/amountText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/theme_color"
                         android:gravity="center|start"
                         android:padding="@dimen/padding15"
                         android:text="30000 MMK"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fontSizeSmall"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeMedium"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -172,8 +171,8 @@
                     android:gravity="center"
                     android:padding="@dimen/padding15"
                     android:text="@string/continues"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/fontSizeSmall"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -281,12 +280,12 @@
                 android:padding="@dimen/margin8"
                 android:textAllCaps="false"
                 android:textSize="@dimen/fontSizeMedium"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="@string/reload_page"
                 android:layout_gravity="center"
-                android:background="@drawable/round_corner_theme_bg"
+                android:background="@drawable/two_color_shape"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/height35"/>
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

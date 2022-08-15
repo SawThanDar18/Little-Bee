@@ -2,8 +2,10 @@ package com.busybees.lauk_kaing_expert_services.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,9 +22,18 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.busybees.lauk_kaing_expert_services.Banner.AdvertisementBannerAdapter;
+import com.busybees.lauk_kaing_expert_services.MainActivity;
+import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceNeedVO;
@@ -30,6 +41,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Home.SliderVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Banner.BannerLayout;
 import com.busybees.lauk_kaing_expert_services.Banner.WebBannerAdapter;
@@ -54,6 +66,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.myatminsoe.mdetect.MDetect;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,12 +92,13 @@ public class HomeFragment extends Fragment {
     private SymnAdapter symnAdapter;
 
     private ImageView footerImage;
+    private CircleImageView profile;
 
     private LinearLayout reloadPage;
     private Button reloadBtn;
     private ProgressBar progressBar;
 
-    private TextView productName;
+    private TextView productName, popularTxt;
 
     private ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<>();
     private ArrayList<ProductsVO> productsVOArrayList = new ArrayList<>();
@@ -94,6 +108,8 @@ public class HomeFragment extends Fragment {
     private ArrayList<ServiceNeedVO> serviceNeedVOArrayList = new ArrayList<>();
 
     private UserVO userVO = new UserVO();
+
+    private String profileUrl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -114,20 +130,24 @@ public class HomeFragment extends Fragment {
         recyclerViewServiceYMN = view.findViewById(R.id.recycle_symn);
 
         footerImage = view.findViewById(R.id.footer);
+        profile = view.findViewById(R.id.profile);
 
         reloadPage = view.findViewById(R.id.reload_page);
         reloadBtn = view.findViewById(R.id.btn_reload_page);
         progressBar = view.findViewById(R.id.materialLoader);
         productName = view.findViewById(R.id.s_name);
+        popularTxt = view.findViewById(R.id.popular_txt);
 
         swipeRefreshLayout.setColorSchemeResources(R.color.theme_color);
 
         if (Utility.isOnline(getContext())) {
             setUpAdapterToRecyclerView();
             reloadPage.setVisibility(View.GONE);
+            popularTxt.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
         } else {
             reloadPage.setVisibility(View.VISIBLE);
+            popularTxt.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);
         }
 
@@ -136,7 +156,71 @@ public class HomeFragment extends Fragment {
         onRecyclerViewClick();
         onClick();
 
+        if (userVO != null) {
+            GetUserProfileObject getUserProfileObject = new GetUserProfileObject();
+            getUserProfileObject.setPhone(userVO.getPhone());
+            CallUserProfile(getUserProfileObject);
+        }
+
         return  view;
+    }
+
+    private void CallUserProfile(GetUserProfileObject getUserProfileObject) {
+        if (Utility.isOnline(getContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            serviceProvider.UserProfileCall(ApiConstants.BASE_URL + ApiConstants.GET_USER_PROFILE, getUserProfileObject).enqueue(new Callback<GetUserProfileModel>() {
+                @Override
+                public void onResponse(Call<GetUserProfileModel> call, Response<GetUserProfileModel> response) {
+
+                    if (response.body().getError() == true) {
+                        Utility.showToast(getContext(), response.body().getMessage());
+                    } else if (response.body().getError() == false) {
+                        progressBar.setVisibility(View.GONE);
+
+                        RequestOptions requestOptions = new RequestOptions();
+                        requestOptions.placeholder(R.drawable.loader_circle_shape);
+                        requestOptions.error(R.drawable.loader_circle_shape);
+
+                        profileUrl = response.body().getData().getImage();
+
+                        if (profileUrl != null && !profileUrl.isEmpty() && !profileUrl.equals("null")) {
+
+                            Glide.with(getContext())
+                                    .load(profileUrl)
+                                    .apply(requestOptions)
+                                    .listener(new RequestListener<Drawable>() {
+
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            return false;
+                                        }
+                                    }).into(profile);
+                        }else{
+
+                            Glide.with(getContext())
+                                    .load(R.drawable.profile_default_image)
+                                    .apply(requestOptions)
+                                    .into(profile);
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetUserProfileModel> call, Throwable t) {
+                    Utility.showToast(getContext(), t.getMessage());
+
+                }
+            });
+        } else {
+            Utility.showToast(getContext(), getString(R.string.no_internet));
+        }
     }
 
     private void onClick() {
@@ -153,6 +237,14 @@ public class HomeFragment extends Fragment {
                 CallGetAllHomeApi();
             } else {
                 Utility.showToast(getActivity(), getString(R.string.no_internet));
+            }
+        });
+
+        profile.setOnClickListener(v -> {
+            if (userVO != null) {
+                startActivity(new Intent(getContext(), ProfileActivity.class));
+            } else {
+                startActivity(new Intent(getContext(), LogInActivity.class));
             }
         });
     }
@@ -461,6 +553,7 @@ public class HomeFragment extends Fragment {
 
                     progressBar.setVisibility(View.GONE);
                     reloadPage.setVisibility(View.GONE);
+                    popularTxt.setVisibility(View.VISIBLE);
 
                     setUpAdapterToRecyclerView();
 
