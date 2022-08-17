@@ -202,4 +202,9 @@
     <string name="photo_limit_txt">Only accept 5 photos!</string>
 
     <string name="select_service">Select Service</string>
+
+    <string name="confirm_promo_txt">Are you sure with this Promotion Code?</string>
+    <string name="promo_no">Choose Again</string>
+    <string name="promo_yes">Sure</string>
+
 </resources>

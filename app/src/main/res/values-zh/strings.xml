@@ -202,4 +202,8 @@
     <string name="photo_limit_txt">只接受5张照片！</string>
 
     <string name="select_service">选择服务</string>
+
+    <string name="confirm_promo_txt">您确定使用此促销代码吗？</string>
+    <string name="promo_no">再次选择</string>
+    <string name="promo_yes">当然</string>
 </resources>

@@ -204,4 +204,8 @@
     <string name="photo_limit_txt">အများဆုံး ရွေးချယ်နိုင်သောပုံ အရေအတွက်ထက်ကျော်လွန်ပါပြီ။</string>
 
     <string name="select_service">ဝန်ဆောင်မူများကို ရွေးပါ</string>
+
+    <string name="confirm_promo_txt">ရွေးချယ်ထားသော ပရိုမိုကုဒ်ပဲ သုံးမည်မှာ သေချာပြီလား?</string>
+    <string name="promo_no">ပြန်ရွေးမည်။</string>
+    <string name="promo_yes">သေချာပါသည်။</string>
 </resources>

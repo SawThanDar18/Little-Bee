@@ -203,4 +203,8 @@
     <string name="photo_limit_txt">အမ်ားဆုံး ေ႐ြးခ်ယ္ႏိုင္ေသာပုံ အေရအတြက္ထက္ေက်ာ္လြန္ပါၿပီ။</string>
 
     <string name="select_service">ဝန္ေဆာင္မူမ်ားကို ေရြးပါ</string>
+
+    <string name="confirm_promo_txt">ရှေးခယြျထားသော ပရိုမိုကုဒျပဲ သုံးမညျမှာ သခြောပွီလား?</string>
+    <string name="promo_no">ပွနျရှေးမညျ။</string>
+    <string name="promo_yes">သခြောပါသညျ။</string>
 </resources>

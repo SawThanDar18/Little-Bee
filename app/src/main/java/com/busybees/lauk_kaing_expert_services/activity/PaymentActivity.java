@@ -82,7 +82,9 @@ public class PaymentActivity extends AppCompatActivity {
     private ArrayList<ProductPriceListVO> productPriceListVOArrayList = new ArrayList<>();
     private MatchPromoCodeObject matchPromoCodeObject = new MatchPromoCodeObject();
 
+    private ArrayList<String> list;
     private int discount;
+    private String promoCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,104 +120,15 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            if (promoCodeVOArrayList.isEmpty()) {
-                startActivity(new Intent(PaymentActivity.this, ThanksActivity.class));
+            if (promoCode == null) {
+                showPromoCodeDialog();
             } else {
-                LayoutInflater factory = LayoutInflater.from(this);
-                final View promoCodeDialogView = factory.inflate(R.layout.dialog_choose_promo_code, null);
-                final AlertDialog promoCodeDialog = new AlertDialog.Builder(this).create();
-                promoCodeDialog.setView(promoCodeDialogView);
-
-                promoCodeDialog.setCancelable(false);
-                promoCodeDialog.setCanceledOnTouchOutside(false);
-
-                if (promoCodeDialog != null && promoCodeDialog.getWindow() != null) {
-                    promoCodeDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    promoCodeDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                }
-
-                Spinner services_spinner = promoCodeDialogView.findViewById(R.id.services_spinner);
-                String lang = AppStorePreferences.getString(getApplicationContext(), AppENUM.LANG);
-                ArrayList<String> list = new ArrayList<String>();
-
-                if (lang != null) {
-                    if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
-                        if (MDetect.INSTANCE.isUnicode()) {
-                            for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
-                                } else {
-                                }
-                            }
-                        } else {
-                            for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
-                                } else {
-                                }
-                            }
-                        }
-                    } else if (lang.equalsIgnoreCase("zh")) {
-                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
-                            } else {
-                            }
-                        }
-                    } else {
-                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceName());
-                            } else {
-                            }
-                        }
-                    }
+                if (list.size() == 1) {
+                    //save order
+                    startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
                 } else {
-                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceName());
-                        } else {
-                        }
-                    }
+                    showConfirmDialog();
                 }
-
-                TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
-
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PaymentActivity.this, android.R.layout.simple_spinner_item, list);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                services_spinner.setAdapter(arrayAdapter);
-
-                services_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                        promoCodeName.setText(promoCodeVOArrayList.get(position).getPromoCode());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-
-                promoCodeDialogView.findViewById(R.id.promo_code_ok_btn).setOnClickListener(v1 -> {
-
-                    matchPromoCodeObject.setPromoCode(promoCodeName.getText().toString());
-                    CallMatchPromoCode(matchPromoCodeObject);
-                    promoCodeDialog.dismiss();
-
-                });
-
-                promoCodeDialogView.findViewById(R.id.promo_cancel_btn).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        promoCodeDialog.dismiss();
-                    }
-                });
-
-                promoCodeDialog.show();
-
             }
 
         });
@@ -242,6 +155,141 @@ public class PaymentActivity extends AppCompatActivity {
 
         finalOrderPageView.setOnClickListener(v -> finish());
 
+    }
+
+    private void showConfirmDialog() {
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View promoCodeConfirmDialogView = factory.inflate(R.layout.dialog_confirm, null);
+        final AlertDialog promoCodeConfirmDialog = new AlertDialog.Builder(this).create();
+        promoCodeConfirmDialog.setView(promoCodeConfirmDialogView);
+
+        promoCodeConfirmDialog.setCancelable(false);
+        promoCodeConfirmDialog.setCanceledOnTouchOutside(false);
+
+        if (promoCodeConfirmDialog != null && promoCodeConfirmDialog.getWindow() != null) {
+            promoCodeConfirmDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            promoCodeConfirmDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
+
+        promoCodeConfirmDialogView.findViewById(R.id.promo_confirm_yes_btn).setOnClickListener(v1 -> {
+
+            promoCodeConfirmDialog.dismiss();
+            startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
+
+        });
+
+        promoCodeConfirmDialogView.findViewById(R.id.promo_confirm_no_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                promoCodeConfirmDialog.dismiss();
+                showPromoCodeDialog();
+            }
+        });
+
+        promoCodeConfirmDialog.show();
+    }
+
+    private void showPromoCodeDialog() {
+        if (promoCodeVOArrayList.isEmpty()) {
+            startActivity(new Intent(PaymentActivity.this, ThanksActivity.class));
+        } else {
+            LayoutInflater factory = LayoutInflater.from(this);
+            final View promoCodeDialogView = factory.inflate(R.layout.dialog_choose_promo_code, null);
+            final AlertDialog promoCodeDialog = new AlertDialog.Builder(this).create();
+            promoCodeDialog.setView(promoCodeDialogView);
+
+            promoCodeDialog.setCancelable(false);
+            promoCodeDialog.setCanceledOnTouchOutside(false);
+
+            if (promoCodeDialog != null && promoCodeDialog.getWindow() != null) {
+                promoCodeDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                promoCodeDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            }
+
+            Spinner services_spinner = promoCodeDialogView.findViewById(R.id.services_spinner);
+            String lang = AppStorePreferences.getString(getApplicationContext(), AppENUM.LANG);
+            list = new ArrayList<String>();
+
+            if (lang != null) {
+                if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
+                    if (MDetect.INSTANCE.isUnicode()) {
+                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                            } else {
+                            }
+                        }
+                    } else {
+                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                            } else {
+                            }
+                        }
+                    }
+                } else if (lang.equalsIgnoreCase("zh")) {
+                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                            list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
+                        } else {
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                            list.add(promoCodeVOArrayList.get(i).getServiceName());
+                        } else {
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                    if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                        list.add(promoCodeVOArrayList.get(i).getServiceName());
+                    } else {
+                    }
+                }
+            }
+
+            TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
+
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PaymentActivity.this, android.R.layout.simple_spinner_item, list);
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            services_spinner.setAdapter(arrayAdapter);
+
+            services_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    promoCodeName.setText(promoCodeVOArrayList.get(position).getPromoCode());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+            promoCodeDialogView.findViewById(R.id.promo_code_ok_btn).setOnClickListener(v1 -> {
+
+                promoCode = promoCodeName.getText().toString();
+                matchPromoCodeObject.setPromoCode(promoCode);
+                CallMatchPromoCode(matchPromoCodeObject);
+                promoCodeDialog.dismiss();
+
+            });
+
+            promoCodeDialogView.findViewById(R.id.promo_cancel_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    promoCodeDialog.dismiss();
+                }
+            });
+
+            promoCodeDialog.show();
+
+        }
     }
 
     private void CallMatchPromoCode(MatchPromoCodeObject matchPromoCodeObject) {
