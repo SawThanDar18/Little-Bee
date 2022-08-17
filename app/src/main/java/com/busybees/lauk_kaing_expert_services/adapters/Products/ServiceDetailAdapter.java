@@ -54,7 +54,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView serviceDetailName, selectServiceText, cancelServiceText, surveyRequestText, originalPrice, discountPrice, savePricePercent, serviceDetailDescription, hideShowDetailText;
+        private TextView serviceDetailName, selectServiceText, cancelServiceText, surveyRequestText, originalPrice, discountPrice, savePricePercent, serviceDetailDescription, hideShowDetailText, promoAvailable;
         private LinearLayout addLayoutMainView;
 
         public MyViewHolder(View itemView) {
@@ -70,6 +70,7 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
             serviceDetailDescription = itemView.findViewById(R.id.serviceDetail);
             hideShowDetailText = itemView.findViewById(R.id.hideShowDetail);
             addLayoutMainView = itemView.findViewById(R.id.addLayoutMainView);
+            promoAvailable = itemView.findViewById(R.id.promo_available);
         }
     }
     @Override
@@ -97,6 +98,12 @@ public class ServiceDetailAdapter extends RecyclerView.Adapter<ServiceDetailAdap
                 holder.serviceDetailName.setText(productPriceVO.getNameCh());
             } else {
                 holder.serviceDetailName.setText(productPriceVO.getName());
+            }
+
+            if (productPriceVO.getPromoId() != null) {
+                holder.promoAvailable.setVisibility(View.VISIBLE);
+            } else {
+                holder.promoAvailable.setVisibility(View.GONE);
             }
 
             if(holder.serviceDetailName.getText().length() > 30){

@@ -19,6 +19,10 @@ public class ProductPriceVO implements Serializable {
     @Expose
     private Integer subProductId;
 
+    @SerializedName("promo_id")
+    @Expose
+    private Integer promoId;
+
     @SerializedName("service_name")
     @Expose
     private String serviceName;
@@ -165,6 +169,14 @@ public class ProductPriceVO implements Serializable {
 
     public void setSubProductId(Integer subProductId) {
         this.subProductId = subProductId;
+    }
+
+    public Integer getPromoId() {
+        return promoId;
+    }
+
+    public void setPromoId(Integer promoId) {
+        this.promoId = promoId;
     }
 
     public String getServiceName() {

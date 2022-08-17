@@ -46,10 +46,27 @@
             android:layout_marginTop="@dimen/margin32">
 
             <TextView
+                android:id="@+id/promo_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin16"
+                android:layout_toRightOf="@id/discount_price"
+                android:background="@drawable/two_color_shape"
+                android:paddingHorizontal="@dimen/padding4"
+                android:paddingVertical="@dimen/padding2"
+                android:text="PROMO AVAILABLE"
+                android:textAlignment="center"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/fontSizeSmall"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/discount_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin4"
+                android:layout_marginEnd="@dimen/margin8"
                 android:layout_toEndOf="@+id/origin_price"
                 android:text=""
                 android:textColor="@color/light_grey"
@@ -59,6 +76,7 @@
                 android:id="@+id/origin_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin6"
                 android:text="10000 MMK"
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
