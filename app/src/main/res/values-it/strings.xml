@@ -208,4 +208,9 @@
     <string name="confirm_promo_txt">ရွေးချယ်ထားသော ပရိုမိုကုဒ်ပဲ သုံးမည်မှာ သေချာပြီလား?</string>
     <string name="promo_no">ပြန်ရွေးမည်။</string>
     <string name="promo_yes">သေချာပါသည်။</string>
+
+    <string name="confirm_call">Admin သို့ဆက်သွယ်ရန်</string>
+    <string name="confirm_yes">ခေါ်မည်။ </string>
+    <string name="confirm_no"> မခေါ်ပါ။</string>
+
 </resources>

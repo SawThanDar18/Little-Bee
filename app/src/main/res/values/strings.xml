@@ -207,4 +207,8 @@
     <string name="promo_no">Choose Again</string>
     <string name="promo_yes">Sure</string>
 
+    <string name="confirm_call"> Call Admin ?</string>
+    <string name="confirm_yes">Yes</string>
+    <string name="confirm_no">No</string>
+
 </resources>

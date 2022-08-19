@@ -206,4 +206,9 @@
     <string name="confirm_promo_txt">您确定使用此促销代码吗？</string>
     <string name="promo_no">再次选择</string>
     <string name="promo_yes">当然</string>
+
+    <string name="confirm_call">呼叫管理员？</string>
+    <string name="confirm_yes">是的</string>
+    <string name="confirm_no">不</string>
+
 </resources>

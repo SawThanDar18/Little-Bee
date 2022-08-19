@@ -207,4 +207,9 @@
     <string name="confirm_promo_txt">ရှေးခယြျထားသော ပရိုမိုကုဒျပဲ သုံးမညျမှာ သခြောပွီလား?</string>
     <string name="promo_no">ပွနျရှေးမညျ။</string>
     <string name="promo_yes">သခြောပါသညျ။</string>
+
+    <string name="confirm_call">Admin သို႔ဆက္သြယ္၇န္</string>
+    <string name="confirm_yes">ေခၚမည္။ </string>
+    <string name="confirm_no"> မေခၚပါ။</string>
+
 </resources>

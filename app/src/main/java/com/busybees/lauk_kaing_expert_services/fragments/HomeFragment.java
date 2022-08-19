@@ -29,6 +29,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.busybees.lauk_kaing_expert_services.Banner.AdvertisementBannerAdapter;
+import com.busybees.lauk_kaing_expert_services.Dialog.DialogCall;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
     private PopularAdapter popularAdapter;
     private SymnAdapter symnAdapter;
 
-    private ImageView footerImage;
+    private ImageView phoneCall;
     private CircleImageView profile;
 
     private LinearLayout reloadPage;
@@ -129,7 +130,7 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular = view.findViewById(R.id.recycle_popular);
         recyclerViewServiceYMN = view.findViewById(R.id.recycle_symn);
 
-        footerImage = view.findViewById(R.id.footer);
+        phoneCall = view.findViewById(R.id.phone_call);
         profile = view.findViewById(R.id.profile);
 
         reloadPage = view.findViewById(R.id.reload_page);
@@ -224,6 +225,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void onClick() {
+
+        phoneCall.setOnClickListener(v -> {
+            String phone="09255699002";
+            DialogCall dialogCall1=new DialogCall(phone);
+            dialogCall1.show(getActivity().getSupportFragmentManager(), "");
+        });
 
         searchLayout.setOnClickListener(v -> startActivity(new Intent(getContext(), SearchActivity.class)));
 

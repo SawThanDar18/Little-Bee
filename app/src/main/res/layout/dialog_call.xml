@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin10"
+        android:layout_marginTop="@dimen/margin24"
+        android:layout_marginRight="@dimen/margin10"
+        android:background="@drawable/dialog_corner"
+        android:orientation="vertical"
+        android:padding="@dimen/padding10">
+
+        <TextView
+            android:id="@+id/phonetxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin34"
+            android:gravity="center"
+            android:padding="@dimen/padding2"
+            android:text="@string/confirm_call"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fontSizeMedium"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin24"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/vendor_no_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height40"
+                android:layout_marginRight="@dimen/margin4"
+                android:layout_marginBottom="@dimen/margin4"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner_white_color"
+                android:text="@string/confirm_no"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeSmall" />
+
+            <Button
+                android:id="@+id/vendor_yes_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height40"
+                android:layout_marginLeft="@dimen/margin4"
+                android:layout_marginBottom="@dimen/margin4"
+                android:layout_weight="1"
+                android:background="@drawable/two_color_shape"
+                android:text="@string/confirm_yes"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeSmall" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/width60"
+        android:layout_height="@dimen/height60"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:background="@drawable/image_rounded_corner_white_bg"
+        android:src="@drawable/ic_little_bee_logo" />
+
+</RelativeLayout>
