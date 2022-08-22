@@ -19,6 +19,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.Prod
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Products.SubProductAdapter;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import me.myatminsoe.mdetect.MDetect;
 
 public class SubProductActivity extends AppCompatActivity {
+
+    private UserVO userVO;
 
     private TextView subProductName, subProduct_Name;
     private ImageView back;
@@ -47,6 +50,8 @@ public class SubProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeStatusBarVisible();
         setContentView(R.layout.activity_sub_product);
+
+        userVO = Utility.query_UserProfile(this);
 
         subProductName = findViewById(R.id.sub_product_name);
         subProduct_Name = findViewById(R.id.s_name);
@@ -87,6 +92,7 @@ public class SubProductActivity extends AppCompatActivity {
                     @Override public void onItemClick(View view, int position) {
 
                         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                        productsCarryObject.setPhone(userVO.getPhone());
                         productsCarryObject.setServiceId(subProductsVOArrayList.get(position).getServiceId());
                         productsCarryObject.setProductId(subProductsVOArrayList.get(position).getProductId());
                         productsCarryObject.setSubProductId(subProductsVOArrayList.get(position).getSubProductId());

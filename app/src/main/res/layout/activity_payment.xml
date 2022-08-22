@@ -358,7 +358,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:id="@+id/discount_view"
                         android:layout_width="match_parent"
@@ -488,6 +487,23 @@
 
                 </LinearLayout>
             </ScrollView>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/apply_promo_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scrollView"
+                android:layout_marginLeft="@dimen/margin8"
+                android:background="@drawable/two_color_shape"
+                android:paddingHorizontal="@dimen/padding8"
+                android:paddingVertical="@dimen/padding4"
+                android:drawableLeft="@drawable/ic_baseline_book_online_24"
+                android:text="Apply a Promotion Code"
+                android:textAllCaps="true"
+                android:textSize="@dimen/fontSizeSmall"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/continue_layout"

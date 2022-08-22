@@ -31,11 +31,10 @@
                 android:id="@+id/survey_requested_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin24"
                 android:layout_marginBottom="@dimen/margin6"
                 android:text="Survey Requested"
                 android:textAlignment="center"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeSmall"
                 android:visibility="gone" />
 

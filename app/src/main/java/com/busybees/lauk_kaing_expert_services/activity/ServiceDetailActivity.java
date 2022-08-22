@@ -61,8 +61,6 @@ public class ServiceDetailActivity extends AppCompatActivity {
     private NetworkServiceProvider serviceProvider;
     private UserVO userVO;
 
-    public int quantityStatus;
-
     private TextView serviceDetailName, cartCountText, amountText;
     private ImageView back;
 
@@ -115,6 +113,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
             if (productsCarryObject != null) {
                 ProductsCarryObject pStepObj = new ProductsCarryObject();
+                pStepObj.setPhone(productsCarryObject.getPhone());
                 pStepObj.setServiceId(productsCarryObject.getServiceId());
                 pStepObj.setProductId(productsCarryObject.getProductId());
                 pStepObj.setSubProductId(productsCarryObject.getSubProductId());
@@ -315,21 +314,21 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
         } else if (v.getId() == R.id.cancel) {
             int position = (int) v.getTag(R.id.position);
-            GetCartDataModel sdpModel = cartDatas.get(position);
+            ProductPriceVO sdpModel = productPriceVOArrayList.get(position);
             int quantity = sdpModel.getQuantity();
-            if(cartDatas.get(position).getFormStatus() == 2) {
+            if(sdpModel.getFormStatus() == 2) {
                 AddToCartObj addToCartObj = new AddToCartObj();
                 addToCartObj.setPhone(userVO.getPhone());
-                addToCartObj.setProductPriceId(cartDatas.get(position).getProductPriceId());
+                addToCartObj.setProductPriceId(sdpModel.getId());
                 addToCartObj.setQuantity(0);
                 addToCartObj.setFormStatus(2);
                 CallAddToCart(addToCartObj);
 
-            } else if (cartDatas.get(position).getFormStatus() == 1) {
-                if (cartDatas.get(position).getOriginalPrice() == 0) {
+            } else if (sdpModel.getFormStatus() == 1) {
+                if (sdpModel.getOriginalPrice() == 0) {
                     AddToCartObj addToCartObj = new AddToCartObj();
                     addToCartObj.setPhone(userVO.getPhone());
-                    addToCartObj.setProductPriceId(cartDatas.get(position).getProductPriceId());
+                    addToCartObj.setProductPriceId(sdpModel.getId());
                     addToCartObj.setQuantity(0);
                     addToCartObj.setFormStatus(1);
                     CallAddToCart(addToCartObj);
@@ -340,8 +339,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
                             AddToCartObj addToCartObj = new AddToCartObj();
                             addToCartObj.setPhone(userVO.getPhone());
                             addToCartObj.setQuantity(0);
-                            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
-                            addToCartObj.setFormStatus(0);
+                            addToCartObj.setProductPriceId(sdpModel.getId());
+                            addToCartObj.setFormStatus(1);
                             CallAddToCart(addToCartObj);
                             productPriceVOArrayList.get(position).setQuantity(1);
                             posi = position;
@@ -349,8 +348,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
                             AddToCartObj addToCartObj = new AddToCartObj();
                             addToCartObj.setPhone(userVO.getPhone());
                             addToCartObj.setQuantity(0);
-                            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
-                            addToCartObj.setFormStatus(0);
+                            addToCartObj.setProductPriceId(sdpModel.getId());
+                            addToCartObj.setFormStatus(1);
                             CallAddToCart(addToCartObj);
                             productPriceVOArrayList.get(position).setQuantity(0);
                             posi = position;
@@ -365,7 +364,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         AddToCartObj addToCartObj = new AddToCartObj();
                         addToCartObj.setPhone(userVO.getPhone());
                         addToCartObj.setQuantity(0);
-                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setProductPriceId(sdpModel.getId());
                         addToCartObj.setFormStatus(0);
                         CallAddToCart(addToCartObj);
                         productPriceVOArrayList.get(position).setQuantity(1);
@@ -374,7 +373,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         AddToCartObj addToCartObj = new AddToCartObj();
                         addToCartObj.setPhone(userVO.getPhone());
                         addToCartObj.setQuantity(0);
-                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setProductPriceId(sdpModel.getId());
                         addToCartObj.setFormStatus(0);
                         CallAddToCart(addToCartObj);
                         productPriceVOArrayList.get(position).setQuantity(0);
@@ -421,6 +420,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                         if (userVO != null) {
 
                             ProductsCarryObject pStepObj = new ProductsCarryObject();
+                            pStepObj.setPhone(productsCarryObject.getPhone());
                             pStepObj.setServiceId(productsCarryObject.getServiceId());
                             pStepObj.setProductId(productsCarryObject.getProductId());
                             pStepObj.setSubProductId(productsCarryObject.getSubProductId());

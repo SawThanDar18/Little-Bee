@@ -206,14 +206,16 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
 
                 } else {
                     if (productPriceVO.getOriginalPrice() == 0) {
-                        holder.surveyRequestText.setVisibility(View.VISIBLE);
-
-                        holder.surveyRequestText.setText(mContext.getResources().getString(R.string.survey_request));
-
-                        holder.surveyRequestText.setPadding(mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
-                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
-                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
-                                mContext.getResources().getDimensionPixelOffset(R.dimen.margin10));
+                        if (productPriceVO.getDescription() == null) {
+                            holder.surveyRequestText.setVisibility(View.VISIBLE);
+                            holder.surveyRequestText.setText(mContext.getResources().getString(R.string.survey_request));
+                            holder.surveyRequestText.setPadding(mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                    mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                    mContext.getResources().getDimensionPixelOffset(R.dimen.margin10),
+                                    mContext.getResources().getDimensionPixelOffset(R.dimen.margin10));
+                        } else {
+                            holder.surveyRequestText.setVisibility(View.GONE);
+                        }
 
                         holder.selectServiceText.setVisibility(View.GONE);
                         holder.cancelServiceText.setVisibility(View.VISIBLE);

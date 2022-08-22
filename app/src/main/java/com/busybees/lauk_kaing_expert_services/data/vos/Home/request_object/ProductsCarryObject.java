@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 public class ProductsCarryObject implements Serializable {
 
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
     @SerializedName("service_id")
     @Expose
     private int serviceId;
@@ -26,6 +30,14 @@ public class ProductsCarryObject implements Serializable {
     @SerializedName("step")
     @Expose
     private int step;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public int getServiceId() {
         return serviceId;

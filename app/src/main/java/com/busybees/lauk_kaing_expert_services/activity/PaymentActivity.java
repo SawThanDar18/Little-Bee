@@ -72,7 +72,7 @@ public class PaymentActivity extends AppCompatActivity {
     private LinearLayout continueLayout, viewSubTotal, viewDiscount, viewTotal, viewPromoCode;
 
     private ProgressBar progressBar;
-    private TextView subtotal, discountTotal, total, promo_discount;
+    private TextView subtotal, discountTotal, total, promo_discount, applyPromoCode;
 
     private ImageView back, homePageView, cartPageView, addressPageView, finalOrderPageView;
 
@@ -111,6 +111,7 @@ public class PaymentActivity extends AppCompatActivity {
         viewTotal = findViewById(R.id.total_view);
         viewPromoCode = findViewById(R.id.promo_discount_view);
         promo_discount = findViewById(R.id.promo_amount);
+        applyPromoCode = findViewById(R.id.apply_promo_code);
 
         setUpAdapter();
         onClick();
@@ -120,20 +121,25 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            if (promoCode == null) {
+            startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
+        });
+
+        applyPromoCode.setOnClickListener( v-> {
+            showPromoCodeDialog();
+            /*if (promoCode == null) {
                 showPromoCodeDialog();
             } else {
                 if (list.size() == 1) {
                     //save order
-                    startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
                 } else {
                     showConfirmDialog();
                 }
-            }
-
+            }*/
         });
 
-        back.setOnClickListener(v -> finish());
+        back.setOnClickListener(v -> {
+            finish();
+        });
 
 
         cartPageView.setOnClickListener(v -> {
@@ -207,49 +213,6 @@ public class PaymentActivity extends AppCompatActivity {
             }
 
             Spinner services_spinner = promoCodeDialogView.findViewById(R.id.services_spinner);
-            String lang = AppStorePreferences.getString(getApplicationContext(), AppENUM.LANG);
-            list = new ArrayList<String>();
-
-            if (lang != null) {
-                if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
-                    if (MDetect.INSTANCE.isUnicode()) {
-                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
-                            } else {
-                            }
-                        }
-                    } else {
-                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                                list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
-                            } else {
-                            }
-                        }
-                    }
-                } else if (lang.equalsIgnoreCase("zh")) {
-                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
-                        } else {
-                        }
-                    }
-                } else {
-                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                            list.add(promoCodeVOArrayList.get(i).getServiceName());
-                        } else {
-                        }
-                    }
-                }
-            } else {
-                for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
-                    if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
-                        list.add(promoCodeVOArrayList.get(i).getServiceName());
-                    } else {
-                    }
-                }
-            }
 
             TextView promoCodeName = promoCodeDialogView.findViewById(R.id.promo_code_name);
 
@@ -341,8 +304,61 @@ public class PaymentActivity extends AppCompatActivity {
                             cartDatas.addAll(response.body().getData());
                             SetMatchPromo(cartDatas);
 
-                            promoCodeVOArrayList.clear();
-                            promoCodeVOArrayList.addAll(response.body().getPromoCodeList());
+                            if (response.body().getPromoCodeList() != null) {
+
+                                promoCodeVOArrayList.clear();
+                                promoCodeVOArrayList.addAll(response.body().getPromoCodeList());
+
+                                String lang = AppStorePreferences.getString(getApplicationContext(), AppENUM.LANG);
+                                list = new ArrayList<String>();
+
+                                if (lang != null) {
+                                    if (lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("fr")) {
+                                        if (MDetect.INSTANCE.isUnicode()) {
+                                            for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                                } else {
+                                                }
+                                            }
+                                        } else {
+                                            for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                                                if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                                    list.add(promoCodeVOArrayList.get(i).getServiceNameMm());
+                                                } else {
+                                                }
+                                            }
+                                        }
+                                    } else if (lang.equalsIgnoreCase("zh")) {
+                                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                                list.add(promoCodeVOArrayList.get(i).getServiceNameCh());
+                                            } else {
+                                            }
+                                        }
+                                    } else {
+                                        for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                                            if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                                list.add(promoCodeVOArrayList.get(i).getServiceName());
+                                            } else {
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    for (int i = 0; i < promoCodeVOArrayList.size(); i++) {
+                                        if (promoCodeVOArrayList.get(i).getPromoActive() == 1) {
+                                            list.add(promoCodeVOArrayList.get(i).getServiceName());
+                                        } else {
+                                        }
+                                    }
+                                }
+
+                                if (list.isEmpty()) {
+                                    applyPromoCode.setVisibility(View.GONE);
+                                } else {
+                                    applyPromoCode.setVisibility(View.VISIBLE);
+                                }
+                            }
 
                             adapter = new PaymentAdapter(PaymentActivity.this, cartDatas);
                             paymentRecyclerView.setAdapter(adapter);

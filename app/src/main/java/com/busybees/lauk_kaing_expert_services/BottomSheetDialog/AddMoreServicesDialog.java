@@ -130,6 +130,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
             if (productsCarryObject != null) {
                 progressBar.setVisibility(View.VISIBLE);
                 ProductsCarryObject pStepObj = new ProductsCarryObject();
+                pStepObj.setPhone(userVO.getPhone());
                 pStepObj.setServiceId(productsCarryObject.getServiceId());
                 pStepObj.setProductId(productsCarryObject.getProductId());
                 pStepObj.setSubProductId(productsCarryObject.getSubProductId());
@@ -167,6 +168,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
     private void initListeners() {
 
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+            productsCarryObject.setPhone(userVO.getPhone());
             productsCarryObject.setServiceId(productsVOS.get(groupPosition).getSubProducts().get(childPosition).getServiceId());
             productsCarryObject.setProductId(productsVOS.get(groupPosition).getSubProducts().get(childPosition).getProductId());
             productsCarryObject.setSubProductId(productsVOS.get(groupPosition).getSubProducts().get(childPosition).getSubProductId());
@@ -181,6 +183,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
         });
 
         expandableListView.setOnGroupExpandListener(groupPosition -> {
+            productsCarryObject.setPhone(userVO.getPhone());
             productsCarryObject.setServiceId(productsVOS.get(groupPosition).getServiceId());
             productsCarryObject.setProductId(productsVOS.get(groupPosition).getProductId());
             productsCarryObject.setStep(productsVOS.get(groupPosition).getStep());
@@ -218,6 +221,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
         if (serviceAvailableVO.getStep() == 1) {
             ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+            productsCarryObject.setPhone(userVO.getPhone());
             productsCarryObject.setServiceId(serviceAvailableVO.getServiceId());
             productsCarryObject.setStep(serviceAvailableVO.getStep());
 
@@ -395,6 +399,78 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
 
             }
 
+        }  else if (v.getId() == R.id.cancel) {
+            int position = (int) v.getTag(R.id.position);
+            ProductPriceVO sdpModel = productPriceVOArrayList.get(position);
+            int quantity = sdpModel.getQuantity();
+            if(sdpModel.getFormStatus() == 2) {
+                AddToCartObj addToCartObj = new AddToCartObj();
+                addToCartObj.setPhone(userVO.getPhone());
+                addToCartObj.setProductPriceId(sdpModel.getId());
+                addToCartObj.setQuantity(0);
+                addToCartObj.setFormStatus(2);
+                CallAddToCart(addToCartObj);
+
+            } else if (sdpModel.getFormStatus() == 1) {
+                if (sdpModel.getOriginalPrice() == 0) {
+                    AddToCartObj addToCartObj = new AddToCartObj();
+                    addToCartObj.setPhone(userVO.getPhone());
+                    addToCartObj.setProductPriceId(sdpModel.getId());
+                    addToCartObj.setQuantity(0);
+                    addToCartObj.setFormStatus(1);
+                    CallAddToCart(addToCartObj);
+                } else {
+                    if (quantity > 0) {
+                        quantity--;
+                        if (quantity == 0) {
+                            AddToCartObj addToCartObj = new AddToCartObj();
+                            addToCartObj.setPhone(userVO.getPhone());
+                            addToCartObj.setQuantity(0);
+                            addToCartObj.setProductPriceId(sdpModel.getId());
+                            addToCartObj.setFormStatus(1);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(1);
+                            posi = position;
+                        } else {
+                            AddToCartObj addToCartObj = new AddToCartObj();
+                            addToCartObj.setPhone(userVO.getPhone());
+                            addToCartObj.setQuantity(0);
+                            addToCartObj.setProductPriceId(sdpModel.getId());
+                            addToCartObj.setFormStatus(1);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(0);
+                            posi = position;
+
+                        }
+                    }
+                }
+            } else {
+                if (quantity > 0) {
+                    quantity--;
+                    if (quantity == 0) {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(0);
+                        addToCartObj.setProductPriceId(sdpModel.getId());
+                        addToCartObj.setFormStatus(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(1);
+                        posi = position;
+                    } else {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(0);
+                        addToCartObj.setProductPriceId(sdpModel.getId());
+                        addToCartObj.setFormStatus(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(0);
+                        posi = position;
+
+                    }
+                }
+            }
+
+
         }
 
     }
@@ -419,6 +495,7 @@ public class AddMoreServicesDialog extends BottomSheetDialogFragment {
                         if (userVO != null) {
 
                             ProductsCarryObject pStepObj = new ProductsCarryObject();
+                            pStepObj.setPhone(userVO.getPhone());
                             pStepObj.setServiceId(productsCarryObject.getServiceId());
                             pStepObj.setProductId(productsCarryObject.getProductId());
                             pStepObj.setSubProductId(productsCarryObject.getSubProductId());
