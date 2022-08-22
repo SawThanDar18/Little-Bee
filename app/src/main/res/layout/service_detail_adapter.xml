@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/mView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin20"
@@ -38,28 +39,30 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/promo_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/survey_layout"
+            android:layout_marginLeft="@dimen/margin4"
+            android:layout_marginTop="@dimen/margin8"
+            android:background="@drawable/two_color_shape"
+            android:paddingHorizontal="@dimen/padding4"
+            android:paddingVertical="@dimen/padding2"
+            android:text="PROMO AVAILABLE"
+            android:textAlignment="center"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <RelativeLayout
             android:id="@+id/show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/promo_available"
             android:layout_marginLeft="@dimen/margin4"
-            android:layout_marginTop="@dimen/margin32">
-
-            <TextView
-                android:id="@+id/promo_available"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin16"
-                android:layout_toRightOf="@id/discount_price"
-                android:background="@drawable/two_color_shape"
-                android:paddingHorizontal="@dimen/padding4"
-                android:paddingVertical="@dimen/padding2"
-                android:text="PROMO AVAILABLE"
-                android:textAlignment="center"
-                android:textColor="@color/light_grey"
-                android:textSize="@dimen/fontSizeSmall"
-                android:textStyle="bold"
-                android:visibility="gone" />
+            android:layout_marginTop="@dimen/margin8">
 
             <TextView
                 android:id="@+id/discount_price"
