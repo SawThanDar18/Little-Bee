@@ -1,8 +1,12 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +42,7 @@ import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceNeedVO;
@@ -69,9 +77,11 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.myatminsoe.mdetect.MDetect;
+import me.pushy.sdk.Pushy;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class HomeFragment extends Fragment {
 
@@ -161,9 +171,99 @@ public class HomeFragment extends Fragment {
             GetUserProfileObject getUserProfileObject = new GetUserProfileObject();
             getUserProfileObject.setPhone(userVO.getPhone());
             CallUserProfile(getUserProfileObject);
+
+            Pushy();
         }
 
         return  view;
+    }
+
+    private void Pushy(){
+        if (getDeviceToken() == null) {
+            new RegisterForPushNotificationsAsync().execute();
+        }
+        else {
+            Pushy.listen(getContext());
+            updateUI();
+
+
+        }
+
+    }
+
+    private class RegisterForPushNotificationsAsync extends AsyncTask<String, Void, Exception> {
+
+        public RegisterForPushNotificationsAsync() {
+
+        }
+
+        @SuppressLint("TimberArgCount")
+        @Override
+        protected Exception doInBackground(String... params) {
+            try {
+                String deviceToken = Pushy.register(getContext());
+
+                saveDeviceToken(deviceToken);
+                Timber.d("deviceToken", deviceToken);
+            }
+            catch (Exception exc) {
+                return exc;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Exception exc) {
+            if (getActivity().isFinishing()) {
+                return;
+            }
+
+            if (exc != null) {
+                Log.e("Pushy", "Registration failed: " + exc.getMessage());
+
+                new AlertDialog.Builder(getContext()).setTitle(R.string.registrationError)
+                        .setMessage(exc.getMessage())
+                        .setPositiveButton(R.string.ok, null)
+                        .create()
+                        .show();
+            }
+
+            updateUI();
+        }
+    }
+
+    private void updateUI() {
+        String deviceToken = getDeviceToken();
+
+        if (deviceToken == null) {
+
+            return;
+        }
+
+        Log.e("PushyToken>>>",deviceToken);
+        Log.e("DeviceId>>>", Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID));
+
+
+        if (userVO != null || deviceToken != null){
+            SaveTokenObj tokenObj=new SaveTokenObj();
+            tokenObj.setPhone(userVO.getPhone());
+            tokenObj.setToken(deviceToken);
+            //CallSaveToken(tokenObj);
+        }
+
+    }
+
+    private void saveDeviceToken(String deviceToken) {
+        getSharedPreferences().edit().putString("deviceToken", deviceToken).commit();
+    }
+
+    private String getDeviceToken() {
+        return getSharedPreferences().getString("deviceToken", null);
+    }
+
+    private SharedPreferences getSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(getContext());
     }
 
     private void CallUserProfile(GetUserProfileObject getUserProfileObject) {

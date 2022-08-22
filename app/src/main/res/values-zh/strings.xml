@@ -211,4 +211,6 @@
     <string name="confirm_yes">是的</string>
     <string name="confirm_no">不</string>
 
+    <string name="registrationError">Registration Error</string>
+    <string name="ok">Ok</string>
 </resources>

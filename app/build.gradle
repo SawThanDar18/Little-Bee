@@ -100,4 +100,6 @@ dependencies {
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
     implementation 'gun0912.ted:tedpermission:2.2.3'
 
+    //pushy
+    implementation 'me.pushy:sdk:1.0.77'
 }

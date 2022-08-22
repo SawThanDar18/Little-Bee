@@ -213,4 +213,6 @@
     <string name="confirm_yes">ခေါ်မည်။ </string>
     <string name="confirm_no"> မခေါ်ပါ။</string>
 
+    <string name="registrationError">Registration Error</string>
+    <string name="ok">Ok</string>
 </resources>

@@ -211,4 +211,6 @@
     <string name="confirm_yes">Yes</string>
     <string name="confirm_no">No</string>
 
+    <string name="registrationError">Registration Error</string>
+    <string name="ok">Ok</string>
 </resources>
