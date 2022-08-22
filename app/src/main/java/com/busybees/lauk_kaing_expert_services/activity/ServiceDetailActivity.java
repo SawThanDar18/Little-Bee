@@ -20,7 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.Dialog.DialogServiceDelete;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.AlertModel;
+import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.LCModel;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
@@ -236,7 +238,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
         } else if (v.getId() == R.id.selectText) {
 
             int position = (int) v.getTag(R.id.position);
-            int numberCount = productPriceVOArrayList.get(position).getQuantity();
+            ProductPriceVO productPriceVO = productPriceVOArrayList.get(position);
+            int numberCount = productPriceVO.getQuantity();
 
             if (userVO != null) {
 
@@ -310,7 +313,91 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
             }
 
+        } else if (v.getId() == R.id.cancel) {
+            int position = (int) v.getTag(R.id.position);
+            GetCartDataModel sdpModel = cartDatas.get(position);
+            int quantity = sdpModel.getQuantity();
+            if(cartDatas.get(position).getFormStatus() == 2) {
+                AddToCartObj addToCartObj = new AddToCartObj();
+                addToCartObj.setPhone(userVO.getPhone());
+                addToCartObj.setProductPriceId(cartDatas.get(position).getProductPriceId());
+                addToCartObj.setQuantity(0);
+                addToCartObj.setFormStatus(2);
+                CallAddToCart(addToCartObj);
+
+            } else if (cartDatas.get(position).getFormStatus() == 1) {
+                if (cartDatas.get(position).getOriginalPrice() == 0) {
+                    AddToCartObj addToCartObj = new AddToCartObj();
+                    addToCartObj.setPhone(userVO.getPhone());
+                    addToCartObj.setProductPriceId(cartDatas.get(position).getProductPriceId());
+                    addToCartObj.setQuantity(0);
+                    addToCartObj.setFormStatus(1);
+                    CallAddToCart(addToCartObj);
+                } else {
+                    if (quantity > 0) {
+                        quantity--;
+                        if (quantity == 0) {
+                            AddToCartObj addToCartObj = new AddToCartObj();
+                            addToCartObj.setPhone(userVO.getPhone());
+                            addToCartObj.setQuantity(0);
+                            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                            addToCartObj.setFormStatus(0);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(1);
+                            posi = position;
+                        } else {
+                            AddToCartObj addToCartObj = new AddToCartObj();
+                            addToCartObj.setPhone(userVO.getPhone());
+                            addToCartObj.setQuantity(0);
+                            addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                            addToCartObj.setFormStatus(0);
+                            CallAddToCart(addToCartObj);
+                            productPriceVOArrayList.get(position).setQuantity(0);
+                            posi = position;
+
+                        }
+                    }
+                }
+            } else {
+                if (quantity > 0) {
+                    quantity--;
+                    if (quantity == 0) {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(0);
+                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setFormStatus(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(1);
+                        posi = position;
+                    } else {
+                        AddToCartObj addToCartObj = new AddToCartObj();
+                        addToCartObj.setPhone(userVO.getPhone());
+                        addToCartObj.setQuantity(0);
+                        addToCartObj.setProductPriceId(productPriceVOArrayList.get(position).getId());
+                        addToCartObj.setFormStatus(0);
+                        CallAddToCart(addToCartObj);
+                        productPriceVOArrayList.get(position).setQuantity(0);
+                        posi = position;
+
+                    }
+                }
+            }
+
+
         }
+
+    }
+
+    @Subscribe
+    public void getServiceDeleteID(EventBusCartObj obj) {
+        AddToCartObj addToCartObj = new AddToCartObj();
+        addToCartObj.setQuantity(obj.getQuantity());
+        addToCartObj.setPhone(obj.getPhone());
+        addToCartObj.setProductPriceId(obj.getId());
+        addToCartObj.setFormStatus(obj.getFormStatus());
+
+        CallAddToCart(addToCartObj);
 
     }
 
