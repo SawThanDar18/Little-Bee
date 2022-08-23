@@ -35,6 +35,10 @@ public class PromoCodeVO implements Serializable {
     @Expose
     private int promoActive;
 
+    @SerializedName("prmo_id")
+    @Expose
+    private int promoId;
+
     public String getServiceName() {
         return serviceName;
     }
@@ -89,5 +93,13 @@ public class PromoCodeVO implements Serializable {
 
     public void setPromoActive(int promoActive) {
         this.promoActive = promoActive;
+    }
+
+    public int getPromoId() {
+        return promoId;
+    }
+
+    public void setPromoId(int promoId) {
+        this.promoId = promoId;
     }
 }

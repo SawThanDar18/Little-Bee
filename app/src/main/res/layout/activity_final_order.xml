@@ -356,11 +356,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin16"
-                android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                android:background="@drawable/two_color_shape"
                 android:padding="@dimen/padding8"
                 android:text="@string/search_for_services"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

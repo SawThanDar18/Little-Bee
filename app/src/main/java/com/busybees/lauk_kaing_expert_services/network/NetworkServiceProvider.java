@@ -11,6 +11,8 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObject;
@@ -50,6 +52,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetResendOtpSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -148,6 +151,11 @@ public class NetworkServiceProvider {
     public Call<MatchPromoCodeModel> MatchPromoCode (String url, MatchPromoCodeObject obj) {
         MatchPromoCodeSync sync=retrofit.create(MatchPromoCodeSync.class);
         return sync.matchPromoCode(url, obj);
+    }
+
+    public Call<SaveOrderModel> SaveOrderCall (String url, SaveOrderObject saveOrderObject) {
+        SaveOrderSync sync = retrofit.create(SaveOrderSync.class);
+        return sync.saveOrder(url, saveOrderObject);
     }
 
 }

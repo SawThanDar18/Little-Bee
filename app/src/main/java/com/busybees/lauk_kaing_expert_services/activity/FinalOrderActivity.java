@@ -36,6 +36,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartDataModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddressVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
@@ -86,6 +87,8 @@ public class FinalOrderActivity extends AppCompatActivity {
     ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
 
     JSONObject jsonObject;
+
+    private SaveOrderObject saveOrderObject = new SaveOrderObject();
 
     private boolean isCartItemAvailable;
 
@@ -410,7 +413,12 @@ public class FinalOrderActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
+            Intent intent = new Intent(FinalOrderActivity.this, PaymentActivity.class);
+            intent.putExtra("address", addressVO);
+            intent.putExtra("date", dateText.getText().toString());
+            intent.putExtra("time", timeText.getText().toString());
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
 
         addMoreServiceLayout.setOnClickListener(v -> {

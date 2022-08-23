@@ -90,8 +90,18 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
         }
         holder.rec_qty.setText(String.valueOf(obj.getQuantity()));
 
-        holder.rec_amt.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(obj.getAmount())));
-        holder.price.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice())));
+        if (obj.getAmount() == 0) {
+            holder.rec_amt.setText("-");
+        } else {
+            holder.rec_amt.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(obj.getAmount())));
+        }
+
+        if (obj.getOriginalPrice() == 0) {
+            holder.price.setText("-");
+        } else {
+            holder.price.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice())));
+
+        }
 
     }
 

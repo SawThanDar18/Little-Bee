@@ -65,6 +65,10 @@ public class GetCartDataModel {
     @Expose
     private Integer discountTotal;
 
+    @SerializedName("discount_total_price")
+    @Expose
+    private Integer discountTotalPrice;
+
     public Integer getId() {
         return id;
     }
@@ -183,5 +187,13 @@ public class GetCartDataModel {
 
     public void setDiscountTotal(Integer discountTotal) {
         this.discountTotal = discountTotal;
+    }
+
+    public Integer getDiscountTotalPrice() {
+        return discountTotalPrice;
+    }
+
+    public void setDiscountTotalPrice(Integer discountTotalPrice) {
+        this.discountTotalPrice = discountTotalPrice;
     }
 }

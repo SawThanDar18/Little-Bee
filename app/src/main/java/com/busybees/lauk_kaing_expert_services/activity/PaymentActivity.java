@@ -31,6 +31,10 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartDataMo
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.ProductDetailObject;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddressVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.MatchPromoCodeObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.ProductPriceListVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.PromoCodeVO;
@@ -82,9 +86,15 @@ public class PaymentActivity extends AppCompatActivity {
     private ArrayList<ProductPriceListVO> productPriceListVOArrayList = new ArrayList<>();
     private MatchPromoCodeObject matchPromoCodeObject = new MatchPromoCodeObject();
 
+    private ArrayList<ProductDetailObject> productDetailObjectArrayList = new ArrayList<>();
+    private SaveOrderObject saveOrderObject = new SaveOrderObject();
+
     private ArrayList<String> list;
-    private int discount;
+    private int discount, promoId;
     private String promoCode;
+
+    private AddressVO addressVO = new AddressVO();
+    private String orderDate, orderTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,6 +123,12 @@ public class PaymentActivity extends AppCompatActivity {
         promo_discount = findViewById(R.id.promo_amount);
         applyPromoCode = findViewById(R.id.apply_promo_code);
 
+        if (getIntent() != null) {
+            addressVO = (AddressVO) getIntent().getSerializableExtra("address");
+            orderDate = getIntent().getStringExtra("date");
+            orderTime = getIntent().getStringExtra("time");
+        }
+
         setUpAdapter();
         onClick();
         CallGetCart();
@@ -121,7 +137,13 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
+            saveOrderObject.setDate(orderDate);
+            saveOrderObject.setTime(orderTime);
+            saveOrderObject.setOrderSource("android");
+            saveOrderObject.setPhone(userObj.getPhone());
+            saveOrderObject.setPaymentType("cash");
+            saveOrderObject.setAddressId(addressVO.getId());
+            SaveOrder(saveOrderObject);
         });
 
         applyPromoCode.setOnClickListener( v-> {
@@ -225,6 +247,8 @@ public class PaymentActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                     promoCodeName.setText(promoCodeVOArrayList.get(position).getPromoCode());
+                    promoId = promoCodeVOArrayList.get(position).getPromoId();
+                    saveOrderObject.setPromoId(promoId);
                 }
 
                 @Override
@@ -268,7 +292,11 @@ public class PaymentActivity extends AppCompatActivity {
                         promo_discount.setText("( " + response.body().getData().getDiscount() + " ) " + getString(R.string.currency));
                         int totalFromPromo = response.body().getData().getTotal();
                         int totalAmount = totalFromPromo - discount;
-                        total.setText(totalAmount + " " + getString(R.string.currency));
+                        if (totalAmount == 0) {
+                            total.setText("-");
+                        } else {
+                            total.setText(totalAmount + " " + getString(R.string.currency));
+                        }
                     } else if (response.body().isError() == true) {
                         progressBar.setVisibility(View.GONE);
                         Utility.showToast(PaymentActivity.this, response.body().getMessage());
@@ -303,6 +331,19 @@ public class PaymentActivity extends AppCompatActivity {
                             cartDatas.clear();
                             cartDatas.addAll(response.body().getData());
                             SetMatchPromo(cartDatas);
+
+                            if (!cartDatas.isEmpty() && cartDatas != null) {
+                                for (int i = 0; i < cartDatas.size(); i++) {
+
+                                    ProductDetailObject productDetailObject = new ProductDetailObject();
+                                    productDetailObject.setPriceId(cartDatas.get(i).getProductPriceId());
+                                    productDetailObject.setQuantity(cartDatas.get(i).getQuantity());
+                                    productDetailObjectArrayList.add(productDetailObject);
+
+                                }
+
+                                saveOrderObject.setProductDetail(productDetailObjectArrayList);
+                            }
 
                             if (response.body().getPromoCodeList() != null) {
 
@@ -364,7 +405,11 @@ public class PaymentActivity extends AppCompatActivity {
                             paymentRecyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
 
-                            subtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(response.body().getItemTotal()) + " " + getString(R.string.currency));
+                            if (response.body().getItemTotal() == 0) {
+                                subtotal.setText("-");
+                            } else {
+                                subtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(response.body().getItemTotal()) + " " + getString(R.string.currency));
+                            }
                             if (response.body().getDiscountTotalAll() == 0) {
                                 discountTotal.setText("-");
                             } else if (response.body().getDiscountTotalAll() > 0) {
@@ -372,7 +417,11 @@ public class PaymentActivity extends AppCompatActivity {
                                 discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getDiscountTotalAll()) + " ) " + getString(R.string.currency));
                             }
 
-                            total.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                            if (response.body().getTotal() == 0) {
+                                total.setText("-");
+                            } else {
+                                total.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                            }
 
                         } else {
                             Utility.showToast(getApplicationContext(), response.body().getMessage());
@@ -399,7 +448,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                 ProductPriceListVO products = new ProductPriceListVO();
                 products.setPriceId(cartData.get(i).getProductPriceId());
-                products.setItemTotal(cartData.get(i).getAmount());
+                products.setItemTotal(cartData.get(i).getDiscountTotalPrice());
                 productPriceListVOArrayList.add(products);
 
             }
@@ -420,6 +469,36 @@ public class PaymentActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
+    }
+
+    private void SaveOrder(SaveOrderObject saveOrderObject) {
+        progressBar.setVisibility(View.VISIBLE);
+
+        if (Utility.isOnline(getApplicationContext())) {
+            serviceProvider.SaveOrderCall(ApiConstants.BASE_URL + ApiConstants.GET_SAVE_ORDER, saveOrderObject).enqueue(new Callback<SaveOrderModel>() {
+                @Override
+                public void onResponse(Call<SaveOrderModel> call, Response<SaveOrderModel> response) {
+                    if (response.body().isError() == false) {
+                        progressBar.setVisibility(View.GONE);
+                        startActivity(new Intent(getApplicationContext(), ThanksActivity.class));
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SaveOrderModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            progressBar.setVisibility(View.GONE);
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
     }
 
 }
