@@ -80,12 +80,6 @@ public class MyFragment extends Fragment {
         onClick();
         userProfileView();
 
-        /*if (userVO != null) {
-            GetUserProfileObject userProfileObject = new GetUserProfileObject();
-            userProfileObject.setPhone(userVO.getPhone());
-            CallUserProfile(userProfileObject);
-        } */
-
         return  view;
     }
 
@@ -208,7 +202,11 @@ public class MyFragment extends Fragment {
             lineLogout.setVisibility(View.VISIBLE);
             profileEditImageView.setVisibility(View.VISIBLE);
 
-            RequestOptions requestOptions = new RequestOptions();
+            GetUserProfileObject userProfileObject = new GetUserProfileObject();
+            userProfileObject.setPhone(userVO.getPhone());
+            CallUserProfile(userProfileObject);
+
+            /*RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.profile_default_image);
             requestOptions.error(R.drawable.loader_circle_shape);
 
@@ -238,7 +236,7 @@ public class MyFragment extends Fragment {
                         .apply(requestOptions)
                         .into(profile);
 
-            }
+            }*/
 
             userName.setText(userVO.getUsername());
             userPhone.setText(userVO.getPhone());

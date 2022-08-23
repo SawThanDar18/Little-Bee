@@ -44,7 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="1dp"
-                        android:src="@drawable/ic_little_bee_logo" />
+                        android:src="@drawable/profile_default_image" />
 
                     <ImageView
                         android:visibility="gone"

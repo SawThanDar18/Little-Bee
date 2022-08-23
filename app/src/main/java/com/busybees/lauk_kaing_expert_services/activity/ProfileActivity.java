@@ -29,9 +29,11 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
 import com.busybees.lauk_kaing_expert_services.data.models.PickerModel;
 import com.busybees.lauk_kaing_expert_services.data.models.ProfileUpdateModel;
 import com.busybees.lauk_kaing_expert_services.data.models.ProfileImageModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileUpdateObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
@@ -74,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private UserVO userObj;
+    private String profileUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,12 +103,76 @@ public class ProfileActivity extends AppCompatActivity {
             phoneNumber.setText(userObj.getPhone());
             userName.setText(userObj.getUsername());
             userEmail.setText(userObj.getEmail());
-            loadProfile(userObj.getImage());
+            //loadProfile(userObj.getImage());
+
+            GetUserProfileObject getUserProfileObject = new GetUserProfileObject();
+            getUserProfileObject.setPhone(userObj.getPhone());
+            CallUserProfile(getUserProfileObject);
+
         }
 
         onClick();
 
     }
+
+    private void CallUserProfile(GetUserProfileObject getUserProfileObject) {
+        if (Utility.isOnline(getApplicationContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            networkServiceProvider.UserProfileCall(ApiConstants.BASE_URL + ApiConstants.GET_USER_PROFILE, getUserProfileObject).enqueue(new Callback<GetUserProfileModel>() {
+                @Override
+                public void onResponse(Call<GetUserProfileModel> call, Response<GetUserProfileModel> response) {
+
+                    if (response.body().getError() == true) {
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+                    } else if (response.body().getError() == false) {
+                        progressBar.setVisibility(View.GONE);
+
+                        RequestOptions requestOptions = new RequestOptions();
+                        requestOptions.placeholder(R.drawable.loader_circle_shape);
+                        requestOptions.error(R.drawable.loader_circle_shape);
+
+                        profileUrl = response.body().getData().getImage();
+
+                        if (profileUrl != null && !profileUrl.isEmpty() && !profileUrl.equals("null")) {
+
+                            Glide.with(getApplicationContext())
+                                    .load(profileUrl)
+                                    .apply(requestOptions)
+                                    .listener(new RequestListener<Drawable>() {
+
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            return false;
+                                        }
+                                    }).into(profile);
+                        }else{
+
+                            Glide.with(getApplicationContext())
+                                    .load(R.drawable.profile_default_image)
+                                    .apply(requestOptions)
+                                    .into(profile);
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetUserProfileModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+
+                }
+            });
+        } else {
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
+    }
+
 
     private void loadProfile(String url) {
 
