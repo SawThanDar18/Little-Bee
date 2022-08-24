@@ -367,6 +367,7 @@ public class HomeFragment extends Fragment {
                     if (serviceAvailableVOArrayList.get(position).getStep() == 1) {
 
                         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                        productsCarryObject.setPhone(userVO.getPhone());
                         productsCarryObject.setServiceId(serviceAvailableVOArrayList.get(position).getServiceId());
                         productsCarryObject.setStep(serviceAvailableVOArrayList.get(position).getStep());
 
@@ -503,6 +504,7 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(getContext(), LogInActivity.class));
                 } else {
                     ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                    productsCarryObject.setPhone(userVO.getPhone());
                     productsCarryObject.setServiceId(popularServicesVOArrayList.get(position).getServiceId());
                     productsCarryObject.setProductId(popularServicesVOArrayList.get(position).getProductId());
                     productsCarryObject.setSubProductId(popularServicesVOArrayList.get(position).getSubProductId());
@@ -543,6 +545,7 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(getContext(), LogInActivity.class));
                 } else {
                     ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                    productsCarryObject.setPhone(userVO.getPhone());
                     productsCarryObject.setServiceId(serviceNeedVOArrayList.get(position).getServiceId());
                     productsCarryObject.setProductId(serviceNeedVOArrayList.get(position).getProductId());
                     productsCarryObject.setSubProductId(serviceNeedVOArrayList.get(position).getSubProductId());
@@ -599,6 +602,7 @@ public class HomeFragment extends Fragment {
             } else {
 
                 ProductsCarryObject productsCarryObject = new ProductsCarryObject();
+                productsCarryObject.setPhone(userVO.getPhone());
                 productsCarryObject.setServiceId(slider.get(position).getServiceId());
                 productsCarryObject.setProductId(slider.get(position).getProductId());
                 productsCarryObject.setSubProductId(slider.get(position).getSubProductId());

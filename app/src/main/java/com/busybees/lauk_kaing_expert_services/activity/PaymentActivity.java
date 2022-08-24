@@ -248,7 +248,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                     promoCodeName.setText(promoCodeVOArrayList.get(position).getPromoCode());
                     promoId = promoCodeVOArrayList.get(position).getPromoId();
-                    saveOrderObject.setPromoId(promoId);
+
                 }
 
                 @Override
@@ -263,6 +263,8 @@ public class PaymentActivity extends AppCompatActivity {
                 promoCode = promoCodeName.getText().toString();
                 matchPromoCodeObject.setPromoCode(promoCode);
                 CallMatchPromoCode(matchPromoCodeObject);
+                saveOrderObject.setPromoId(promoId);
+
                 promoCodeDialog.dismiss();
 
             });
