@@ -214,4 +214,6 @@
 
     <string name="registrationError">Registration Error</string>
     <string name="ok">Ok</string>
+
+    <string name="order_detail">ေအာ္ဒါ အေသးစိတ္</string>
 </resources>

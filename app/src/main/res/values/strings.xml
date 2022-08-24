@@ -213,4 +213,6 @@
 
     <string name="registrationError">Registration Error</string>
     <string name="ok">Ok</string>
+
+    <string name="order_detail">Order Detail</string>
 </resources>

@@ -213,4 +213,6 @@
 
     <string name="registrationError">Registration Error</string>
     <string name="ok">Ok</string>
+
+    <string name="order_detail">订单详情</string>
 </resources>
