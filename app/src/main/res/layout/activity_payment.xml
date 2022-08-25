@@ -322,7 +322,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/corner_grey_stroke"
                         android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="0dp"
@@ -365,7 +365,7 @@
                         android:layout_below="@+id/tot_footer1"
                         android:background="@drawable/corner_grey_stroke"
                         android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="0dp"
@@ -449,7 +449,7 @@
                         android:layout_below="@+id/tot_footer1"
                         android:background="@drawable/corner_grey_stroke"
                         android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="0dp"

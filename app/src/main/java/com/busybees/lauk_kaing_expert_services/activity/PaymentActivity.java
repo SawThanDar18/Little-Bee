@@ -294,10 +294,11 @@ public class PaymentActivity extends AppCompatActivity {
                         promo_discount.setText("( " + response.body().getData().getDiscount() + " ) " + getString(R.string.currency));
                         int totalFromPromo = response.body().getData().getTotal();
                         int totalAmount = totalFromPromo - discount;
-                        if (totalAmount == 0) {
-                            total.setText("-");
+                        if (totalFromPromo == 0) {
+                            viewTotal.setVisibility(View.GONE);
                         } else {
-                            total.setText(totalAmount + " " + getString(R.string.currency));
+                            viewTotal.setVisibility(View.VISIBLE);
+                            total.setText(totalFromPromo + " " + getString(R.string.currency));
                         }
                     } else if (response.body().isError() == true) {
                         progressBar.setVisibility(View.GONE);
@@ -408,20 +409,23 @@ public class PaymentActivity extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
 
                             if (response.body().getItemTotal() == 0) {
-                                subtotal.setText("-");
+                                viewSubTotal.setVisibility(View.GONE);
                             } else {
+                                viewSubTotal.setVisibility(View.VISIBLE);
                                 subtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(response.body().getItemTotal()) + " " + getString(R.string.currency));
                             }
                             if (response.body().getDiscountTotalAll() == 0) {
-                                discountTotal.setText("-");
+                                viewDiscount.setVisibility(View.GONE);
                             } else if (response.body().getDiscountTotalAll() > 0) {
+                                viewDiscount.setVisibility(View.VISIBLE);
                                 discount = response.body().getDiscountTotalAll();
                                 discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getDiscountTotalAll()) + " ) " + getString(R.string.currency));
                             }
 
                             if (response.body().getTotal() == 0) {
-                                total.setText("-");
+                                viewTotal.setVisibility(View.GONE);
                             } else {
+                                viewTotal.setVisibility(View.VISIBLE);
                                 total.setText(response.body().getTotal() + " " + getString(R.string.currency));
                             }
 

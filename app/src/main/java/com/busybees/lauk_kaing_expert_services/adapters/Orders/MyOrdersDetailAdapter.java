@@ -45,25 +45,33 @@ public class MyOrdersDetailAdapter extends RecyclerView.Adapter<MyOrdersDetailAd
 
         if (checkLng(context).equalsIgnoreCase("it") || checkLng(context).equalsIgnoreCase("fr")){
             if ( MDetect.INSTANCE.isUnicode()){
-                holder.serviceName.setText(". " + obj.getServiceName());
+                holder.serviceName.setText("." + obj.getServiceNameMm());
             } else  {
-                holder.serviceName.setText(". " + obj.getServiceNameMm());
+                holder.serviceName.setText("." + obj.getServiceNameMm());
             }
         } else if (checkLng(context).equalsIgnoreCase("zh")) {
-          holder.serviceName.setText(". " + obj.getServiceNameCh());
+          holder.serviceName.setText("." + obj.getServiceNameCh());
         } else{
-            holder.serviceName.setText(". "+obj.getServiceName());
+            holder.serviceName.setText(obj.getServiceName());
         }
 
         if (obj.getTotalDiscount() != 0){
             holder.qty.setText(String.valueOf(obj.getQuantity()));
-            holder.disc.setText(" ( " + NumberFormat.getNumberInstance(Locale.US).format(obj.getTotalDiscount()) + " ) ");
+            holder.disc.setText(NumberFormat.getNumberInstance(Locale.US).format(obj.getTotalDiscount()));
             holder.price.setText(String.valueOf(Html.fromHtml(NumberFormat.getNumberInstance(Locale.US).format(obj.getPrice()) +"<span style=\"color:#b57c2b;\">")));
         }else {
             holder.disc.setText("-");
             holder.qty.setText(String.valueOf(obj.getQuantity()));
             holder.price.setText(String.valueOf(Html.fromHtml(NumberFormat.getNumberInstance(Locale.US).format(obj.getPrice()) +"<span style=\"color:#b57c2b;\">")));
         }
+
+        if (obj.getTotalPrice() != 0) {
+            holder.price.setText(String.valueOf(Html.fromHtml(NumberFormat.getNumberInstance(Locale.US).format(obj.getPrice()) +"<span style=\"color:#b57c2b;\">")));
+        } else {
+            holder.price.setText("-");
+        }
+
+
 
     }
 

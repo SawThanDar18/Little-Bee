@@ -24,6 +24,18 @@ public class MyOrdersDetailVO implements Serializable {
     @Expose
     private String time;
 
+    @SerializedName("original_total")
+    @Expose
+    private int originalTotal;
+
+    @SerializedName("total_discount")
+    @Expose
+    private int totalDiscount;
+
+    @SerializedName("promo_total_discount")
+    @Expose
+    private int promoTotalDiscount;
+
     @SerializedName("total_price")
     @Expose
     private int totalPrice;
@@ -74,6 +86,30 @@ public class MyOrdersDetailVO implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getOriginalTotal() {
+        return originalTotal;
+    }
+
+    public void setOriginalTotal(int originalTotal) {
+        this.originalTotal = originalTotal;
+    }
+
+    public int getTotalDiscount() {
+        return totalDiscount;
+    }
+
+    public void setTotalDiscount(int totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public int getPromoTotalDiscount() {
+        return promoTotalDiscount;
+    }
+
+    public void setPromoTotalDiscount(int promoTotalDiscount) {
+        this.promoTotalDiscount = promoTotalDiscount;
     }
 
     public int getTotalPrice() {

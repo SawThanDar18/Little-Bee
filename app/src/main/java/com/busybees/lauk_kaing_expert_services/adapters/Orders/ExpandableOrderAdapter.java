@@ -95,7 +95,7 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
             serviceAmt.setText("Survey");
         } else {
             currency.setVisibility(View.VISIBLE);
-            serviceAmt.setText(listChild.getTotalPrice());
+            serviceAmt.setText(String.valueOf(listChild.getTotalPrice()));
         }
 
         orderDetailLayout.setOnClickListener(v -> {

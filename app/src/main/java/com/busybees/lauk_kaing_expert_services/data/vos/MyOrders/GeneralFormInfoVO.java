@@ -60,6 +60,10 @@ public class GeneralFormInfoVO implements Serializable {
     @Expose
     private String imagesLink;
 
+    @SerializedName("form_status")
+    @Expose
+    private int formStatus;
+
     public int getId() {
         return id;
     }
@@ -162,5 +166,13 @@ public class GeneralFormInfoVO implements Serializable {
 
     public void setImagesLink(String imagesLink) {
         this.imagesLink = imagesLink;
+    }
+
+    public int getFormStatus() {
+        return formStatus;
+    }
+
+    public void setFormStatus(int formStatus) {
+        this.formStatus = formStatus;
     }
 }

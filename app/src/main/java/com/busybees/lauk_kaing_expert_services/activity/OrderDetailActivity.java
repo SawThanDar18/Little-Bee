@@ -3,6 +3,8 @@ package com.busybees.lauk_kaing_expert_services.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -11,18 +13,36 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.adapters.Orders.LeadFormImageAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.PhotoItemViewAdapter;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.MyOrdersDetailVO;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
     private TextView orderId, orderAddress, orderTime, orderDate;
-    private RecyclerView orderDetailRecyclerView;
+    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView;
+
+    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView;
+    private TextView subtotal, discountTotal, total, promo_discount;
+
+    private TextView confirmPrice, title, budget, squareFeet, details;
+
+    private ImageView back;
 
     private MyOrdersDetailAdapter myOrdersDetailAdapter;
-    private LinearLayoutManager layoutManager;
+    private LinearLayoutManager layoutManager, leadFormLayoutManager;
 
     private MyOrdersDetailVO myOrdersDetailVO = new MyOrdersDetailVO();
+
+    private LeadFormImageAdapter leadFormImageAdapter;
+    List<String> photos = new ArrayList<>();
+    List<String> image_URLs = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +55,22 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderDetailRecyclerView = findViewById(R.id.order_detail_recyclerview);
         orderDate = findViewById(R.id.order_date);
         orderTime = findViewById(R.id.order_time);
+        viewSubTotal = findViewById(R.id.sub_total_view);
+        viewDiscount = findViewById(R.id.discount_view);
+        viewTotal = findViewById(R.id.total_view);
+        viewPromoCode = findViewById(R.id.promo_discount_view);
+        subtotal = findViewById(R.id.sub_total_amount);
+        discountTotal = findViewById(R.id.discount_total_amount);
+        total = findViewById(R.id.total_amount);
+        promo_discount = findViewById(R.id.promo_amount);
+        leadFormView = findViewById(R.id.lead_form_view);
+        confirmPrice = findViewById(R.id.confirm_price);
+        title = findViewById(R.id.title);
+        budget = findViewById(R.id.budget);
+        squareFeet = findViewById(R.id.sqfeet);
+        details = findViewById(R.id.details);
+        leadFormPhotosRecyclerView = findViewById(R.id.photos_recyclerview);
+        back = findViewById(R.id.back_button);
 
         if (getIntent() != null) {
             myOrdersDetailVO = (MyOrdersDetailVO) getIntent().getSerializableExtra("order_detail");
@@ -44,9 +80,67 @@ public class OrderDetailActivity extends AppCompatActivity {
             orderDate.setText(myOrdersDetailVO.getDate());
             orderTime.setText(myOrdersDetailVO.getTime());
 
+            if (myOrdersDetailVO.getOriginalTotal() == 0) {
+                viewSubTotal.setVisibility(View.GONE);
+            } else {
+                viewSubTotal.setVisibility(View.VISIBLE);
+                subtotal.setText(myOrdersDetailVO.getOriginalTotal() + " " + getString(R.string.currency));
+            }
+
+            if (myOrdersDetailVO.getTotalDiscount() == 0) {
+                viewDiscount.setVisibility(View.GONE);
+            } else {
+                viewDiscount.setVisibility(View.VISIBLE);
+                discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getTotalDiscount()) + " ) " + getString(R.string.currency));
+            }
+
+            if (myOrdersDetailVO.getPromoTotalDiscount() == 0) {
+                viewPromoCode.setVisibility(View.GONE);
+            } else {
+                viewPromoCode.setVisibility(View.VISIBLE);
+                promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
+            }
+
+            if (myOrdersDetailVO.getTotalPrice() == 0) {
+                viewTotal.setVisibility(View.GONE);
+            } else {
+                viewTotal.setVisibility(View.VISIBLE);
+                total.setText(myOrdersDetailVO.getTotalPrice() + " " + getString(R.string.currency));
+            }
+
+            if (myOrdersDetailVO.getGeneralFormInfo() != null) {
+                if (myOrdersDetailVO.getGeneralFormInfo().getFormStatus() == 2) {
+                    leadFormView.setVisibility(View.VISIBLE);
+                    showLeadFormDetail();
+                } else {
+
+                }
+            } else {
+                leadFormView.setVisibility(View.GONE);
+            }
+
         }
 
+        back.setOnClickListener(v-> finish());
+
         setUpAdapter();
+    }
+
+    private void showLeadFormDetail() {
+        title.setText(myOrdersDetailVO.getGeneralFormInfo().getTitle());
+        budget.setText(String.valueOf(myOrdersDetailVO.getGeneralFormInfo().getBudget()));
+        squareFeet.setText(myOrdersDetailVO.getGeneralFormInfo().getSquareFeet());
+        details.setText(myOrdersDetailVO.getGeneralFormInfo().getDetailText());
+
+        for (int i = 0; i < myOrdersDetailVO.getGeneralFormInfo().getImages().size(); i++) {
+            photos.add(myOrdersDetailVO.getGeneralFormInfo().getImages().get(i));
+            image_URLs.add(myOrdersDetailVO.getGeneralFormInfo().getImagesLink() + photos.get(i));
+        }
+
+        leadFormImageAdapter = new LeadFormImageAdapter(getApplicationContext());
+        leadFormPhotosRecyclerView.setAdapter(leadFormImageAdapter);
+        leadFormImageAdapter.setData(image_URLs);
+        leadFormImageAdapter.notifyDataSetChanged();
     }
 
     private void setUpAdapter() {
@@ -54,6 +148,9 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderDetailRecyclerView.setAdapter(myOrdersDetailAdapter);
         layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         orderDetailRecyclerView.setLayoutManager(layoutManager);
+
+        leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        leadFormPhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
     }
 
     void makeStatusBarVisible() {

@@ -367,7 +367,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (userObj.getImage() != null){
             String url = userObj.getImage();
             Intent intent=new Intent(ProfileActivity.this, ImageViewActivity.class);
-            intent.putExtra("image_url", url);
+            intent.putExtra("image", url);
             startActivity(intent);
         } else {
 

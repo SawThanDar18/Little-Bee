@@ -31,7 +31,7 @@ public class ImageViewActivity extends AppCompatActivity {
         imageZoom = findViewById(R.id.myZoomageView);
 
         Intent condition=getIntent();
-        imageUrl = (String) condition.getSerializableExtra("image_url");
+        imageUrl = (String) condition.getSerializableExtra("image");
 
         if (imageUrl !=null){
             RequestOptions requestOptions = new RequestOptions();
