@@ -14,12 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tool_bar"
+        android:layout_marginStart="@dimen/margin16"
+        android:layout_marginTop="@dimen/margin16"
+        android:layout_marginEnd="@dimen/margin16"
+        android:layout_marginBottom="@dimen/margin16"
         android:background="@drawable/two_color_shape"
-        android:layout_margin="@dimen/margin16"
         android:padding="@dimen/padding8"
         android:text="Order No : 1"
-        android:textSize="@dimen/fontSizeMedium"
         android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeMedium"
         android:textStyle="bold" />
 
     <TextView
@@ -34,15 +37,134 @@
         android:textSize="@dimen/fontSizeMedium"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:id="@+id/amount_label_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/order_address"
+        android:layout_marginTop="@dimen/margin10"
+        android:background="@color/theme_color"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/rec_no_f"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="@string/no"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+        <View
+            android:visibility="invisible"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/rec_dec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:text="@string/service"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+        <View
+            android:visibility="invisible"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/rec_discount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:text="@string/price"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+        <View
+            android:visibility="visible"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/rec_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:text="@string/qty"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_marginLeft="@dimen/margin6"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/rec_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:text="@string/disc"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/rec_amt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:padding="@dimen/padding4"
+            android:text="@string/total"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/order_detail_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/order_address"
+        android:layout_below="@id/amount_label_layout"
         android:layout_marginHorizontal="@dimen/margin16" />
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/amount_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +175,6 @@
             android:id="@+id/sub_total_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin16"
             android:background="@drawable/corner_grey_stroke"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -96,7 +217,6 @@
             android:id="@+id/discount_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin16"
             android:background="@drawable/corner_grey_stroke"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -138,7 +258,6 @@
             android:id="@+id/promo_discount_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin16"
             android:background="@drawable/corner_grey_stroke"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -180,7 +299,6 @@
             android:id="@+id/total_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin16"
             android:background="@drawable/corner_grey_stroke"
             android:orientation="horizontal"
             android:visibility="visible">

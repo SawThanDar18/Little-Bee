@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/viewMain"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/rec_no_f"
+            android:layout_weight=".5"
+            android:layout_width="0dp"
+            android:padding="@dimen/padding4"
+            android:text="1"
+            android:textSize="@dimen/fontSizeSmall"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:visibility="invisible"
+            android:background="#D1CBCB"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/order_service_name"
+            android:textColor="@color/black"
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:text="8 Hours Cleaning"
+            android:textSize="@dimen/fontSizeSmall"
+            android:padding="@dimen/padding4"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:visibility="invisible"
+            android:background="#D1CBCB"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/rec_price"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="20000"
+            android:textSize="@dimen/fontSizeSmall"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:padding="@dimen/padding4"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:background="#D1CBCB"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/order_qty"
+            android:layout_weight="0.8"
+            android:text="1"
+            android:textSize="@dimen/fontSizeSmall"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:padding="@dimen/padding4"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginLeft="5dp"
+            android:background="#D1CBCB"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/order_discount"
+            android:layout_weight="0.8"
+            android:text="6000"
+            android:textSize="@dimen/fontSizeSmall"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:padding="@dimen/padding4"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:background="#D1CBCB"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/order_price"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:text="20000"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:textSize="@dimen/fontSizeSmall"
+            android:padding="@dimen/padding4"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bottomSeparator"
+        android:background="#D1CBCB"
+        android:layout_below="@+id/viewMain"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>

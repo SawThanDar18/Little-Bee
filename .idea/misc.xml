@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_order_detail.xml" value="0.14130434782608695" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_payment.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_activity.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_detail.xml" value="0.14130434782608695" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/my_orders_detail_itemview.xml" value="0.14130434782608695" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/order_expandable_list_child_view.xml" value="0.25" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/payment_receipt_item_view.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/skip_corner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/a_splash.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_fullscreen.xml" value="0.14130434782608695" />

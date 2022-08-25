@@ -17,14 +17,26 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderDataModel;
+import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.MyOrdersDetailVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableOrderAdapter;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrdersFragment extends Fragment {
 
@@ -37,13 +49,18 @@ public class OrdersFragment extends Fragment {
     private TextView noDataTextView;
     private ProgressBar progressBar;
 
+    private NetworkServiceProvider networkServiceProvider;
     private UserVO userVO;
+
+    ArrayList<MyOrderDataModel> groupList = new ArrayList<>();
+    ArrayList<MyOrdersDetailVO> childList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_orders, container, false);
 
+        networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
         logInView = view.findViewById(R.id.loginView);
@@ -87,9 +104,62 @@ public class OrdersFragment extends Fragment {
         }
 
         initListeners();
-        showOrders();
+        CallGetMyOrders();
         onClick();
         return view;
+    }
+
+    private void CallGetMyOrders() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        if (userVO != null){
+            RequestPhoneObject phoneObj=new RequestPhoneObject();
+            phoneObj.setPhone(userVO.getPhone());
+
+            if (Utility.isOnline(getActivity())) {
+                networkServiceProvider.GetMyOrdersCall(ApiConstants.BASE_URL + ApiConstants.GET_MY_ORDERS, phoneObj).enqueue(new Callback<MyOrderModel>() {
+                    @Override
+                    public void onResponse(Call<MyOrderModel> call, Response<MyOrderModel> response) {
+
+                        if (response.body().getError() == false) {
+                            progressBar.setVisibility(View.GONE);
+
+                            groupList.clear();
+                            groupList.addAll(response.body().getData());
+
+                            for (int i = 0; i < groupList.size(); i++) {
+                                childList.clear();
+                                childList.addAll(groupList.get(i).getOrdersDetail());
+                                showOrders();
+                            }
+
+                            if (groupList.size() == 0){
+                                noDataTextView.setVisibility(View.VISIBLE);
+
+                            }else {
+                                noDataTextView.setVisibility(View.GONE);
+
+                            }
+
+                        } else {
+                            noDataTextView.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                            Utility.showToast(getContext(), response.body().getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MyOrderModel> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getContext(), t.getMessage());
+                    }
+                });
+            } else {
+                progressBar.setVisibility(View.GONE);
+                Utility.showToast(getContext(), getString(R.string.no_internet));
+            }
+        }
     }
 
     private void onClick() {
@@ -99,7 +169,7 @@ public class OrdersFragment extends Fragment {
     }
 
     private void showOrders() {
-        expandableListViewAdapter = new ExpandableOrderAdapter(getActivity());
+        expandableListViewAdapter = new ExpandableOrderAdapter(getActivity(), groupList, childList);
 
         orderExpandableListView.setAdapter(expandableListViewAdapter);
 
