@@ -331,7 +331,7 @@
                android:layout_marginVertical="@dimen/margin16">
 
                <include
-                   layout="@layout/lead_form_detail"/>
+                   layout="@layout/lead_form_one_detail"/>
 
            </LinearLayout>
 

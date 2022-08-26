@@ -26,9 +26,9 @@ import java.util.Locale;
 public class OrderDetailActivity extends AppCompatActivity {
 
     private TextView orderId, orderAddress, orderTime, orderDate;
-    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView;
+    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView;
 
-    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView;
+    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView, leadFormOneView;
     private TextView subtotal, discountTotal, total, promo_discount;
 
     private TextView confirmPrice, title, budget, squareFeet, details;
@@ -71,6 +71,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         details = findViewById(R.id.details);
         leadFormPhotosRecyclerView = findViewById(R.id.photos_recyclerview);
         back = findViewById(R.id.back_button);
+        leadFormOneView = findViewById(R.id.lead_form_one_view);
+        leadFormOnePhotosRecyclerView = findViewById(R.id.lead_form_one_photos_recyclerview);
 
         if (getIntent() != null) {
             myOrdersDetailVO = (MyOrdersDetailVO) getIntent().getSerializableExtra("order_detail");
@@ -111,12 +113,16 @@ public class OrderDetailActivity extends AppCompatActivity {
             if (myOrdersDetailVO.getGeneralFormInfo() != null) {
                 if (myOrdersDetailVO.getGeneralFormInfo().getFormStatus() == 2) {
                     leadFormView.setVisibility(View.VISIBLE);
+                    leadFormOneView.setVisibility(View.GONE);
                     showLeadFormDetail();
-                } else {
-
+                } else if (myOrdersDetailVO.getGeneralFormInfo().getFormStatus() == 1){
+                    leadFormView.setVisibility(View.GONE);
+                    leadFormOneView.setVisibility(View.VISIBLE);
+                    showLeadFormOneDetail();
                 }
             } else {
                 leadFormView.setVisibility(View.GONE);
+                leadFormOneView.setVisibility(View.GONE);
             }
 
         }
@@ -124,6 +130,18 @@ public class OrderDetailActivity extends AppCompatActivity {
         back.setOnClickListener(v-> finish());
 
         setUpAdapter();
+    }
+
+    private void showLeadFormOneDetail() {
+        for (int i = 0; i < myOrdersDetailVO.getGeneralFormInfo().getImages().size(); i++) {
+            photos.add(myOrdersDetailVO.getGeneralFormInfo().getImages().get(i));
+            image_URLs.add(myOrdersDetailVO.getGeneralFormInfo().getImagesLink() + photos.get(i));
+        }
+
+        leadFormImageAdapter = new LeadFormImageAdapter(getApplicationContext());
+        leadFormPhotosRecyclerView.setAdapter(leadFormImageAdapter);
+        leadFormImageAdapter.setData(image_URLs);
+        leadFormImageAdapter.notifyDataSetChanged();
     }
 
     private void showLeadFormDetail() {
@@ -151,6 +169,9 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         leadFormPhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
+
+        leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        leadFormOnePhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
     }
 
     void makeStatusBarVisible() {
