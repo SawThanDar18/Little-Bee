@@ -83,7 +83,7 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                     viewSubTotal.setVisibility(View.GONE);
                 } else {
                     viewSubTotal.setVisibility(View.VISIBLE);
-                    subtotal.setText(receiptModel.getTotalPrice() + " " + getString(R.string.currency));
+                    subtotal.setText(receiptModel.getOriginalTotal() + " " + getString(R.string.currency));
                 }
 
                 if (receiptModel.getTotalDiscount() == 0) {

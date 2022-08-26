@@ -18,6 +18,7 @@ import com.busybees.lauk_kaing_expert_services.adapters.Orders.LeadFormImageAdap
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyHistoryDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager, leadFormLayoutManager;
 
     private MyHistoryDetailVO myHistoryDetailVO = new MyHistoryDetailVO();
+    private ArrayList<QuestionsVO> questionsVOArrayList = new ArrayList<>();
 
     private LeadFormImageAdapter leadFormImageAdapter;
     List<String> photos = new ArrayList<>();
@@ -78,6 +80,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
         if (getIntent() != null) {
             myHistoryDetailVO = (MyHistoryDetailVO) getIntent().getSerializableExtra("receipt_data");
+            questionsVOArrayList = (ArrayList<QuestionsVO>) getIntent().getSerializableExtra("question");
 
             orderId.setText("Order No : "+ myHistoryDetailVO.getOrderDetailId());
             orderAddress.setText(myHistoryDetailVO.getOrderAddress());
@@ -88,7 +91,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 viewSubTotal.setVisibility(View.GONE);
             } else {
                 viewSubTotal.setVisibility(View.VISIBLE);
-                subtotal.setText(myHistoryDetailVO.getTotalPrice() + " " + getString(R.string.currency));
+                subtotal.setText(myHistoryDetailVO.getOriginalTotal() + " " + getString(R.string.currency));
             }
 
             if (myHistoryDetailVO.getTotalDiscount() == 0) {
@@ -126,6 +129,25 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 leadFormView.setVisibility(View.GONE);
                 leadFormOneView.setVisibility(View.GONE);
             }
+
+            /*if (receiptModel.getOverallRating() == 0) {
+                rate.setVisibility(View.VISIBLE);
+                rate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (receiptModel.getOverallRating()==0){
+                            DialogRating dialogRating=new DialogRating(qlist,receiptModel);
+                            dialogRating.show(getSupportFragmentManager(),"");
+                        }else {
+                            //rate.setVisibility(View.GONE);
+                            Utility.showToast(HistoryDetailActivity.this,getString(R.string.all_ready_rated));
+                        }
+
+                    }
+                });
+            } else {
+                rate.setVisibility(View.GONE);
+            }*/
 
         }
 

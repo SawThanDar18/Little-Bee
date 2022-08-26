@@ -140,7 +140,7 @@ public class ReceiptFragments extends Fragment {
                                 childList.addAll(groupList.get(i).getMyHistoryDetail());
 
                                 questionsVOArrayList.clear();
-                                //questionsNameVOArrayList.addAll(response.body().getQuestions());
+                                questionsVOArrayList.addAll(response.body().getQuestions());
 
                                 showOrders();
                             }

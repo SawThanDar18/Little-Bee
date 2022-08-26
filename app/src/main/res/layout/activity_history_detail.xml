@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/order_detail_tool_bar_layout" />
+        layout="@layout/order_history_detail_tool_bar_layout" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
