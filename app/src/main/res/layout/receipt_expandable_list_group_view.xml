@@ -38,6 +38,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/space"
                     android:layout_toRightOf="@id/order_completed_time_date"
                     android:layout_width="wrap_content"
@@ -45,6 +46,7 @@
                     android:text="          "/>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/reference_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

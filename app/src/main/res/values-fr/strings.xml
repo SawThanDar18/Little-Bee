@@ -216,4 +216,17 @@
     <string name="ok">Ok</string>
 
     <string name="order_detail">ေအာ္ဒါ အေသးစိတ္</string>
+
+    <string name="view_receipt"><u>ေဘာင္ခ်ာၾကည့္မည္</u></string>
+    <string name="re_order">ျပန္လည္မွာယူ</string>
+    <string name="rate_now">သတ္မွတ္ခ်က္ေပးမည္</string>
+    <string name="other_rating">အျခားအရာမ်ားကိုအဆင့္သတ္မွတ္ပါ</string>
+    <string name="other_comment">အျခားမွတ္ခ်က္မ်ား</string>
+    <string name="comment">မွတ္ခ်က္ ...</string>
+    <string name="all_ready_rated">သတ္မွတ္ခ်က္ေပးၿပီးပါၿပီ</string>
+
+    <string name="r_add">49/B,5th Floor, Moe Sandar Street\n1 WARD, KAMARYUT, YANGON.\n01 525011, 01 503196\n<u>hotline :</u>\n09 255699003, 09 255699003\n<u>sales@busybeesmyanmar.com</u>\n</string>
+    <string name="payment_receipt">ေငြလက္ခံေျပစာ</string>
+    <string name="received_by"><u>Received By</u></string>
+
 </resources>

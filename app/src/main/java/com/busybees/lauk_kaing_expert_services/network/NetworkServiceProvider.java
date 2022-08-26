@@ -11,6 +11,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
+import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
@@ -45,6 +46,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetCartSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetDateTimeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetMyOrdersHistorySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetMyOrdersSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProductPriceSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetProfileImageSync;
@@ -163,6 +165,11 @@ public class NetworkServiceProvider {
     public Call<MyOrderModel> GetMyOrdersCall (String url, RequestPhoneObject phoneObject) {
         GetMyOrdersSync sync = retrofit.create(GetMyOrdersSync.class);
         return sync.getMyOrders(url, phoneObject);
+    }
+
+    public Call<MyHistoryModel> GetMyOrdersHistoryCall (String url, RequestPhoneObject phoneObject) {
+        GetMyOrdersHistorySync sync = retrofit.create(GetMyOrdersHistorySync.class);
+        return sync.getMyOrdersHistory(url, phoneObject);
     }
 
 }

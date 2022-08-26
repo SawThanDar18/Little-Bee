@@ -17,14 +17,29 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryDataModel;
+import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsListVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsNameVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableReceiptAdapter;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.google.android.exoplayer2.util.Util;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReceiptFragments extends Fragment {
 
@@ -37,13 +52,19 @@ public class ReceiptFragments extends Fragment {
     private LinearLayout reloadPage;
     private Button goToLogInBtn;
 
+    private NetworkServiceProvider networkServiceProvider;
     private UserVO userVO;
+
+    private ArrayList<MyHistoryDataModel> groupList = new ArrayList<>();
+    private ArrayList<MyHistoryDetailVO> childList = new ArrayList<>();
+    private ArrayList<QuestionsNameVO> questionsNameVOArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_receipt, container, false);
 
+        networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
         logInView = view.findViewById(R.id.loginView);
@@ -87,7 +108,7 @@ public class ReceiptFragments extends Fragment {
         }
 
         initListeners();
-        showOrders();
+        CallMyOrderHistory();
         onClick();
 
         return view;
@@ -99,8 +120,62 @@ public class ReceiptFragments extends Fragment {
         });
     }
 
+    private void CallMyOrderHistory() {
+        progressBar.setVisibility(View.VISIBLE);
+
+        if (userVO != null) {
+            RequestPhoneObject requestPhoneObject = new RequestPhoneObject();
+            requestPhoneObject.setPhone(userVO.getPhone());
+
+            if (Utility.isOnline(getContext())) {
+                networkServiceProvider.GetMyOrdersHistoryCall(ApiConstants.BASE_URL + ApiConstants.GET_MY_ORDERS_HISTORY, requestPhoneObject).enqueue(new Callback<MyHistoryModel>() {
+                    @Override
+                    public void onResponse(Call<MyHistoryModel> call, Response<MyHistoryModel> response) {
+                        if (response.body().isError() == false) {
+                            progressBar.setVisibility(View.GONE);
+
+                            groupList.clear();
+                            groupList.addAll(response.body().getData());
+
+                            for (int i = 0; i < groupList.size(); i++) {
+                                childList.clear();
+                                childList.addAll(groupList.get(i).getMyHistoryDetail());
+
+                                questionsNameVOArrayList.clear();
+                                //questionsNameVOArrayList.addAll(response.body().getQuestions());
+
+                                showOrders();
+                            }
+
+                            if (groupList.size() == 0){
+                                noDataTextView.setVisibility(View.VISIBLE);
+
+                            }else {
+                                noDataTextView.setVisibility(View.GONE);
+
+                            }
+
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Utility.showToast(getContext(), response.body().getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MyHistoryModel> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getContext(), t.getMessage());
+                    }
+                });
+            } else {
+                progressBar.setVisibility(View.GONE);
+                Utility.showToast(getContext(), getString(R.string.no_internet));
+            }
+        }
+    }
+
     private void showOrders() {
-        expandableListViewAdapter = new ExpandableReceiptAdapter(getActivity());
+        expandableListViewAdapter = new ExpandableReceiptAdapter(getActivity(), groupList, childList, null);
 
         receiptExpandableListView.setAdapter(expandableListViewAdapter);
 

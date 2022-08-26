@@ -23,5 +23,6 @@ public class ApiConstants {
     public static final String GET_MATCH_PROMO_CODE = "/auth/matchingPromo";
     public static final String GET_SAVE_ORDER = "/auth/createOrder";
     public static final String GET_MY_ORDERS = "/auth/getOrders";
+    public static final String GET_MY_ORDERS_HISTORY = "/auth/getOrderHistory";
 
 }

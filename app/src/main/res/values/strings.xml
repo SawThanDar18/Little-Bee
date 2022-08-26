@@ -215,4 +215,17 @@
     <string name="ok">Ok</string>
 
     <string name="order_detail">Order Detail</string>
+
+    <string name="view_receipt"><u>View Receipt</u></string>
+    <string name="re_order">Reorder</string>
+    <string name="rate_now">Rate Now</string>
+    <string name="other_rating">Others Rating</string>
+    <string name="other_comment">Other Comments</string>
+    <string name="comment">Comment...</string>
+    <string name="all_ready_rated">Already Rated</string>
+
+    <string name="r_add">49/B,5th Floor, Moe Sandar Street\n1 WARD, KAMARYUT, YANGON.\n01 525011, 01 503196\n<u>hotline :</u>\n09 255699003, 09 255699003\n<u>sales@busybeesmyanmar.com</u>\n</string>
+    <string name="payment_receipt">Payment Receipt</string>
+    <string name="received_by"><u>Received By</u></string>
+
 </resources>

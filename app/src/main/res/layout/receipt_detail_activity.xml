@@ -1,56 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
-        android:id="@+id/tool_bar"
-        layout="@layout/order_detail_tool_bar_layout" />
+        layout="@layout/receipt_detail_tool_bar_layout"
+        android:id="@+id/tool_bar" />
 
     <androidx.core.widget.NestedScrollView
+        android:layout_below="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tool_bar"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/order_no"
-                android:layout_width="wrap_content"
+            <View
+                android:id="@+id/topSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height1"/>
+
+            <LinearLayout
+                android:id="@+id/h_view"
+                android:layout_below="@+id/topSeparator"
+                android:paddingLeft="@dimen/padding10"
+                android:paddingRight="@dimen/padding10"
+                android:paddingTop="@dimen/padding10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/width100"
+                        app:srcCompat="@drawable/ic_little_bee_logo"
+                        android:layout_height="@dimen/height100" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:text="@string/r_add"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/h_date"
+                android:padding="@dimen/padding4"
+                android:layout_below="@+id/h_view"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin16"
-                android:layout_marginTop="@dimen/margin16"
-                android:layout_marginEnd="@dimen/margin16"
-                android:layout_marginBottom="@dimen/margin16"
-                android:background="@drawable/two_color_shape"
-                android:padding="@dimen/padding8"
-                android:text="Order No : 1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/fontSizeMedium"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/margin6"
+                android:layout_marginHorizontal="@dimen/margin16">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Received From"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:textColor="@color/theme_color"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/rec_date"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/cust_name"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/cust_phone"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/theme_color"
+                        android:layout_width="wrap_content"
+                        android:text="OFFICIAL RECEIPT"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text="RECEIPT NO"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:text=" : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text=""
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:padding="2dp"
+                            android:id="@+id/rec_rno"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text="CUSTOMER ID"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:text=" : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text=""
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:padding="2dp"
+                            android:id="@+id/cust_id"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text="ORDER ID"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:text=" : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:text=""
+                            android:textSize="@dimen/fontSizeSmall"
+                            android:padding="@dimen/padding2"
+                            android:id="@+id/order_id"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_below="@+id/h_date"
+                android:background="@color/light_grey"
+                android:layout_width="match_parent"
+                android:id="@+id/sep"
+                android:layout_height="@dimen/height1"/>
 
             <TextView
-                android:id="@+id/order_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/order_no"
-                android:layout_marginHorizontal="@dimen/margin16"
-                android:layout_marginBottom="@dimen/margin16"
-                android:text="No.49(B), Moe Sandar Street, Kamaryut Township"
+                android:layout_below="@+id/sep"
+                android:layout_width="match_parent"
+                android:id="@+id/cust_add"
+                android:layout_marginTop="@dimen/margin10"
+                android:textSize="@dimen/fontSizeSmall"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fontSizeMedium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin16"/>
 
             <LinearLayout
                 android:id="@+id/amount_label_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/order_address"
+                android:layout_below="@+id/cust_add"
                 android:layout_marginTop="@dimen/margin10"
                 android:background="@color/theme_color"
                 android:gravity="center"
@@ -125,18 +317,41 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/order_detail_recyclerview"
+            <View
+                android:id="@+id/bottomSeparator"
+                android:background="@color/white"
+                android:layout_below="@+id/amount_label_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/amount_label_layout" />
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
+                android:id="@+id/relayout"
+                android:layout_below="@+id/bottomSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reycle_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/bottomSeparator1"
+                android:background="@color/white"
+                android:layout_below="@+id/relayout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
             <LinearLayout
                 android:id="@+id/amount_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/order_detail_recyclerview">
+                android:layout_below="@id/bottomSeparator1">
 
                 <LinearLayout
                     android:id="@+id/sub_total_view"
@@ -306,142 +521,34 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/lead_form_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/amount_view"
-                android:layout_marginHorizontal="@dimen/margin16"
-                android:layout_marginVertical="@dimen/margin16">
-
-                <include
-                    layout="@layout/lead_form_detail"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/lead_form_one_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/lead_form_view"
-                android:layout_marginHorizontal="@dimen/margin16"
-                android:layout_marginVertical="@dimen/margin16">
-
-                <include
-                    layout="@layout/lead_form_one_detail"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/order_date_time_view"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin16"
                 android:layout_marginTop="@dimen/margin16"
-                android:layout_marginHorizontal="@dimen/margin16"
-                android:layout_below="@id/lead_form_one_view">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:background="@drawable/two_color_shape"
-                        android:drawableRight="@drawable/icon_time"
-                        android:padding="@dimen/padding8"
-                        android:text="@string/time"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeMedium"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_marginLeft="@dimen/margin10"
-                        android:id="@+id/order_time"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="@dimen/margin4"
-                        android:text="11:00 AM - 01:00 PM"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="@dimen/margin6"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/calendar"
-                        android:background="@drawable/two_color_shape"
-                        android:padding="@dimen/padding8"
-                        android:text="@string/date"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeMedium"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/order_date"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/margin4"
-                        android:layout_marginLeft="@dimen/margin10"
-                        android:text="2022-08-24"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/img_sign"
+                android:layout_below="@id/amount_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/order_date_time_view"
-                android:layout_marginBottom="@dimen/margin32">
+                android:visibility="visible"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:gravity="center"
-                    android:id="@+id/view_receipt"
-                    android:layout_below="@id/order_date_time_view"
-                    android:textSize="@dimen/fontSizeMedium"
+                    android:layout_gravity="right"
                     android:textColor="@color/theme_color"
-                    android:layout_marginTop="@dimen/margin10"
-                    android:text="@string/view_receipt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:visibility="gone"
-                    android:padding="@dimen/padding4"
-                    android:background="@drawable/rounded_corner_white_color"
-                    android:id="@+id/rate"
-                    android:layout_below="@id/view_receipt"
+                    android:paddingRight="@dimen/padding16"
+                    android:paddingBottom="@dimen/padding10"
+                    android:text="@string/received_by"
                     android:textSize="@dimen/fontSizeMedium"
-                    android:layout_marginTop="@dimen/margin8"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center"
-                    android:text="@string/rate_now"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:src="@drawable/sign"
+                    android:layout_gravity="right"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
 
             </LinearLayout>
+
+            <include layout="@layout/material_loader_layout" />
 
         </RelativeLayout>
 
