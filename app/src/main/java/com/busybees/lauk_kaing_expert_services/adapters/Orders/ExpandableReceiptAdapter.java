@@ -15,7 +15,7 @@ import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.HistoryDetailActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryDataModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
-import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsNameVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.ProductPriceVO;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
@@ -31,10 +31,10 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<MyHistoryDataModel> listDataGroup;
     private List<MyHistoryDetailVO> listDataChild;
-    private List<QuestionsNameVO> questionList;
+    private List<QuestionsVO> questionList;
 
     public ExpandableReceiptAdapter(Context context, ArrayList<MyHistoryDataModel> listDataGroup,
-                                    ArrayList<MyHistoryDetailVO> listChildData, ArrayList<QuestionsNameVO> qList) {
+                                    ArrayList<MyHistoryDetailVO> listChildData, ArrayList<QuestionsVO> qList) {
         this.context = context;
         this.listDataGroup = listDataGroup;
         this.listDataChild = listChildData;

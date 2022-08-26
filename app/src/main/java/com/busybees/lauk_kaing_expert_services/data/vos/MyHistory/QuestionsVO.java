@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class QuestionsNameVO implements Serializable {
+public class QuestionsVO implements Serializable {
 
     @SerializedName("service_rating")
     @Expose

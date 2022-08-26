@@ -20,8 +20,7 @@ import android.widget.TextView;
 import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryDataModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
-import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsListVO;
-import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsNameVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.R;
@@ -30,7 +29,6 @@ import com.busybees.lauk_kaing_expert_services.adapters.Orders.ExpandableReceipt
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
-import com.google.android.exoplayer2.util.Util;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -57,7 +55,7 @@ public class ReceiptFragments extends Fragment {
 
     private ArrayList<MyHistoryDataModel> groupList = new ArrayList<>();
     private ArrayList<MyHistoryDetailVO> childList = new ArrayList<>();
-    private ArrayList<QuestionsNameVO> questionsNameVOArrayList = new ArrayList<>();
+    private ArrayList<QuestionsVO> questionsVOArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +139,7 @@ public class ReceiptFragments extends Fragment {
                                 childList.clear();
                                 childList.addAll(groupList.get(i).getMyHistoryDetail());
 
-                                questionsNameVOArrayList.clear();
+                                questionsVOArrayList.clear();
                                 //questionsNameVOArrayList.addAll(response.body().getQuestions());
 
                                 showOrders();

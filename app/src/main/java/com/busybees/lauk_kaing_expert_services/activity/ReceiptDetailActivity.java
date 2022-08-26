@@ -37,9 +37,9 @@ public class ReceiptDetailActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     ReceiptDetailAdapter adapter;
     List<ProductPriceVO> productPriceVOList;
-    private LinearLayout viewsub, viewdiscount, viewtotal;
 
-    private TextView subtotal, distotal, total;
+    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode;
+    private TextView subtotal, discountTotal, total, promo_discount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,11 +60,13 @@ public class ReceiptDetailActivity extends AppCompatActivity {
         rec_no=(TextView)findViewById(R.id.rec_rno);
         orderid=(TextView)findViewById(R.id.order_id);
         subtotal = (TextView) findViewById(R.id.sub_total_amount);
-        distotal = (TextView) findViewById(R.id.discount_total_amount);
+        discountTotal = (TextView) findViewById(R.id.discount_total_amount);
         total = (TextView) findViewById(R.id.total_amount);
-        viewsub=(LinearLayout)findViewById(R.id.sub_total_view);
-        viewdiscount=(LinearLayout)findViewById(R.id.discount_view);
-        viewtotal=(LinearLayout)findViewById(R.id.total_view);
+        promo_discount = findViewById(R.id.promo_amount);
+        viewSubTotal=(LinearLayout)findViewById(R.id.sub_total_view);
+        viewDiscount=(LinearLayout)findViewById(R.id.discount_view);
+        viewTotal=(LinearLayout)findViewById(R.id.total_view);
+        viewPromoCode = findViewById(R.id.promo_discount_view);
 
         if (getIntent() != null) {
             receiptModel= (MyHistoryDetailVO) getIntent().getSerializableExtra("history_data");
@@ -77,30 +79,31 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                 orderid.setText(String.valueOf(receiptModel.getOrderDetailId()));
                 //rec_no.setText(String.valueOf(receiptModel.getRecNo()));
 
-            /*if (receiptModel.getTotalPrice() == 0) {
-                viewSubTotal.setVisibility(View.GONE);
-            } else {
-                viewSubTotal.setVisibility(View.VISIBLE);
-                subtotal.setText(receiptModel.getTotalPrice() + " " + getString(R.string.currency));
-            }
+                if (receiptModel.getOriginalTotal() == 0) {
+                    viewSubTotal.setVisibility(View.GONE);
+                } else {
+                    viewSubTotal.setVisibility(View.VISIBLE);
+                    subtotal.setText(receiptModel.getTotalPrice() + " " + getString(R.string.currency));
+                }
 
-             if (receiptModel.getDiscountTotal()==0){
-                distotal.setText("-");
-            }else if (receiptModel.getDiscountTotal()>0){
-                distotal.setText("( "+String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getDiscountTotal()))+" )"+"  MMK");
-            }
+                if (receiptModel.getTotalDiscount() == 0) {
+                    viewDiscount.setVisibility(View.GONE);
+                } else {
+                    viewDiscount.setVisibility(View.VISIBLE);
+                    discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getTotalDiscount()) + " ) " + getString(R.string.currency));
+                }
 
-            if (myHistoryDetailVO.getPromoTotalDiscount() == 0) {
-                viewPromoCode.setVisibility(View.GONE);
-            } else {
-                viewPromoCode.setVisibility(View.VISIBLE);
-                promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
-            }*/
+                if (receiptModel.getPromoTotalDiscount() == 0) {
+                    viewPromoCode.setVisibility(View.GONE);
+                } else {
+                    viewPromoCode.setVisibility(View.VISIBLE);
+                    promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
+                }
 
                 if (receiptModel.getTotalPrice() == 0) {
-                    viewtotal.setVisibility(View.GONE);
+                    viewTotal.setVisibility(View.GONE);
                 } else {
-                    viewtotal.setVisibility(View.VISIBLE);
+                    viewTotal.setVisibility(View.VISIBLE);
                     total.setText(receiptModel.getTotalPrice() + " " + getString(R.string.currency));
                 }
 
@@ -110,23 +113,6 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
         }
-
-        backButton = (ImageView) findViewById(R.id.back_button);
-        backButton.setVisibility(View.VISIBLE);
-        recyclerView = (RecyclerView) findViewById(R.id.reycle_payment);
-        c_name = (TextView) findViewById(R.id.cust_name);
-        c_phone = (TextView) findViewById(R.id.cust_phone);
-        c_add = (TextView) findViewById(R.id.cust_add);
-        rec_date = (TextView) findViewById(R.id.rec_date);
-        cust_id = (TextView) findViewById(R.id.cust_id);
-        rec_no=(TextView)findViewById(R.id.rec_rno);
-        orderid=(TextView)findViewById(R.id.order_id);
-        subtotal = (TextView) findViewById(R.id.sub_total_amount);
-        distotal = (TextView) findViewById(R.id.discount_total_amount);
-        total = (TextView) findViewById(R.id.total_amount);
-        viewsub=(LinearLayout)findViewById(R.id.sub_total_view);
-        viewdiscount=(LinearLayout)findViewById(R.id.discount_view);
-        viewtotal=(LinearLayout)findViewById(R.id.total_view);
 
         layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);

@@ -1,6 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.data.models.MyHistory;
 
-import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsListVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,7 +18,7 @@ public class MyHistoryModel {
 
     @SerializedName("question")
     @Expose
-    private QuestionsListVO questions;
+    private List<QuestionsVO> questions;
 
     @SerializedName("data")
     @Expose
@@ -40,11 +40,11 @@ public class MyHistoryModel {
         this.message = message;
     }
 
-    public QuestionsListVO getQuestions() {
+    public List<QuestionsVO> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(QuestionsListVO questions) {
+    public void setQuestions(List<QuestionsVO> questions) {
         this.questions = questions;
     }
 

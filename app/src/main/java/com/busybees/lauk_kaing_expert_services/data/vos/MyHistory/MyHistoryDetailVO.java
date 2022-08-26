@@ -30,6 +30,18 @@ public class MyHistoryDetailVO implements Serializable {
     @Expose
     private String completeDate;
 
+    @SerializedName("original_total")
+    @Expose
+    private int originalTotal;
+
+    @SerializedName("total_discount")
+    @Expose
+    private int totalDiscount;
+
+    @SerializedName("promo_total_discount")
+    @Expose
+    private int promoTotalDiscount;
+
     @SerializedName("total_price")
     @Expose
     private int totalPrice;
@@ -88,6 +100,30 @@ public class MyHistoryDetailVO implements Serializable {
 
     public void setCompleteDate(String completeDate) {
         this.completeDate = completeDate;
+    }
+
+    public int getOriginalTotal() {
+        return originalTotal;
+    }
+
+    public void setOriginalTotal(int originalTotal) {
+        this.originalTotal = originalTotal;
+    }
+
+    public int getTotalDiscount() {
+        return totalDiscount;
+    }
+
+    public void setTotalDiscount(int totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public int getPromoTotalDiscount() {
+        return promoTotalDiscount;
+    }
+
+    public void setPromoTotalDiscount(int promoTotalDiscount) {
+        this.promoTotalDiscount = promoTotalDiscount;
     }
 
     public int getTotalPrice() {

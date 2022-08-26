@@ -19,8 +19,10 @@ import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyHistoryDetailAd
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HistoryDetailActivity extends AppCompatActivity {
 
@@ -82,14 +84,14 @@ public class HistoryDetailActivity extends AppCompatActivity {
             orderDate.setText(myHistoryDetailVO.getDate());
             orderTime.setText(myHistoryDetailVO.getTime());
 
-            /*if (myHistoryDetailVO.getTotalPrice() == 0) {
+            if (myHistoryDetailVO.getOriginalTotal() == 0) {
                 viewSubTotal.setVisibility(View.GONE);
             } else {
                 viewSubTotal.setVisibility(View.VISIBLE);
                 subtotal.setText(myHistoryDetailVO.getTotalPrice() + " " + getString(R.string.currency));
-            }*/
+            }
 
-           /* if (myHistoryDetailVO.getTotalDiscount() == 0) {
+            if (myHistoryDetailVO.getTotalDiscount() == 0) {
                 viewDiscount.setVisibility(View.GONE);
             } else {
                 viewDiscount.setVisibility(View.VISIBLE);
@@ -101,7 +103,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
             } else {
                 viewPromoCode.setVisibility(View.VISIBLE);
                 promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
-            }*/
+            }
 
             if (myHistoryDetailVO.getTotalPrice() == 0) {
                 viewTotal.setVisibility(View.GONE);
