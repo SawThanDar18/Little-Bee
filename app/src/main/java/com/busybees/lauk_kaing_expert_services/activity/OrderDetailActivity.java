@@ -139,7 +139,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         }
 
         leadFormImageAdapter = new LeadFormImageAdapter(getApplicationContext());
-        leadFormPhotosRecyclerView.setAdapter(leadFormImageAdapter);
+        leadFormOnePhotosRecyclerView.setAdapter(leadFormImageAdapter);
         leadFormImageAdapter.setData(image_URLs);
         leadFormImageAdapter.notifyDataSetChanged();
     }
