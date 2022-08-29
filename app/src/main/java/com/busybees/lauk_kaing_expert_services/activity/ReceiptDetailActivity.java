@@ -75,7 +75,7 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                 c_name.setText(userVO.getUsername());
                 c_phone.setText(receiptModel.getPhone());
                 c_add.setText(receiptModel.getOrderAddress());
-                cust_id.setText(String.valueOf(userVO.getId()));
+                cust_id.setText(receiptModel.getCustomerId());
                 orderid.setText(String.valueOf(receiptModel.getOrderDetailId()));
                 //rec_no.setText(String.valueOf(receiptModel.getRecNo()));
 

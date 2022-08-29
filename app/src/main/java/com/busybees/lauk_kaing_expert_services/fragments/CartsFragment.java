@@ -103,6 +103,7 @@ public class CartsFragment extends Fragment {
                 noLogInView.setVisibility(View.GONE);
                 logInView.setVisibility(View.VISIBLE);
                 cartTimeline.setVisibility(View.VISIBLE);
+                CallGetCart();
             } else {
                 noLogInView.setVisibility(View.VISIBLE);
                 logInView.setVisibility(View.GONE);

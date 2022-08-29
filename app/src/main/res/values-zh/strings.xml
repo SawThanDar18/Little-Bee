@@ -117,7 +117,7 @@
 
     <string name="thank_you_txt">谢谢你!</string>
     <string name="thank_you_again">您值得信赖的合作伙伴!</string>
-    <string name="order_confirm">我们的客服会尽快给您打电话确认您的订单。</string>
+    <string name="order_confirm">我们的客服会尽快给您打 \n电话确认您的订单。</string>
     <string name="continues_for_more_service">继续获取更多服务</string>
 
     <string name="no_internet_connection">出问题了! \n 检查互联网连接</string>

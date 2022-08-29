@@ -31,11 +31,13 @@
 
             <ImageView
                 android:id="@+id/phone_call"
-                android:layout_width="@dimen/width50"
-                android:layout_height="@dimen/height50"
+                android:layout_width="@dimen/width40"
+                android:layout_height="@dimen/height40"
+                android:padding="@dimen/padding8"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_contact_us"/>
+                android:background="@drawable/image_rounded_corner_stroke_bg"
+                android:src="@drawable/ic_baseline_call_24"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -156,6 +156,7 @@ public class HomeFragment extends Fragment {
             reloadPage.setVisibility(View.GONE);
             popularTxt.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
+            CallGetAllHomeApi();
         } else {
             reloadPage.setVisibility(View.VISIBLE);
             popularTxt.setVisibility(View.GONE);

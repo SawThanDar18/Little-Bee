@@ -50,6 +50,10 @@ public class MyHistoryDetailVO implements Serializable {
     @Expose
     private List<ProductPriceVO> productPrice;
 
+    @SerializedName("customer_id")
+    @Expose
+    private String customerId;
+
     @SerializedName("order_address")
     @Expose
     private String orderAddress;
@@ -140,6 +144,14 @@ public class MyHistoryDetailVO implements Serializable {
 
     public void setProductPrice(List<ProductPriceVO> productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getOrderAddress() {

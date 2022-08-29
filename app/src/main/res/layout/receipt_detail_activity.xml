@@ -339,19 +339,12 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/bottomSeparator1"
-                android:background="@color/white"
-                android:layout_below="@+id/relayout"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-
             <LinearLayout
                 android:id="@+id/amount_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/bottomSeparator1">
+                android:layout_below="@id/relayout">
 
                 <LinearLayout
                     android:id="@+id/sub_total_view"

@@ -3,13 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/image_circle_shape_white_bg.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/image_rounded_corner_stroke_bg.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/image_rounded_corner_white_bg.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_full_image.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_history_detail.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_image_lead_form.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_imageview.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_order_detail.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_payment.xml" value="0.14130434782608695" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_thanks.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/address_tool_bar_layout.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_home.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_my.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_orders.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_receipt.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_activity.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_detail.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_one_detail.xml" value="0.14130434782608695" />
@@ -23,6 +33,7 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_detail_tool_bar_layout.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_expandable_list_child_view.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_expandable_list_group_view.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/search_tool_bar.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/skip_corner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/a_splash.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/activity_fullscreen.xml" value="0.14130434782608695" />

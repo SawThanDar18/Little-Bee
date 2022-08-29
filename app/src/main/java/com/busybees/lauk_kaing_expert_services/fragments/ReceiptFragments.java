@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -41,6 +42,8 @@ import retrofit2.Response;
 
 public class ReceiptFragments extends Fragment {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private RelativeLayout logInView, noLogInView;
     private ExpandableListView receiptExpandableListView;
     private ExpandableReceiptAdapter expandableListViewAdapter;
@@ -65,6 +68,7 @@ public class ReceiptFragments extends Fragment {
         networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
         logInView = view.findViewById(R.id.loginView);
         noLogInView = view.findViewById(R.id.no_login_view);
         receiptExpandableListView = view.findViewById(R.id.receipt_expandable_list_view);
@@ -95,6 +99,7 @@ public class ReceiptFragments extends Fragment {
             if (userVO != null) {
                 noLogInView.setVisibility(View.GONE);
                 logInView.setVisibility(View.VISIBLE);
+                CallMyOrderHistory();
             } else {
                 noLogInView.setVisibility(View.VISIBLE);
                 logInView.setVisibility(View.GONE);
@@ -115,6 +120,14 @@ public class ReceiptFragments extends Fragment {
     private void onClick() {
         goToLogInBtn.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LogInActivity.class));
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                CallMyOrderHistory();
+                swipeRefreshLayout.setRefreshing(false);
+            }
         });
     }
 
