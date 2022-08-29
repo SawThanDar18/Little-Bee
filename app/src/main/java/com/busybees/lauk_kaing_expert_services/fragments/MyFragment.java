@@ -39,6 +39,7 @@ import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusProfile;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +51,7 @@ public class MyFragment extends Fragment {
     private LinearLayout changeLanguage, loginView, lineLogout, logOut;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
+    private CircleImageView profiles;
     private TextView userName, userPhone;
     private ProgressBar progressBar;
 
@@ -71,7 +73,7 @@ public class MyFragment extends Fragment {
         loginView = view.findViewById(R.id.loginView);
         lineLogout = view.findViewById(R.id.line_logout);
         logOut = view.findViewById(R.id.logout);
-        profile = view.findViewById(R.id.profile);
+        profiles = view.findViewById(R.id.profile);
         profileEditImageView = view.findViewById(R.id.profileEditImageView);
         userName = view.findViewById(R.id.name);
         userPhone = view.findViewById(R.id.phone);
@@ -171,13 +173,13 @@ public class MyFragment extends Fragment {
                                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                                             return false;
                                         }
-                                    }).into(profile);
+                                    }).into(profiles);
                         }else{
 
                             Glide.with(getContext())
                                     .load(R.drawable.profile_default_image)
                                     .apply(requestOptions)
-                                    .into(profile);
+                                    .into(profiles);
 
                         }
                     }

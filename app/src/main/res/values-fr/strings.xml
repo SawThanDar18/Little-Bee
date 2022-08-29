@@ -229,4 +229,6 @@
     <string name="payment_receipt">ေငြလက္ခံေျပစာ</string>
     <string name="received_by"><u>Received By</u></string>
 
+    <string name="history_detail">မွတ္တမ္း အေသးစိတ္</string>
+
 </resources>

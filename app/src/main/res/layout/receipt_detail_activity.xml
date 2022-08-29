@@ -6,8 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
-        layout="@layout/receipt_detail_tool_bar_layout"
-        android:id="@+id/tool_bar" />
+        android:id="@+id/tool_bar"
+        layout="@layout/receipt_detail_tool_bar_layout" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_below="@+id/tool_bar"
@@ -47,6 +47,8 @@
                         android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:text="@string/r_add"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
                         android:textSize="@dimen/fontSizeMedium"
                         android:layout_height="wrap_content" />
 
@@ -520,7 +522,7 @@
                 android:layout_below="@id/amount_view"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
 
                 <TextView

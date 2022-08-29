@@ -230,4 +230,6 @@
     <string name="payment_receipt">ငွေလက်ခံပြေစာ</string>
     <string name="received_by"><u>Received By</u></string>
 
+    <string name="history_detail">မှတ်တမ်း အသေးစိတ်</string>
+
 </resources>
