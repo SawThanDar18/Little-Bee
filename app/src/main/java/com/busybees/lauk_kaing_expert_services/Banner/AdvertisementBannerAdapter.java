@@ -18,10 +18,10 @@ import java.util.List;
 public class AdvertisementBannerAdapter extends RecyclerView.Adapter<AdvertisementBannerAdapter.MzViewHolder> {
 
     private Context context;
-    private List<Integer> urlList;
+    private List<String> urlList;
     private BannerLayout.OnBannerItemClickListener onBannerItemClickListener;
 
-    public AdvertisementBannerAdapter(Context context, List<Integer> urlList) {
+    public AdvertisementBannerAdapter(Context context, List<String> urlList) {
         this.context = context;
         this.urlList = urlList;
     }
@@ -40,7 +40,7 @@ public class AdvertisementBannerAdapter extends RecyclerView.Adapter<Advertiseme
         if (urlList == null || urlList.isEmpty())
             return;
         final int P = position % urlList.size();
-        int url = urlList.get(P);
+        String url = urlList.get(P);
         ImageView img = holder.imageView;
 
         RequestOptions requestOptions = new RequestOptions();

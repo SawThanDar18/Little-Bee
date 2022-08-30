@@ -122,15 +122,15 @@ public class MoreServiceDetailAdapter extends RecyclerView.Adapter<MoreServiceDe
                     holder.savePricePercent.setVisibility(View.GONE);
                     holder.originalPrice.setVisibility(View.VISIBLE);
 
-                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.originalPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()));
                 } else {
                     holder.discountPrice.setVisibility(View.VISIBLE);
                     holder.savePricePercent.setVisibility(View.VISIBLE);
                     holder.originalPrice.setVisibility(View.VISIBLE);
 
-                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.originalPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getOriginalPrice()));
                     holder.originalPrice.setPaintFlags(holder.originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                    holder.discountPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getDiscountPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.discountPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(productPriceVO.getDiscountPrice()));
                     holder.savePricePercent.setText(mContext.getString(R.string.save) + " " + getSavePercentage(productPriceVO.getOriginalPrice(), productPriceVO.getDiscountPrice()));
                 }
             }

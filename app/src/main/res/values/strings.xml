@@ -12,8 +12,8 @@
     <string name="home"><font size="12">Home</font></string>
     <string name="carts"><font size="12">My Carts</font></string>
     <string name="orders"><font size="12">Orders</font></string>
-    <string name="receipt"><font size="12">Receipt</font></string>
-    <string name="my"><font size="12">My</font></string>
+    <string name="receipt"><font size="12">History</font></string>
+    <string name="my"><font size="12">More</font></string>
 
     <string name="about">About Little Bee</string>
     <string name="why">Why Little Bee?</string>
@@ -36,7 +36,7 @@
 
     <string name="carts_label">My Carts</string>
     <string name="orders_label">Orders</string>
-    <string name="receipt_label">Receipt</string>
+    <string name="receipt_label">History</string>
 
     <string name="delete_cart"><u>Delete</u></string>
     <string name="selected">Select</string>
@@ -123,7 +123,7 @@
     <string name="no_internet_connection">Something went wrong! \n Check internet connection</string>
     <string name="no_internet">Check internet connection</string>
 
-    <string name="currency">CNY</string>
+    <string name="currency">¥</string>
     <string name="save">Save</string>
 
     <string name="phone_blank">Please Add Phone Number</string>
@@ -231,5 +231,5 @@
     <string name="payment_receipt">Payment Receipt</string>
     <string name="received_by"><u>Received By</u></string>
 
-    <string name="history_detail">Receipt Details</string>
+    <string name="history_detail">History Details</string>
 </resources>

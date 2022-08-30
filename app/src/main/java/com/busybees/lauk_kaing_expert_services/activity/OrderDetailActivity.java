@@ -86,28 +86,28 @@ public class OrderDetailActivity extends AppCompatActivity {
                 viewSubTotal.setVisibility(View.GONE);
             } else {
                 viewSubTotal.setVisibility(View.VISIBLE);
-                subtotal.setText(myOrdersDetailVO.getOriginalTotal() + " " + getString(R.string.currency));
+                subtotal.setText(getString(R.string.currency) + " " + myOrdersDetailVO.getOriginalTotal());
             }
 
             if (myOrdersDetailVO.getTotalDiscount() == 0) {
                 viewDiscount.setVisibility(View.GONE);
             } else {
                 viewDiscount.setVisibility(View.VISIBLE);
-                discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getTotalDiscount()) + " ) " + getString(R.string.currency));
+                discountTotal.setText("( " + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getTotalDiscount()) + " )");
             }
 
             if (myOrdersDetailVO.getPromoTotalDiscount() == 0) {
                 viewPromoCode.setVisibility(View.GONE);
             } else {
                 viewPromoCode.setVisibility(View.VISIBLE);
-                promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
+                promo_discount.setText("( " + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(myOrdersDetailVO.getPromoTotalDiscount()) + " )");
             }
 
             if (myOrdersDetailVO.getTotalPrice() == 0) {
                 viewTotal.setVisibility(View.GONE);
             } else {
                 viewTotal.setVisibility(View.VISIBLE);
-                total.setText(myOrdersDetailVO.getTotalPrice() + " " + getString(R.string.currency));
+                total.setText(getString(R.string.currency) + " " + myOrdersDetailVO.getTotalPrice());
             }
 
             if (myOrdersDetailVO.getGeneralFormInfo() != null) {

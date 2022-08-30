@@ -119,15 +119,15 @@ public class CartsListAdapter extends RecyclerView.Adapter<CartsListAdapter.MyVi
                     holder.discountPrice.setVisibility(View.GONE);
                     holder.save.setVisibility(View.GONE);
                     holder.originalPrice.setVisibility(View.VISIBLE);
-                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.originalPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice()));
                     //holder.originalPrice.setTextColor(Color.parseColor("#000000"));
 
                 }else{
                     holder.discountPrice.setVisibility(View.VISIBLE);
                     holder.originalPrice.setVisibility(View.VISIBLE);
                     holder.save.setVisibility(View.VISIBLE);
-                    holder.originalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice()) + " " + mContext.getString(R.string.currency));
-                    holder.discountPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(obj.getDiscountPrice()) + " " + mContext.getString(R.string.currency));
+                    holder.originalPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(obj.getOriginalPrice()));
+                    holder.discountPrice.setText(mContext.getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(obj.getDiscountPrice()));
                     holder.originalPrice.setPaintFlags(holder.originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.save.setText(mContext.getString(R.string.save) + " " + getSavePercentage(obj.getOriginalPrice(), obj.getDiscountPrice()));
 

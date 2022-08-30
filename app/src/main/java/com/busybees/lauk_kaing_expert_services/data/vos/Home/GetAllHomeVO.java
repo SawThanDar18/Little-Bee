@@ -23,6 +23,10 @@ public class GetAllHomeVO {
     @Expose
     private List<ServiceAvailableVO> serviceAvailable;
 
+    @SerializedName("ads")
+    @Expose
+    private List<AdsVO> ads;
+
     public List<SliderVO> getSlider() {
         return slider;
     }
@@ -53,5 +57,13 @@ public class GetAllHomeVO {
 
     public void setServiceAvailable(List<ServiceAvailableVO> serviceAvailable) {
         this.serviceAvailable = serviceAvailable;
+    }
+
+    public List<AdsVO> getAds() {
+        return ads;
+    }
+
+    public void setAds(List<AdsVO> ads) {
+        this.ads = ads;
     }
 }

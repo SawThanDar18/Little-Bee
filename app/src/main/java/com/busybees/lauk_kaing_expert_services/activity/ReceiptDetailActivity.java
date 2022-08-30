@@ -83,28 +83,28 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                     viewSubTotal.setVisibility(View.GONE);
                 } else {
                     viewSubTotal.setVisibility(View.VISIBLE);
-                    subtotal.setText(receiptModel.getOriginalTotal() + " " + getString(R.string.currency));
+                    subtotal.setText(getString(R.string.currency) + " " + receiptModel.getOriginalTotal());
                 }
 
                 if (receiptModel.getTotalDiscount() == 0) {
                     viewDiscount.setVisibility(View.GONE);
                 } else {
                     viewDiscount.setVisibility(View.VISIBLE);
-                    discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getTotalDiscount()) + " ) " + getString(R.string.currency));
+                    discountTotal.setText("( "  + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getTotalDiscount()) + " )");
                 }
 
                 if (receiptModel.getPromoTotalDiscount() == 0) {
                     viewPromoCode.setVisibility(View.GONE);
                 } else {
                     viewPromoCode.setVisibility(View.VISIBLE);
-                    promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
+                    promo_discount.setText("( "  + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(receiptModel.getPromoTotalDiscount()) + " )");
                 }
 
                 if (receiptModel.getTotalPrice() == 0) {
                     viewTotal.setVisibility(View.GONE);
                 } else {
                     viewTotal.setVisibility(View.VISIBLE);
-                    total.setText(receiptModel.getTotalPrice() + " " + getString(R.string.currency));
+                    total.setText(getString(R.string.currency) + " " + receiptModel.getTotalPrice());
                 }
 
                 productPriceVOList =receiptModel.getProductPrice();

@@ -148,7 +148,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                             continueLayout.setVisibility(View.VISIBLE);
                             cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
                             if (response.body().getTotal() != 0) {
-                                amountText.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                                amountText.setText(getString(R.string.currency) + " " + response.body().getTotal());
                             } else {
                                 amountText.setText("Survey");
                             }

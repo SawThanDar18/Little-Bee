@@ -13,8 +13,8 @@
     <string name="home"><font size="12">家</font></string>
     <string name="carts"><font size="12">我的购物车</font></string>
     <string name="orders"><font size="12">订单</font></string>
-    <string name="receipt"><font size="12">收据</font></string>
-    <string name="my"><font size="12">矿</font></string>
+    <string name="receipt"><font size="12">历史</font></string>
+    <string name="my"><font size="12">更多的</font></string>
 
     <string name="about">关于 Little Bee</string>
     <string name="why">为什么是嘉杰?</string>
@@ -37,7 +37,7 @@
 
     <string name="carts_label">我的购物车</string>
     <string name="orders_label">订单</string>
-    <string name="receipt_label">收据</string>
+    <string name="receipt_label">历史</string>
 
     <string name="delete_cart"><u>删除</u></string>
     <string name="selected">选择</string>
@@ -123,7 +123,7 @@
     <string name="no_internet_connection">出问题了! \n 检查互联网连接</string>
     <string name="no_internet">检查互联网连接</string>
 
-    <string name="currency">元</string>
+    <string name="currency">¥</string>
     <string name="save">节省</string>
 
     <string name="phone_blank">请添加电话号码</string>
@@ -228,5 +228,5 @@
     <string name="payment_receipt">付款收据</string>
     <string name="received_by"><u>Received By</u></string>
 
-    <string name="history_detail">收据详情</string>
+    <string name="history_detail">历史详情</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -43,6 +44,7 @@ import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.AdsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceNeedVO;
@@ -117,6 +119,8 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<PopularServicesVO> popularServicesVOArrayList = new ArrayList<>();
     private ArrayList<ServiceNeedVO> serviceNeedVOArrayList = new ArrayList<>();
+
+    private ArrayList<AdsVO> adsVO = new ArrayList<>();
 
     private UserVO userVO = new UserVO();
 
@@ -581,7 +585,7 @@ public class HomeFragment extends Fragment {
         }));
     }
 
-    private void initImageSlider(List<SliderVO> slider) {
+    private void initImageSlider(List<SliderVO> slider, List<AdsVO> advertisement) {
 
         List<String> sliderImageList = new ArrayList<>();
 
@@ -589,9 +593,11 @@ public class HomeFragment extends Fragment {
             sliderImageList.add(slider.get(i).getSliderImage());
         }
 
-        List<Integer> adsImageList = new ArrayList<>();
-        adsImageList.add(R.drawable.ads);
-        advertisementBannerAdapter = new AdvertisementBannerAdapter(getActivity(), adsImageList);
+        List<String> adsImageList = new ArrayList<>();
+
+        for (int i = 0; i < advertisement.size(); i++) {
+            adsImageList.add(advertisement.get(i).getImage());
+        }
 
         webBannerAdapter = new WebBannerAdapter(getActivity(), sliderImageList);
 
@@ -635,6 +641,27 @@ public class HomeFragment extends Fragment {
         banner.setAdapter(webBannerAdapter);
         banner.setAutoPlaying(true);
 
+        advertisementBannerAdapter = new AdvertisementBannerAdapter(getActivity(), adsImageList);
+
+        advertisementBannerAdapter.setOnBannerItemClickListener(position -> {
+
+            if (userVO == null) {
+                startActivity(new Intent(getActivity().getApplicationContext(), LogInActivity.class));
+
+            } else {
+
+                if (adsVO != null) {
+                    if (adsVO.get(position).getLink() != null) {
+                        String adsLink = adsVO.get(position).getLink();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(adsLink));
+                        startActivity(intent);
+                    }
+                }
+
+            }
+        });
+
         bannerAdvertisement.setAdapter(advertisementBannerAdapter);
         bannerAdvertisement.setAutoPlaying(true);
 
@@ -655,51 +682,62 @@ public class HomeFragment extends Fragment {
 
     private void CallGetAllHomeApi() {
 
+        progressBar.setVisibility(View.VISIBLE);
+
         if (Utility.isOnline(getActivity())) {
             serviceProvider.GetHomeCall(ApiConstants.BASE_URL + ApiConstants.GET_ALL_HOME).enqueue(new Callback<GetAllHomeModel>() {
 
                 @Override
                 public void onResponse(Call<GetAllHomeModel> call, Response<GetAllHomeModel> response) {
 
-                    initImageSlider(response.body().getData().getSlider());
+                    if (response.body().getError() == false) {
+                        progressBar.setVisibility(View.GONE);
+                        initImageSlider(response.body().getData().getSlider(), response.body().getData().getAds());
 
-                    progressBar.setVisibility(View.GONE);
-                    reloadPage.setVisibility(View.GONE);
-                    popularTxt.setVisibility(View.VISIBLE);
+                        adsVO.clear();
+                        adsVO.addAll(response.body().getData().getAds());
 
-                    setUpAdapterToRecyclerView();
+                        progressBar.setVisibility(View.GONE);
+                        reloadPage.setVisibility(View.GONE);
+                        popularTxt.setVisibility(View.VISIBLE);
 
-                    availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
-                    recyclerViewAvailable.setAdapter(availableAdapter);
-                    availableAdapter.notifyDataSetChanged();
-                    serviceAvailableVOArrayList.addAll(response.body().getData().getServiceAvailable());
+                        setUpAdapterToRecyclerView();
 
-                    if (response.body().getData().getServiceAvailable() != null) {
-                        for (int i = 0; i < response.body().getData().getServiceAvailable().size(); i++) {
+                        availableAdapter = new AvailableAdapter(getActivity(), response.body().getData().getServiceAvailable());
+                        recyclerViewAvailable.setAdapter(availableAdapter);
+                        availableAdapter.notifyDataSetChanged();
+                        serviceAvailableVOArrayList.addAll(response.body().getData().getServiceAvailable());
 
-                            productsVOArrayList.addAll(response.body().getData().getServiceAvailable().get(i).getProducts());
+                        if (response.body().getData().getServiceAvailable() != null) {
+                            for (int i = 0; i < response.body().getData().getServiceAvailable().size(); i++) {
 
-                            if ((response.body().getData().getServiceAvailable().size() - 1) == i) {
-                                for (int j = 0; j < productsVOArrayList.size(); j++) {
-                                    if (productsVOArrayList.get(j).getSubProducts() != null) {
-                                        subProductsVOArrayList.addAll(productsVOArrayList.get(j).getSubProducts());
+                                productsVOArrayList.addAll(response.body().getData().getServiceAvailable().get(i).getProducts());
+
+                                if ((response.body().getData().getServiceAvailable().size() - 1) == i) {
+                                    for (int j = 0; j < productsVOArrayList.size(); j++) {
+                                        if (productsVOArrayList.get(j).getSubProducts() != null) {
+                                            subProductsVOArrayList.addAll(productsVOArrayList.get(j).getSubProducts());
+                                        }
                                     }
                                 }
-                           }
 
+                            }
                         }
+
+                        popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopularServices());
+                        recyclerViewPopular.setAdapter(popularAdapter);
+                        popularAdapter.notifyDataSetChanged();
+                        popularServicesVOArrayList.addAll(response.body().getData().getPopularServices());
+
+                        symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getServiceNeed());
+                        recyclerViewServiceYMN.setAdapter(symnAdapter);
+                        symnAdapter.notifyDataSetChanged();
+                        serviceNeedVOArrayList.addAll(response.body().getData().getServiceNeed());
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getContext(), response.body().getMessage());
                     }
-
-                    popularAdapter = new PopularAdapter(getActivity(), response.body().getData().getPopularServices());
-                    recyclerViewPopular.setAdapter(popularAdapter);
-                    popularAdapter.notifyDataSetChanged();
-                    popularServicesVOArrayList.addAll(response.body().getData().getPopularServices());
-
-                    symnAdapter = new SymnAdapter(getActivity(), response.body().getData().getServiceNeed());
-                    recyclerViewServiceYMN.setAdapter(symnAdapter);
-                    symnAdapter.notifyDataSetChanged();
-                    serviceNeedVOArrayList.addAll(response.body().getData().getServiceNeed());
-
                 }
 
                 @Override

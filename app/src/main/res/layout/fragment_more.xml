@@ -328,6 +328,7 @@
                     android:orientation="vertical" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/languageLayout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
@@ -354,6 +355,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height1"
                     android:layout_marginTop="@dimen/margin4"

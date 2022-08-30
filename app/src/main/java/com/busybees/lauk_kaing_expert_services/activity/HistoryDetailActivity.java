@@ -91,28 +91,28 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 viewSubTotal.setVisibility(View.GONE);
             } else {
                 viewSubTotal.setVisibility(View.VISIBLE);
-                subtotal.setText(myHistoryDetailVO.getOriginalTotal() + " " + getString(R.string.currency));
+                subtotal.setText(getString(R.string.currency) + " " + myHistoryDetailVO.getOriginalTotal());
             }
 
             if (myHistoryDetailVO.getTotalDiscount() == 0) {
                 viewDiscount.setVisibility(View.GONE);
             } else {
                 viewDiscount.setVisibility(View.VISIBLE);
-                discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getTotalDiscount()) + " ) " + getString(R.string.currency));
+                discountTotal.setText("( " + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getTotalDiscount()) + " )");
             }
 
             if (myHistoryDetailVO.getPromoTotalDiscount() == 0) {
                 viewPromoCode.setVisibility(View.GONE);
             } else {
                 viewPromoCode.setVisibility(View.VISIBLE);
-                promo_discount.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getPromoTotalDiscount()) + " ) " + getString(R.string.currency));
+                promo_discount.setText("( " + getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(myHistoryDetailVO.getPromoTotalDiscount()) + " )");
             }
 
             if (myHistoryDetailVO.getTotalPrice() == 0) {
                 viewTotal.setVisibility(View.GONE);
             } else {
                 viewTotal.setVisibility(View.VISIBLE);
-                total.setText(myHistoryDetailVO.getTotalPrice() + " " + getString(R.string.currency));
+                total.setText(getString(R.string.currency) + " " + myHistoryDetailVO.getTotalPrice());
             }
 
             if (myHistoryDetailVO.getGeneralFormInfo() != null) {

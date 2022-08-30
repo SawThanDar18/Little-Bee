@@ -44,8 +44,8 @@
         android:text="@string/order_confirm"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="@dimen/fontSizeLarge" />
+        android:textSize="@dimen/fontSizeMedium"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/continue_layout"

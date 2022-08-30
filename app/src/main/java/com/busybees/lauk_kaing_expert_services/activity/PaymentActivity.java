@@ -291,14 +291,14 @@ public class PaymentActivity extends AppCompatActivity {
                     if (response.body().isError() == false) {
                         progressBar.setVisibility(View.GONE);
                         viewPromoCode.setVisibility(View.VISIBLE);
-                        promo_discount.setText("( " + response.body().getData().getDiscount() + " ) " + getString(R.string.currency));
+                        promo_discount.setText("( ¥ " + response.body().getData().getDiscount() + " )");
                         int totalFromPromo = response.body().getData().getTotal();
                         int totalAmount = totalFromPromo - discount;
                         if (totalFromPromo == 0) {
                             viewTotal.setVisibility(View.GONE);
                         } else {
                             viewTotal.setVisibility(View.VISIBLE);
-                            total.setText(totalFromPromo + " " + getString(R.string.currency));
+                            total.setText(getString(R.string.currency) + " " + totalFromPromo);
                         }
                     } else if (response.body().isError() == true) {
                         progressBar.setVisibility(View.GONE);
@@ -412,21 +412,21 @@ public class PaymentActivity extends AppCompatActivity {
                                 viewSubTotal.setVisibility(View.GONE);
                             } else {
                                 viewSubTotal.setVisibility(View.VISIBLE);
-                                subtotal.setText(NumberFormat.getNumberInstance(Locale.US).format(response.body().getItemTotal()) + " " + getString(R.string.currency));
+                                subtotal.setText(getString(R.string.currency) + " " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getItemTotal()));
                             }
                             if (response.body().getDiscountTotalAll() == 0) {
                                 viewDiscount.setVisibility(View.GONE);
                             } else if (response.body().getDiscountTotalAll() > 0) {
                                 viewDiscount.setVisibility(View.VISIBLE);
                                 discount = response.body().getDiscountTotalAll();
-                                discountTotal.setText("( " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getDiscountTotalAll()) + " ) " + getString(R.string.currency));
+                                discountTotal.setText("( ¥ " + NumberFormat.getNumberInstance(Locale.US).format(response.body().getDiscountTotalAll()) + " )");
                             }
 
                             if (response.body().getTotal() == 0) {
                                 viewTotal.setVisibility(View.GONE);
                             } else {
                                 viewTotal.setVisibility(View.VISIBLE);
-                                total.setText(response.body().getTotal() + " " + getString(R.string.currency));
+                                total.setText(getString(R.string.currency) + " " + response.body().getTotal());
                             }
 
                         } else {

@@ -67,6 +67,7 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
         TextView serviceName = convertView.findViewById(R.id.serviceName);
         TextView order_count = convertView.findViewById(R.id.order_count);
         RatingBar rating_bar_small = convertView.findViewById(R.id.rating_bar_small);
+        TextView totalTxt = convertView.findViewById(R.id.total_txt);
         TextView total = convertView.findViewById(R.id.total);
 
         order_layout.setOnClickListener(v -> {
@@ -88,7 +89,15 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
             order_id.setText(String.valueOf(listchild.getOrderDetailId()));
             //rating_bar_small.setRating(listchild.getOverallRating());
             order_count.setText(String.valueOf(productModels.size()));
-            total.setText(String.valueOf(listchild.getTotalPrice()));
+
+            if (listchild.getTotalPrice() != 0) {
+                totalTxt.setVisibility(View.VISIBLE);
+                total.setText(context.getString(R.string.currency) + " " + listchild.getTotalPrice());
+            } else {
+                totalTxt.setVisibility(View.GONE);
+                total.setText("Survey");
+            }
+
         } else {
             serviceName.setText("No Data");
         }

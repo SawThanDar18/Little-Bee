@@ -197,27 +197,28 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin6"
+                        android:text="@string/currency"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSizeLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/serviceAmt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/margin6"
-                        android:gravity="center"
-                        android:text="30,000"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeMedium"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="CYN"
+                        android:gravity="center"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="@dimen/fontSizeSmall"
+                        android:textSize="@dimen/fontSizeLarge"
                         android:textStyle="bold" />
 
                     <TextView

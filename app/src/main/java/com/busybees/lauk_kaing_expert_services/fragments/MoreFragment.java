@@ -44,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
     private NetworkServiceProvider networkServiceProvider;
 
@@ -66,7 +66,7 @@ public class MyFragment extends Fragment {
         networkServiceProvider = new NetworkServiceProvider(getContext());
         userVO = Utility.query_UserProfile(getContext());
 
-        View view = inflater.inflate(R.layout.fragment_my, container, false);
+        View view = inflater.inflate(R.layout.fragment_more, container, false);
 
         changeLanguage = view.findViewById(R.id.change_language);
         profileLayout = view.findViewById(R.id.profile_layout);

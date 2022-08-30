@@ -2,10 +2,8 @@ package com.busybees.lauk_kaing_expert_services;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -15,18 +13,15 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
-import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.HomeFragment;
-import com.busybees.lauk_kaing_expert_services.fragments.MyFragment;
+import com.busybees.lauk_kaing_expert_services.fragments.MoreFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.OrdersFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.ReceiptFragments;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private CartsFragment cartsFragment;
     private OrdersFragment ordersFragment;
     private ReceiptFragments receiptFragments;
-    private MyFragment myFragment;
+    private MoreFragment moreFragment;
 
     private ViewPagerAdapter viewPagerAdapter;
 
@@ -177,13 +172,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         cartsFragment = new CartsFragment();
         ordersFragment = new OrdersFragment();
         receiptFragments = new ReceiptFragments();
-        myFragment = new MyFragment();
+        moreFragment = new MoreFragment();
 
         viewPagerAdapter.addFragment(homeFragment);
         viewPagerAdapter.addFragment(cartsFragment);
         viewPagerAdapter.addFragment(ordersFragment);
         viewPagerAdapter.addFragment(receiptFragments);
-        viewPagerAdapter.addFragment(myFragment);
+        viewPagerAdapter.addFragment(moreFragment);
 
         viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(viewPagerAdapter);

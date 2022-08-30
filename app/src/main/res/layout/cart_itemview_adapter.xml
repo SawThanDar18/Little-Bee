@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin10"
-                android:text="10000 MMK"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
@@ -74,9 +74,8 @@
                 android:layout_below="@+id/origin_price"
                 android:layout_alignStart="@+id/origin_price"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="@dimen/margin6"
                 android:layout_marginBottom="@dimen/margin6"
-                android:text="Save 20%"
+                android:text=""
                 android:textColor="@color/theme_color"
                 android:textSize="@dimen/fontSizeSmall"
                 android:textStyle="bold" />
