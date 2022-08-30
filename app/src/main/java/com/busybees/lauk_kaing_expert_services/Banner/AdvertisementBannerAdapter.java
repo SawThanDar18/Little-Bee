@@ -44,8 +44,8 @@ public class AdvertisementBannerAdapter extends RecyclerView.Adapter<Advertiseme
         ImageView img = holder.imageView;
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.banner_image);
-        requestOptions.error(R.drawable.banner_image);
+        requestOptions.placeholder(R.drawable.loader_circle_shape);
+        requestOptions.error(R.drawable.loader_circle_shape);
         Glide.with(context)
                 .load(url)
                 .apply(requestOptions)
