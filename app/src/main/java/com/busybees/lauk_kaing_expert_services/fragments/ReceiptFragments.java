@@ -132,9 +132,10 @@ public class ReceiptFragments extends Fragment {
     }
 
     private void CallMyOrderHistory() {
-        progressBar.setVisibility(View.VISIBLE);
 
         if (userVO != null) {
+            progressBar.setVisibility(View.VISIBLE);
+
             RequestPhoneObject requestPhoneObject = new RequestPhoneObject();
             requestPhoneObject.setPhone(userVO.getPhone());
 

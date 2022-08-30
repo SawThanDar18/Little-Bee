@@ -106,6 +106,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ReceiptDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.UserGuideActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

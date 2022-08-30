@@ -24,5 +24,6 @@ public class ApiConstants {
     public static final String GET_SAVE_ORDER = "/auth/createOrder";
     public static final String GET_MY_ORDERS = "/auth/getOrders";
     public static final String GET_MY_ORDERS_HISTORY = "/auth/getOrderHistory";
+    public static final String GET_USER_GUIDE = "/get_user_guide";
 
 }

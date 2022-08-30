@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/thankU"
@@ -15,6 +16,7 @@
         android:id="@+id/thankU"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height200"
+        android:layout_marginTop="@dimen/margin8"
         android:layout_centerInParent="true"
         app:srcCompat="@drawable/thanks" />
 
@@ -22,9 +24,8 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thankU"
+        android:layout_below="@+id/logo"
         android:layout_centerInParent="true"
-        android:layout_marginTop="-10dp"
         android:padding="@dimen/padding1"
         android:text="@string/thank_you_txt"
         android:textAlignment="center"
@@ -36,7 +37,7 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView3"
+        android:layout_below="@id/thankU"
         android:layout_marginTop="@dimen/margin32"
         android:layout_marginBottom="@dimen/margin8"
         android:paddingLeft="@dimen/padding15"

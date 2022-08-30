@@ -232,4 +232,8 @@
     <string name="received_by"><u>Received By</u></string>
 
     <string name="history_detail">History Details</string>
+
+    <string name="back"><font size="14">Back</font></string>
+    <string name="next"><font size="14">Next</font></string>
+    <string name="finish"><font size="14">Finish</font></string>
 </resources>

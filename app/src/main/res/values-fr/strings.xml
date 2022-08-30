@@ -231,4 +231,8 @@
 
     <string name="history_detail">မွတ္တမ္း အေသးစိတ္</string>
 
+    <string name="back"><font size="14">ေနာက္သို႔</font></string>
+    <string name="next"><font size="14">ေက်ာ္မည္</font></string>
+    <string name="finish"><font size="14">ၿပီးၿပီ</font></string>
+
 </resources>

@@ -116,9 +116,10 @@ public class OrdersFragment extends Fragment {
 
     private void CallGetMyOrders() {
 
-        progressBar.setVisibility(View.VISIBLE);
-
         if (userVO != null){
+
+            progressBar.setVisibility(View.VISIBLE);
+
             RequestPhoneObject phoneObj=new RequestPhoneObject();
             phoneObj.setPhone(userVO.getPhone());
 
