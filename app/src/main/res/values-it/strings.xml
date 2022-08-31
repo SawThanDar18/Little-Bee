@@ -234,6 +234,6 @@
 
     <string name="back"><font size="14">နောက်သို့</font></string>
     <string name="next"><font size="14">ကျော်မည်</font></string>
-    <string name="finish">ပ<font size="14">ြီးပြီ</font></string>
+    <string name="finish"><font size="14">ပြီးပြီ</font></string>
 
 </resources>

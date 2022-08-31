@@ -15,6 +15,8 @@ import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryMo
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
 import com.busybees.lauk_kaing_expert_services.data.models.UserGuide.UserGuideModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
@@ -59,6 +61,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.SaveTokenSync;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -177,6 +180,11 @@ public class NetworkServiceProvider {
     public Call<UserGuideModel> GetUserGuideCall (String url) {
         GetUserGuideSync sync = retrofit.create(GetUserGuideSync.class);
         return sync.getUserGuide(url);
+    }
+
+    public Call<SaveTokenModel> GetSaveNotiTokenCall(String url, SaveTokenObj saveTokenObj) {
+        SaveTokenSync sync = retrofit.create(SaveTokenSync.class);
+        return sync.getSaveToken(url,saveTokenObj);
     }
 
 }

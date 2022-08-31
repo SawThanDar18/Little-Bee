@@ -38,11 +38,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.busybees.lauk_kaing_expert_services.Banner.AdvertisementBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogCall;
-import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.AdsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.PopularServicesVO;
@@ -67,13 +67,13 @@ import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
-import com.busybees.lauk_kaing_expert_services.utility.AutoScrollRecyclerView;
 import com.busybees.lauk_kaing_expert_services.utility.RecyclerItemClickListener;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,6 +210,7 @@ public class HomeFragment extends Fragment {
 
                 saveDeviceToken(deviceToken);
                 Timber.d("deviceToken", deviceToken);
+
             }
             catch (Exception exc) {
                 return exc;
@@ -254,7 +255,27 @@ public class HomeFragment extends Fragment {
             SaveTokenObj tokenObj=new SaveTokenObj();
             tokenObj.setPhone(userVO.getPhone());
             tokenObj.setToken(deviceToken);
-            //CallSaveToken(tokenObj);
+            CallSaveToken(tokenObj);
+        }
+
+    }
+
+    public void CallSaveToken(SaveTokenObj obj) {
+
+        if (Utility.isOnline(getActivity())){
+            serviceProvider.GetSaveNotiTokenCall(ApiConstants.BASE_URL + ApiConstants.GET_SAVE_NOTI_TOKEN, obj).enqueue(new Callback<SaveTokenModel>() {
+                @Override
+                public void onResponse(Call<SaveTokenModel> call, Response<SaveTokenModel> response) {
+
+
+                }
+                @Override
+                public void onFailure(Call<SaveTokenModel> call, Throwable t) {
+
+                }
+            });
+        }else {
+            Utility.showToast(getContext(), getString(R.string.no_internet));
         }
 
     }

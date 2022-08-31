@@ -9,7 +9,7 @@ public class SaveTokenObj {
     @Expose
     private String phone;
 
-    @SerializedName("token")
+    @SerializedName("device_token")
     @Expose
     private String token;
 

@@ -11,8 +11,11 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.busybees.lauk_kaing_expert_services.EventBusModel.NotiCallModel;
 import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class PushReceiver extends BroadcastReceiver {
 
@@ -23,10 +26,11 @@ public class PushReceiver extends BroadcastReceiver {
         String notificationText = "BusyBees";
 
         if (intent.getStringExtra("message") != null) {
+            Log.e("message>>>", intent.getStringExtra("message"));
             notificationText = intent.getStringExtra("message");
-            /*NotiCallModel notiCallModel = new NotiCallModel();
+            NotiCallModel notiCallModel = new NotiCallModel();
             notiCallModel.setRecall("call");
-            EventBus.getDefault().post(notiCallModel);*/
+            EventBus.getDefault().post(notiCallModel);
 
         }
 

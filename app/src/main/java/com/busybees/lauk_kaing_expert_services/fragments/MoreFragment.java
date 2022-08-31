@@ -23,6 +23,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.lauk_kaing_expert_services.activity.ChooseLanguageActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ThanksActivity;
 import com.busybees.lauk_kaing_expert_services.activity.UserGuideActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
@@ -143,7 +144,7 @@ public class MoreFragment extends Fragment {
         });
 
         contactUs.setOnClickListener(v -> {
-            //startActivity(new Intent(getContext(), ThanksActivity.class));
+            //startActivity(new Intent(getContext(), ChooseLanguageActivity.class));
         });
     }
 

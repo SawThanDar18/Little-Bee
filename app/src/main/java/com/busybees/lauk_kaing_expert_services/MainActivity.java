@@ -1,18 +1,26 @@
 package com.busybees.lauk_kaing_expert_services;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
@@ -28,11 +36,14 @@ import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.CustomViewPager;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
+import com.google.android.exoplayer2.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -319,6 +330,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView.setSelectedItemId(R.id.cartTab);
         EventBus.getDefault().removeStickyEvent(goToCart);
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+
+            try {
+                JSONObject jsonObject = new JSONObject(String.valueOf(extras.get("notification_condition")));
+                Log.e("all>>>", String.valueOf(String.valueOf(jsonObject.get("status")).equals("All")));
+
+                if (String.valueOf(jsonObject.get("status")).equals("All")) {
+
+                    Utility.showToast(getApplicationContext(), String.valueOf(jsonObject.get("status")));
+                    //startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+        }
 
     }
 }
