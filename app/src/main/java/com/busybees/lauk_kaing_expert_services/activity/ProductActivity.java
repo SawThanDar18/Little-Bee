@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -70,6 +71,7 @@ public class ProductActivity extends AppCompatActivity {
             productName.setText(productTitle);
 
             if (productsVOArrayList.size() != 0){
+                Log.e("listSize>>", String.valueOf(productsVOArrayList.size()));
 
                 productAdapter= new ProductAdapter(this, productsVOArrayList);
                 productRecyclerView.setAdapter(productAdapter);

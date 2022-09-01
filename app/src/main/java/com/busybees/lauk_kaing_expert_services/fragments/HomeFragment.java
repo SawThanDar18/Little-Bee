@@ -460,6 +460,7 @@ public class HomeFragment extends Fragment {
                                 intent.putExtra("product_title", productName.getText().toString());
                                 intent.putExtra("sub_product", subProductsVOArrayList);
                                 intent.putExtra("product", productsVOS);
+                                Log.e("pstep2>>>", String.valueOf(productsVOS.size()));
                                 startActivity(intent);
 
                             } else if (productsVOS.size() == 0) {
@@ -485,6 +486,8 @@ public class HomeFragment extends Fragment {
                                     productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
                                     productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
                                     productsVOS.add(productsVO);
+                                    Log.e("pstep3>>>", String.valueOf(productsVOS.size()));
+
                                 }
                             }
 
@@ -728,6 +731,9 @@ public class HomeFragment extends Fragment {
                         recyclerViewAvailable.setAdapter(availableAdapter);
                         availableAdapter.notifyDataSetChanged();
                         serviceAvailableVOArrayList.addAll(response.body().getData().getServiceAvailable());
+
+                        productsVOArrayList.clear();
+                        subProductsVOArrayList.clear();
 
                         if (response.body().getData().getServiceAvailable() != null) {
                             for (int i = 0; i < response.body().getData().getServiceAvailable().size(); i++) {
