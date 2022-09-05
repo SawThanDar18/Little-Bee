@@ -1,8 +1,12 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,13 +41,17 @@ import com.busybees.lauk_kaing_expert_services.activity.LogInActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Carts.CartsListAdapter;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
+import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import me.myatminsoe.mdetect.MDetect;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,6 +78,8 @@ public class CartsFragment extends Fragment {
     ArrayList<GetCartDataModel> cartDatas = new ArrayList<>();
 
     private boolean isCartItemAvailable;
+    private boolean continue_error;
+    private String continue_error_msg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -140,6 +151,12 @@ public class CartsFragment extends Fragment {
 
                         if (response.body().getError() == false) {
                             reloadPage.setVisibility(View.GONE);
+
+                            if (response.body().getContinueError() != null) {
+                                continue_error = response.body().getContinueError();
+                                continue_error_msg = response.body().getContinueAlertMsg();
+                            }
+
                             cartDatas.clear();
                             cartDatas.addAll(response.body().getData());
                             cartsListAdapter = new CartsListAdapter(getActivity(), cartDatas);
@@ -353,7 +370,46 @@ public class CartsFragment extends Fragment {
         });
 
         continueLayout.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), AddressActivity.class));
+            if (continue_error == true) {
+                LayoutInflater factory = LayoutInflater.from(getContext());
+                final View priceZeroDialogView = factory.inflate(R.layout.dialog_alert_price_zero, null);
+                final AlertDialog priceZeroDialog = new AlertDialog.Builder(getContext()).create();
+                priceZeroDialog.setView(priceZeroDialogView);
+
+                priceZeroDialog.setCancelable(false);
+                priceZeroDialog.setCanceledOnTouchOutside(false);
+
+                if (priceZeroDialog != null && priceZeroDialog.getWindow() != null) {
+                    priceZeroDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    priceZeroDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                }
+
+                TextView alertMsg = priceZeroDialogView.findViewById(R.id.price_zero_alert_txt);
+
+                if (checkLng(getContext()).equalsIgnoreCase("it") || checkLng(getContext()).equalsIgnoreCase("fr")) {
+
+                    if (MDetect.INSTANCE.isUnicode()) {
+                        alertMsg.setText(getString(R.string.continue_error_msg));
+                    } else {
+                        alertMsg.setText(getString(R.string.continue_error_msg));
+                    }
+
+                } else {
+                    alertMsg.setText(continue_error_msg);
+                }
+
+                priceZeroDialogView.findViewById(R.id.price_zero_ok_btn).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        priceZeroDialog.dismiss();
+                    }
+                });
+
+                priceZeroDialog.show();
+
+            } else {
+                startActivity(new Intent(getContext(), AddressActivity.class));
+            }
         });
 
         homePageView.setOnClickListener(v -> {
@@ -377,6 +433,14 @@ public class CartsFragment extends Fragment {
                 Utility.showToast(getActivity(), getString(R.string.no_internet));
             }
         });
+    }
+
+    public static String checkLng(Context activity) {
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if (lang == null) {
+            lang = "en";
+        }
+        return lang;
     }
 
     @Override

@@ -233,4 +233,7 @@
     <string name="back"><font size="14">后退</font></string>
     <string name="next"><font size="14">下一个</font></string>
     <string name="finish"><font size="14">结束</font></string>
+
+    <string name="continue_error_msg">对不起！您不能同时订购调查请求和其他项目.\n请删除调查请求（或）其他项目！</string>
+
 </resources>

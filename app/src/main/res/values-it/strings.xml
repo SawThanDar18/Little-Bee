@@ -236,4 +236,6 @@
     <string name="next"><font size="14">ကျော်မည်</font></string>
     <string name="finish"><font size="14">ပြီးပြီ</font></string>
 
+    <string name="continue_error_msg">လာရောက်ကြည့်ရှုရမည့်လုပ်ငန်းများနှင့်အခြား လုပ်ငန်းများအား \n အတူတကွဝန်ဆောင်မှုယူ ၍ မရပါ။ \n တစ်ခု ကို ပယ်ဖျက်ပါ။</string>
+
 </resources>

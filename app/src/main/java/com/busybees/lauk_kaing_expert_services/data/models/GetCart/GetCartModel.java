@@ -45,6 +45,14 @@ public class GetCartModel {
     @Expose
     private List<PromoCodeVO> promoCodeList;
 
+    @SerializedName("continue_alert_msg")
+    @Expose
+    private String continueAlertMsg;
+
+    @SerializedName("continue_error")
+    @Expose
+    private Boolean continueError;
+
     public int getTotal() {
         return total;
     }
@@ -115,6 +123,22 @@ public class GetCartModel {
 
     public void setPromoCodeList(List<PromoCodeVO> promoCodeList) {
         this.promoCodeList = promoCodeList;
+    }
+
+    public String getContinueAlertMsg() {
+        return continueAlertMsg;
+    }
+
+    public void setContinueAlertMsg(String continueAlertMsg) {
+        this.continueAlertMsg = continueAlertMsg;
+    }
+
+    public Boolean getContinueError() {
+        return continueError;
+    }
+
+    public void setContinueError(Boolean continueError) {
+        this.continueError = continueError;
     }
 }
 

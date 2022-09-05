@@ -1,10 +1,14 @@
 package com.busybees.lauk_kaing_expert_services.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +50,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
+import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import org.greenrobot.eventbus.EventBus;
@@ -53,6 +59,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import me.myatminsoe.mdetect.MDetect;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,6 +98,8 @@ public class FinalOrderActivity extends AppCompatActivity {
     private SaveOrderObject saveOrderObject = new SaveOrderObject();
 
     private boolean isCartItemAvailable;
+    private boolean continue_error;
+    private String continue_error_msg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -166,42 +175,52 @@ public class FinalOrderActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<GetCartModel> call, Response<GetCartModel> response) {
 
-                        reloadPage.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.GONE);
-                        cartDatas.clear();
-                        cartDatas.addAll(response.body().getData());
-                        finalOrderAdapter = new FinalOrderAdapter(FinalOrderActivity.this, cartDatas);
-                        finalOrderRecyclerView.setAdapter(finalOrderAdapter);
-                        finalOrderAdapter.notifyDataSetChanged();
+                        if (response.body().getError() == false) {
+                            reloadPage.setVisibility(View.GONE);
 
-                        finalOrderAdapter.setCLick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AdapterClick(v);
+                            if (response.body().getContinueError() != null) {
+                                continue_error = response.body().getContinueError();
+                                continue_error_msg = response.body().getContinueAlertMsg();
                             }
-                        });
 
-                        if (!cartDatas.isEmpty() && cartDatas != null) {
-                            continueLayout.setVisibility(View.VISIBLE);
-                            isCartItemAvailable = true;
-                            finalOrderTimeLine.setVisibility(View.VISIBLE);
-                            noServiceView.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
+                            cartDatas.clear();
+                            cartDatas.addAll(response.body().getData());
+                            finalOrderAdapter = new FinalOrderAdapter(FinalOrderActivity.this, cartDatas);
+                            finalOrderRecyclerView.setAdapter(finalOrderAdapter);
+                            finalOrderAdapter.notifyDataSetChanged();
 
-                            cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
-                            if (response.body().getTotal() != 0) {
-                                amountText.setText(getString(R.string.currency) + " " + response.body().getTotal());
+                            finalOrderAdapter.setCLick(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    AdapterClick(v);
+                                }
+                            });
+
+                            if (!cartDatas.isEmpty() && cartDatas != null) {
+                                continueLayout.setVisibility(View.VISIBLE);
+                                isCartItemAvailable = true;
+                                finalOrderTimeLine.setVisibility(View.VISIBLE);
+                                noServiceView.setVisibility(View.GONE);
+
+                                cartCountText.setText(String.valueOf(response.body().getTotalQuantity()));
+                                if (response.body().getTotal() != 0) {
+                                    amountText.setText(getString(R.string.currency) + " " + response.body().getTotal());
+                                } else {
+                                    amountText.setText("Survey");
+                                }
+
                             } else {
-                                amountText.setText("Survey");
+                                continueLayout.setVisibility(View.GONE);
+                                isCartItemAvailable = false;
+                                finalOrderTimeLine.setVisibility(View.GONE);
+                                noServiceView.setVisibility(View.GONE);
+
+                                cartCountText.setText("0");
+                                amountText.setText(" ");
                             }
-
                         } else {
-                            continueLayout.setVisibility(View.GONE);
-                            isCartItemAvailable = false;
-                            finalOrderTimeLine.setVisibility(View.GONE);
-                            noServiceView.setVisibility(View.GONE);
-
-                            cartCountText.setText("0");
-                            amountText.setText(" ");
+                            Utility.showToast(getApplicationContext(), response.body().getMessage());
                         }
                     }
 
@@ -413,12 +432,51 @@ public class FinalOrderActivity extends AppCompatActivity {
 
     private void onClick() {
         continueLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(FinalOrderActivity.this, PaymentActivity.class);
-            intent.putExtra("address", addressVO);
-            intent.putExtra("date", dateText.getText().toString());
-            intent.putExtra("time", timeText.getText().toString());
-            intent.putExtras(bundle);
-            startActivity(intent);
+            if (continue_error == true) {
+                LayoutInflater factory = LayoutInflater.from(getApplicationContext());
+                final View priceZeroDialogView = factory.inflate(R.layout.dialog_alert_price_zero, null);
+                final AlertDialog priceZeroDialog = new AlertDialog.Builder(getApplicationContext()).create();
+                priceZeroDialog.setView(priceZeroDialogView);
+
+                priceZeroDialog.setCancelable(false);
+                priceZeroDialog.setCanceledOnTouchOutside(false);
+
+                if (priceZeroDialog != null && priceZeroDialog.getWindow() != null) {
+                    priceZeroDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    priceZeroDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                }
+
+                TextView alertMsg = priceZeroDialogView.findViewById(R.id.price_zero_alert_txt);
+
+                if (checkLng(getApplicationContext()).equalsIgnoreCase("it") || checkLng(getApplicationContext()).equalsIgnoreCase("fr")) {
+
+                    if (MDetect.INSTANCE.isUnicode()) {
+                        alertMsg.setText(getString(R.string.continue_error_msg));
+                    } else {
+                        alertMsg.setText(getString(R.string.continue_error_msg));
+                    }
+
+                } else {
+                    alertMsg.setText(continue_error_msg);
+                }
+
+                priceZeroDialogView.findViewById(R.id.price_zero_ok_btn).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        priceZeroDialog.dismiss();
+                    }
+                });
+
+                priceZeroDialog.show();
+
+            } else {
+                Intent intent = new Intent(FinalOrderActivity.this, PaymentActivity.class);
+                intent.putExtra("address", addressVO);
+                intent.putExtra("date", dateText.getText().toString());
+                intent.putExtra("time", timeText.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         });
 
         addMoreServiceLayout.setOnClickListener(v -> {
@@ -450,6 +508,14 @@ public class FinalOrderActivity extends AppCompatActivity {
             service.setService("1");
             EventBus.getDefault().post(service);
         });
+    }
+
+    public static String checkLng(Context activity) {
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if (lang == null) {
+            lang = "en";
+        }
+        return lang;
     }
 
     void makeStatusBarVisible() {

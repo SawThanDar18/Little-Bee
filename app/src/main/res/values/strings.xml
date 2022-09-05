@@ -236,4 +236,7 @@
     <string name="back"><font size="14">Back</font></string>
     <string name="next"><font size="14">Next</font></string>
     <string name="finish"><font size="14">Finish</font></string>
+
+    <string name="continue_error_msg">Sorry! You can\'t order both Survey Request and Other items. \n Please remove Survey Request (or) Other items!</string>
+
 </resources>
