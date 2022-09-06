@@ -3,6 +3,7 @@ package com.busybees.lauk_kaing_expert_services.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,12 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.busybees.lauk_kaing_expert_services.Dialog.DialogRating;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.LeadFormImageAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyHistoryDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.Orders.VendorInfoAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.Receipt.HistoryVendorInfoAdapter;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
+import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -27,17 +32,18 @@ import java.util.Locale;
 
 public class HistoryDetailActivity extends AppCompatActivity {
 
-    private TextView orderId, orderAddress, orderTime, orderDate, viewReceipt;
-    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView;
+    private TextView orderId, orderAddress, orderTime, orderDate, viewReceipt, rate;
+    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView, vendorInfoRecyclerView;
 
-    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView, leadFormOneView;
+    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView, leadFormOneView, vendorInfoLayout;
     private TextView subtotal, discountTotal, total, promo_discount;
 
-    private TextView confirmPrice, title, budget, squareFeet, details;
+    private TextView confirmPrice, title, budget, squareFeet, details, reOrder;
 
     private ImageView back;
 
     private MyHistoryDetailAdapter myHistoryDetailAdapter;
+    private HistoryVendorInfoAdapter vendorInfoAdapter;
     private LinearLayoutManager layoutManager, leadFormLayoutManager;
 
     private MyHistoryDetailVO myHistoryDetailVO = new MyHistoryDetailVO();
@@ -77,6 +83,10 @@ public class HistoryDetailActivity extends AppCompatActivity {
         leadFormOneView = findViewById(R.id.lead_form_one_view);
         leadFormOnePhotosRecyclerView = findViewById(R.id.lead_form_one_photos_recyclerview);
         viewReceipt = findViewById(R.id.view_receipt);
+        vendorInfoLayout = findViewById(R.id.vendor_layout);
+        vendorInfoRecyclerView = findViewById(R.id.vendor_info_recyclerview);
+        reOrder = findViewById(R.id.re_order_btn);
+        rate = findViewById(R.id.rate);
 
         if (getIntent() != null) {
             myHistoryDetailVO = (MyHistoryDetailVO) getIntent().getSerializableExtra("receipt_data");
@@ -115,7 +125,14 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 total.setText(getString(R.string.currency) + " " + myHistoryDetailVO.getTotalPrice());
             }
 
-            if (myHistoryDetailVO.getGeneralFormInfo() != null) {
+            if (myHistoryDetailVO.getGeneralFormInfo().getId() == 0 || myHistoryDetailVO.getGeneralFormInfo() == null) {
+
+                reOrder.setVisibility(View.VISIBLE);
+                leadFormView.setVisibility(View.GONE);
+                leadFormOneView.setVisibility(View.GONE);
+
+            } else {
+                reOrder.setVisibility(View.GONE);
                 if (myHistoryDetailVO.getGeneralFormInfo().getFormStatus() == 2) {
                     leadFormView.setVisibility(View.VISIBLE);
                     leadFormOneView.setVisibility(View.GONE);
@@ -125,25 +142,18 @@ public class HistoryDetailActivity extends AppCompatActivity {
                     leadFormOneView.setVisibility(View.VISIBLE);
                     showLeadFormOneDetail();
                 }
-            } else {
-                leadFormView.setVisibility(View.GONE);
-                leadFormOneView.setVisibility(View.GONE);
             }
 
-            /*if (receiptModel.getOverallRating() == 0) {
+            /*if (myHistoryDetailVO.getOverallRating() == 0) {
                 rate.setVisibility(View.VISIBLE);
-                rate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (receiptModel.getOverallRating()==0){
-                            DialogRating dialogRating=new DialogRating(qlist,receiptModel);
-                            dialogRating.show(getSupportFragmentManager(),"");
-                        }else {
-                            //rate.setVisibility(View.GONE);
-                            Utility.showToast(HistoryDetailActivity.this,getString(R.string.all_ready_rated));
-                        }
-
+                rate.setOnClickListener(v -> {
+                    if (myHistoryDetailVO.getOverallRating()==0){
+                        DialogRating dialogRating=new DialogRating(questionsVOArrayList, receiptModel);
+                        dialogRating.show(getSupportFragmentManager(),"");
+                    }else {
+                        Utility.showToast(HistoryDetailActivity.this,getString(R.string.all_ready_rated));
                     }
+
                 });
             } else {
                 rate.setVisibility(View.GONE);
@@ -206,6 +216,11 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
         leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         leadFormOnePhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
+
+        //vendorInfoAdapter = new HistoryVendorInfoAdapter(this, myOrdersDetailVO.getVendorData());
+        vendorInfoRecyclerView.setAdapter(vendorInfoAdapter);
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        vendorInfoRecyclerView.setLayoutManager(layoutManager);
     }
 
     void makeStatusBarVisible() {

@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable-v24/button_corner_theme.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable-v24/ic_baseline_call_theme.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable-v24/ic_baseline_close_24.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable-v24/ic_baseline_file_copy_20.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable-v24/ic_baseline_info_24.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_videocam_24.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_gold_circle.xml" value="0.1" />
@@ -27,6 +32,8 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/address_tool_bar_layout.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/cart_itemview_adapter.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/dialog_alert_price_zero.xml" value="0.25" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/dialog_call.xml" value="0.12635869565217392" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/dialog_rate.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/final_order_itemview_adapter.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_carts.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/fragment_home.xml" value="0.1118659420289855" />
@@ -51,6 +58,7 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_tool_bar_layout.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/search_tool_bar.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/service_detail_adapter.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/vendor_info_adapter.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/menu/navigation.xml" value="0.1796875" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/skip_corner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/a_splash.xml" value="0.14130434782608695" />

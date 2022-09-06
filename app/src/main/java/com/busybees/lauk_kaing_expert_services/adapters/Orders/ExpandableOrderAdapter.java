@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.activity.OrderDetailActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderDataModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.MyOrdersDetailVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.VendorInfoVO;
 import com.busybees.lauk_kaing_expert_services.fragments.OrdersFragment;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
@@ -29,6 +31,8 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<MyOrderDataModel> listDataGroup;
     private List<MyOrdersDetailVO> listDataChild;
+
+    private String vinfo = "";
 
     OrdersFragment fragment = new OrdersFragment();
 
@@ -64,9 +68,8 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
         TextView orderDetailId = convertView.findViewById(R.id.order_id);
         TextView serviceName = convertView.findViewById(R.id.serviceName);
         TextView serviceAmt = convertView.findViewById(R.id.serviceAmt);
-        TextView currency = convertView.findViewById(R.id.currency);
+        LinearLayout layoutStatus = convertView.findViewById(R.id.layout_status);
         TextView serviceStatus = convertView.findViewById(R.id.serviceStatus);
-        TextView payment_status = convertView.findViewById(R.id.payment_status);
 
         RelativeLayout orderDetailLayout = convertView.findViewById(R.id.orderDetailLayout);
 
@@ -88,15 +91,35 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
             }
         }
 
-        serviceStatus.setText(listChild.getStatus());
+        getVendorInfo(listChild.getVendorData());
+
+        if (listChild.getStatus().equalsIgnoreCase("Upcoming")) {
+            serviceStatus.setText("Confirmed");
+        } else {
+            serviceStatus.setText(listChild.getStatus());
+        }
 
         if (listChild.getTotalPrice() == 0) {
-            //currency.setVisibility(View.GONE);
             serviceAmt.setText("Survey");
         } else {
-            //currency.setVisibility(View.VISIBLE);
             serviceAmt.setText(context.getString(R.string.currency) + " " + listChild.getTotalPrice());
         }
+
+        if (String.valueOf(listChild.getStatus()).equalsIgnoreCase(context.getString(R.string.Idle))) {
+            layoutStatus.setBackgroundResource(R.color.idle);
+        }  else if (String.valueOf(listChild.getStatus()).equalsIgnoreCase(context.getString(R.string.Ongoing))) {
+            layoutStatus.setBackgroundResource(R.color.ongoing);
+        } else if (String.valueOf(listChild.getStatus()).equalsIgnoreCase(context.getString(R.string.OCancel))) {
+            layoutStatus.setBackgroundResource(R.color.cancel);
+        }else if (String.valueOf(listChild.getStatus()).equalsIgnoreCase("Upcoming")){
+            layoutStatus.setBackgroundResource(R.color.confirm);
+        }else {
+            layoutStatus.setBackgroundResource(R.color.testing);
+        }
+
+        layoutStatus.setPadding(0,context.getResources().getDimensionPixelOffset(R.dimen.margin6),
+                0,context.getResources().getDimensionPixelSize(R.dimen.margin6));
+
 
         orderDetailLayout.setOnClickListener(v -> {
             Intent intent=new Intent(context, OrderDetailActivity.class);
@@ -168,5 +191,24 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
             lang="en";
         }
         return lang;
+    }
+
+    public String getVendorInfo(List<VendorInfoVO> vobj){
+
+        vinfo = "";
+        if(vobj != null && !vobj.isEmpty()) {
+
+            for (int i = 0; i <vobj.size() ; i++) {
+
+                vinfo=vinfo+"<span style=\"color:#7f7f7f;\">" +"<br><b>NAME</b> : "+vobj.get(i).getVendorName() +"<br><b>PHONE :</b> "+vobj.get(i).getVendorPhone() + "<br/><br/>";
+
+            }
+
+        }else {
+
+        }
+
+        return vinfo.trim();
+
     }
 }

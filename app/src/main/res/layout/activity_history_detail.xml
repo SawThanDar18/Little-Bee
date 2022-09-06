@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin16"
                 android:layout_marginTop="@dimen/margin16"
-                android:layout_marginEnd="@dimen/margin16"
                 android:layout_marginBottom="@dimen/margin16"
                 android:background="@drawable/two_color_shape"
                 android:padding="@dimen/padding8"
@@ -33,6 +32,22 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontSizeMedium"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/re_order_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_marginEnd="@dimen/margin16"
+                android:layout_marginBottom="@dimen/margin16"
+                android:background="@drawable/button_corner_theme"
+                android:padding="@dimen/padding8"
+                android:text="Reorder"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/order_address"
@@ -410,10 +425,37 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/vendor_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_below="@id/order_date_time_view">
+
+                <TextView
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:text="@string/vendor_info"
+                    android:drawableLeft="@drawable/ic_baseline_info_24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin16"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/vendor_info_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/margin16"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/order_date_time_view"
+                android:layout_below="@id/vendor_layout"
                 android:layout_marginBottom="@dimen/margin32">
 
                 <TextView
@@ -430,7 +472,7 @@
                 <TextView
                     android:visibility="gone"
                     android:padding="@dimen/padding4"
-                    android:background="@drawable/rounded_corner_white_color"
+                    android:background="@drawable/two_color_shape"
                     android:id="@+id/rate"
                     android:layout_below="@id/view_receipt"
                     android:textSize="@dimen/fontSizeMedium"

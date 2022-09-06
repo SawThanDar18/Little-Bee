@@ -317,4 +317,12 @@ public class Utility {
             return -1;
         }
     }
+
+    public static String checkLng(Context activity){
+        String lang = AppStorePreferences.getString(activity, AppENUM.LANG);
+        if(lang == null){
+            lang="en";
+        }
+        return lang;
+    }
 }

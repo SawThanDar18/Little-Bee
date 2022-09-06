@@ -27,4 +27,10 @@
     <color name="theme_start_color">#b57c2b</color>
     <color name="theme_end_color">#f3dd88</color>
 
+    <color name="idle">#dd3333</color>
+    <color name="ongoing">#b57c2b</color>
+    <color name="cancel">#b3b3b3</color>
+    <color name="confirm">#7bb23b</color>
+    <color name="testing">#967ddb</color>
+
 </resources>

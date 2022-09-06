@@ -61,6 +61,7 @@
     <dimen name="fontSizeXSmall">12dp</dimen>
     <dimen name="fontSizeSmall">14dp</dimen>
     <dimen name="fontSizeMedium">16dp</dimen>
+    <dimen name="fontSizeXMedium">18dp</dimen>
     <dimen name="fontSizeLarge">20dp</dimen>
     <dimen name="fontSizeXLarge">25dp</dimen>
 

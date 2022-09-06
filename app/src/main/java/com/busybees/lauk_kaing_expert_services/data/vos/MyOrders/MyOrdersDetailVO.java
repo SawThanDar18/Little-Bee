@@ -44,6 +44,10 @@ public class MyOrdersDetailVO implements Serializable {
     @Expose
     private List<ProductPriceVO> productPrice;
 
+    @SerializedName("vendor_info")
+    @Expose
+    private List<VendorInfoVO> vendorData;
+
     @SerializedName("order_address")
     @Expose
     private String orderAddress;
@@ -126,6 +130,14 @@ public class MyOrdersDetailVO implements Serializable {
 
     public void setProductPrice(List<ProductPriceVO> productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public List<VendorInfoVO> getVendorData() {
+        return vendorData;
+    }
+
+    public void setVendorData(List<VendorInfoVO> vendorData) {
+        this.vendorData = vendorData;
     }
 
     public String getOrderAddress() {

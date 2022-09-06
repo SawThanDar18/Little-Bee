@@ -238,4 +238,15 @@
 
     <string name="continue_error_msg">လာရောက်ကြည့်ရှုရမည့်လုပ်ငန်းများနှင့်အခြား လုပ်ငန်းများအား \n အတူတကွဝန်ဆောင်မှုယူ ၍ မရပါ။ \n တစ်ခု ကို ပယ်ဖျက်ပါ။</string>
 
+    <string name="Idle">Idle</string>
+    <string name="Upcoming">Upcoming</string>
+    <string name="Ongoing">Ongoing</string>
+    <string name="Completed">Completed</string>
+    <string name="OCancel">Cancel</string>
+    <string name="Confirmed">Confirmed</string>
+    <string name="OTest">Testing</string>
+
+    <string name="vendor_info">ဝန်ဆောင်မှုပေးမည့်သူ၏ အချက်အလက်များ</string>
+    <string name="call_now">ဖုန်းခေါ်ပါ</string>
+
 </resources>

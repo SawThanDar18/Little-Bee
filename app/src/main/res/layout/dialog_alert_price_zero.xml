@@ -45,7 +45,7 @@
         android:layout_height="@dimen/height60"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:background="@drawable/ic_gold_circle"
-        android:src="@drawable/little_bee_logo" />
+        android:background="@drawable/image_rounded_corner_white_bg"
+        android:src="@drawable/ic_little_bee_logo" />
 
 </RelativeLayout>

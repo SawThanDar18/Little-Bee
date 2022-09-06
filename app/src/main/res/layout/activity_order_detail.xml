@@ -340,7 +340,6 @@
                android:orientation="horizontal"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginBottom="@dimen/margin32"
                android:layout_marginTop="@dimen/margin16"
                android:layout_marginHorizontal="@dimen/margin16"
                android:layout_below="@id/lead_form_one_view">
@@ -407,6 +406,35 @@
 
 
                </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:visibility="gone"
+               android:id="@+id/vendor_layout"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/margin16"
+               android:layout_marginBottom="@dimen/margin32"
+               android:layout_below="@id/order_date_time_view">
+
+               <TextView
+                   android:textSize="@dimen/fontSizeMedium"
+                   android:textStyle="bold"
+                   android:textColor="@color/black"
+                   android:textAllCaps="true"
+                   android:text="@string/vendor_info"
+                   android:drawableLeft="@drawable/ic_baseline_info_24"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="@dimen/margin16"/>
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/vendor_info_recyclerview"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginHorizontal="@dimen/margin16"/>
 
            </LinearLayout>
 

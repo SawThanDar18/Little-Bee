@@ -239,4 +239,14 @@
 
     <string name="continue_error_msg">Sorry! You can\'t order both Survey Request and Other items. \n Please remove Survey Request (or) Other items!</string>
 
+    <string name="Idle">Idle</string>
+    <string name="Upcoming">Upcoming</string>
+    <string name="Ongoing">Ongoing</string>
+    <string name="Completed">Completed</string>
+    <string name="OCancel">Cancel</string>
+    <string name="Confirmed">Confirmed</string>
+    <string name="OTest">Testing</string>
+
+    <string name="vendor_info">Vendor Information</string>
+    <string name="call_now">Call Now</string>
 </resources>

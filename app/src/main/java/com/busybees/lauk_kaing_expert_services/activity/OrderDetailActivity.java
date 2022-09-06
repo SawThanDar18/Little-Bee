@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.LeadFormImageAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.Orders.VendorInfoAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.PhotoItemViewAdapter;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.MyOrdersDetailVO;
 
@@ -26,9 +27,9 @@ import java.util.Locale;
 public class OrderDetailActivity extends AppCompatActivity {
 
     private TextView orderId, orderAddress, orderTime, orderDate;
-    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView;
+    private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView, vendorInfoRecyclerView;
 
-    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView, leadFormOneView;
+    private LinearLayout viewSubTotal, viewDiscount, viewTotal, viewPromoCode, leadFormView, leadFormOneView, vendorInfoLayouot;
     private TextView subtotal, discountTotal, total, promo_discount;
 
     private TextView confirmPrice, title, budget, squareFeet, details;
@@ -36,6 +37,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private ImageView back;
 
     private MyOrdersDetailAdapter myOrdersDetailAdapter;
+    private VendorInfoAdapter vendorInfoAdapter;
     private LinearLayoutManager layoutManager, leadFormLayoutManager;
 
     private MyOrdersDetailVO myOrdersDetailVO = new MyOrdersDetailVO();
@@ -73,6 +75,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         back = findViewById(R.id.back_button);
         leadFormOneView = findViewById(R.id.lead_form_one_view);
         leadFormOnePhotosRecyclerView = findViewById(R.id.lead_form_one_photos_recyclerview);
+        vendorInfoLayouot = findViewById(R.id.vendor_layout);
+        vendorInfoRecyclerView = findViewById(R.id.vendor_info_recyclerview);
 
         if (getIntent() != null) {
             myOrdersDetailVO = (MyOrdersDetailVO) getIntent().getSerializableExtra("order_detail");
@@ -125,6 +129,12 @@ public class OrderDetailActivity extends AppCompatActivity {
                 leadFormOneView.setVisibility(View.GONE);
             }
 
+            if (myOrdersDetailVO.getStatus().equalsIgnoreCase("Ongoing") || myOrdersDetailVO.getStatus().equalsIgnoreCase("Upcoming") || myOrdersDetailVO.getStatus().equalsIgnoreCase("Confirmed")){
+                vendorInfoLayouot.setVisibility(View.VISIBLE);
+            }else {
+                vendorInfoLayouot.setVisibility(View.GONE);
+            }
+
         }
 
         back.setOnClickListener(v-> finish());
@@ -164,7 +174,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private void setUpAdapter() {
         myOrdersDetailAdapter = new MyOrdersDetailAdapter(this, myOrdersDetailVO.getProductPrice());
         orderDetailRecyclerView.setAdapter(myOrdersDetailAdapter);
-        layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         orderDetailRecyclerView.setLayoutManager(layoutManager);
 
         leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -172,6 +182,11 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         leadFormOnePhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
+
+        vendorInfoAdapter = new VendorInfoAdapter(this, myOrdersDetailVO.getVendorData(), myOrdersDetailVO.getStatus());
+        vendorInfoRecyclerView.setAdapter(vendorInfoAdapter);
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        vendorInfoRecyclerView.setLayoutManager(layoutManager);
     }
 
     void makeStatusBarVisible() {

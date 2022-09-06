@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/padding4"
+    android:background="@drawable/dialog_corner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_gravity="right"
+        android:src="@drawable/ic_baseline_close_24"
+        android:layout_width="@dimen/width30"
+        android:layout_height="@dimen/height30"/>
+
+    <TextView
+        android:layout_marginRight="@dimen/margin10"
+        android:layout_marginLeft="@dimen/margin10"
+        android:textColor="@color/black"
+        android:id="@+id/app_rating"
+        android:layout_marginTop="@dimen/margin6"
+        android:textStyle="bold"
+        android:textSize="@dimen/fontSizeMedium"
+        android:text="Rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RatingBar
+        android:stepSize="1"
+        android:id="@+id/rate_app_rating"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:theme="@style/RatingBar"
+        android:layout_marginTop="@dimen/margin8"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
