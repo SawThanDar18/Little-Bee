@@ -104,6 +104,12 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 subtotal.setText(getString(R.string.currency) + " " + myHistoryDetailVO.getOriginalTotal());
             }
 
+            if (myHistoryDetailVO.getTotalDiscount() == 0 && myHistoryDetailVO.getPromoTotalDiscount() == 0) {
+                viewSubTotal.setVisibility(View.GONE);
+            } else {
+                viewSubTotal.setVisibility(View.VISIBLE);
+            }
+
             if (myHistoryDetailVO.getTotalDiscount() == 0) {
                 viewDiscount.setVisibility(View.GONE);
             } else {
@@ -144,11 +150,11 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 }
             }
 
-            /*if (myHistoryDetailVO.getOverallRating() == 0) {
+            if (myHistoryDetailVO.getOverAllRating() == 0) {
                 rate.setVisibility(View.VISIBLE);
                 rate.setOnClickListener(v -> {
-                    if (myHistoryDetailVO.getOverallRating()==0){
-                        DialogRating dialogRating=new DialogRating(questionsVOArrayList, receiptModel);
+                    if (myHistoryDetailVO.getOverAllRating()==0){
+                        DialogRating dialogRating=new DialogRating(questionsVOArrayList, myHistoryDetailVO);
                         dialogRating.show(getSupportFragmentManager(),"");
                     }else {
                         Utility.showToast(HistoryDetailActivity.this,getString(R.string.all_ready_rated));
@@ -157,7 +163,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 });
             } else {
                 rate.setVisibility(View.GONE);
-            }*/
+            }
 
         }
 
@@ -217,7 +223,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
         leadFormLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         leadFormOnePhotosRecyclerView.setLayoutManager(leadFormLayoutManager);
 
-        //vendorInfoAdapter = new HistoryVendorInfoAdapter(this, myOrdersDetailVO.getVendorData());
+        vendorInfoAdapter = new HistoryVendorInfoAdapter(this, myHistoryDetailVO.getVendorData());
         vendorInfoRecyclerView.setAdapter(vendorInfoAdapter);
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         vendorInfoRecyclerView.setLayoutManager(layoutManager);

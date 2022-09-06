@@ -51,7 +51,10 @@ public class DialogRating extends BottomSheetDialogFragment {
             } else  {
                 rate.setText(questionsList.get(1).getServiceRating());
             }
-        }else{
+        } else if (Utility.checkLng(getActivity()).equalsIgnoreCase("zh")) {
+            rate.setText(questionsList.get(2).getServiceRating());
+        }
+        else{
             rate.setText(questionsList.get(0).getServiceRating());
         }
 

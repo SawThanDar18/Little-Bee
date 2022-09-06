@@ -77,7 +77,7 @@ public class ReceiptDetailActivity extends AppCompatActivity {
                 c_add.setText(receiptModel.getOrderAddress());
                 cust_id.setText(receiptModel.getCustomerId());
                 orderid.setText(String.valueOf(receiptModel.getOrderDetailId()));
-                //rec_no.setText(String.valueOf(receiptModel.getRecNo()));
+                rec_no.setText(String.valueOf(receiptModel.getRecNumber()));
 
                 if (receiptModel.getOriginalTotal() == 0) {
                     viewSubTotal.setVisibility(View.GONE);

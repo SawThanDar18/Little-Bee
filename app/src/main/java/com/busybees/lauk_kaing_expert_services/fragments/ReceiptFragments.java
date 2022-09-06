@@ -187,7 +187,7 @@ public class ReceiptFragments extends Fragment {
     }
 
     private void showOrders() {
-        expandableListViewAdapter = new ExpandableReceiptAdapter(getActivity(), groupList, childList, null);
+        expandableListViewAdapter = new ExpandableReceiptAdapter(getActivity(), groupList, childList, questionsVOArrayList);
 
         receiptExpandableListView.setAdapter(expandableListViewAdapter);
 

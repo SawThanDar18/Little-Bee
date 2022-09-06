@@ -161,7 +161,11 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
         }
 
         TextView order_completed_time_date = convertView.findViewById(R.id.order_completed_time_date);
-        order_completed_time_date.setText("2022-08-26");
+        if (grouplist.getOrderCompletedDate() == null) {
+            order_completed_time_date.setText("2022-08-26");
+        } else {
+            order_completed_time_date.setText(grouplist.getOrderCompletedDate());
+        }
 
         return convertView;
     }

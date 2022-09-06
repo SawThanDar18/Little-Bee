@@ -187,7 +187,7 @@
     <string name="lead_form_detail_label">Details</string>
 
     <string name="lead_form_title">Please Describe Details.</string>
-    <string name="lead_form_budget">0.0 CNY</string>
+    <string name="lead_form_budget">¥ 0.0</string>
     <string name="length_txt">length</string>
     <string name="width_txt">width</string>
     <string name="lead_form_photo_upload_txt">Upload Photos</string>

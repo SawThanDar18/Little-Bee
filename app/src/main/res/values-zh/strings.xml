@@ -187,7 +187,7 @@
     <string name="lead_form_detail_label">细节</string>
 
     <string name="lead_form_title">请描述详细信息。</string>
-    <string name="lead_form_budget">0.0 元</string>
+    <string name="lead_form_budget">元 0.0</string>
     <string name="length_txt">长度</string>
     <string name="width_txt">宽度</string>
     <string name="lead_form_photo_upload_txt">上传照片</string>

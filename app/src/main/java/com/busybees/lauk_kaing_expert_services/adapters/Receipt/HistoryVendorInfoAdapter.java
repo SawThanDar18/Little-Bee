@@ -69,7 +69,7 @@ public class HistoryVendorInfoAdapter extends RecyclerView.Adapter<HistoryVendor
     public class MyViewHolder extends RecyclerView.ViewHolder  {
 
         private TextView serviceName,name,phone,code;
-        private Button call_now;
+        private ImageView call_now;
         private ImageView copy;
 
         public MyViewHolder(View view) {

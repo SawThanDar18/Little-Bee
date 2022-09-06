@@ -2,6 +2,7 @@ package com.busybees.lauk_kaing_expert_services.data.vos.MyHistory;
 
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.GeneralFormInfoVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.ProductPriceVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.MyOrders.VendorInfoVO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,6 +10,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MyHistoryDetailVO implements Serializable {
+
+    @SerializedName("rec_number")
+    @Expose
+    private int recNumber;
 
     @SerializedName("order_detail_id")
     @Expose
@@ -50,6 +55,10 @@ public class MyHistoryDetailVO implements Serializable {
     @Expose
     private List<ProductPriceVO> productPrice;
 
+    @SerializedName("vendor_info")
+    @Expose
+    private List<VendorInfoVO> vendorData;
+
     @SerializedName("customer_id")
     @Expose
     private String customerId;
@@ -65,6 +74,18 @@ public class MyHistoryDetailVO implements Serializable {
     @SerializedName("general_forminfo")
     @Expose
     private GeneralFormInfoVO generalFormInfo;
+
+    @SerializedName("over_all_rating")
+    @Expose
+    private int overAllRating;
+
+    public int getRecNumber() {
+        return recNumber;
+    }
+
+    public void setRecNumber(int recNumber) {
+        this.recNumber = recNumber;
+    }
 
     public int getOrderDetailId() {
         return orderDetailId;
@@ -146,6 +167,14 @@ public class MyHistoryDetailVO implements Serializable {
         this.productPrice = productPrice;
     }
 
+    public List<VendorInfoVO> getVendorData() {
+        return vendorData;
+    }
+
+    public void setVendorData(List<VendorInfoVO> vendorData) {
+        this.vendorData = vendorData;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
@@ -176,5 +205,13 @@ public class MyHistoryDetailVO implements Serializable {
 
     public void setGeneralFormInfo(GeneralFormInfoVO generalFormInfo) {
         this.generalFormInfo = generalFormInfo;
+    }
+
+    public int getOverAllRating() {
+        return overAllRating;
+    }
+
+    public void setOverAllRating(int overAllRating) {
+        this.overAllRating = overAllRating;
     }
 }

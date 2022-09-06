@@ -93,6 +93,12 @@ public class OrderDetailActivity extends AppCompatActivity {
                 subtotal.setText(getString(R.string.currency) + " " + myOrdersDetailVO.getOriginalTotal());
             }
 
+            if (myOrdersDetailVO.getTotalDiscount() == 0 && myOrdersDetailVO.getPromoTotalDiscount() == 0) {
+                viewSubTotal.setVisibility(View.GONE);
+            } else {
+                viewSubTotal.setVisibility(View.VISIBLE);
+            }
+
             if (myOrdersDetailVO.getTotalDiscount() == 0) {
                 viewDiscount.setVisibility(View.GONE);
             } else {
