@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/padding10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_baseline_cancel_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/margin6"
+        android:layout_above="@id/btn_rate"
+        android:layout_below="@id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:id="@+id/overall_rating"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/overall_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:stepSize="1"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:theme="@style/RatingBar"
+                    android:id="@+id/rate_overall_rating"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_marginBottom="@dimen/margin6"
+                    android:background="@color/dark_grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height1"/>
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/margin6"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:text="@string/other_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="@dimen/margin2"
+                    android:layout_marginRight="@dimen/margin2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding10"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/service_rating"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <RatingBar
+                            android:stepSize="1"
+                            android:isIndicator="false"
+                            android:id="@+id/rate_service_rating"
+                            android:layout_gravity="right"
+                            style="@style/Widget.AppCompat.RatingBar"
+                            android:theme="@style/RatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_vendor_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="@dimen/margin2"
+                    android:layout_marginRight="@dimen/margin2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding10"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/app_rating"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="rating"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <RatingBar
+                            android:stepSize="1"
+                            android:isIndicator="false"
+                            android:id="@+id/rate_app_rating"
+                            android:layout_gravity="right"
+                            android:theme="@style/RatingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="@dimen/margin2"
+                    android:layout_marginRight="@dimen/margin2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding10"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/price_rating"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="rating"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <RatingBar
+                            android:stepSize="1"
+                            android:isIndicator="false"
+                            android:id="@+id/rate_price_rating"
+                            android:layout_gravity="right"
+                            android:theme="@style/RatingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="@dimen/margin2"
+                    android:layout_marginRight="@dimen/margin2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding10"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/cust_support_rating"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="rating"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <RatingBar
+                            android:stepSize="1"
+                            android:id="@+id/rate_cust_support_rating"
+                            android:layout_gravity="right"
+                            android:isIndicator="false"
+                            android:theme="@style/RatingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="@dimen/margin2"
+                    android:layout_marginRight="@dimen/margin2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:padding="@dimen/padding10"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+
+                        <TextView
+                            android:id="@+id/arrival_on_time_rating"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="rating"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <RatingBar
+                            android:stepSize="1"
+                            android:isIndicator="false"
+                            android:id="@+id/rate_arrival_on_time_rating"
+                            android:layout_gravity="right"
+                            android:theme="@style/RatingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <include layout="@layout/material_loader_layout"/>
+
+                <TextView
+                    android:layout_marginTop="@dimen/margin10"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSizeMedium"
+                    android:text="@string/other_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:background="@drawable/round_corner_grey_stroke_color"
+                    android:padding="@dimen/padding10"
+                    android:layout_marginTop="@dimen/margin6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height80">
+
+                    <EditText
+                        android:gravity="start"
+                        android:background="@color/white"
+                        android:id="@+id/comment"
+                        android:textSize="@dimen/fontSizeMedium"
+                        android:hint="@string/comment"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_rate"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@drawable/two_color_shape"
+        android:text="@string/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

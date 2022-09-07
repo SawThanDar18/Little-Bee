@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.activity.RatingActivity;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
@@ -58,17 +59,14 @@ public class DialogRating extends BottomSheetDialogFragment {
             rate.setText(questionsList.get(0).getServiceRating());
         }
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                dismiss();
-                /*Intent intent=new Intent(getActivity(), RatingActivity.class);
-                intent.putExtra("history_data", orderDetailsObject);
-                intent.putExtra("rate_question", questionsList);
-                intent.putExtra("rate_count", ratingBar.getRating());
-                startActivity(intent);
-                getActivity().finish();*/
-            }
+        ratingBar.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+            dismiss();
+            Intent intent=new Intent(getActivity(), RatingActivity.class);
+            intent.putExtra("history_data", orderDetailsObject);
+            intent.putExtra("rate_question", questionsList);
+            intent.putExtra("rate_count", ratingBar.getRating());
+            startActivity(intent);
+            getActivity().finish();
         });
 
 

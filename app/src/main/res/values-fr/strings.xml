@@ -248,4 +248,8 @@
     <string name="vendor_info">ဝန္ေဆာင္မႈေပးမည့္သူ၏ အခ်က္အလက္မ်ား</string>
     <string name="call_now">ဖုန္းေခၚပါ</string>
 
+    <string name="overall_rate">သတ္မွတ္ခ်က္ အားလုံး</string>
+    <string name="service_provider">Service ေပးသူ</string>
+    <string name="send">ပို႔မည္</string>
+
 </resources>

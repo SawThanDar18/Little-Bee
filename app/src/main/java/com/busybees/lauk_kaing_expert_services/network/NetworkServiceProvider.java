@@ -15,6 +15,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryMo
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
+import com.busybees.lauk_kaing_expert_services.data.models.SaveOrderReview.SaveOrderReviewModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
 import com.busybees.lauk_kaing_expert_services.data.models.UserGuide.UserGuideModel;
@@ -22,6 +23,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObjec
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.MatchPromoCodeObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.SaveOrderReview.SaveOrderReviewVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddAddressSync;
@@ -60,6 +62,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetUserGuideSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderReviewSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveTokenSync;
 
@@ -185,6 +188,11 @@ public class NetworkServiceProvider {
     public Call<SaveTokenModel> GetSaveNotiTokenCall(String url, SaveTokenObj saveTokenObj) {
         SaveTokenSync sync = retrofit.create(SaveTokenSync.class);
         return sync.getSaveToken(url,saveTokenObj);
+    }
+
+    public Call<SaveOrderReviewModel> SOReview (String url, SaveOrderReviewVO soReviewObj) {
+        SaveOrderReviewSync sync=retrofit.create(SaveOrderReviewSync.class);
+        return sync.getSOReview(url, soReviewObj);
     }
 
 }

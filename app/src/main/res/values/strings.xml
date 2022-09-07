@@ -249,4 +249,9 @@
 
     <string name="vendor_info">Vendor Information</string>
     <string name="call_now">Call Now</string>
+
+    <string name="overall_rate">Overall Rating</string>
+    <string name="service_provider">Service Provider</string>
+    <string name="send">Send</string>
+
 </resources>

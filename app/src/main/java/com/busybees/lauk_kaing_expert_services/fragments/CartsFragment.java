@@ -114,7 +114,7 @@ public class CartsFragment extends Fragment {
                 noLogInView.setVisibility(View.GONE);
                 logInView.setVisibility(View.VISIBLE);
                 cartTimeline.setVisibility(View.VISIBLE);
-                CallGetCart();
+                //CallGetCart();
             } else {
                 noLogInView.setVisibility(View.VISIBLE);
                 logInView.setVisibility(View.GONE);
@@ -129,7 +129,7 @@ public class CartsFragment extends Fragment {
 
         setUpAdapter();
         onClick();
-        CallGetCart();
+        //CallGetCart();
 
         return view;
     }
@@ -337,7 +337,7 @@ public class CartsFragment extends Fragment {
 
                     } else if (response.body().getError() == false) {
 
-                        CallGetCart();
+                        //CallGetCart();
 
                     }
 
@@ -364,7 +364,7 @@ public class CartsFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                CallGetCart();
+                //CallGetCart();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -428,7 +428,7 @@ public class CartsFragment extends Fragment {
 
         reloadBtn.setOnClickListener(v -> {
             if (Utility.isOnline(getActivity())) {
-                CallGetCart();
+                //CallGetCart();
             } else {
                 Utility.showToast(getActivity(), getString(R.string.no_internet));
             }

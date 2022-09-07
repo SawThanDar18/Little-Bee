@@ -247,4 +247,8 @@
     <string name="vendor_info">供应商信息</string>
     <string name="call_now">现在打电话</string>
 
+    <string name="overall_rate">综合评分</string>
+    <string name="service_provider">服务提供者</string>
+    <string name="send">发送</string>
+
 </resources>

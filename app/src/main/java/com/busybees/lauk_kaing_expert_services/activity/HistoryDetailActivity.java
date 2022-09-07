@@ -53,6 +53,8 @@ public class HistoryDetailActivity extends AppCompatActivity {
     List<String> photos = new ArrayList<>();
     List<String> image_URLs = new ArrayList<>();
 
+    private int key = 0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +164,11 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
                 });
             } else {
+                rate.setVisibility(View.GONE);
+            }
+
+            key = getIntent().getIntExtra("key", 0);
+            if (key == 1) {
                 rate.setVisibility(View.GONE);
             }
 

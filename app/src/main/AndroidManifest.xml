@@ -109,6 +109,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.UserGuideActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RatingActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
