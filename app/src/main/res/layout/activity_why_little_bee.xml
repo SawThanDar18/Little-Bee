@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/headerImage"
-        android:layout_width="@dimen/width150"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/height150"
         android:layout_below="@+id/tool_bar"
         android:background="@drawable/ic_little_bee_logo_vertical"
@@ -40,7 +40,7 @@
                 android:id="@+id/verifiedProfessional"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin6"
+                android:layout_marginBottom="@dimen/margin16"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -53,7 +53,6 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding4"
                     android:layout_marginStart="@dimen/margin10"
-                    android:layout_marginTop="@dimen/margin10"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/fontSizeMedium"
                     android:text="@string/one"
@@ -63,7 +62,7 @@
 
             <LinearLayout
                 android:id="@+id/cleaning"
-                android:layout_marginBottom="@dimen/margin6"
+                android:layout_marginBottom="@dimen/margin16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -88,10 +87,10 @@
                 android:id="@+id/mmk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin16"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginBottom="@dimen/margin6"
                     android:layout_width="@dimen/width60"
                     android:layout_height="@dimen/height60"
                     app:srcCompat="@drawable/three" />
@@ -111,6 +110,7 @@
                 android:id="@+id/hour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin16"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -122,12 +122,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin10"
-                    android:layout_marginTop="@dimen/margin10"
                     android:textSize="@dimen/fontSizeMedium"
                     android:text="@string/five"
                     android:textColor="@color/black" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
