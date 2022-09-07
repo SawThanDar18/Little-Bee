@@ -26,6 +26,7 @@ import com.busybees.lauk_kaing_expert_services.EventBus.EventBusChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCall;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.EventBusCartObj;
 import com.busybees.lauk_kaing_expert_services.EventBusModel.GoToCart;
+import com.busybees.lauk_kaing_expert_services.activity.NotificationActivity;
 import com.busybees.lauk_kaing_expert_services.adapters.Home.ViewPagerAdapter;
 import com.busybees.lauk_kaing_expert_services.fragments.CartsFragment;
 import com.busybees.lauk_kaing_expert_services.fragments.HomeFragment;
@@ -347,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 if (String.valueOf(jsonObject.get("status")).equals("All")) {
 
-                    //startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+                    startActivity(new Intent(MainActivity.this, NotificationActivity.class));
 
                 }
 

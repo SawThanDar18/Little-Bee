@@ -126,6 +126,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/about_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
                     android:layout_marginLeft="@dimen/margin32"
@@ -192,7 +193,7 @@
                     android:orientation="vertical" />
 
                 <LinearLayout
-                    android:id="@+id/guarantee"
+                    android:id="@+id/why_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height50"
                     android:layout_marginLeft="@dimen/margin24"
@@ -426,7 +427,7 @@
                         android:layout_marginLeft="@dimen/margin8"
                         android:gravity="center_vertical"
                         android:padding="@dimen/padding1"
-                        android:text="Version: 1.0.0"
+                        android:text="@string/version"
                         android:textColor="@color/home_service_title_color"
                         android:textSize="@dimen/fontSizeSmall" />
                 </LinearLayout>

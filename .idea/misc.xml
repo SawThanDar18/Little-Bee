@@ -16,6 +16,8 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/image_rounded_corner_stroke_bg.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/image_rounded_corner_white_bg.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/round_corner_grey_stroke_color.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/about_tool_bar_layout.xml" value="0.12635869565217392" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_about.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_address.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_choose_language.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_final_order.xml" value="0.1118659420289855" />
@@ -24,14 +26,17 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_image_lead_form.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_imageview.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_notification.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_order_detail.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_payment.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_profile.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_rating.xml" value="0.25" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_register.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_search.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_service_detail.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_thanks.xml" value="0.16666666666666666" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_user_guide.xml" value="0.1118659420289855" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/activity_why_little_bee.xml" value="0.14272474513438368" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/address_tool_bar_layout.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/cart_itemview_adapter.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/dialog_alert_price_zero.xml" value="0.25" />
@@ -48,9 +53,12 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_detail.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/lead_form_one_detail.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/my_orders_detail_itemview.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/notification_adapter.xml" value="0.12635869565217392" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/notification_tool_bar_layout.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/onboarding_slide_layout.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/order_detail_tool_bar_layout.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/order_expandable_list_child_view.xml" value="0.25" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/order_expandable_list_group_view.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/order_history_detail_tool_bar_layout.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/payment_receipt_item_view.xml" value="0.14130434782608695" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/photo_itemview.xml" value="0.14130434782608695" />
@@ -63,6 +71,7 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/service_detail_adapter.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/vendor_info_adapter.xml" value="0.25" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/vendor_rate_adapter.xml" value="0.12635869565217392" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/why_tool_bar_layout.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/menu/navigation.xml" value="0.1796875" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/drawable/skip_corner.xml" value="0.1025" />
         <entry key="..\:/SawThandar/lauk_kaing_expert_services/app/src/main/res/layout/a_splash.xml" value="0.14130434782608695" />

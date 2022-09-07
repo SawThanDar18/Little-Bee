@@ -111,7 +111,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
             myHistoryDetailVO = (MyHistoryDetailVO) getIntent().getSerializableExtra("receipt_data");
             questionsVOArrayList = (ArrayList<QuestionsVO>) getIntent().getSerializableExtra("question");
 
-            orderId.setText("Order No : "+ myHistoryDetailVO.getOrderDetailId());
+            orderId.setText(getString(R.string.order_no) + myHistoryDetailVO.getOrderDetailId());
             orderAddress.setText(myHistoryDetailVO.getOrderAddress());
             orderDate.setText(myHistoryDetailVO.getDate());
             orderTime.setText(myHistoryDetailVO.getTime());
@@ -214,8 +214,6 @@ public class HistoryDetailActivity extends AppCompatActivity {
                 reOrderProductPriceVO.setQuantity(String.valueOf(myHistoryDetailVO.getProductPrice().get(0).getQuantity()));
                 reOrderProductPriceVO.setProduct_price_id(String.valueOf(myHistoryDetailVO.getProductPrice().get(0).getProductPriceId()));
             }
-
-            Log.e("ProductPriceId>>", reOrderProductPriceVO.getProduct_price_id());
 
             reOrderVO.setProductPriceObject(reOrderProductPriceVO);
             reOrderVO.setPhone(userVO.getPhone());

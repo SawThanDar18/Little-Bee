@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <include  android:id="@+id/tool_bar"
+        layout="@layout/about_tool_bar_layout" />
+
+    <TextView
+        android:layout_below="@+id/tool_bar"
+        android:id="@+id/text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fontSizeMedium"
+        app:autoSizeTextType="uniform"
+        android:layout_marginVertical="@dimen/margin16"
+        android:layout_marginHorizontal="@dimen/margin16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_us_data" />
+
+
+</RelativeLayout>

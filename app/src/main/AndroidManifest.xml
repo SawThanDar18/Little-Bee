@@ -111,6 +111,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.RatingActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NotificationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WhyLittleBeeActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

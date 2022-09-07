@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/notification_tool_bar_layout" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/no_data"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/padding10"
+        android:layout_gravity="center"
+        android:background="@drawable/two_color_shape"
+        android:textSize="@dimen/fontSizeMedium"
+        android:textColor="@color/black"
+        android:text="@string/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_below="@+id/tool_bar"
+        android:id="@+id/loginView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_noti"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <include layout="@layout/material_loader_layout" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_login_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:padding="@dimen/padding10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/padding2"
+                android:text="@string/please_login"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSizeMedium" />
+
+            <Button
+                android:id="@+id/go_to_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin16"
+                android:background="@drawable/rounded_corner_pink_accent_line_stroke"
+                android:padding="@dimen/padding8"
+                android:text="@string/go_to_login"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/reload_page"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="@dimen/padding4"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height300"
+            android:src="@drawable/no_connection"/>
+
+        <Button
+            android:id="@+id/btn_reload_page"
+            android:layout_marginTop="@dimen/margin8"
+            android:padding="@dimen/margin8"
+            android:textAllCaps="false"
+            android:textSize="@dimen/fontSizeMedium"
+            android:textColor="@color/black"
+            android:text="@string/reload_page"
+            android:layout_gravity="center"
+            android:background="@drawable/two_color_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

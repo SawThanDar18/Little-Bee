@@ -23,9 +23,11 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.lauk_kaing_expert_services.activity.AboutActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ChooseLanguageActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ThanksActivity;
 import com.busybees.lauk_kaing_expert_services.activity.UserGuideActivity;
+import com.busybees.lauk_kaing_expert_services.activity.WhyLittleBeeActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
@@ -51,7 +53,7 @@ public class MoreFragment extends Fragment {
 
     private NetworkServiceProvider networkServiceProvider;
 
-    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs;
+    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs, aboutLittleBee, whyLittleBee;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
     private CircleImageView profiles;
@@ -83,6 +85,8 @@ public class MoreFragment extends Fragment {
         progressBar = view.findViewById(R.id.materialLoader);
         userGuide = view.findViewById(R.id.userGuide);
         contactUs = view.findViewById(R.id.contactUs);
+        aboutLittleBee = view.findViewById(R.id.about_layout);
+        whyLittleBee = view.findViewById(R.id.why_layout);
 
         onClick();
         userProfileView();
@@ -146,6 +150,10 @@ public class MoreFragment extends Fragment {
         contactUs.setOnClickListener(v -> {
             //startActivity(new Intent(getContext(), ChooseLanguageActivity.class));
         });
+
+        aboutLittleBee.setOnClickListener(v -> startActivity(new Intent(getContext(), AboutActivity.class)));
+
+        whyLittleBee.setOnClickListener(v-> startActivity(new Intent(getContext(), WhyLittleBeeActivity.class)));
     }
 
     private void CallUserProfile(GetUserProfileObject getUserProfileObject) {

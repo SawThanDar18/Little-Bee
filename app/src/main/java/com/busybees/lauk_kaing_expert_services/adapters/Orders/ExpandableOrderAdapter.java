@@ -100,7 +100,7 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
         }
 
         if (listChild.getTotalPrice() == 0) {
-            serviceAmt.setText("Survey");
+            serviceAmt.setText(context.getString(R.string.survey_label));
         } else {
             serviceAmt.setText(context.getString(R.string.currency) + " " + listChild.getTotalPrice());
         }
@@ -165,7 +165,7 @@ public class ExpandableOrderAdapter extends BaseExpandableListAdapter {
         TextView reference_no = convertView.findViewById(R.id.reference_no);
 
         order_created_time_date.setText(groupList.getOrderCreatedDate());
-        reference_no.setText("Reference No - " + groupList.getReferenceNo());
+        reference_no.setText(context.getString(R.string.reference_no) + " " + groupList.getReferenceNo());
 
         return convertView;
     }

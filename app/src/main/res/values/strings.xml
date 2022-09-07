@@ -22,6 +22,7 @@
     <string name="change_language">Change Language</string>
     <string name="payment_option">Payment Information</string>
     <string name="logout">Logout</string>
+    <string name="version">Version: 1.0.0</string>
 
     <string name="english_title">English</string>
     <string name="myanmar_title">Myanmar</string>
@@ -170,6 +171,7 @@
     <string name="cancel">Cancel</string>
     <string name="survey_request">Survey Requested</string>
     <string name="survey">Survey Request</string>
+    <string name="survey_label">Survey</string>
     <string name="add_service_first">Please select service first.</string>
     <string name="qty_zero">Quantity must have at least one. If you don\'t want you can click delete button.</string>
     <string name="no_item_cart">No item in cart</string>
@@ -253,5 +255,19 @@
     <string name="overall_rate">Overall Rating</string>
     <string name="service_provider">Service Provider</string>
     <string name="send">Send</string>
+
+    <string name="noti_title">Notifications</string>
+
+    <string name="reference_no">Reference No - </string>
+    <string name="order_no">Order No.</string>
+    <string name="order_count">Order Count . </string>
+
+    <string name="about_us_data">Little Bees is the first online leading expert services provider in Myanmar and was founded since 2022 by a team of property management, service industries, information technology specialist and young entrepreneurs.\n \nLittle Bees is your one-stop solution to sort all your expert needs ranging from structuring to maintenance, professionally, swiftly and convenitently.\n \nWe simplify your everyday living with a varity of Expert seivices across major cities of Myanmar, delivered by verified &amp; qualified processional only.</string>
+
+    <string name="one">\u2022 <b>360<sup>\u2022</sup> Services</b> \n Available all services in one place</string>
+    <string name="two">\u2022  <b>Price Transparency</b></string>
+    <string name="three">\u2022  <b>Trusted Partners</b> </string>
+    <string name="four">\u2022  <b>24 Hours Available</b> \n Services are available for 24 Hours</string>
+    <string name="five">\u2022  <b>We reach you within 3 hours </b> \n Save your time and we help you \n within 3 hours to your place.	</string>
 
 </resources>

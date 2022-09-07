@@ -13,6 +13,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
+import com.busybees.lauk_kaing_expert_services.data.models.Notifications.NotificationsModel;
 import com.busybees.lauk_kaing_expert_services.data.models.ReOrder.ReOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
@@ -64,6 +65,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetUserGuideSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.NotificationSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.ReOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderReviewSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
@@ -201,6 +203,11 @@ public class NetworkServiceProvider {
     public Call<ReOrderModel> ReOrder (String url, ReOrderVO reOrderObj) {
         ReOrderSync sync=retrofit.create(ReOrderSync.class);
         return sync.getReOrder(url,reOrderObj);
+    }
+
+    public Call<NotificationsModel> Notification (String url, RequestPhoneObject phoneObj) {
+        NotificationSync sync=retrofit.create(NotificationSync.class);
+        return sync.getNoti(url,phoneObj);
     }
 
 }

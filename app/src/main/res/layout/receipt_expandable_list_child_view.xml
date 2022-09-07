@@ -42,7 +42,7 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/fontSizeSmall"
                         android:textColor="@color/black"
-                        android:text="Order No."
+                        android:text="@string/order_no"
                         android:textAllCaps="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -99,7 +99,7 @@
                     <TextView
                         android:textSize="@dimen/fontSizeSmall"
                         android:textColor="@color/home_service_name_color"
-                        android:text="Order Count . "
+                        android:text="@string/order_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -130,7 +130,7 @@
                     android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total"
+                    android:text="@string/total"
                     android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeSmall" />
 

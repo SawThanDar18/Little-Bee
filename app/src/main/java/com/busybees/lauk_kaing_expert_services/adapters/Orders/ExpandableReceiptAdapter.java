@@ -87,7 +87,14 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
             }
 
             order_id.setText(String.valueOf(listchild.getOrderDetailId()));
-            //rating_bar_small.setRating(listchild.getOverallRating());
+
+            if (listchild.getOverAllRating() != 0) {
+                rating_bar_small.setVisibility(View.VISIBLE);
+                rating_bar_small.setRating(listchild.getOverAllRating());
+            } else {
+                rating_bar_small.setVisibility(View.GONE);
+            }
+
             order_count.setText(String.valueOf(productModels.size()));
 
             if (listchild.getTotalPrice() != 0) {
@@ -95,7 +102,7 @@ public class ExpandableReceiptAdapter extends BaseExpandableListAdapter {
                 total.setText(context.getString(R.string.currency) + " " + listchild.getTotalPrice());
             } else {
                 totalTxt.setVisibility(View.GONE);
-                total.setText("Survey");
+                total.setText(context.getString(R.string.survey_label));
             }
 
         } else {

@@ -81,7 +81,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         if (getIntent() != null) {
             myOrdersDetailVO = (MyOrdersDetailVO) getIntent().getSerializableExtra("order_detail");
 
-            orderId.setText("Order No : "+ myOrdersDetailVO.getOrderDetailId());
+            orderId.setText(getString(R.string.order_no) + myOrdersDetailVO.getOrderDetailId());
             orderAddress.setText(myOrdersDetailVO.getOrderAddress());
             orderDate.setText(myOrdersDetailVO.getDate());
             orderTime.setText(myOrdersDetailVO.getTime());

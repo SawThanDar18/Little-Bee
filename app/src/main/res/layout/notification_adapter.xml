@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="@dimen/margin6"
+    android:layout_marginVertical="@dimen/margin4"
+    android:paddingTop="@dimen/padding4"
+    android:paddingHorizontal="@dimen/padding4"
+    app:cardBackgroundColor="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/noitText"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/margin6"
+            android:textSize="@dimen/fontSizeMedium"
+            android:padding="@dimen/padding2" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:minHeight="@dimen/height35"
+            android:textSize="@dimen/fontSizeXMedium"
+            android:textColor="@color/theme_color"
+            android:textStyle="bold"
+            android:padding="@dimen/padding2" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="@dimen/fontSizeMedium"
+            android:minHeight="@dimen/height50"
+            android:textColor="@color/black"
+            android:padding="@dimen/padding2" />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

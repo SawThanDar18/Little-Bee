@@ -24,6 +24,7 @@
     <string name="change_language">ဘာသာစကား</string>
     <string name="payment_option">ငွေပေးချေရန်</string>
     <string name="logout">ထွက်မည်။</string>
+    <string name="version">Version: 1.0.0</string>
 
     <string name="english_title">အင်္ဂလိပ်</string>
     <string name="myanmar_title">မြန်မာ</string>
@@ -171,6 +172,7 @@
     <string name="cancel"> မလုပ်ပါ</string>
     <string name="survey_request">လာစစ်ရန်အတွက် ဆက်လက်လုပ်ဆောင်ပါ</string>
     <string name="survey">လာစစ်ရန်</string>
+    <string name="survey_label">လာစစ်ရန်</string>
     <string name="add_service_first">ဝန်ဆောင်မှုအရင်ရွေးပါ။</string>
 
     <string name="qty_zero">ရွေးချယ်ထားသော အော်ဒါ ပယ်ဖျက်လိုပါက ပယ်ဖျက် ကို နှိပ်ပေးပါ။</string>
@@ -252,5 +254,21 @@
     <string name="overall_rate">သတ်မှတ်ချက် အားလုံး</string>
     <string name="service_provider">Service ပေးသူ</string>
     <string name="send">ပို့မည်</string>
+
+    <string name="noti_title">အသိပေးချက်များ</string>
+
+    <string name="reference_no">Reference No - </string>
+    <string name="order_no">Order No.</string>
+    <string name="order_count">Order Count . </string>
+
+    <string name="one">\u2022   <b>360<sup>\u2022</sup> Services</b> \n ဝန်ဆောင်မှုအားလုံးအား တစ်နေရာထဲတွင် ရရှိနိုင်ခြင်း။</string>
+    <string name="two">\u2022   <b>Price Transparency </b>\n ပွင့်လင်းမြင်သာသော ဈေးနှုန်းများ</string>
+    <string name="three">\u2022 <b>Trusted Partners</b> \n စိတ်ချယုံကြည်ရသော Partners များ</string>
+    <string name="four">\u2022  <b>Services are available for 24 Hours</b> \n ၂၄ နာရီ ရရှိနိုင်သော ဝန်ဆောင်မှု</string>
+    <string name="five">\u2022  <b>We reach you within 3 hours</b> \n (၃) နာရီအတွင်း ရောက်ရှိနိုင်သော  ဝန်ဆောင်မှု </string>
+
+    <string name="about_us_data">Little Bee သည် မြန်မာ့ပထမဆုံး အွန်လိုင်းအဓိကအသုံးပြု၍ အထူးဝန်ဆောင်မှုပေးသောလုပ်ငန်းဖြစ်ပြီး ၂၀၂၂ခုနှစ် တွင် Property Management, ဝန်ဆောင်မှုနယ်ပယ်၊ သတင်းအချက်အလက်နှင့် နည်းပညာကျွမ်းကျင်၊ လူငယ်စွန့်ဦးတီထွင် အစရှိသည့်နယ်ပယ်အသီးသီးမှ ကျွမ်းကျင်သူများဖြင့် တည်ထောင်ခဲ့ပါသည်။
+    \n \nLittle Bee သည် လူကြီးမင်းတို့အတွက်လိုအပ်သော တည်ဆောက်ခြင်းနှင့် ပြုပြင်ထိန်းသိမ်းခြင်း စသည့်အထူးလိုအပ်ချက်များကို ကျွမ်းကျင်သောဝန်ဆောင်မှုဖြင့် လျင်မြန်စွာ၊ လွယ်ကူသက်သာစွာဖြင့် တစ်နေရာတည်းတွင် ရရှိနိုင်သော ဝန်ဆောင်မှု ဖြစ်ပါသည်။
+    \n \nလူကြီးမင်းတို့နေ့စဉ်လူနေမှုဘဝများ ရိုးရှင်းလွယ်ကူစေရန်အတွက် စုံလင်လှသော ဝန်ဆောင်မှုအမျိုးမျိုးကို စိတ်ချရသော ကျွမ်းကျင်ဝန်ထမ်းများနှင့်အတူ မြန်မာနိုင်ငံ၏ အဓိကမြို့ကြီးများတွင် BusyBees မှဝန်ဆောင်မှုပေးလျက်ရှိပါသည်။</string>
 
 </resources>

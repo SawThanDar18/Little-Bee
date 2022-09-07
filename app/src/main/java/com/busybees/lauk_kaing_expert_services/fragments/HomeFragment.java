@@ -38,6 +38,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.busybees.lauk_kaing_expert_services.Banner.AdvertisementBannerAdapter;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogCall;
+import com.busybees.lauk_kaing_expert_services.activity.NotificationActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ProfileActivity;
 import com.busybees.lauk_kaing_expert_services.activity.SearchActivity;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
@@ -104,7 +105,7 @@ public class HomeFragment extends Fragment {
     private PopularAdapter popularAdapter;
     private SymnAdapter symnAdapter;
 
-    private ImageView phoneCall;
+    private ImageView phoneCall, notification;
     private CircleImageView profile;
 
     private LinearLayout reloadPage;
@@ -144,6 +145,7 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular = view.findViewById(R.id.recycle_popular);
         recyclerViewServiceYMN = view.findViewById(R.id.recycle_symn);
 
+        notification = view.findViewById(R.id.notification_btn);
         phoneCall = view.findViewById(R.id.phone_call);
         profile = view.findViewById(R.id.profile);
 
@@ -380,6 +382,8 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), LogInActivity.class));
             }
         });
+
+        notification.setOnClickListener(v -> startActivity(new Intent(getContext(), NotificationActivity.class)));
     }
 
     private void onRecyclerViewClick() {
