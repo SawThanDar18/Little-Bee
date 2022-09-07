@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 public class ProductPriceVO implements Serializable {
 
+    @SerializedName("product_price_id")
+    @Expose
+    private int productPriceId;
+
     @SerializedName("name")
     @Expose
     private String serviceName;
@@ -38,6 +42,14 @@ public class ProductPriceVO implements Serializable {
     @SerializedName("total_price")
     @Expose
     private int totalPrice;
+
+    public int getProductPriceId() {
+        return productPriceId;
+    }
+
+    public void setProductPriceId(int productPriceId) {
+        this.productPriceId = productPriceId;
+    }
 
     public String getServiceName() {
         return serviceName;

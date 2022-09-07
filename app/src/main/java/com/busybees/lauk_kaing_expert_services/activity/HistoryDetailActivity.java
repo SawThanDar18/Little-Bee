@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,8 +22,14 @@ import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyHistoryDetailAd
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.MyOrdersDetailAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Orders.VendorInfoAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Receipt.HistoryVendorInfoAdapter;
+import com.busybees.lauk_kaing_expert_services.data.models.ReOrder.ReOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.MyHistoryDetailVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.MyHistory.QuestionsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ReOrder.ReOrderProductPriceVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ReOrder.ReOrderVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
+import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
+import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
 import com.busybees.lauk_kaing_expert_services.utility.Utility;
 
 import java.text.NumberFormat;
@@ -30,7 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HistoryDetailActivity extends AppCompatActivity {
+
+    private UserVO userVO;
+    private NetworkServiceProvider networkServiceProvider;
 
     private TextView orderId, orderAddress, orderTime, orderDate, viewReceipt, rate;
     private RecyclerView orderDetailRecyclerView, leadFormPhotosRecyclerView, leadFormOnePhotosRecyclerView, vendorInfoRecyclerView;
@@ -60,6 +74,9 @@ public class HistoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeStatusBarVisible();
         setContentView(R.layout.activity_history_detail);
+
+        userVO = Utility.query_UserProfile(this);
+        networkServiceProvider = new NetworkServiceProvider(this);
 
         orderId = findViewById(R.id.order_no);
         orderAddress = findViewById(R.id.order_address);
@@ -187,6 +204,58 @@ public class HistoryDetailActivity extends AppCompatActivity {
             intent.putExtra("history_data", myHistoryDetailVO);
             startActivity(intent);
         });
+
+        reOrder.setOnClickListener(v -> {
+            ReOrderVO reOrderVO = new ReOrderVO();
+
+            ReOrderProductPriceVO reOrderProductPriceVO = new ReOrderProductPriceVO();
+            for (int i = 0; i < myHistoryDetailVO.getProductPrice().size() ; i++) {
+
+                reOrderProductPriceVO.setQuantity(String.valueOf(myHistoryDetailVO.getProductPrice().get(0).getQuantity()));
+                reOrderProductPriceVO.setProduct_price_id(String.valueOf(myHistoryDetailVO.getProductPrice().get(0).getProductPriceId()));
+            }
+
+            Log.e("ProductPriceId>>", reOrderProductPriceVO.getProduct_price_id());
+
+            reOrderVO.setProductPriceObject(reOrderProductPriceVO);
+            reOrderVO.setPhone(userVO.getPhone());
+            CallReOrder(reOrderVO);
+        });
+    }
+
+    private void CallReOrder(ReOrderVO obj) {
+
+        if (Utility.isOnline(this)){
+
+            networkServiceProvider.ReOrder(ApiConstants.BASE_URL + ApiConstants.GET_ADD_TO_CART_REORDER, obj).enqueue(new Callback<ReOrderModel>() {
+
+                @Override
+                public void onResponse(Call<ReOrderModel> call, Response<ReOrderModel> response) {
+                    if (response.body().getError()==false){
+
+                        Utility.showToast(HistoryDetailActivity.this,response.body().getMessage());
+                        startActivity(new Intent(HistoryDetailActivity.this, AddressActivity.class));
+                        finish();
+                    }else {
+
+                        Utility.showToast(HistoryDetailActivity.this,response.body().getMessage());
+                    }
+
+                }
+                @Override
+                public void onFailure(Call<ReOrderModel> call, Throwable t) {
+
+                    Utility.showToast(HistoryDetailActivity.this, t.getMessage());
+
+                }
+            });
+
+        }else {
+
+            Utility.showToast(this, getString( R.string.no_internet));
+
+        }
+
     }
 
     private void showLeadFormOneDetail() {

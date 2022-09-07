@@ -13,6 +13,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.GetDateTimeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MatchPromoCodeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyHistory.MyHistoryModel;
 import com.busybees.lauk_kaing_expert_services.data.models.MyOrders.MyOrderModel;
+import com.busybees.lauk_kaing_expert_services.data.models.ReOrder.ReOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderObject;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrderReview.SaveOrderReviewModel;
@@ -23,6 +24,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObjec
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.MatchPromoCodeObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.ReOrder.ReOrderVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.SaveOrderReview.SaveOrderReviewVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
@@ -62,6 +64,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.GetUserGuideSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetUserProfileSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetVerifySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.MatchPromoCodeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.ReOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderReviewSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveTokenSync;
@@ -193,6 +196,11 @@ public class NetworkServiceProvider {
     public Call<SaveOrderReviewModel> SOReview (String url, SaveOrderReviewVO soReviewObj) {
         SaveOrderReviewSync sync=retrofit.create(SaveOrderReviewSync.class);
         return sync.getSOReview(url, soReviewObj);
+    }
+
+    public Call<ReOrderModel> ReOrder (String url, ReOrderVO reOrderObj) {
+        ReOrderSync sync=retrofit.create(ReOrderSync.class);
+        return sync.getReOrder(url,reOrderObj);
     }
 
 }
