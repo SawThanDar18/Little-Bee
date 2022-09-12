@@ -21,6 +21,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.SaveOrder.SaveOrderOb
 import com.busybees.lauk_kaing_expert_services.data.models.SaveOrderReview.SaveOrderReviewModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenModel;
 import com.busybees.lauk_kaing_expert_services.data.models.SaveToken.SaveTokenObj;
+import com.busybees.lauk_kaing_expert_services.data.models.Search.SearchModel;
 import com.busybees.lauk_kaing_expert_services.data.models.UserGuide.UserGuideModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.AddAddresssObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Address.DeleteAddressObject;
@@ -28,6 +29,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Address.EditAddressObjec
 import com.busybees.lauk_kaing_expert_services.data.vos.PromoCOde.MatchPromoCodeObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.ReOrder.ReOrderVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.SaveOrderReview.SaveOrderReviewVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.Search.SearchVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.ProfileImageObj;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.AddAddressSync;
@@ -72,6 +74,7 @@ import com.busybees.lauk_kaing_expert_services.network.sync.ReOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderReviewSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveOrderSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.SaveTokenSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.SearchSync;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -215,6 +218,11 @@ public class NetworkServiceProvider {
     public Call<GetDeleteUserModel> DeleteUserCall (String url, RequestPhoneObject requestPhoneObject) {
         GetDeleteUserSync sync = retrofit.create(GetDeleteUserSync.class);
         return sync.getDeleteUser(url, requestPhoneObject);
+    }
+
+    public Call<SearchModel> Search (String url, SearchVO searchObj) {
+        SearchSync sync=retrofit.create(SearchSync.class);
+        return sync.getSearch(url,searchObj);
     }
 
 }

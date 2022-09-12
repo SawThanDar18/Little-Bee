@@ -779,6 +779,7 @@ public class HomeFragment extends Fragment {
             });
 
         } else {
+            progressBar.setVisibility(View.GONE);
             Utility.showToast(getActivity(), getString(R.string.no_internet));
         }
     }

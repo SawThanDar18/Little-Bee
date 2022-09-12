@@ -1,5 +1,6 @@
 package com.busybees.lauk_kaing_expert_services.utility;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +12,9 @@ import android.text.format.DateUtils;
 import android.text.style.BulletSpan;
 import android.text.style.LeadingMarginSpan;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -324,5 +327,14 @@ public class Utility {
             lang="en";
         }
         return lang;
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

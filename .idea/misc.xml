@@ -11,6 +11,7 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_baseline_videocam_24.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_cancel_black.xml" value="0.1005" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_delete.xml" value="0.1005" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_delete_.xml" value="0.1005" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/drawable/ic_gold_circle.xml" value="0.1" />
@@ -76,6 +77,7 @@
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_expandable_list_child_view.xml" value="0.1" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_expandable_list_group_view.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/receipt_tool_bar_layout.xml" value="0.1" />
+        <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/search_adapter.xml" value="0.12635869565217392" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/search_tool_bar.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/service_detail_adapter.xml" value="0.1118659420289855" />
         <entry key="..\:/SawThandar/LittleBee/lauk_kaing_expert_services/app/src/main/res/layout/vendor_info_adapter.xml" value="0.25" />

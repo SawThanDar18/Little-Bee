@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_view_id"
+    android:layout_marginBottom="@dimen/margin2"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:paddingVertical="@dimen/padding8"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:background="@drawable/two_color_frame"
+                android:gravity="center"
+                android:id="@+id/productImage"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_width="@dimen/width50"
+                    android:id="@+id/catIcon"
+                    app:srcCompat="@drawable/profile_default_image"
+                    android:padding="@dimen/padding2"
+                    android:layout_height="@dimen/height50" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:textSize="@dimen/fontSizeMedium"
+                android:padding="@dimen/padding2"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/catTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginRight="@dimen/margin20"
+                android:layout_marginLeft="@dimen/margin20"
+                android:layout_toEndOf="@+id/productImage"
+                android:layout_centerInParent="true"
+                android:text="" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

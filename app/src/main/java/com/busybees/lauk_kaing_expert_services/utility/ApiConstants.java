@@ -30,5 +30,6 @@ public class ApiConstants {
     public static final String GET_ADD_TO_CART_REORDER = "/auth/add_tocart_reorder";
     public static final String GET_NOTIFICATION = "/auth/getNotifications";
     public static final String GET_DELETE_USER = "/auth/deleteuser";
+    public static final String GET_SEARCH_PRODUCTS = "/auth/searchproducts";
 
 }

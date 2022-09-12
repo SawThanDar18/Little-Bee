@@ -55,16 +55,29 @@
             android:textColor="@color/white"
             android:src="@drawable/ic_lens" />
 
+        <ImageView
+            android:layout_marginRight="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/search_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_cancel_black"/>
+
     </LinearLayout>
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:background="@color/white">
 
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/recycle_search"
           android:layout_width="match_parent"
-          android:layout_height="match_parent" />
+          android:layout_height="match_parent"
+          android:layout_marginHorizontal="@dimen/margin16"/>
 
       <include layout="@layout/material_loader_layout" />
 
