@@ -17,12 +17,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.R;
+import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
+import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Search.SearchAdapter;
+import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.Search.SearchDataModel;
 import com.busybees.lauk_kaing_expert_services.data.models.Search.SearchModel;
+import com.busybees.lauk_kaing_expert_services.data.vos.Home.ServiceAvailableVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Home.request_object.ProductsCarryObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Search.SearchVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.ProductsVO;
+import com.busybees.lauk_kaing_expert_services.data.vos.ServiceDetail.SubProductsVO;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.network.NetworkServiceProvider;
 import com.busybees.lauk_kaing_expert_services.utility.ApiConstants;
@@ -50,6 +56,10 @@ public class SearchActivity extends AppCompatActivity {
     private SearchAdapter searchAdapter;
 
     private ArrayList<SearchDataModel> searchList = new ArrayList<>();
+
+    private ArrayList<ServiceAvailableVO> serviceAvailableVOArrayList = new ArrayList<>();
+    private ArrayList<ProductsVO> productsVOArrayList = new ArrayList<>();
+    private ArrayList<SubProductsVO> subProductsVOArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,6 +136,7 @@ public class SearchActivity extends AppCompatActivity {
         SearchVO searchObj = new SearchVO();
         searchObj.setSearch(searchName);
         CallSearch(searchObj);
+        CallGetAllHomeApi();
     }
 
     private void CallSearch(SearchVO searchVO) {
@@ -200,12 +211,59 @@ public class SearchActivity extends AppCompatActivity {
 
     public void IntentSubProductView(SearchDataModel searchDataModel) {
 
+        /*ArrayList<ProductsVO> productsVOS = new ArrayList<>();
+        productsVOS.clear();
+
+        if (productsVOArrayList.size() != 0) {
+            for (int i = 0; i < productsVOArrayList.size(); i++) {
+
+                if (productsVOArrayList.get(i).getServiceId().equals(searchDataModel.getServiceId())) {
+
+                    ProductsVO productsVO = new ProductsVO();
+                    productsVO.setServiceId(productsVOArrayList.get(i).getServiceId());
+                    productsVO.setProductId(productsVOArrayList.get(i).getProductId());
+                    productsVO.setStep(productsVOArrayList.get(i).getStep());
+                    productsVO.setName(productsVOArrayList.get(i).getName());
+                    productsVO.setNameMm(productsVOArrayList.get(i).getNameMm());
+                    productsVO.setNameCh(productsVOArrayList.get(i).getNameCh());
+                    productsVO.setProductImage(productsVOArrayList.get(i).getProductImage());
+                    productsVO.setSubProducts(productsVOArrayList.get(i).getSubProducts());
+                    productsVOS.add(productsVO);
+                }
+            }
+
+            if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
+                if ( MDetect.INSTANCE.isUnicode()){
+
+                    Utility.addFontSuHome(productName, searchDataModel.getNameMm());
+
+                } else  {
+
+                    Utility.changeFontUni2ZgHome(productName, searchDataModel.getNameMm());
+                }
+            } else if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
+                productName.setText(searchDataModel.getNameCh());
+            } else {
+                productName.setText(searchDataModel.getName());
+            }
+
+            if (productsVOS.size() != 0) {
+                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                intent.putExtra("product_title", productName.getText().toString());
+                intent.putExtra("sub_product", subProductsVOArrayList);
+                intent.putExtra("product", productsVOS);
+                Log.e("pstep2>>>", String.valueOf(productsVOS.size()));
+                startActivity(intent);
+
+            } else if (productsVOS.size() == 0) {
+                Utility.showToast(getApplicationContext(), "Coming Soon");
+            }
+        }*/
+
         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
         productsCarryObject.setPhone(userVO.getPhone());
-        productsCarryObject.setProductPriceId(searchDataModel.getProductPriceId());
-        productsCarryObject.setSubProductId(searchDataModel.getSubProductId());
-        productsCarryObject.setProductId(searchDataModel.getProductId());
         productsCarryObject.setServiceId(searchDataModel.getServiceId());
+        productsCarryObject.setProductId(searchDataModel.getProductId());
         productsCarryObject.setStep(searchDataModel.getStep());
 
         if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
@@ -228,6 +286,107 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("product_detail_data", productsCarryObject);
         startActivity(intent);
 
+    }
+
+    public void IntentProductView(SearchDataModel searchDataModel) {
+
+        if (subProductsVOArrayList.size() != 0) {
+            ArrayList<SubProductsVO> subProductsVOS = new ArrayList<>();
+            subProductsVOS.clear();
+
+            for (int i = 0; i < subProductsVOArrayList.size(); i++) {
+                if (subProductsVOArrayList.get(i).getProductId().equals(searchDataModel.getProductId())) {
+
+                    SubProductsVO subProductsVO = new SubProductsVO();
+                    subProductsVO.setServiceId(subProductsVOArrayList.get(i).getServiceId());
+                    subProductsVO.setProductId(subProductsVOArrayList.get(i).getProductId());
+                    subProductsVO.setSubProductId(subProductsVOArrayList.get(i).getSubProductId());
+                    subProductsVO.setStep(subProductsVOArrayList.get(i).getStep());
+                    subProductsVO.setName(subProductsVOArrayList.get(i).getName());
+                    subProductsVO.setNameMm(subProductsVOArrayList.get(i).getNameMm());
+                    subProductsVO.setNameCh(subProductsVOArrayList.get(i).getNameCh());
+                    subProductsVO.setSubProductImage(subProductsVOArrayList.get(i).getSubProductImage());
+                    subProductsVO.setSubProductVideo(subProductsVOArrayList.get(i).getSubProductVideo());
+                    subProductsVOS.add(subProductsVO);
+                }
+            }
+
+            if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
+                if ( MDetect.INSTANCE.isUnicode()){
+
+                    Utility.addFontSuHome(productName, searchDataModel.getNameMm());
+
+                } else  {
+
+                    Utility.changeFontUni2ZgHome(productName, searchDataModel.getNameMm());
+                }
+            } else if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("zh")) {
+                productName.setText(searchDataModel.getNameCh());
+            } else {
+                productName.setText(searchDataModel.getName());
+            }
+
+            Intent intent = new Intent(this, SubProductActivity.class);
+            intent.putExtra("sub_product_title", productName.getText().toString());
+            intent.putExtra("sub_product", subProductsVOS);
+            startActivity(intent);
+        }
+    }
+
+    private void CallGetAllHomeApi() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        if (Utility.isOnline(getApplicationContext())) {
+            networkServiceProvider.GetHomeCall(ApiConstants.BASE_URL + ApiConstants.GET_ALL_HOME).enqueue(new Callback<GetAllHomeModel>() {
+
+                @Override
+                public void onResponse(Call<GetAllHomeModel> call, Response<GetAllHomeModel> response) {
+
+                    if (response.body().getError() == false) {
+                        progressBar.setVisibility(View.GONE);
+
+                        progressBar.setVisibility(View.GONE);
+
+                        serviceAvailableVOArrayList.addAll(response.body().getData().getServiceAvailable());
+
+                        productsVOArrayList.clear();
+                        subProductsVOArrayList.clear();
+
+                        if (response.body().getData().getServiceAvailable() != null) {
+                            for (int i = 0; i < response.body().getData().getServiceAvailable().size(); i++) {
+
+                                productsVOArrayList.addAll(response.body().getData().getServiceAvailable().get(i).getProducts());
+
+                                if ((response.body().getData().getServiceAvailable().size() - 1) == i) {
+                                    for (int j = 0; j < productsVOArrayList.size(); j++) {
+                                        if (productsVOArrayList.get(j).getSubProducts() != null) {
+                                            subProductsVOArrayList.addAll(productsVOArrayList.get(j).getSubProducts());
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetAllHomeModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+
+        } else {
+            progressBar.setVisibility(View.GONE);
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
     }
 
     void makeStatusBarVisible() {

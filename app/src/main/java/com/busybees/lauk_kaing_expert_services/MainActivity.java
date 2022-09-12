@@ -343,8 +343,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         if (extras != null) {
 
+
             try {
                 JSONObject jsonObject = new JSONObject(String.valueOf(extras.get("notification_condition")));
+                Log.e("all>>>", String.valueOf(String.valueOf(jsonObject.get("status")).equals("All")));
 
                 if (String.valueOf(jsonObject.get("status")).equals("All")) {
 

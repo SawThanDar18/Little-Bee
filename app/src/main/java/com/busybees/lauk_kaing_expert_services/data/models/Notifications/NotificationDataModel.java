@@ -15,7 +15,7 @@ public class NotificationDataModel implements Serializable {
     @Expose
     private String content;
 
-    @SerializedName("created_at")
+    @SerializedName("date")
     @Expose
     private String createdAt;
 

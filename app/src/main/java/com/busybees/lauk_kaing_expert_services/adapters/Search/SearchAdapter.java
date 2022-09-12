@@ -85,7 +85,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                 click.IntentSubProductView(objDataModel);
 
             } else {
-                //click.IntentProductView(objDataModel);
+                click.IntentProductView(objDataModel);
             }
         });
     }
