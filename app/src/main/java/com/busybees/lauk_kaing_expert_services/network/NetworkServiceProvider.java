@@ -6,6 +6,7 @@ import com.busybees.lauk_kaing_expert_services.data.models.AddAddressModel;
 import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.AddToCart.AddToCartObj;
 import com.busybees.lauk_kaing_expert_services.data.models.AddressModel;
+import com.busybees.lauk_kaing_expert_services.data.models.DeleteUser.GetDeleteUserModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAddressModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetCart.GetCartObj;
@@ -53,6 +54,7 @@ import com.busybees.lauk_kaing_expert_services.data.vos.Users.VerifyObject;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetAllHomeSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetCartSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetDateTimeSync;
+import com.busybees.lauk_kaing_expert_services.network.sync.GetDeleteUserSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetLoginSync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetMyOrdersHistorySync;
 import com.busybees.lauk_kaing_expert_services.network.sync.GetMyOrdersSync;
@@ -208,6 +210,11 @@ public class NetworkServiceProvider {
     public Call<NotificationsModel> Notification (String url, RequestPhoneObject phoneObj) {
         NotificationSync sync=retrofit.create(NotificationSync.class);
         return sync.getNoti(url,phoneObj);
+    }
+
+    public Call<GetDeleteUserModel> DeleteUserCall (String url, RequestPhoneObject requestPhoneObject) {
+        GetDeleteUserSync sync = retrofit.create(GetDeleteUserSync.class);
+        return sync.getDeleteUser(url, requestPhoneObject);
     }
 
 }

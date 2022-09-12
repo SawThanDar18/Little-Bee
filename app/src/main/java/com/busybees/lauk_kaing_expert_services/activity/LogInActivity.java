@@ -69,20 +69,9 @@ public class LogInActivity extends AppCompatActivity {
 
             } else {
 
-                if (phoneNumber.getText().toString().equalsIgnoreCase("0123456789")) {
-
-                        UserVO userVO = new UserVO();
-                        userVO.setPhone("0123456789");
-                        userVO.setId(60);
-                        Utility.Save_UserProfile(getApplicationContext(), userVO);
-                        startActivity(new Intent(LogInActivity.this, MainActivity.class));
-                        finish();
-
-                } else {
                     LoginObject loginObject = new LoginObject();
                     loginObject.setPhone(phoneNumber.getText().toString());
                     CallLogin(loginObject);
-                }
 
             }
         });

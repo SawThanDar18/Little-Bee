@@ -38,9 +38,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            content = (TextView) itemView.findViewById(R.id.content);
-            title = (TextView) itemView.findViewById(R.id.title);
-            date = (TextView) itemView.findViewById(R.id.date);
+            content = itemView.findViewById(R.id.content);
+            title = itemView.findViewById(R.id.title);
+            date = itemView.findViewById(R.id.date);
 
         }
     }

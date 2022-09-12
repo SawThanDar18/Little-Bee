@@ -228,9 +228,11 @@
     <string name="comment">မှတ်ချက် ...</string>
     <string name="all_ready_rated">သတ်မှတ်ချက်ပေးပြီးပါပြီ</string>
 
-    <string name="r_add">Next to AK Bar, Dongcheng 7th Street, 1 Ward,\nLaukkaing Township</string>
+    <string name="r_add">Next to AK Bar, Dongcheng 7th Street, 1 Ward,\nLaukkaing Township\n09 689 082 742, 09 684 096 773</string>
     <string name="payment_receipt">ငွေလက်ခံပြေစာ</string>
     <string name="received_by"><u>Received By</u></string>
+
+    <string name="contact_address">Next to AK Bar, Dongcheng 7th Street, 1 Ward, Laukkaing Township</string>
 
     <string name="history_detail">မှတ်တမ်း အသေးစိတ်</string>
 

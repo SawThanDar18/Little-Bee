@@ -57,13 +57,13 @@ public class NotificationActivity extends AppCompatActivity {
         serviceProvider = new NetworkServiceProvider(this);
         userObj = Utility.query_UserProfile(this);
 
-        noData = (TextView) findViewById(R.id.no_data);
-        goToLogin = (Button) findViewById(R.id.go_to_login);
-        backButton = (ImageView) findViewById(R.id.back_button);
-        logInView = (RelativeLayout)findViewById(R.id.loginView);
-        noLogInView = (RelativeLayout)findViewById(R.id.no_login_view);
-        recyclerView = (RecyclerView) findViewById(R.id.recycle_noti);
-        progressBar = (ProgressBar)findViewById(R.id.materialLoader);
+        noData = findViewById(R.id.no_data);
+        goToLogin = findViewById(R.id.go_to_login);
+        backButton = findViewById(R.id.back_button);
+        logInView = findViewById(R.id.loginView);
+        noLogInView = findViewById(R.id.no_login_view);
+        recyclerView = findViewById(R.id.recycle_noti);
+        progressBar = findViewById(R.id.materialLoader);
         reloadPage = findViewById(R.id.reload_page);
         reloadBtn = findViewById(R.id.btn_reload_page);
 
@@ -77,7 +77,7 @@ public class NotificationActivity extends AppCompatActivity {
 
                 RequestPhoneObject requestPhoneObject = new RequestPhoneObject();
                 requestPhoneObject.setPhone(userObj.getPhone());
-                //CallNotification(requestPhoneObject);
+                CallNotification(requestPhoneObject);
 
             } else {
                 noLogInView.setVisibility(View.VISIBLE);

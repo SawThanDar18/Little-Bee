@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/contact_us_tool_bar_layout" />
+
+    <LinearLayout
+        android:id="@+id/map_intent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingStart="@dimen/margin16"
+            android:drawableStart="@drawable/ic_locationicon22px"
+            android:textSize="@dimen/fontSizeMedium"
+            android:text="@string/contact_address"
+            android:gravity="center|start"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/margin10"
+            android:drawablePadding="@dimen/padding4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_one"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/margin16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding10"
+            android:drawableStart="@drawable/ic_phone"
+            android:textSize="@dimen/fontSizeMedium"
+            android:text="09 689 082 742"
+            android:gravity="center|start"
+            android:textColor="@color/black"
+            android:drawablePadding="@dimen/padding4"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E6EB">
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mobile_one"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/margin16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding10"
+            android:drawableStart="@drawable/ic_phone"
+            android:textSize="@dimen/fontSizeMedium"
+            android:text="09 684 096 773"
+            android:gravity="center|start"
+            android:textColor="@color/black"
+            android:drawablePadding="@dimen/padding4"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height1"
+            android:background="@color/dark_grey">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

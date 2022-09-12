@@ -1,17 +1,21 @@
 package com.busybees.lauk_kaing_expert_services.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -23,13 +27,17 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.busybees.lauk_kaing_expert_services.MainActivity;
 import com.busybees.lauk_kaing_expert_services.activity.AboutActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ChooseLanguageActivity;
+import com.busybees.lauk_kaing_expert_services.activity.ContactUsActivity;
 import com.busybees.lauk_kaing_expert_services.activity.ThanksActivity;
 import com.busybees.lauk_kaing_expert_services.activity.UserGuideActivity;
 import com.busybees.lauk_kaing_expert_services.activity.WhyLittleBeeActivity;
+import com.busybees.lauk_kaing_expert_services.data.models.DeleteUser.GetDeleteUserModel;
 import com.busybees.lauk_kaing_expert_services.data.models.GetUserProfileModel;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.GetUserProfileObject;
+import com.busybees.lauk_kaing_expert_services.data.vos.Users.RequestPhoneObject;
 import com.busybees.lauk_kaing_expert_services.data.vos.Users.UserVO;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogChangeLanguage;
 import com.busybees.lauk_kaing_expert_services.Dialog.DialogLogout;
@@ -53,7 +61,7 @@ public class MoreFragment extends Fragment {
 
     private NetworkServiceProvider networkServiceProvider;
 
-    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs, aboutLittleBee, whyLittleBee;
+    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs, aboutLittleBee, whyLittleBee, lineDeleteUser, deleteUserView;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
     private CircleImageView profiles;
@@ -87,6 +95,8 @@ public class MoreFragment extends Fragment {
         contactUs = view.findViewById(R.id.contactUs);
         aboutLittleBee = view.findViewById(R.id.about_layout);
         whyLittleBee = view.findViewById(R.id.why_layout);
+        lineDeleteUser = view.findViewById(R.id.line_delete_user);
+        deleteUserView = view.findViewById(R.id.delete_user_layout);
 
         onClick();
         userProfileView();
@@ -143,17 +153,86 @@ public class MoreFragment extends Fragment {
             dialogCall.show(getFragmentManager(),"");
         });
 
+        deleteUserView.setOnClickListener(v-> {
+
+            LayoutInflater factory = LayoutInflater.from(getContext());
+            final View deleteConfirmDialogView = factory.inflate(R.layout.dialog_delete_account, null);
+            final AlertDialog deleteConfirmDialog = new AlertDialog.Builder(getContext()).create();
+            deleteConfirmDialog.setView(deleteConfirmDialogView);
+
+            deleteConfirmDialog.setCancelable(true);
+            deleteConfirmDialog.setCanceledOnTouchOutside(false);
+
+            if (deleteConfirmDialog != null && deleteConfirmDialog.getWindow() != null) {
+                deleteConfirmDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                deleteConfirmDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            }
+
+            deleteConfirmDialogView.findViewById(R.id.delete_yes_btn).setOnClickListener(v1 -> {
+
+                deleteConfirmDialog.dismiss();
+                if (userVO != null) {
+                    RequestPhoneObject requestPhoneObject = new RequestPhoneObject();
+                    requestPhoneObject.setPhone(userVO.getPhone());
+                    CallDeleteUser(requestPhoneObject);
+                }
+
+            });
+
+            deleteConfirmDialogView.findViewById(R.id.delete_no_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteConfirmDialog.dismiss();
+                }
+            });
+
+            deleteConfirmDialog.show();
+        });
+
         userGuide.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), UserGuideActivity.class));
         });
 
         contactUs.setOnClickListener(v -> {
-            //startActivity(new Intent(getContext(), ChooseLanguageActivity.class));
+            startActivity(new Intent(getContext(), ContactUsActivity.class));
         });
 
         aboutLittleBee.setOnClickListener(v -> startActivity(new Intent(getContext(), AboutActivity.class)));
 
         whyLittleBee.setOnClickListener(v-> startActivity(new Intent(getContext(), WhyLittleBeeActivity.class)));
+    }
+
+    private void CallDeleteUser(RequestPhoneObject requestPhoneObject) {
+
+        if (Utility.isOnline(getContext())) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            networkServiceProvider.DeleteUserCall(ApiConstants.BASE_URL + ApiConstants.GET_DELETE_USER, requestPhoneObject).enqueue(new Callback<GetDeleteUserModel>() {
+                @Override
+                public void onResponse(Call<GetDeleteUserModel> call, Response<GetDeleteUserModel> response) {
+                    if (response.body().getError() == true) {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.showToast(getContext(), response.body().getMessage());
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Utility.delete_UserProfile(getContext());
+                        getActivity().finish();
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetDeleteUserModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Utility.showToast(getContext(), t.getMessage());
+
+                }
+            });
+        } else {
+            progressBar.setVisibility(View.GONE);
+            Utility.showToast(getContext(), getString(R.string.no_internet));
+        }
+
     }
 
     private void CallUserProfile(GetUserProfileObject getUserProfileObject) {
@@ -165,6 +244,7 @@ public class MoreFragment extends Fragment {
                 public void onResponse(Call<GetUserProfileModel> call, Response<GetUserProfileModel> response) {
 
                     if (response.body().getError() == true) {
+                        progressBar.setVisibility(View.GONE);
                         Utility.showToast(getContext(), response.body().getMessage());
                     } else if (response.body().getError() == false) {
                         progressBar.setVisibility(View.GONE);
@@ -208,11 +288,13 @@ public class MoreFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<GetUserProfileModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
                     Utility.showToast(getContext(), t.getMessage());
 
                 }
             });
         } else {
+            progressBar.setVisibility(View.GONE);
             Utility.showToast(getContext(), getString(R.string.no_internet));
         }
     }
@@ -224,6 +306,9 @@ public class MoreFragment extends Fragment {
             loginView.setVisibility(View.VISIBLE);
             lineLogout.setVisibility(View.VISIBLE);
             profileEditImageView.setVisibility(View.VISIBLE);
+
+            deleteUserView.setVisibility(View.VISIBLE);
+            lineDeleteUser.setVisibility(View.VISIBLE);
 
             GetUserProfileObject userProfileObject = new GetUserProfileObject();
             userProfileObject.setPhone(userVO.getPhone());
@@ -268,6 +353,9 @@ public class MoreFragment extends Fragment {
             loginView.setVisibility(View.GONE);
             lineLogout.setVisibility(View.GONE);
             profileEditImageView.setVisibility(View.GONE);
+
+            deleteUserView.setVisibility(View.GONE);
+            lineDeleteUser.setVisibility(View.GONE);
         }
     }
 

@@ -12,10 +12,10 @@
     <ImageView
         android:id="@+id/headerImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height150"
+        android:layout_height="@dimen/height200"
         android:layout_below="@+id/tool_bar"
-        android:background="@drawable/ic_little_bee_logo_vertical"
-        android:scaleType="fitXY" />
+        android:background="@drawable/header"
+        android:scaleType="centerCrop" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin16"
             android:orientation="vertical">
 
             <LinearLayout

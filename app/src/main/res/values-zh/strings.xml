@@ -226,9 +226,12 @@
     <string name="comment">Comment...</string>
     <string name="all_ready_rated">Already Rated</string>
 
-    <string name="r_add">东城 AK 水烟馆旁边 佳洁保洁公司</string>
+    <string name="r_add">东城 AK 水烟馆旁边 佳洁保洁公司\n09 689 082 742, 09 684 096 773</string>
     <string name="payment_receipt">付款收据</string>
     <string name="received_by"><u>Received By</u></string>
+
+    <string name="contact_address">东城 AK 水烟馆旁边 佳洁保洁公司</string>
+
 
     <string name="history_detail">历史详情</string>
 

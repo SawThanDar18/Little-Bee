@@ -355,7 +355,7 @@ public class HomeFragment extends Fragment {
     private void onClick() {
 
         phoneCall.setOnClickListener(v -> {
-            String phone="09255699002";
+            String phone="09684096773";
             DialogCall dialogCall1=new DialogCall(phone);
             dialogCall1.show(getActivity().getSupportFragmentManager(), "");
         });

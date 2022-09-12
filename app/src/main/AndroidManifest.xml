@@ -117,6 +117,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.WhyLittleBeeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ContactUsActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
