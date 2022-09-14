@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class SearchDataModel {
 
-    @SerializedName("product_price_id")
+    @SerializedName("sub_product_id")
     @Expose
-    private Integer productPriceId;
+    private Integer subProductId;
 
-    @SerializedName("id")
+    @SerializedName("Product_id")
     @Expose
-    private Integer id;
+    private Integer productId;
 
     @SerializedName("parent_id")
     @Expose
-    private Integer productId;
+    private Integer parentId;
 
     @SerializedName("service_id")
     @Expose
@@ -45,20 +45,12 @@ public class SearchDataModel {
     @Expose
     private String subImage;
 
-    public Integer getProductPriceId() {
-        return productPriceId;
+    public Integer getSubProductId() {
+        return subProductId;
     }
 
-    public void setProductPriceId(Integer productPriceId) {
-        this.productPriceId = productPriceId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSubProductId(Integer subProductId) {
+        this.subProductId = subProductId;
     }
 
     public Integer getProductId() {
@@ -67,6 +59,14 @@ public class SearchDataModel {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public Integer getServiceId() {

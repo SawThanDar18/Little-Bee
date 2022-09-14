@@ -83,22 +83,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         holder.search_view_id.setOnClickListener(v -> {
 
-            /*if (objDataModel.getStep() == 1){
-
-                click.IntentServiceDetailView(objDataModel);
-
-            }else if (objDataModel.getStep() == 2) {
-
-                click.IntentSubProductView(objDataModel);
-
-            } else {*/
-                if (objDataModel.getProductId() > 0) {
+                if (objDataModel.getParentId() == 1) {
                     click.IntentServiceDetailView(objDataModel);
-                } else if (objDataModel.getProductId() == 0){
+                } else if (objDataModel.getParentId() == 0){
                     click.IntentProductView(objDataModel);
                 }
-
-           // }
         });
     }
     @Override

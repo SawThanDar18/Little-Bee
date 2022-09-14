@@ -219,12 +219,12 @@ public class UserGuideActivity extends AppCompatActivity  implements Button.OnCl
 
                             ImageSlide(response.body().getData().getMm());
 
+                        } else if(langtxt == 0){
+                            ImageSlide(response.body().getData().getEn());
+
                         } else if (langtxt == 2){
-                            ImageSlide(response.body().getData().getEn());
 
-                        } else {
-
-                            ImageSlide(response.body().getData().getEn());
+                            ImageSlide(response.body().getData().getCn());
                         }
                         //youTubeId =response.body().getData().getVideoId();
 

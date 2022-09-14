@@ -15,6 +15,10 @@ public class UserGuideDataModel {
     @Expose
     private List<String> mm = null;
 
+    @SerializedName("userguide_cn")
+    @Expose
+    private List<String> cn = null;
+
     @SerializedName("video")
     @Expose
     private String video;
@@ -37,6 +41,14 @@ public class UserGuideDataModel {
 
     public void setMm(List<String> mm) {
         this.mm = mm;
+    }
+
+    public List<String> getCn() {
+        return cn;
+    }
+
+    public void setCn(List<String> cn) {
+        this.cn = cn;
     }
 
     public String getVideo() {

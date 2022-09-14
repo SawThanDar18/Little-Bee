@@ -190,7 +190,7 @@ public class SearchActivity extends AppCompatActivity {
         productsCarryObject.setPhone(userVO.getPhone());
         productsCarryObject.setServiceId(searchDataModel.getServiceId());
         productsCarryObject.setProductId(searchDataModel.getProductId());
-        productsCarryObject.setSubProductId(searchDataModel.getId());
+        productsCarryObject.setSubProductId(searchDataModel.getSubProductId());
         productsCarryObject.setStep(searchDataModel.getStep());
 
         if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
@@ -269,7 +269,7 @@ public class SearchActivity extends AppCompatActivity {
         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
         productsCarryObject.setPhone(userVO.getPhone());
         productsCarryObject.setServiceId(searchDataModel.getServiceId());
-        productsCarryObject.setProductId(searchDataModel.getProductId());
+        productsCarryObject.setProductId(searchDataModel.getParentId());
         productsCarryObject.setStep(searchDataModel.getStep());
 
         if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
@@ -301,7 +301,7 @@ public class SearchActivity extends AppCompatActivity {
             subProductsVOS.clear();
 
             for (int i = 0; i < subProductsVOArrayList.size(); i++) {
-                if (subProductsVOArrayList.get(i).getProductId().equals(searchDataModel.getId())) {
+                if (subProductsVOArrayList.get(i).getProductId().equals(searchDataModel.getProductId())) {
 
                     SubProductsVO subProductsVO = new SubProductsVO();
                     subProductsVO.setServiceId(subProductsVOArrayList.get(i).getServiceId());
