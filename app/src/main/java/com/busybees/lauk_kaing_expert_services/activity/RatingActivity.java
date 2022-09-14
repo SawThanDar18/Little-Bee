@@ -100,8 +100,8 @@ public class RatingActivity extends AppCompatActivity implements RatingBar.OnRat
             rate_count = (float) getIntent().getSerializableExtra("rate_count");
             historyDataModel = (MyHistoryDetailVO) getIntent().getSerializableExtra("history_data");
 
-            service_rating_rate.setRating(rate_count);
-            rate_overall = rate_count;
+            //service_rating_rate.setRating(rate_count);
+            //rate_overall = rate_count;
 
             Log.e("history>>", String.valueOf(historyDataModel.getVendorData()));
 
@@ -234,8 +234,17 @@ public class RatingActivity extends AppCompatActivity implements RatingBar.OnRat
     public void CalculateRate(float rate,int id){
 
         rate_overall+=rate;
+        int rateCount = 0;
 
-        float overall=rate_overall/6;
+        if (datalist.size() != 0) {
+            rateCount = 5;
+            rateCount += datalist.size();
+        } else {
+            rateCount = 5;
+        }
+
+        float overall=rate_overall/rateCount;
+        Utility.showToast(getApplicationContext(), String.valueOf(overall));
         overall_rating_rate.setRating(overall);
 
     }
@@ -253,6 +262,7 @@ public class RatingActivity extends AppCompatActivity implements RatingBar.OnRat
         vRateObj.setVendorRating(Math.round(rate));
         datalist.add(vRateObj);
 
+        Log.d("rate>>>>", String.valueOf(rate));
         CalculateRate(rate,0);
     }
 
@@ -273,6 +283,7 @@ public class RatingActivity extends AppCompatActivity implements RatingBar.OnRat
                 break;
             case R.id.rate_price_rating:
 
+                //Utility.showToast(getApplicationContext(), String.valueOf(price_rating_rate.getRating()));
                 CalculateRate(price_rating_rate.getRating(),ratingBar.getId());
 
                 break;

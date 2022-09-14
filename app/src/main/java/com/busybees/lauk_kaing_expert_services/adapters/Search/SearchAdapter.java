@@ -55,10 +55,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         requestOptions.error(R.drawable.loader_circle_shape);
         requestOptions.transforms(new CenterCrop(), new RoundedCorners(Utility.dp2px(mContext, 8)));
 
-        Glide.with(holder.itemView.getContext())
-                .load(objDataModel.getImage())
-                .apply(requestOptions)
-                .into(holder.catIcon);
+        if (objDataModel.getImage() == null) {
+            Glide.with(holder.itemView.getContext())
+                    .load(objDataModel.getSubImage())
+                    .apply(requestOptions)
+                    .into(holder.catIcon);
+        } else {
+            Glide.with(holder.itemView.getContext())
+                    .load(objDataModel.getImage())
+                    .apply(requestOptions)
+                    .into(holder.catIcon);
+        }
 
         if (checkLng(holder.itemView.getContext()).equalsIgnoreCase("it") || checkLng(holder.itemView.getContext()).equalsIgnoreCase("fr")){
             if ( MDetect.INSTANCE.isUnicode()){
@@ -76,7 +83,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         holder.search_view_id.setOnClickListener(v -> {
 
-            if (objDataModel.getStep() == 1){
+            /*if (objDataModel.getStep() == 1){
 
                 click.IntentServiceDetailView(objDataModel);
 
@@ -84,9 +91,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
                 click.IntentSubProductView(objDataModel);
 
-            } else {
-                click.IntentProductView(objDataModel);
-            }
+            } else {*/
+                if (objDataModel.getProductId() > 0) {
+                    click.IntentServiceDetailView(objDataModel);
+                } else if (objDataModel.getProductId() == 0){
+                    click.IntentProductView(objDataModel);
+                }
+
+           // }
         });
     }
     @Override

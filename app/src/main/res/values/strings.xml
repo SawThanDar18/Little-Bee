@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Little Bee</string>
+    <string name="app_name">小蜜蜂</string>
 
     <string name="skip">Skip</string>
     <string name="search_keyword_hint">Enter Keyword to Search</string>
@@ -264,7 +264,7 @@
     <string name="order_no">Order No.</string>
     <string name="order_count">Order Count . </string>
 
-    <string name="about_us_data">Little Bees is the first online leading expert services provider in Myanmar and was founded since 2022 by a team of property management, service industries, information technology specialist and young entrepreneurs.\n \nLittle Bees is your one-stop solution to sort all your expert needs ranging from structuring to maintenance, professionally, swiftly and convenitently.\n \nWe simplify your everyday living with a varity of Expert seivices across major cities of Myanmar, delivered by verified &amp; qualified processional only.</string>
+    <string name="about_us_data">Little Bee is the first online leading expert services provider in Myanmar and was founded since 2022 by a team of property management, service industries, information technology specialist and young entrepreneurs.\n \nLittle Bee is your one-stop solution to sort all your expert needs ranging from structuring to maintenance, professionally, swiftly and convenitently.\n \nWe simplify your everyday living with a varity of Expert seivices across major cities of Myanmar, delivered by verified &amp; qualified processional only.</string>
 
     <string name="one">\u2022 <b>360<sup>\u2022</sup> Services</b> \n Available all services in one place</string>
     <string name="two">\u2022  <b>Price Transparency</b></string>

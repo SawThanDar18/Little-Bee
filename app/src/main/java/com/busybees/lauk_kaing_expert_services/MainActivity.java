@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-
+            Log.e("extra>", extras.getString("notification_condition"));
 
             try {
                 JSONObject jsonObject = new JSONObject(String.valueOf(extras.get("notification_condition")));

@@ -9,11 +9,11 @@ public class SearchDataModel {
     @Expose
     private Integer productPriceId;
 
-    @SerializedName("sub_product_id")
+    @SerializedName("id")
     @Expose
-    private Integer subProductId;
+    private Integer id;
 
-    @SerializedName("product_id")
+    @SerializedName("parent_id")
     @Expose
     private Integer productId;
 
@@ -41,6 +41,10 @@ public class SearchDataModel {
     @Expose
     private String image;
 
+    @SerializedName("sub_image")
+    @Expose
+    private String subImage;
+
     public Integer getProductPriceId() {
         return productPriceId;
     }
@@ -49,12 +53,12 @@ public class SearchDataModel {
         this.productPriceId = productPriceId;
     }
 
-    public Integer getSubProductId() {
-        return subProductId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSubProductId(Integer subProductId) {
-        this.subProductId = subProductId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getProductId() {
@@ -111,5 +115,13 @@ public class SearchDataModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSubImage() {
+        return subImage;
+    }
+
+    public void setSubImage(String subImage) {
+        this.subImage = subImage;
     }
 }

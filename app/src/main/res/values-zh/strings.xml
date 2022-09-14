@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Little Bee</string>
+    <string name="app_name">小蜜蜂</string>
 
     <string name="skip">Skip</string>
     <string name="search_keyword_hint">输入要搜索的关键字</string>
@@ -262,7 +262,7 @@
     <string name="order_no">订单号.</string>
     <string name="order_count">订单计数 。</string>
 
-    <string name="about_us_data">Little Bees（小蜜蜂） 是缅甸第一家在线领先的专业服务提供商，由物业管理、服务行业、信息技术专家和年轻企业家组成的团队于 2022 年成立。\n \nLittle Bees （小蜜蜂）是您的一站式解决方案，可专业、快速、方便地满足您从结构到维护的所有专业需求。\n \n我们通过缅甸主要城市的各种专业服务简化您的日常生活，仅由经过验证和合格的人员提供服务。</string>
+    <string name="about_us_data">Little Bee（小蜜蜂） 是缅甸第一家在线领先的专业服务提供商，由物业管理、服务行业、信息技术专家和年轻企业家组成的团队于 2022 年成立。\n \nLittle Bee （小蜜蜂）是您的一站式解决方案，可专业、快速、方便地满足您从结构到维护的所有专业需求。\n \n我们通过缅甸主要城市的各种专业服务简化您的日常生活，仅由经过验证和合格的人员提供服务。</string>
 
     <string name="one">\u2022 <b>360<sup>\u2022</sup> 度服务</b> \n 站式提供所有服务</string>
     <string name="two">\u2022  <b>价格透明</b></string>

@@ -3,7 +3,6 @@ package com.busybees.lauk_kaing_expert_services.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -17,9 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.busybees.lauk_kaing_expert_services.R;
-import com.busybees.lauk_kaing_expert_services.adapters.Home.AvailableAdapter;
-import com.busybees.lauk_kaing_expert_services.adapters.Home.PopularAdapter;
-import com.busybees.lauk_kaing_expert_services.adapters.Home.SymnAdapter;
 import com.busybees.lauk_kaing_expert_services.adapters.Search.SearchAdapter;
 import com.busybees.lauk_kaing_expert_services.data.models.GetAllHomeModel;
 import com.busybees.lauk_kaing_expert_services.data.models.Search.SearchDataModel;
@@ -182,9 +178,19 @@ public class SearchActivity extends AppCompatActivity {
 
     public void IntentServiceDetailView(SearchDataModel searchDataModel) {
 
+        /*if (searchDataModel.getStep() == 1) {
+
+        } else if (searchDataModel.getStep() == 2) {
+
+        } else if (searchDataModel.getStep() == 3) {
+
+        }*/
+
         ProductsCarryObject productsCarryObject = new ProductsCarryObject();
         productsCarryObject.setPhone(userVO.getPhone());
         productsCarryObject.setServiceId(searchDataModel.getServiceId());
+        productsCarryObject.setProductId(searchDataModel.getProductId());
+        productsCarryObject.setSubProductId(searchDataModel.getId());
         productsCarryObject.setStep(searchDataModel.getStep());
 
         if (Utility.checkLng(getApplicationContext()).equalsIgnoreCase("it") || Utility.checkLng(getApplicationContext()).equalsIgnoreCase("fr")){
@@ -295,7 +301,7 @@ public class SearchActivity extends AppCompatActivity {
             subProductsVOS.clear();
 
             for (int i = 0; i < subProductsVOArrayList.size(); i++) {
-                if (subProductsVOArrayList.get(i).getProductId().equals(searchDataModel.getProductId())) {
+                if (subProductsVOArrayList.get(i).getProductId().equals(searchDataModel.getId())) {
 
                     SubProductsVO subProductsVO = new SubProductsVO();
                     subProductsVO.setServiceId(subProductsVOArrayList.get(i).getServiceId());
