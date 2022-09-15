@@ -10,6 +10,7 @@
     <string name="home_popular">受欢迎的服务</string>
     <string name="home_symn">您可能需要的服务</string>
 
+    <string name="home_"><font size="12">主页</font></string>
     <string name="home"><font size="12">主页</font></string>
     <string name="carts"><font size="12">我的购物车</font></string>
     <string name="orders"><font size="12">订单</font></string>

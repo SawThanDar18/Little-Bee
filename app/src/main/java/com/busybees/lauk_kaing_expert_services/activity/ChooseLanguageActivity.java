@@ -58,29 +58,33 @@ public class ChooseLanguageActivity extends AppCompatActivity implements RadioGr
                 AppStorePreferences.putInt(this, AppENUM.LANG_Txt, 0);
                 AppStorePreferences.putString(this, AppENUM.LANG, Locale.ENGLISH.getLanguage());
                 AppStorePreferences.putInt(getApplicationContext(), AppENUM.LNG_CON,1);
+                updateResources(Locale.ENGLISH.getLanguage());
                 finish();
-                startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
+                //startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
 
             } else if (myanmarLanguage.isChecked()!=false) {
 
                 AppStorePreferences.putInt(this, AppENUM.LANG_Txt,1);
                 if ( MDetect.INSTANCE.isUnicode()){
                     AppStorePreferences.putString(this, AppENUM.LANG, Locale.ITALY.getLanguage());
+                    updateResources(Locale.ITALY.getLanguage());
                 } else  {
                     AppStorePreferences.putString(this, AppENUM.LANG, Locale.FRANCE.getLanguage());
+                    updateResources(Locale.FRANCE.getLanguage());
                 }
 
                 AppStorePreferences.putInt(getApplicationContext(), AppENUM.LNG_CON,1);
                 finish();
-                startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
+                //startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
 
             } else if (chineseLanguage.isChecked()!=false) {
 
                 AppStorePreferences.putInt(this, AppENUM.LANG_Txt, 2);
                 AppStorePreferences.putString(this, AppENUM.LANG, Locale.SIMPLIFIED_CHINESE.getLanguage());
                 AppStorePreferences.putInt(getApplicationContext(), AppENUM.LNG_CON,1);
+                updateResources(Locale.SIMPLIFIED_CHINESE.getLanguage());
                 finish();
-                startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
+                //startActivity(new Intent(ChooseLanguageActivity.this, MainActivity.class));
 
             } else {
                 Utility.showToast(ChooseLanguageActivity.this,"Please select Language!");
@@ -139,6 +143,25 @@ public class ChooseLanguageActivity extends AppCompatActivity implements RadioGr
             myanmarLanguage.setChecked(false);
             englishLanguage.setChecked(false);
         }
+    }
+
+    public  void updateResources(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        EventBusChangeLanguage eventBusChangeLanguage = new EventBusChangeLanguage();
+        eventBusChangeLanguage.setLanguage(1);
+        EventBus.getDefault().post(eventBusChangeLanguage);
+
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
     }
 
     @Override

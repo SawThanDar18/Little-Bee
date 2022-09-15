@@ -113,8 +113,8 @@ public class DialogChangeLanguage extends DialogFragment {
                     updateResources(Locale.FRANCE.getLanguage());
                 }
 
-                AppStorePreferences.putString(getActivity(), AppENUM.LANG, Locale.ITALY.getLanguage());
-                updateResources(Locale.ITALY.getLanguage());
+                //AppStorePreferences.putString(getActivity(), AppENUM.LANG, Locale.ITALY.getLanguage());
+                //updateResources(Locale.ITALY.getLanguage());
                 AppStorePreferences.putInt(getContext(), AppENUM.LNG_CON,1);
 
                 dismiss();

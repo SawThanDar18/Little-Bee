@@ -2,8 +2,11 @@ package com.busybees.lauk_kaing_expert_services.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -17,8 +20,11 @@ import com.busybees.lauk_kaing_expert_services.R;
 import com.busybees.lauk_kaing_expert_services.utility.AppENUM;
 import com.busybees.lauk_kaing_expert_services.utility.AppStorePreferences;
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import me.myatminsoe.mdetect.MDetect;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -43,6 +49,44 @@ public class SplashActivity extends AppCompatActivity {
 
         onClick();
 
+    }
+
+    private void LanguageChange() {
+
+        int lang_txt = AppStorePreferences.getInt(this, AppENUM.LANG_Txt);
+
+        Locale myLocale;
+
+        if (lang_txt == 1) {
+
+            if (MDetect.INSTANCE.isUnicode()) {
+                myLocale = new Locale("it");
+            } else {
+                myLocale = new Locale("fr");
+            }
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+
+        } else if (lang_txt == 0) {
+            myLocale = new Locale("en");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+
+        } else if (lang_txt == 2) {
+            myLocale = new Locale("zh", "CN");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+
+        }
     }
 
     void startTimer() {
