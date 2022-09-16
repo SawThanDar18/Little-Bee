@@ -244,7 +244,7 @@ public class RatingActivity extends AppCompatActivity implements RatingBar.OnRat
         }
 
         float overall=rate_overall/rateCount;
-        Utility.showToast(getApplicationContext(), String.valueOf(overall));
+        //Utility.showToast(getApplicationContext(), String.valueOf(overall));
         overall_rating_rate.setRating(overall);
 
     }
