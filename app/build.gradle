@@ -6,7 +6,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.busybees.lauk_kaing_expert_services"
+        applicationId "com.busybees.little_bee"
         minSdk 24
         targetSdk 31
         versionCode 3

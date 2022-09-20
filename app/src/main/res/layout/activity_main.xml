@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_toolbar_height" />
 
-        <com.busybees.lauk_kaing_expert_services.utility.CustomViewPager
+        <com.busybees.little_bee.utility.CustomViewPager
             android:id="@+id/viewpager_container"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

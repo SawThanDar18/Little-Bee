@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">小蜜蜂</string>
 
-    <string name="skip">Skip</string>
+    <string name="skip">跳过</string>
     <string name="search_keyword_hint">输入要搜索的关键字</string>
     <string name="exit_app">再按一次退出再按一次退出.</string>
     <string name="reload_page">重新加载页面</string>
@@ -121,6 +121,7 @@
     <string name="thank_you_again">您值得信赖的合作伙伴!</string>
     <string name="order_confirm">我们的客服会尽快给您打 \n电话确认您的订单。</string>
     <string name="continues_for_more_service">继续获取更多服务</string>
+    <string name="power_by_little_bee">小蜜蜂的力量</string>
 
     <string name="no_internet_connection">出问题了! \n 检查互联网连接</string>
     <string name="no_internet">检查互联网连接</string>

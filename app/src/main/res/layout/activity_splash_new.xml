@@ -45,7 +45,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Power by Little Bee"
+            android:text="@string/power_by_little_bee"
             android:textAlignment="center"
             android:textColor="@color/theme_color"
             android:textSize="@dimen/fontSizeLarge"
@@ -83,7 +83,7 @@
             android:id="@+id/skip_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 5"
+            android:text=""
             android:textSize="@dimen/fontSizeSmall"
             android:textColor="@color/white" />
 

@@ -34,7 +34,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.busybees.lauk_kaing_expert_services.Banner.BannerLayout
+                    <com.busybees.little_bee.Banner.BannerLayout
                         android:id="@+id/banner_view"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height150"
@@ -64,7 +64,7 @@
                         android:layout_marginLeft="@dimen/margin24"
                         android:layout_marginRight="@dimen/margin8" />
 
-                    <com.busybees.lauk_kaing_expert_services.Banner.BannerLayout
+                    <com.busybees.little_bee.Banner.BannerLayout
                         android:id="@+id/banner_view_advertisement"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height150"

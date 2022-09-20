@@ -1,0 +1,46 @@
+package com.busybees.little_bee.data.models.ReOrder;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class ReOrderModel {
+
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    @SerializedName("error")
+    @Expose
+    private Boolean error;
+
+    @SerializedName("data")
+    @Expose
+    private List<Object> result = null;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Boolean getError() {
+        return error;
+    }
+
+    public void setError(Boolean error) {
+        this.error = error;
+    }
+
+    public List<Object> getResult() {
+        return result;
+    }
+
+    public void setResult(List<Object> result) {
+        this.result = result;
+    }
+
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.busybees.lauk_kaing_expert_services">
+    package="com.busybees.little_bee">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -41,7 +41,7 @@
         android:theme="@style/Theme.Lauk_kaing_expert_services" >
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.busybees.little_bee.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
@@ -50,72 +50,72 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.busybees.little_bee.MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ChooseLanguageActivity"
+        <activity android:name="com.busybees.little_bee.activity.ChooseLanguageActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.AddressActivity"
+        <activity android:name="com.busybees.little_bee.activity.AddressActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.AddNewAddressActivity"
+        <activity android:name="com.busybees.little_bee.activity.AddNewAddressActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.AddAddressMapViewActivity"
+        <activity android:name="com.busybees.little_bee.activity.AddAddressMapViewActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.EditAddressActivity"
+        <activity android:name="com.busybees.little_bee.activity.EditAddressActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.MapBoxActivity"
+        <activity android:name="com.busybees.little_bee.activity.MapBoxActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.FinalOrderActivity"
+        <activity android:name="com.busybees.little_bee.activity.FinalOrderActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.SearchActivity"
+        <activity android:name="com.busybees.little_bee.activity.SearchActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ProductActivity"
+        <activity android:name="com.busybees.little_bee.activity.ProductActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.SubProductActivity"
+        <activity android:name="com.busybees.little_bee.activity.SubProductActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ServiceDetailActivity"
+        <activity android:name="com.busybees.little_bee.activity.ServiceDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.LogInActivity"
+        <activity android:name="com.busybees.little_bee.activity.LogInActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.RegisterActivity"
+        <activity android:name="com.busybees.little_bee.activity.RegisterActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.PaymentActivity"
+        <activity android:name="com.busybees.little_bee.activity.PaymentActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ThanksActivity"
+        <activity android:name="com.busybees.little_bee.activity.ThanksActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ProfileActivity"
+        <activity android:name="com.busybees.little_bee.activity.ProfileActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ImagePickerActivity"
+        <activity android:name="com.busybees.little_bee.activity.ImagePickerActivity"
             android:screenOrientation="portrait"/>
         <activity
         android:name="com.yalantis.ucrop.UCropActivity"
         android:screenOrientation="portrait" />
-        <activity android:name=".activity.ImageViewActivity"
+        <activity android:name="com.busybees.little_bee.activity.ImageViewActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.OTPActivity"
+        <activity android:name="com.busybees.little_bee.activity.OTPActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.LeadFormActivity"
+        <activity android:name="com.busybees.little_bee.activity.LeadFormActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.FullImageActivity"
+        <activity android:name="com.busybees.little_bee.activity.FullImageActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ImageLeadFormActivity"
+        <activity android:name="com.busybees.little_bee.activity.ImageLeadFormActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.OrderDetailActivity"
+        <activity android:name="com.busybees.little_bee.activity.OrderDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.HistoryDetailActivity"
+        <activity android:name="com.busybees.little_bee.activity.HistoryDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ReceiptDetailActivity"
+        <activity android:name="com.busybees.little_bee.activity.ReceiptDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.UserGuideActivity"
+        <activity android:name="com.busybees.little_bee.activity.UserGuideActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.RatingActivity"
+        <activity android:name="com.busybees.little_bee.activity.RatingActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.NotificationActivity"
+        <activity android:name="com.busybees.little_bee.activity.NotificationActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.AboutActivity"
+        <activity android:name="com.busybees.little_bee.activity.AboutActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.WhyLittleBeeActivity"
+        <activity android:name="com.busybees.little_bee.activity.WhyLittleBeeActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ContactUsActivity"
+        <activity android:name="com.busybees.little_bee.activity.ContactUsActivity"
             android:screenOrientation="portrait"/>
 
         <provider
@@ -133,7 +133,7 @@
             android:required="false" />
 
         <receiver
-            android:name=".services.PushReceiver"
+            android:name="com.busybees.little_bee.services.PushReceiver"
             android:exported="false">
             <intent-filter>
 
