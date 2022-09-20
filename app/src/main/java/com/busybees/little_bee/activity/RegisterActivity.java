@@ -99,8 +99,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if (response.body().getError() == true) {
 
                         Utility.showToast(getApplicationContext(), response.body().getMessage());
-                        startActivity(new Intent(RegisterActivity.this, LogInActivity.class));
-                        finish();
+                        //startActivity(new Intent(RegisterActivity.this, LogInActivity.class));
+                        //finish();
 
                     } else if (response.body().getError() == false) {
 
