@@ -179,7 +179,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
                     if (response.body().getError() == true) {
 
-                        continueLayout.setVisibility(View.GONE);
+                        //continueLayout.setVisibility(View.GONE);
 
                         videoView.setVisibility(View.GONE);
                         progressBar.setVisibility(View.VISIBLE);
@@ -188,7 +188,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
                     } else if (response.body().getError() == false) {
 
-                        continueLayout.setVisibility(View.VISIBLE);
+                        //continueLayout.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         //videoView.setVisibility(View.VISIBLE);
                         //PlayVideo("https://busybeesexpertservice.com//assets/video/CCTV_Services.mp4");

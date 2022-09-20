@@ -63,7 +63,7 @@
                     android:layout_marginStart="@dimen/margin10"
                     android:background="@drawable/circle_with_pink_accent_border"
                     android:gravity="center"
-                    android:text="1"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/fontSizeMedium"
                     android:textStyle="bold" />
