@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 
 import com.busybees.little_bee.R;
+import com.busybees.little_bee.utility.Utility;
 
 
 public class DialogForceUpdate extends DialogFragment {
@@ -42,6 +43,7 @@ public class DialogForceUpdate extends DialogFragment {
         updateBtn.setOnClickListener(v -> {
             Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse("https://play.google.com/store/apps/details?id=com.busybees.little_bee") );
             if(getView()!=null){
+                Utility.delete_UserProfile(getContext());
                 startActivity( browse );
             }
         });

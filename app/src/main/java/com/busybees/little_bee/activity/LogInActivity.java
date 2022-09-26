@@ -101,6 +101,7 @@ public class LogInActivity extends AppCompatActivity {
                         if (response.body().getStatus() == 1) {
                             CallGenerateOTP();
                         } else {
+                            startActivity(new Intent(LogInActivity.this, RegisterActivity.class));
                             Utility.showToast(LogInActivity.this, response.body().getMessage());
                         }
 

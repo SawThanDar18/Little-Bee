@@ -59,7 +59,7 @@ public class MoreFragment extends Fragment {
 
     private NetworkServiceProvider networkServiceProvider;
 
-    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs, aboutLittleBee, whyLittleBee, lineDeleteUser, deleteUserView;
+    private LinearLayout changeLanguage, loginView, lineLogout, logOut, userGuide, contactUs, aboutLittleBee, whyLittleBee, lineDeleteUser, deleteUserView, versionView;
     private CardView profileLayout;
     private ImageView profile, profileEditImageView;
     private CircleImageView profiles;
@@ -95,6 +95,7 @@ public class MoreFragment extends Fragment {
         whyLittleBee = view.findViewById(R.id.why_layout);
         lineDeleteUser = view.findViewById(R.id.line_delete_user);
         deleteUserView = view.findViewById(R.id.delete_user_layout);
+        versionView = view.findViewById(R.id.version);
 
         onClick();
         userProfileView();
@@ -198,6 +199,14 @@ public class MoreFragment extends Fragment {
         aboutLittleBee.setOnClickListener(v -> startActivity(new Intent(getContext(), AboutActivity.class)));
 
         whyLittleBee.setOnClickListener(v-> startActivity(new Intent(getContext(), WhyLittleBeeActivity.class)));
+
+        versionView.setOnClickListener(v-> {
+            Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse("https://play.google.com/store/apps/details?id=com.busybees.little_bee") );
+            if(getView()!=null){
+                startActivity( browse );
+            }
+        });
+
     }
 
     private void CallDeleteUser(RequestPhoneObject requestPhoneObject) {
@@ -305,8 +314,11 @@ public class MoreFragment extends Fragment {
             lineLogout.setVisibility(View.VISIBLE);
             profileEditImageView.setVisibility(View.VISIBLE);
 
-            deleteUserView.setVisibility(View.VISIBLE);
-            lineDeleteUser.setVisibility(View.VISIBLE);
+            //
+            deleteUserView.setVisibility(View.GONE);
+
+            //
+            lineDeleteUser.setVisibility(View.GONE);
 
             GetUserProfileObject userProfileObject = new GetUserProfileObject();
             userProfileObject.setPhone(userVO.getPhone());

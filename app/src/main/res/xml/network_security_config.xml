@@ -4,6 +4,7 @@
 
         <domain includeSubdomains="true">busybeesexpertservice.com</domain>
         <domain includeSubdomains="true">busybeesexpertservice.com/mdy/index.php</domain>
+        <domain includeSubdomains="true">47.244.102.74</domain>
 
     </domain-config>
 </network-security-config>
