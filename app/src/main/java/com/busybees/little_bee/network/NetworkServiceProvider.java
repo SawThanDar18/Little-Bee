@@ -2,6 +2,8 @@ package com.busybees.little_bee.network;
 
 import android.content.Context;
 
+import com.busybees.little_bee.data.SendMessage.SendMessageModel;
+import com.busybees.little_bee.data.SendMessage.SendMessageObject;
 import com.busybees.little_bee.data.models.AddAddressModel;
 import com.busybees.little_bee.data.models.AddToCart.AddToCartModel;
 import com.busybees.little_bee.data.models.AddToCart.AddToCartObj;
@@ -36,6 +38,9 @@ import com.busybees.little_bee.data.vos.Users.ProfileImageObj;
 import com.busybees.little_bee.data.vos.Users.RequestPhoneObject;
 import com.busybees.little_bee.network.sync.AddAddressSync;
 import com.busybees.little_bee.network.sync.AddToCartSync;
+import com.busybees.little_bee.network.sync.CallSendMessageSync;
+import com.busybees.little_bee.network.sync.CallSendOTPRegisterSync;
+import com.busybees.little_bee.network.sync.CallSendOTPSync;
 import com.busybees.little_bee.network.sync.DeleteAddressSync;
 import com.busybees.little_bee.network.sync.EditAddressSync;
 import com.busybees.little_bee.network.sync.ForceUpdateSync;
@@ -231,6 +236,21 @@ public class NetworkServiceProvider {
     public Call<ForeUpdateModel> ForceUpdate (String url, ForceUpdateObj forceUpdateObj) {
         ForceUpdateSync sync=retrofit.create(ForceUpdateSync.class);
         return sync.getForceUpdate(url,forceUpdateObj);
+    }
+
+    public Call<VerifyModel> CallSendOTP(String url, VerifyObject obj) {
+        CallSendOTPSync sync = retrofit.create(CallSendOTPSync.class);
+        return sync.callSendOTP(url, obj);
+    }
+
+    public Call<VerifyModel> CallSendOTPRegister(String url, RegisterObj obj) {
+        CallSendOTPRegisterSync sync = retrofit.create(CallSendOTPRegisterSync.class);
+        return sync.callSendOTP(url, obj);
+    }
+
+    public Call<SendMessageModel> CallSendMessage(String url, String authorization, SendMessageObject object) {
+        CallSendMessageSync sync = retrofit.create(CallSendMessageSync.class);
+        return sync.callSendMessage(url, authorization, object);
     }
 
 }

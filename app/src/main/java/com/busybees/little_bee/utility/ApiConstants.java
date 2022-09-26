@@ -33,4 +33,12 @@ public class ApiConstants {
     public static final String GET_SEARCH_PRODUCTS = "/auth/searchproducts";
     public static final String GET_FORCE_UPDATE = "/forceupdateAndroid";
 
+    public static final String get_send_otp = "/get_otp";
+    public static final String get_send_otp_register = "/register_otp";
+
+    public static final String get_send_msg_url = "http://47.244.102.74:8077/1/smsmessaging/outbound/122297/requests";
+    public static final String get_send_msg_header = "spId=\"100\", spPassword=\"3e5b3910b6622b2d38bddbbef43c1ee8\", timeStamp=\"20220921112601\", serviceId=\"216\"";
+    public static final String senderAddress = "122297";
+    public static final String senderName = "95936777098";
+
 }

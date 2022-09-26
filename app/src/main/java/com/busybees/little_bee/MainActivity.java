@@ -131,13 +131,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 @Override
                 public void onResponse(Call<ForeUpdateModel> call, Response<ForeUpdateModel> response) {
                     if (response.body().getError() == false) {
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+
+                    } else {
 
                         DialogForceUpdate dialogForceUpdate = new DialogForceUpdate();
                         dialogForceUpdate.show(getSupportFragmentManager(), "");
                         Utility.delete_UserProfile(getApplicationContext());
 
-                    } else {
-                        Utility.showToast(getApplicationContext(), response.body().getMessage());
                     }
                 }
 

@@ -17,6 +17,10 @@ public class RegisterObj {
     @Expose
     private String registerSource;
 
+    @SerializedName("otp")
+    @Expose
+    private String otp;
+
     public String getPhone() {
         return phone;
     }
@@ -41,4 +45,11 @@ public class RegisterObj {
         this.registerSource = registerSource;
     }
 
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 }

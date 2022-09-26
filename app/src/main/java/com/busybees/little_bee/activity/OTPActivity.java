@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.busybees.little_bee.data.SendMessage.SendMessageModel;
+import com.busybees.little_bee.data.SendMessage.SendMessageObject;
 import com.busybees.little_bee.data.models.ResendOtpModel;
 import com.busybees.little_bee.data.models.VerifyModel;
 import com.busybees.little_bee.data.vos.Users.ResendOTPObject;
@@ -24,6 +26,10 @@ import com.busybees.little_bee.network.NetworkServiceProvider;
 import com.busybees.little_bee.utility.ApiConstants;
 import com.busybees.little_bee.utility.Utility;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -169,7 +175,12 @@ public class OTPActivity extends AppCompatActivity {
 
                     if (response.body().getError() == true){
                         progressBar.setVisibility(View.GONE);
-                        Utility.showToast(OTPActivity.this,response.body().getMessage());
+                        if (response.body().getStatus() == 1) {
+                            CallGenerateOTP();
+                        } else {
+
+                            Utility.showToast(OTPActivity.this, response.body().getMessage());
+                        }
 
                     }else if (response.body().getError()==false){
                         progressBar.setVisibility(View.GONE);
@@ -184,6 +195,73 @@ public class OTPActivity extends AppCompatActivity {
 
         } else {
             Utility.showToast(OTPActivity.this, getString(R.string.no_internet));
+        }
+    }
+
+    private void CallGenerateOTP() {
+        String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+
+        VerifyObject obj = new VerifyObject();
+        obj.setPhone(phone_number);
+        obj.setOtp(otp);
+
+        CallSendOTP(obj);
+
+    }
+
+    private void CallSendOTP(VerifyObject obj) {
+        if (Utility.isOnline(getApplicationContext())) {
+            networkServiceProvider.CallSendOTP(ApiConstants.BASE_URL + ApiConstants.get_send_otp, obj).enqueue(new Callback<VerifyModel>() {
+                @Override
+                public void onResponse(Call<VerifyModel> call, Response<VerifyModel> response) {
+                    if (response.body().getError() == false) {
+                        CallSendMessage(obj);
+                    } else {
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<VerifyModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+        } else {
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
+    }
+
+    private void CallSendMessage(VerifyObject obj) {
+
+        String url = ApiConstants.get_send_msg_url;
+        String authorization = ApiConstants.get_send_msg_header;
+
+        List<String> phone = new ArrayList<>();
+        phone.add(obj.getPhone());
+
+        SendMessageObject sendMessageObject = new SendMessageObject();
+        sendMessageObject.setReceivePhoneNumber(phone);
+        sendMessageObject.setSenderAddress(ApiConstants.senderAddress);
+        sendMessageObject.setMessage("Your OTP code for BusyBees : " + obj.getOtp());
+        sendMessageObject.setNotifyURL("");
+        sendMessageObject.setSenderName(ApiConstants.senderName);
+
+        if (Utility.isOnline(getApplicationContext())) {
+            networkServiceProvider.CallSendMessage(url, authorization, sendMessageObject).enqueue(new Callback<SendMessageModel>() {
+                @Override
+                public void onResponse(Call<SendMessageModel> call, Response<SendMessageModel> response) {
+                    if (response.code() == 200) {
+                        otpCode.setText("");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SendMessageModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+                }
+            });
+        } else {
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
         }
     }
 

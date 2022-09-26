@@ -17,6 +17,10 @@ public class ResendOtpModel {
     @Expose
     private String message;
 
+    @SerializedName("status")
+    @Expose
+    private int status;
+
     public Boolean getError() {
         return error;
     }
@@ -39,5 +43,13 @@ public class ResendOtpModel {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
