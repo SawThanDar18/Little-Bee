@@ -21,6 +21,9 @@ import com.busybees.little_bee.utility.ApiConstants;
 import com.busybees.little_bee.utility.Constant;
 import com.busybees.little_bee.utility.Utility;
 
+import java.text.DecimalFormat;
+import java.util.Random;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,11 +92,13 @@ public class LogInActivity extends AppCompatActivity {
 
                     if (response.body().getError() == true) {
 
-                        Utility.showToast(LogInActivity.this, response.body().getMessage());
-                        //startActivity(new Intent(LogInActivity.this, RegisterActivity.class));
+                        if (response.body().getStatus() == 1) {
+                            CallGenerateOTP();
+                        } else {
+                            Utility.showToast(LogInActivity.this, response.body().getMessage());
+                        }
 
                     } else if (response.body().getError() == false) {
-
                             Intent intent = new Intent(LogInActivity.this, OTPActivity.class);
                             intent.putExtra("phone", phoneNumber.getText().toString());
                             startActivity(intent);
@@ -117,6 +122,11 @@ public class LogInActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    private void CallGenerateOTP() {
+        String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+        Utility.showToast(getApplicationContext(), otp);
     }
 
     void makeStatusBarVisible() {

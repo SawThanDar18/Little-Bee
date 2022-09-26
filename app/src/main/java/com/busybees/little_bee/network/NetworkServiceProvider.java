@@ -7,6 +7,8 @@ import com.busybees.little_bee.data.models.AddToCart.AddToCartModel;
 import com.busybees.little_bee.data.models.AddToCart.AddToCartObj;
 import com.busybees.little_bee.data.models.AddressModel;
 import com.busybees.little_bee.data.models.DeleteUser.GetDeleteUserModel;
+import com.busybees.little_bee.data.models.ForceUpdate.ForceUpdateObj;
+import com.busybees.little_bee.data.models.ForceUpdate.ForeUpdateModel;
 import com.busybees.little_bee.data.models.GetAddressModel;
 import com.busybees.little_bee.data.models.GetCart.GetCartModel;
 import com.busybees.little_bee.data.models.GetCart.GetCartObj;
@@ -36,6 +38,7 @@ import com.busybees.little_bee.network.sync.AddAddressSync;
 import com.busybees.little_bee.network.sync.AddToCartSync;
 import com.busybees.little_bee.network.sync.DeleteAddressSync;
 import com.busybees.little_bee.network.sync.EditAddressSync;
+import com.busybees.little_bee.network.sync.ForceUpdateSync;
 import com.busybees.little_bee.network.sync.GetAddressSync;
 import com.busybees.little_bee.data.models.GetAllHomeModel;
 import com.busybees.little_bee.data.models.GetProductPriceModel;
@@ -223,6 +226,11 @@ public class NetworkServiceProvider {
     public Call<SearchModel> Search (String url, SearchVO searchObj) {
         SearchSync sync=retrofit.create(SearchSync.class);
         return sync.getSearch(url,searchObj);
+    }
+
+    public Call<ForeUpdateModel> ForceUpdate (String url, ForceUpdateObj forceUpdateObj) {
+        ForceUpdateSync sync=retrofit.create(ForceUpdateSync.class);
+        return sync.getForceUpdate(url,forceUpdateObj);
     }
 
 }

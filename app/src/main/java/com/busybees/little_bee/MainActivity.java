@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -15,17 +17,22 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.busybees.little_bee.Dialog.DialogForceUpdate;
 import com.busybees.little_bee.EventBus.EventBusChangeLanguage;
 import com.busybees.little_bee.EventBusModel.EventBusCall;
 import com.busybees.little_bee.EventBusModel.EventBusCartObj;
 import com.busybees.little_bee.EventBusModel.GoToCart;
 import com.busybees.little_bee.activity.NotificationActivity;
 import com.busybees.little_bee.adapters.Home.ViewPagerAdapter;
+import com.busybees.little_bee.data.models.ForceUpdate.ForceUpdateObj;
+import com.busybees.little_bee.data.models.ForceUpdate.ForeUpdateModel;
 import com.busybees.little_bee.fragments.CartsFragment;
 import com.busybees.little_bee.fragments.HomeFragment;
 import com.busybees.little_bee.fragments.MoreFragment;
 import com.busybees.little_bee.fragments.OrdersFragment;
 import com.busybees.little_bee.fragments.ReceiptFragments;
+import com.busybees.little_bee.network.NetworkServiceProvider;
+import com.busybees.little_bee.utility.ApiConstants;
 import com.busybees.little_bee.utility.AppENUM;
 import com.busybees.little_bee.utility.AppStorePreferences;
 import com.busybees.little_bee.utility.CustomViewPager;
@@ -41,8 +48,14 @@ import org.json.JSONObject;
 import java.util.Locale;
 
 import me.myatminsoe.mdetect.MDetect;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private NetworkServiceProvider networkServiceProvider;
+
     private BottomNavigationView bottomNavigationView;
     private CustomViewPager viewPager;
 
@@ -59,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean doubleBackToExitPressedOnce = false;
     private static int tabCondition = 0;
 
+    private PackageInfo packageInfo;
+    private int version;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         MDetect.INSTANCE.init(this);
         LanguageChange();
+
+        networkServiceProvider = new NetworkServiceProvider(this);
 
         bottomNavigationView = findViewById(R.id.navigation);
         viewPager = findViewById(R.id.viewpager_container);
@@ -88,8 +106,50 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         }
 
+        CalculateVersionCode();
+
         intiUI();
         onClick();
+    }
+
+    private void CalculateVersionCode() {
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = packageInfo.versionCode;
+
+            ForceUpdateObj forceUpdateObj = new ForceUpdateObj();
+            forceUpdateObj.setVersion(String.valueOf(version));
+            CallForceUpdate(forceUpdateObj);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void CallForceUpdate(ForceUpdateObj forceUpdateObj) {
+        if (Utility.isOnline(getApplicationContext())) {
+            networkServiceProvider.ForceUpdate(ApiConstants.BASE_URL + ApiConstants.GET_FORCE_UPDATE, forceUpdateObj).enqueue(new Callback<ForeUpdateModel>() {
+                @Override
+                public void onResponse(Call<ForeUpdateModel> call, Response<ForeUpdateModel> response) {
+                    if (response.body().getError() == false) {
+
+                        DialogForceUpdate dialogForceUpdate = new DialogForceUpdate();
+                        dialogForceUpdate.show(getSupportFragmentManager(), "");
+                        Utility.delete_UserProfile(getApplicationContext());
+
+                    } else {
+                        Utility.showToast(getApplicationContext(), response.body().getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ForeUpdateModel> call, Throwable t) {
+                    Utility.showToast(getApplicationContext(), t.getMessage());
+
+                }
+            });
+        } else {
+            Utility.showToast(getApplicationContext(), getString(R.string.no_internet));
+        }
     }
 
     private void intiUI() {

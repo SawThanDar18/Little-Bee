@@ -272,4 +272,8 @@
     <string name="four">\u2022  <b>24 Hours Available</b> \n Services are available for 24 Hours</string>
     <string name="five">\u2022  <b>我们会在 3 小时内与您联系</b> \n 节省您的时间，我们会在 3 小时内帮助您并到达您的位置.</string>
 
+    <string name="update_title">可用更新</string>
+    <string name="update_msg">有新版本的小蜜蜂可用。\n请更新到版本。</string>
+    <string name="update_playstore">前往 PlayStore</string>
+
 </resources>

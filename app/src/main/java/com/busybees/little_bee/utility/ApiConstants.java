@@ -31,5 +31,6 @@ public class ApiConstants {
     public static final String GET_NOTIFICATION = "/auth/getNotifications";
     public static final String GET_DELETE_USER = "/auth/deleteuser";
     public static final String GET_SEARCH_PRODUCTS = "/auth/searchproducts";
+    public static final String GET_FORCE_UPDATE = "/forceupdateAndroid";
 
 }

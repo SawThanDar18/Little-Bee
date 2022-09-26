@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding10"
+    android:background="@drawable/dialog_corner"
+    android:minWidth="@dimen/width300">
+
+    <LinearLayout
+        android:padding="@dimen/padding4"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/viewfu"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/little_bee_logo"
+                android:layout_width="@dimen/width60"
+                android:layout_height="@dimen/height60"/>
+
+            <TextView
+                android:padding="@dimen/padding2"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/margin10"
+                android:layout_gravity="center"
+                android:textSize="@dimen/fontSizeMedium"
+                android:textColor="@color/black"
+                android:text="@string/update_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:padding="@dimen/padding2"
+            android:layout_marginTop="@dimen/padding10"
+            android:id="@+id/txtview"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fontSizeMedium"
+            android:gravity="center"
+            android:text=""
+            android:minLines="3"
+            android:maxLines="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:textSize="@dimen/fontSizeMedium"
+            android:layout_marginTop="@dimen/margin20"
+            android:layout_marginLeft="@dimen/margin6"
+            android:id="@+id/btnupdate"
+            android:background="@drawable/two_color_shape"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/update_playstore"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height50" />
+
+    </LinearLayout>
+
+</LinearLayout>

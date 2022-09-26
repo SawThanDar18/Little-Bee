@@ -1,25 +1,21 @@
-package com.busybees.little_bee.data.models;
-import com.busybees.little_bee.data.vos.Users.UserVO;
+package com.busybees.little_bee.data.models.ForceUpdate;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginModel {
+public class ForeUpdateModel {
 
     @SerializedName("error")
     @Expose
     private Boolean error;
 
-    @SerializedName("data")
-    @Expose
-    private UserVO data;
-
     @SerializedName("message")
     @Expose
     private String message;
 
-    @SerializedName("status")
+    @SerializedName("data")
     @Expose
-    private int status;
+    private ForceUpdateDataModel result;
 
     public Boolean getError() {
         return error;
@@ -27,14 +23,6 @@ public class LoginModel {
 
     public void setError(Boolean error) {
         this.error = error;
-    }
-
-    public UserVO getData() {
-        return data;
-    }
-
-    public void setData(UserVO data) {
-        this.data = data;
     }
 
     public String getMessage() {
@@ -45,11 +33,12 @@ public class LoginModel {
         this.message = message;
     }
 
-    public int getStatus() {
-        return status;
+    public ForceUpdateDataModel getResult() {
+        return result;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setResult(ForceUpdateDataModel result) {
+        this.result = result;
     }
+
 }

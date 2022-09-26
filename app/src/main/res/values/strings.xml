@@ -274,4 +274,8 @@
     <string name="four">\u2022  <b>24 Hours Available</b> \n Services are available for 24 Hours</string>
     <string name="five">\u2022  <b>We reach you within 3 hours </b> \n Save your time and we help you \n within 3 hours to your place.	</string>
 
+    <string name="update_title">Update Available</string>
+    <string name="update_msg">A new version of BusyBees is available. \n Please update to version.</string>
+    <string name="update_playstore">Go to PlayStore</string>
+
 </resources>
