@@ -4,14 +4,14 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.busybees.lauk_kaing_expert_services",
+  "applicationId": "com.busybees.little_bee",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
+      "versionCode": 3,
       "versionName": "1.0.0",
       "outputFile": "app-release.apk"
     }
