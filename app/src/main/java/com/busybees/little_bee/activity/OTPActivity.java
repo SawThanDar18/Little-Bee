@@ -107,8 +107,8 @@ public class OTPActivity extends AppCompatActivity {
 
                 if (verifyObj.getOtp().equalsIgnoreCase("123456")) {
                     UserVO userVO = new UserVO();
-                    userVO.setPhone("0134654676");
-                    userVO.setId(63);
+                    userVO.setPhone("09255699002");
+                    userVO.setId(40);
                     Utility.Save_UserProfile(getApplicationContext(), userVO);
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
